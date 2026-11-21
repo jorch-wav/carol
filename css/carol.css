@@ -592,3 +592,12 @@ button.x .ic { width: 18px; height: 18px; vertical-align: middle; }
   .bird-arrows .ic, #resetBtn .short .ic, .rocker.gear .ic { width: 19px; height: 19px; }
   .rocker.learn { padding: 5px 6px; letter-spacing: .5px; }
 }
+/* 3D scan style: the readout layer sits over the 3D canvas and follows it */
+#view3dLabels { pointer-events: none; }
+#view3d.on + #view3dLabels { display: block; }
+/* 3D look switch (top right of the bird panel, 3D view only) */
+.v3-style { position: absolute; top: 10px; left: 10px; z-index: 4; background: rgba(20,19,18,.82); border: 1px solid #3f3a34; color: var(--dim); font-weight: 700; letter-spacing: 1.5px; font-size: 11px; padding: 6px 10px; border-radius: 3px; min-height: 32px; }
+.v3-style.on { color: var(--amber-2); border-color: var(--amber); }
+.v3-style[hidden] { display: none; }
+body[data-viewsize="hidden"] .v3-style { display: none; }
+@media (max-width: 900px) { .v3-style { left: auto; right: 10px; } }
