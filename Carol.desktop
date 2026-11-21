@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Carol
+Comment=Bird synthesiser: real bird voices from physical models of the syrinx
+Exec=/home/audioview/synths/carol/launch.sh
+Icon=/home/audioview/synths/carol/icon.svg
+Terminal=false
+Categories=AudioVideo;Music;

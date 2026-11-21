@@ -1,0 +1,78 @@
+{
+ "id": "whipbird",
+ "common_name": "Eastern Whipbird",
+ "scientific_name": "Psophodes olivaceus",
+ "family": "Psophodidae (whipbirds and wedgebills)",
+ "overview": "The eastern whipbird is a shy, olive-green bird with a black head, a little black crest and a bold white cheek patch, living in the thick undergrowth of eastern Australia's wet forests. You will hear it far more often than see it. Its call is one of the classic sounds of the Australian bush: a long whistle from the male that ends in an explosive 'whip-crack', answered at once by the female with a couple of sharp short notes, so neatly that it sounds like one bird.",
+ "deep_dive": {
+  "habitat": "Rainforest, wet eucalypt (sclerophyll) forest and dense scrub, usually near creeks and water. It keeps to thick vegetation close to the ground.",
+  "range": "The coastal strip and ranges of eastern Australia, from eastern Victoria north to central Queensland (subspecies olivaceus), plus a separate northern population in the wet tropics of north Queensland, from about Cooktown to Townsville (subspecies lateralis, a little smaller and browner).",
+  "behaviour": "Sedentary: pairs keep the same territory all year and often stay together for many years. Whipbirds feed on the ground, flicking through leaf litter for insects and other small invertebrates, alone, in pairs or in small family groups. They are secretive but curious. The nest is a loose cup of twigs placed low in dense cover; the female lays 2-3 pale blue, black-marked eggs, and pairs may raise two broods between July and December.",
+  "voice": "The famous call is a duet started only by the male: a long, steady whistle followed by a whip-crack, a pure tone that sweeps extremely fast across a very wide frequency range, then the female's short reply notes. Male songs are remarkably similar right across the range, while female replies vary much more and fall into regional types. Females also have their own solo songs, used against other females. Pairs keep in touch with soft grunts and other calls while feeding, and there is a harsh rasping call. Calling peaks at dawn, with smaller peaks around noon and dusk. In one of our recordings the male's whistle holds at about 4.1 kHz, then the crack shoots up to nearly 8 kHz and drops to about 1.5 kHz in roughly 70 milliseconds.",
+  "anatomy": "A songbird (order Passeriformes). Like all songbirds it has a tracheobronchial syrinx with a sound source on each side that can be controlled separately; very fast, wide pitch sweeps like the whip-crack are the kind of sound this vocal organ can make. Adults are about 26-30 cm long, of which the long, white-tipped tail is a big part, and weigh about 47-72 g. The bill is black and the iris reddish-brown. (No whipbird-specific syrinx study was consulted; these points are general songbird anatomy.)"
+ },
+ "tags": {
+  "features": [
+   "whistler",
+   "whip-crack",
+   "duetter",
+   "frequency sweep",
+   "skulker"
+  ],
+  "region": [
+   "Eastern Australia",
+   "South-eastern Australia",
+   "North Queensland"
+  ]
+ },
+ "facts_sources": [
+  {
+   "title": "Eastern whipbird - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Eastern_whipbird",
+   "licence": "CC BY-SA 4.0 (text paraphrased, not copied)",
+   "used_for": "overview, size, plumage, habitat, range and subspecies, diet, breeding, duet structure, daily calling peaks, taxonomy history"
+  },
+  {
+   "title": "Eastern Whipbird - BirdLife Australia bird profile",
+   "url": "https://birdlife.org.au/bird-profiles/eastern-whipbird/",
+   "licence": "(c) BirdLife Australia - facts only, paraphrased",
+   "used_for": "identification (eye and bill colour), habitat, sedentary pairs, foraging, duet, breeding"
+  },
+  {
+   "title": "Psophodes olivaceus - Atlas of Living Australia",
+   "url": "https://bie.ala.org.au/species/https://biodiversity.org.au/afd/taxa/7d461feb-7587-49b6-9f8e-897069e3b8a8",
+   "licence": "ALA terms of use - facts only",
+   "used_for": "taxonomy (family Psophodidae, order Passeriformes)"
+  },
+  {
+   "title": "Mennill, D. J. & Rogers, A. C. (2006) Whip it good! Geographic consistency in male songs and variability in female songs of the duetting eastern whipbird Psophodes olivaceus. Journal of Avian Biology 37: 93-100",
+   "url": "https://doi.org/10.1111/j.0908-8857.2006.03548.x",
+   "licence": "facts only (abstract)",
+   "used_for": "male songs consistent across 16 populations, whistle pitch and crack slope adjustable, female songs variable and regional"
+  },
+  {
+   "title": "Rogers, A. C. (2005) Male and female song structure and singing behaviour in the duetting eastern whipbird, Psophodes olivaceus. Australian Journal of Zoology 53: 157-166",
+   "url": "https://doi.org/10.1071/ZO04083",
+   "licence": "facts only (abstract)",
+   "used_for": "duets started only by males; male songs longer and wider in frequency; female response and solo songs"
+  },
+  {
+   "title": "Syrinx (bird anatomy) - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Syrinx_(bird_anatomy)",
+   "licence": "CC BY-SA 4.0 (paraphrased)",
+   "used_for": "songbirds have a tracheobronchial syrinx; left/right sides modulated independently"
+  },
+  {
+   "title": "IOC World Bird List (Gill, Donsker & Rasmussen, eds.), via World Bird Names species page",
+   "url": "https://www.worldbirdnames.com/bird/eastern-whipbird/18289.html",
+   "licence": "CC BY 4.0 - facts only",
+   "used_for": "taxonomy: Passeriformes, Psophodidae, Psophodes olivaceus (Latham, 1801), protonym Corvus olivaceus"
+  },
+  {
+   "title": "Xeno-canto recordings listed in sources.json (own measurements)",
+   "url": "https://xeno-canto.org/species/Psophodes-olivaceus",
+   "licence": "recordings CC BY-NC-SA; measurements are our own",
+   "used_for": "whistle ~4.1 kHz and whip-crack sweep (~6 up to ~7.9 kHz, then down to ~1.5 kHz in ~70 ms) in XC543002"
+  }
+ ]
+}

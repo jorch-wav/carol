@@ -1,0 +1,12 @@
+[package]
+name = "carol-wasm"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+
+[lib]
+crate-type = ["cdylib"]
+path = "src/lib.rs"
+
+[dependencies]
+carol-core = { path = "../core" }

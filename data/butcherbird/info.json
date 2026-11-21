@@ -1,0 +1,80 @@
+{
+ "id": "butcherbird",
+ "common_name": "Pied Butcherbird",
+ "scientific_name": "Cracticus nigrogularis",
+ "family": "Artamidae (butcherbirds, currawongs, woodswallows and magpie)",
+ "overview": "The pied butcherbird is a smart black-and-white bird with a black hood, a white collar and a big hooked bill, found across most of mainland Australia. It is often called Australia's finest songbird: its slow, rich, flute-like phrases sound almost like someone whistling a tune, and family groups sing together in duets and choruses. Its name comes from its habit of wedging or spiking leftover prey on twigs and wire, like a butcher's hook.",
+ "deep_dive": {
+  "habitat": "Open eucalypt and acacia woodland, open forest and scrub with a sparse understorey. In dry inland and northern areas it mostly keeps to the trees along rivers and billabongs. It is also common in towns, parks and gardens.",
+  "range": "Most of mainland Australia, except the far south (including most of the southern and south-eastern coast), the driest deserts and Tasmania. Two subspecies: nigrogularis in the east, and picatus in the Northern Territory, Western Australia and northern South Australia, which has a wider white collar. Birds mostly stay put all year.",
+  "behaviour": "Lives in pairs or small family groups that hold a territory and chase off birds of prey, dogs and even people near the nest. Young birds from earlier broods often help feed the chicks. It hunts from an open perch such as a fence post, pouncing on insects, lizards, frogs, mice and small birds on the ground, and sometimes takes fruit and nectar. Spare food is stored by wedging it into a crack or impaling it on a stick or barbed wire.",
+  "voice": "A clear, mellow, flute- or organ-like song made of short phrases, each about 2-3 seconds long, with pauses in between. Birds improvise and vary their phrases, but they repeat shared motifs at surprisingly regular intervals. Songs differ across the continent. Researchers describe three kinds of song: a day song (often an antiphonal duet or group song), a soft, complex 'whisper song' with mimicry, and a solo night song sung by males in the breeding season, sometimes under moonlight. Composer and zoomusicologist Hollis Taylor gives the usual solo-song range as about A5 to G#7 (roughly 880-3,300 Hz), extending to about D5-C#8 (590-4,400 Hz), with rattles pulsing at 9-50 per second. The alarm call is a series of short, loud, descending notes. In our recordings most notes lie between about 1 and 3 kHz.",
+  "anatomy": "A songbird (order Passeriformes). Like all songbirds it has a tracheobronchial syrinx with a sound source on each side, which can be controlled separately; that helps it make clean, pure, whistle-like tones and jump between notes. The bill is long, strong and pale bluish-grey with a black hooked tip, made for gripping and tearing prey. Adults are about 28-32 cm long and weigh about 120 g. (No butcherbird-specific syrinx study was consulted; these points are general songbird anatomy.)"
+ },
+ "tags": {
+  "features": [
+   "whistler",
+   "flute-like song",
+   "duetter",
+   "group singer",
+   "night singer",
+   "mimic"
+  ],
+  "region": [
+   "Australia-wide",
+   "Northern Australia",
+   "Eastern Australia",
+   "Western Australia"
+  ]
+ },
+ "facts_sources": [
+  {
+   "title": "Pied butcherbird - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Pied_butcherbird",
+   "licence": "CC BY-SA 4.0 (text paraphrased, not copied)",
+   "used_for": "overview, size, plumage, subspecies, habitat, range, behaviour, food storing, three song types, alarm call, Hollis Taylor's research"
+  },
+  {
+   "title": "Pied Butcherbird - BirdLife Australia bird profile",
+   "url": "https://birdlife.org.au/bird-profiles/pied-butcherbird/",
+   "licence": "(c) BirdLife Australia - facts only, paraphrased",
+   "used_for": "identification, habitat, hunting, flute-like song by day and moonlit night, group singing, mimicry, breeding"
+  },
+  {
+   "title": "Cracticus nigrogularis - Atlas of Living Australia",
+   "url": "https://bie.ala.org.au/species/https://biodiversity.org.au/afd/taxa/0f5df411-17dd-4719-91de-158fb1a77b27",
+   "licence": "ALA terms of use - facts only",
+   "used_for": "taxonomy (family Artamidae, order Passeriformes)"
+  },
+  {
+   "title": "Janney, E., Taylor, H., Scharff, C., Rothenberg, D., Parra, L. C. & Tchernichovski, O. (2016) Temporal regularity increases with repertoire complexity in the Australian pied butcherbird's song. Royal Society Open Science 3: 160357",
+   "url": "https://doi.org/10.1098/rsos.160357",
+   "licence": "CC BY 4.0 - facts only",
+   "used_for": "phrase length (~2.5 s), shared motifs repeated at regular intervals"
+  },
+  {
+   "title": "Taylor, H. (2017) A continuum of pied butcherbird song conventions and preferences in solo song (table, piedbutcherbird.zoomusicology.com)",
+   "url": "https://www.piedbutcherbird.zoomusicology.com/ewExternalFiles/Preferences%20and%20conventions.pdf",
+   "licence": "facts only",
+   "used_for": "solo-song pitch range (D5/A5 to G#7/C#8), rattle pulse rate 9-50/s, phrase rate, timbre"
+  },
+  {
+   "title": "Syrinx (bird anatomy) - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Syrinx_(bird_anatomy)",
+   "licence": "CC BY-SA 4.0 (paraphrased)",
+   "used_for": "songbirds have a tracheobronchial syrinx; left/right sides modulated independently"
+  },
+  {
+   "title": "IOC World Bird List (Gill, Donsker & Rasmussen, eds.), via World Bird Names species page",
+   "url": "https://www.worldbirdnames.com/bird/pied-butcherbird/18849.html",
+   "licence": "CC BY 4.0 - facts only",
+   "used_for": "taxonomy: Passeriformes, Artamidae, Cracticus nigrogularis (Gould, 1837), protonym Vanga nigrogularis"
+  },
+  {
+   "title": "Xeno-canto recordings listed in sources.json (own measurements)",
+   "url": "https://xeno-canto.org/species/Cracticus-nigrogularis",
+   "licence": "recordings CC BY-NC-SA / CC0; measurements are our own",
+   "used_for": "note frequencies mostly ~1-3 kHz"
+  }
+ ]
+}

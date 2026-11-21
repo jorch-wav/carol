@@ -1,0 +1,80 @@
+{
+ "id": "robin",
+ "common_name": "European Robin",
+ "scientific_name": "Erithacus rubecula",
+ "family": "Muscicapidae (Old World flycatchers and chats)",
+ "overview": "The European robin is a small, round songbird with an orange-red face and breast edged in soft grey, brown upperparts and a whitish belly. Males and females look the same. In Britain and Ireland robins are bold garden birds that follow people digging to snatch worms, while further east they are shyer woodland birds. Both sexes sing for most of the year, so the robin's thin, silvery song is often the only birdsong you hear on a winter day. It is so well loved that in 2015 it won a public vote, organised by birder David Lindo, to choose Britain's national bird, taking 34% of the final vote. It also turns up on many Christmas cards.",
+ "deep_dive": {
+  "habitat": "Woodland with plenty of undergrowth, especially damp, shady woods, as well as hedgerows, parks and gardens. In Britain and Ireland gardens and parks are favourite places; in northern Europe robins are mainly forest birds, often in spruce woods. They need low perches and patches of open ground where they can drop down to catch food.",
+  "range": "Breeds across almost all of Europe, east to the Ural Mountains and western Siberia, and south to North Africa (Morocco to Tunisia), Turkey, the Caucasus and northern Iran, plus the Azores, Madeira and the Canary Islands. Birds in Britain, Ireland and the south and west are mostly resident; those in Scandinavia and Russia migrate south-west to winter in western and southern Europe and North Africa. Attempts to introduce robins to Australia, New Zealand and North America failed. The IOC list recognises nine subspecies; the Tenerife and Gran Canaria birds are proposed as separate species.",
+  "behaviour": "Feeds mostly on the ground on worms, spiders, beetles and other small invertebrates, adding berries and seeds in autumn and winter. Strongly territorial: males fight rivals fiercely, sometimes to the death, and some attack their own reflection. In autumn and winter males and females hold separate territories and both sing to defend them. Robins are active at first light and last light, and town birds often sing at night under streetlights. The nest is a cup hidden in a bank, ivy, a hole or odd places such as sheds, machinery and even old hats; there are usually two broods a year.",
+  "voice": "The song is a series of short phrases of thin, high, fluting and warbling notes, mixed with quick trills and twitters and separated by brief pauses; each phrase differs from the last. The autumn and winter song, sung by both sexes, sounds softer and more plaintive than the spring and summer song. Song notes in our recordings run from about 2 kHz up to about 9 kHz; a 2025 study of autumn song found the lowest notes sit around 2 kHz in quiet places and are raised to about 3 kHz in noisy ones. Calls: a hard, sharp 'tic' or 'tik', often run together into a rapid ticking when the bird is alarmed or annoyed, and a very high, thin 'tseee' or 'tsi' (about 7-9 kHz in our recordings), given in alarm and also used as the nocturnal flight call by migrating robins.",
+  "anatomy": "A songbird (order Passeriformes), so it has the songbird tracheobronchial syrinx with a sound source on each side where the windpipe splits; the two sides can be controlled independently, letting songbirds switch notes between sides or make two unrelated sounds at once. (No robin-specific syrinx study was found, so how the robin shares notes between the two sides is not known.) The bill is thin, pointed and dark, made for picking up insects and worms; the eyes are large and black."
+ },
+ "tags": {
+  "features": [
+   "warbler",
+   "whistler",
+   "year-round singer (both sexes)",
+   "ticking alarm",
+   "night singer (urban)"
+  ],
+  "region": [
+   "Europe",
+   "British Isles",
+   "North Africa",
+   "Western Asia",
+   "Macaronesia (Azores, Madeira, Canaries)"
+  ]
+ },
+ "facts_sources": [
+  {
+   "title": "European robin - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/European_robin",
+   "licence": "CC BY-SA 4.0 (text paraphrased, not copied)",
+   "used_for": "overview, plumage, range, migration, failed introductions, habitat, diet, territorial behaviour, both sexes sing in winter, plaintive winter song, night singing, 2015 national bird vote (David Lindo, 34%)"
+  },
+  {
+   "title": "Robin - RSPB bird guide",
+   "url": "https://www.rspb.org.uk/birds-and-wildlife/robin",
+   "licence": "(c) RSPB - facts only, paraphrased",
+   "used_for": "identification, song description, ticking alarm call, winter singing, night singing near streetlights"
+  },
+  {
+   "title": "Proudfoot, C. & Norton, W. H. J. (2025) Non-breeding European robins adjust their song in noisy environments. Behavioral Ecology. doi:10.1093/beheco/araf070",
+   "url": "https://doi.org/10.1093/beheco/araf070",
+   "licence": "facts only",
+   "used_for": "autumn song minimum frequency ~2 kHz in quiet sites, ~3 kHz in noisy sites; maximum frequency unchanged"
+  },
+  {
+   "title": "European Robin - Wild Ambience (sound library notes)",
+   "url": "https://wildambience.com/wildlife-sounds/european-robin/",
+   "licence": "facts only",
+   "used_for": "'tic' and thin, very high 'tseee' calls"
+  },
+  {
+   "title": "The Sound Approach - robin calls ('tik' and shrill 'tsi', the tsi used as nocturnal flight call)",
+   "url": "https://soundapproach.co.uk/?p=7942",
+   "licence": "facts only",
+   "used_for": "'tsi' used as nocturnal flight call"
+  },
+  {
+   "title": "Syrinx (bird anatomy) - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Syrinx_(bird_anatomy)",
+   "licence": "CC BY-SA 4.0 (paraphrased)",
+   "used_for": "songbirds have a tracheobronchial syrinx; left/right sides modulated independently"
+  },
+  {
+   "title": "Suthers, R. A. (2004) Vocal mechanisms in birds and bats: a comparative view. Anais da Academia Brasileira de Ciencias 76(2): 247-252. doi:10.1590/S0001-37652004000200009",
+   "url": "https://www.redalyc.org/articulo.oa?id=32776209",
+   "licence": "facts only",
+   "used_for": "songbirds switch song between syrinx sides or make two harmonically unrelated sounds at once; the two sides tend to have different frequency ranges"
+  },
+  {
+   "title": "IOC World Bird List v15.2 (Gill, Donsker & Rasmussen, eds) - Chats, Old World flycatchers",
+   "url": "https://www.worldbirdnames.org/new/bow/chats/",
+   "licence": "CC BY 4.0 - facts only",
+   "used_for": "taxonomy (Muscicapidae; Erithacus rubecula (Linnaeus, 1758)), nine subspecies, proposed Tenerife/Gran Canaria splits"
+  }
+ ]
+}

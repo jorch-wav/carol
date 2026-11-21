@@ -1,0 +1,83 @@
+{
+ "id": "pigeon",
+ "common_name": "Rock Dove (feral pigeon)",
+ "scientific_name": "Columba livia",
+ "family": "Columbidae (pigeons and doves)",
+ "overview": "The rock dove is the wild ancestor of the pigeons that strut around city squares all over the world. Wild birds are blue-grey with two black bars on each wing, a white rump and a shiny green-and-purple neck, and they nest on sea cliffs and in rocky gorges. People tamed them thousands of years ago, and escaped domestic birds became the feral pigeons now found on every continent except Antarctica. Their voice is the familiar soft, rolling 'coo', made with the beak shut while the bird puffs up its neck like a little balloon.",
+ "deep_dive": {
+  "habitat": "Wild rock doves live on sea cliffs, inland crags, gorges and rocky deserts, roosting and nesting on ledges and in caves, and feeding on the ground in nearby open country. Feral pigeons treat buildings, bridges and stations as artificial cliffs and feed in streets, parks, farmland and anywhere people drop food.",
+  "range": "The native range is southern and western Europe (including the far north and west of Scotland and Ireland), North Africa and south-west Asia east to India. Domestic and feral pigeons have been spread by people to almost every town and city in the world, so the species as a whole now occurs worldwide. Truly wild-type birds are now scarce in many places because they interbreed with feral pigeons.",
+  "behaviour": "Social birds that feed in flocks, mostly on seeds and grain picked from the ground, and drink in one long draught without tipping the head back. Pairs usually stay together and can breed in any month, helped by their ability to make 'crop milk'. Both parents feed the young ('squabs') on this rich secretion from the lining of the crop. Displaying males puff out the neck, fan the tail and strut and bow around the female while cooing. In display flights pigeons clap their wings loudly on take-off and then glide with the wings held in a V. Their homing ability made them famous as messenger birds.",
+  "voice": "The main sound is a soft, rolling, slightly wavering coo, often written 'crroo-oo' or 'oo-roo-coo', given with the beak closed. There are several kinds: the display or 'bow coo' given while the male puffs out his throat, bows and turns in circles (to court a female or threaten a rival), a simpler 'perch coo', and the 'nest call' given by a bird crouched at the nest site, flicking its wings, to call its mate. There is also a short grunting alarm 'oorhh', and young birds give squeaky begging calls. Coos are low and almost pure in tone: a survey of closed-mouth calling birds lists the rock dove's fundamental at about 400 Hz, and in the recordings collected here the coos sit mostly around 300-500 Hz. Wing claps and whirring wingbeats are part of the pigeon's sound too.",
+  "anatomy": "Pigeons are not songbirds, and their syrinx is simpler, with just two pairs of muscles outside it. Studies of anaesthetised pigeons showed that the sound comes from two thin side membranes (the lateral tympaniform membranes), which bulge into the airway and flutter as air is pushed past them, like a valve; the syrinx muscles mainly open, close and fine-tune this valve. Coos are made with the beak and nostrils shut: the bird breathes out into its upper oesophagus (the gullet above the crop), which balloons up into a thin-walled sac in the neck. X-ray films and acoustic models of the closely related ring dove show that the windpipe, a partly closed glottis and this inflated sac act together as a filter tuned to the fundamental, removing the higher harmonics made at the syrinx and radiating the sound through the sac wall, which carries better than calling through an open beak. Because the filter is tuned to the coo, the bird can only shift its pitch a little; pitch glides come from changes in air-sac pressure rather than from special syrinx muscles."
+ },
+ "tags": {
+  "features": [
+   "cooer",
+   "closed-beak singer (inflated neck)",
+   "wing clapper"
+  ],
+  "region": [
+   "Worldwide",
+   "Europe",
+   "North Africa",
+   "South-west Asia to India"
+  ]
+ },
+ "facts_sources": [
+  {
+   "title": "Rock dove - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Rock_dove",
+   "licence": "CC BY-SA 4.0 (text paraphrased, not copied)",
+   "used_for": "overview, plumage, size, native and introduced range, habitat, behaviour, voice (coo, alarm, nest call, juveniles, display with inflated throat and bowing), crop milk"
+  },
+  {
+   "title": "IOC World Bird List v15.2 (Gill, Donsker & Rasmussen, eds.)",
+   "url": "https://www.worldbirdnames.org/new/ioc-lists/master-list-2/",
+   "licence": "CC BY 4.0 - facts only",
+   "used_for": "taxonomy: order Columbiformes, family Columbidae, Columba livia Gmelin, JF, 1789; 'Rock Dove' as English name and 'Feral Pigeon' for introduced populations"
+  },
+  {
+   "title": "Goller, F. & Larsen, O. N. (1997) In situ biomechanics of the syrinx and sound generation in pigeons. Journal of Experimental Biology 200(16): 2165-2176",
+   "url": "https://doi.org/10.1242/jeb.200.16.2165",
+   "licence": "facts only (abstract)",
+   "used_for": "lateral tympaniform membranes as the sound source; tracheolateralis and sternotrachealis muscles; muscles mainly modulatory"
+  },
+  {
+   "title": "Riede, T., Beckers, G. J. L., Blevins, W. & Suthers, R. A. (2004) Inflation of the esophagus and vocal tract filtering in ring doves. Journal of Experimental Biology 207: 4025-4036",
+   "url": "https://doi.org/10.1242/jeb.01256",
+   "licence": "facts only (abstract)",
+   "used_for": "beak and nostrils closed; upper oesophagus inflates; trachea and oesophagus filter out the 2nd and 3rd harmonics"
+  },
+  {
+   "title": "Fletcher, N. H., Riede, T., Beckers, G. J. L. & Suthers, R. A. (2004) Vocal tract filtering and the 'coo' of doves. Journal of the Acoustical Society of America 116(6): 3750-3756",
+   "url": "https://doi.org/10.1121/1.1811491",
+   "licence": "facts only",
+   "used_for": "acoustic model: tuned trachea + glottal constriction + inflated oesophagus sac; sac radiates better than an open beak"
+  },
+  {
+   "title": "Fletcher, N. H., Riede, T. & Suthers, R. A. (2006) Model for vocalization by a bird with distensible vocal cavity and open beak. Journal of the Acoustical Society of America 119(2): 1005-1011",
+   "url": "https://doi.org/10.1121/1.2159434",
+   "licence": "facts only",
+   "used_for": "dove pitch stays close to the inflated-sac resonance"
+  },
+  {
+   "title": "Beckers, G. J. L., Suthers, R. A. & ten Cate, C. (2003) Mechanisms of frequency and amplitude modulation in ring dove song. Journal of Experimental Biology 206: 1833-1843",
+   "url": "https://doi.org/10.1242/jeb.00364",
+   "licence": "facts only (abstract)",
+   "used_for": "frequency modulation follows interclavicular air-sac pressure; limited frequency range in non-songbirds"
+  },
+  {
+   "title": "Riede, T., Eliason, C. M., Miller, E. H., Goller, F. & Clarke, J. A. (2016) Coos, booms, and hoots: the evolution of closed-mouth vocal behavior in birds. Evolution 70(8): 1734-1746",
+   "url": "https://doi.org/10.1111/evo.12988",
+   "licence": "facts only",
+   "used_for": "rock dove listed as a closed-mouth vocaliser with oesophagus inflation, F0 about 400 Hz (Table S3); crop not inflated during calling"
+  },
+  {
+   "title": "Xeno-canto recordings listed in sources.json (own measurements)",
+   "url": "https://xeno-canto.org/species/Columba-livia",
+   "licence": "recordings CC BY-NC-SA; measurements are our own",
+   "used_for": "coo dominant frequency range (about 300-500 Hz)"
+  }
+ ]
+}

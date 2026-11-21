@@ -1,0 +1,11 @@
+import { createRequire } from 'module';
+const require = createRequire('/home/audioview/src/chimera-vocal-synth/package.json');
+const { chromium } = require('playwright-core');
+const b = await chromium.connectOverCDP('http://127.0.0.1:9226');
+const page = b.contexts()[0].pages().find((p) => p.url().includes('5321'));
+const s = await page.context().newCDPSession(page);
+await s.send('Network.setCacheDisabled', { cacheDisabled: true });
+await page.reload({ waitUntil: 'load' });
+await new Promise((z) => setTimeout(z, 3000));
+console.log(JSON.stringify(await page.evaluate(() => ({ ctx: carol.audio.ctx && carol.audio.ctx.state, knob: getComputedStyle(document.getElementById('knobs')).getPropertyValue('--knob'), fk: typeof carol.fitKnobs, rate: carol.audio.ctx && carol.audio.ctx.sampleRate, startShown: !document.getElementById('start').hidden }))));
+process.exit(0);

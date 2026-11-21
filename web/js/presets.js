@@ -1,0 +1,128 @@
+// Presets screen, tied to the BIRD knob. A catalogue: one tab per collection, its birds below,
+// the selected bird's plate on the left. New collections just add a tab.
+const BODY_NAME = { kingfisher: 'non-songbird' };
+const bodyName = (b) => BODY_NAME[b] || b;
+const FAV = '★ Favourites';
+const lsGet = (k, d) => { try { const v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch { return d; } };
+const lsSet = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} };
+
+export class Presets {
+  constructor(app) {
+    this.app = app;
+    this.el = document.getElementById('presets');
+    this.list = document.getElementById('psList');
+    this.cats = document.getElementById('psCats');
+    this.about = document.getElementById('psAbout');
+    this.coll = null; this.hi = 0; this.visible = []; this.q = '';
+    this.favs = new Set(lsGet('carol-favs', []));
+    const search = document.getElementById('psSearch');
+    search.oninput = () => { this.q = search.value.trim().toLowerCase(); this.hi = 0; this.render(); };
+    this.el.querySelector('[data-close]').onclick = () => this.close();
+    this.el.addEventListener('pointerdown', (e) => { if (e.target === this.el) this.close(); });
+  }
+  collections() {
+    const known = this.app.collections || [];
+    const names = [...new Set(this.app.index.map((b) => b.collection || ''))];
+    const out = known.filter((c) => names.includes(c.name));
+    for (const n of names) if (!out.some((c) => c.name === n)) out.push({ name: n });
+    const favs = this.app.index.filter((b) => this.favs.has(b.id)).length;
+    if (favs) out.unshift({ name: FAV, region: 'your favourites', about: 'Tap ☆ next to any bird to add it here.' });
+    return out;
+  }
+  birdsIn(c) { return c === FAV ? this.app.index.filter((b) => this.favs.has(b.id)) : this.app.index.filter((b) => (b.collection || '') === c); }
+  found() {
+    const q = this.q;
+    return this.app.index.filter((b) => [b.name, b.sci, b.family, b.order, b.collection, bodyName(b.body), ...((b.tags && b.tags.region) || []), ...((b.tags && b.tags.features) || [])].join(' ').toLowerCase().includes(q));
+  }
+  toggleFav(id) { this.favs.has(id) ? this.favs.delete(id) : this.favs.add(id); lsSet('carol-favs', [...this.favs]); }
+  renderCats() {
+    const cs = this.collections();
+    if (!cs.some((c) => c.name === this.coll)) this.coll = cs.length ? cs[0].name : null;
+    this.cats.innerHTML = '';
+    for (const c of cs) {
+      const t = document.createElement('button');
+      t.className = 'ps-cat' + (c.name === this.coll ? ' on' : '');
+      t.setAttribute('role', 'tab');
+      t.innerHTML = '<b></b><small></small>';
+      t.querySelector('b').textContent = c.name;
+      t.querySelector('small').textContent = `${this.birdsIn(c.name).length} birds` + (c.region ? ' · ' + c.region : '');
+      t.onclick = () => { this.coll = c.name; this.hi = 0; this.render(); };
+      this.cats.appendChild(t);
+    }
+    const cur = cs.find((c) => c.name === this.coll);
+    this.about.textContent = (cur && cur.about) || '';
+    const on = this.cats.querySelector('.on'); on && on.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+  }
+  render() {
+    this.renderCats();
+    this.cats.style.display = this.q ? 'none' : '';
+    const items = this.q ? this.found() : this.birdsIn(this.coll);
+    if (this.q) this.about.textContent = items.length ? `${items.length} found` : 'No birds match.';
+    this.visible = items;
+    this.hi = Math.min(this.hi, Math.max(0, items.length - 1));
+    this.list.innerHTML = '';
+    items.forEach((b, i) => {
+      const li = document.createElement('li');
+      li.className = (i === this.hi ? 'hi' : '') + (this.app.bird && b.id === this.app.bird.id ? ' cur' : '');
+      li.innerHTML = '<b></b><span class="m"></span><i></i><button class="ps-fav" title="Favourite"></button>';
+      const fv = li.querySelector('.ps-fav'); fv.textContent = this.favs.has(b.id) ? '★' : '☆'; fv.classList.toggle('on', this.favs.has(b.id));
+      fv.onclick = (e) => { e.stopPropagation(); this.toggleFav(b.id); this.render(); };
+      li.querySelector('b').textContent = b.name;
+      li.querySelector('.m').textContent = b.match != null ? Math.round(b.match) + '%' : '';
+      li.querySelector('i').textContent = (b.sci || '') + (b.authority ? ' ' + b.authority : '') + (b.family ? ' · ' + b.family : '') + (b.body ? ' · ' + bodyName(b.body) : '');
+      li.onclick = () => { this.hi = i; this.app.loadBird(b.id); this.close(); };
+      if (b.mine) {
+        li.classList.add('has-del');
+        const del = document.createElement('button'); del.className = 'x ps-del'; del.textContent = '✕'; del.title = 'Delete this preset';
+        del.onclick = (e) => { e.stopPropagation(); if (confirm(`Delete "${b.name}"?`)) this.app.deleteMyPreset(b.id).then(() => this.render()); };
+        li.appendChild(del);
+      }
+      li.dataset.i = i;
+      this.list.appendChild(li);
+    });
+    this.showPlate();
+  }
+  showPlate() {
+    const b = this.visible[this.hi];
+    const img = document.getElementById('psImg'), cap = document.getElementById('psCap');
+    if (!b) { img.removeAttribute('src'); cap.textContent = ''; return; }
+    if (b.image) img.src = b.image; else img.removeAttribute('src');
+    cap.textContent = b.image_caption || b.name;
+    this.list.querySelectorAll('li[data-i]').forEach((li) => li.classList.toggle('hi', Number(li.dataset.i) === this.hi));
+    const cur = this.list.querySelector('li.hi'); cur && cur.scrollIntoView({ block: 'nearest' });
+  }
+  open() {
+    if (!this.el.hidden) return;
+    const b = this.app.bird && this.app.index.find((x) => x.id === this.app.bird.id);
+    this.coll = b ? (b.collection || '') : this.coll;
+    const search = document.getElementById('psSearch'); search.value = ''; this.q = '';
+    this.hi = b ? Math.max(0, this.birdsIn(this.coll).findIndex((x) => x.id === b.id)) : 0;
+    this.el.hidden = false; this.render();
+  }
+  close() { this.el.hidden = true; clearTimeout(this.idle); }
+  /** BIRD knob turned by d steps: browse; past either end, move on to the next collection. */
+  step(d) {
+    this.open();
+    const cs = this.collections(); if (!cs.length) return;
+    let ci = Math.max(0, cs.findIndex((c) => c.name === this.coll));
+    let hi = this.hi + d;
+    for (let guard = 0; guard < 50; guard++) {
+      const n = this.birdsIn(cs[ci].name).length;
+      if (hi >= n) { hi -= n; ci = (ci + 1) % cs.length; continue; }
+      if (hi < 0) { ci = (ci - 1 + cs.length) % cs.length; hi += this.birdsIn(cs[ci].name).length; continue; }
+      break;
+    }
+    const changed = cs[ci].name !== this.coll;
+    this.coll = cs[ci].name; this.hi = hi;
+    if (changed) this.render(); else this.showPlate();
+    clearTimeout(this.idle);
+    this.idle = setTimeout(() => this.confirm(false), 1400);
+  }
+  confirm(close = true) {
+    const b = this.visible[this.hi];
+    if (b && (!this.app.bird || b.id !== this.app.bird.id)) this.app.loadBird(b.id);
+    this.render();
+    clearTimeout(this.idle);
+    if (close) this.close(); else this.idle = setTimeout(() => this.close(), 2500);
+  }
+}

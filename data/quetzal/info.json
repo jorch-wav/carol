@@ -1,0 +1,75 @@
+{
+ "id": "quetzal",
+ "common_name": "Resplendent Quetzal",
+ "scientific_name": "Pharomachrus mocinno",
+ "family": "Trogonidae (trogons and quetzals)",
+ "overview": "The resplendent quetzal is the biggest of the trogons, a shimmering green bird of the misty mountain cloud forests of southern Mexico and Central America. A breeding male has a scarlet belly, a fuzzy green crest and a pair of green streamers trailing far beyond his tail, often twice his body length. Quetzals sit quietly in the canopy most of the time, but in the breeding season males sing a slow, mellow series of whistled 'kyow' notes and show off in swooping display flights. The quetzal was sacred to the Maya and Aztecs and is Guatemala's national bird.",
+ "deep_dive": {
+  "habitat": "Wet, mossy montane forest, especially cloud forest, mostly between about 900 and 3,200 m. Quetzals live in the canopy and subcanopy and seldom come to the ground. They also use forest edges and clearings with scattered fruiting trees, and move down to lower, wetter forest outside the breeding season.",
+  "range": "The highlands from southern Mexico (Oaxaca and Chiapas) through Guatemala, El Salvador, Honduras and Nicaragua to Costa Rica and western Panama (Chiriqui). There are two subspecies: mocinno in the north and the slightly smaller costaricensis in Costa Rica and Panama, separated by the lowlands of the Nicaraguan depression.",
+  "behaviour": "Usually quiet and solitary, sitting still for long periods. Quetzals are fruit specialists, especially wild avocados and other fruits of the laurel family. They pluck fruit in a short hovering sally, swallow it whole and later bring up the stone, which spreads the trees through the forest. They also take insects, frogs, lizards and snails, especially for the chicks. They follow the fruiting of their food trees, moving up and down the mountains with the seasons. Pairs dig or enlarge a hole in a rotten tree trunk, and both parents incubate, the male mostly by day and the female at night. Courting males rise above the canopy and then swoop down with the streamers rippling behind them.",
+  "voice": "Quetzals are noisiest in the breeding season. The male's song is a slow series of full, mellow, slurred whistles, often doubled, written as 'kyow', 'keow' or 'kowee', repeated with pauses. In the recordings collected here the song notes sit mostly around 0.75-1.1 kHz, each note slurring downwards. Other calls include harsher cackling and chattering notes ('wac-wac', 'wec-wec') given in flight or when the bird is excited or alarmed, soft whistles and buzzy notes. Researchers in Guatemala sorted the repertoire into two long-range calls used for territory and contact and two short-range calls, and found that the songs of the two subspecies differ clearly.",
+  "anatomy": "A non-songbird of the order Trogoniformes. Like other birds it makes sound with a syrinx where the windpipe divides into the two bronchi; no study of the quetzal's or any trogon's syrinx was found, so details of its sound source are unknown. It is also not known whether quetzals sing with the bill closed and the throat puffed out (as doves do): a 2016 survey of closed-mouth calling in birds coded the one trogon it checked (red-headed trogon) as an open-mouth singer. Trogons have a foot found in no other birds, with the first and second toes pointing backwards (heterodactyl), very short weak legs, and a short, strong bill with a wide gape; the male quetzal's bill is yellow and partly hidden under green bristly feathers. The long 'tail' streamers are actually the upper tail coverts, which grow over the real tail. The green colour is structural (light scattering on feathers that contain brown melanin), so it shifts from gold-green to blue in different light."
+ },
+ "tags": {
+  "features": [
+   "whistler",
+   "cackler",
+   "display flier"
+  ],
+  "region": [
+   "Central America",
+   "Southern Mexico"
+  ]
+ },
+ "facts_sources": [
+  {
+   "title": "Resplendent quetzal - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Resplendent_quetzal",
+   "licence": "CC BY-SA 4.0 (text paraphrased, not copied)",
+   "used_for": "overview, size and streamer length, habitat and elevation, range and subspecies, diet, nesting, song transcriptions, structural colour, bill colour"
+  },
+  {
+   "title": "Resplendent Quetzal - American Bird Conservancy bird profile",
+   "url": "https://abcbirds.org/birds/resplendent-quetzal/",
+   "licence": "(c) American Bird Conservancy - facts only, paraphrased",
+   "used_for": "habitat, altitudinal movements, diet and fruit-stone regurgitation, display flight, cackling calls in flight, plaintive song"
+  },
+  {
+   "title": "Trogon - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Trogon",
+   "licence": "CC BY-SA 4.0 (paraphrased)",
+   "used_for": "trogon foot (first and second toes reversed), short legs and broad bill"
+  },
+  {
+   "title": "Bolanos-Sittler, P., Sueur, J., Fuchs, J. & Aubin, T. (2020) Vocalisation of the rare and flagship species Pharomachrus mocinno (Aves: Trogonidae): implications for its taxonomy, evolution and conservation. Bioacoustics 29(6): 654-669",
+   "url": "https://doi.org/10.1080/09524622.2019.1647877",
+   "licence": "facts only (abstract and thesis summary)",
+   "used_for": "differences between the songs of the two subspecies"
+  },
+  {
+   "title": "Bolanos-Sittler, P. (thesis) Acoustic behavior and ecology of the Resplendent Quetzal Pharomachrus mocinno, a flagship tropical bird species",
+   "url": "https://doi.org/10.70675/c01ef820z5ec6z4feaza200zd59f1a2bf363",
+   "licence": "facts only (abstract)",
+   "used_for": "two long-range and two short-range vocalisation types"
+  },
+  {
+   "title": "Riede, T., Eliason, C. M., Miller, E. H., Goller, F. & Clarke, J. A. (2016) Coos, booms, and hoots: the evolution of closed-mouth vocal behavior in birds. Evolution 70(8): 1734-1746",
+   "url": "https://doi.org/10.1111/evo.12988",
+   "licence": "facts only",
+   "used_for": "red-headed trogon coded as an open-mouth vocaliser (Table S3); no data for quetzals"
+  },
+  {
+   "title": "IOC World Bird List v15.2 (Gill, Donsker & Rasmussen, eds.)",
+   "url": "https://www.worldbirdnames.org/new/ioc-lists/master-list-2/",
+   "licence": "CC BY 4.0 - facts only",
+   "used_for": "taxonomy: order Trogoniformes, family Trogonidae, Pharomachrus mocinno de la Llave, 1832, subspecies mocinno and costaricensis"
+  },
+  {
+   "title": "Xeno-canto recordings listed in sources.json (own measurements)",
+   "url": "https://xeno-canto.org/species/Pharomachrus-mocinno",
+   "licence": "recordings CC BY-NC-SA; measurements are our own",
+   "used_for": "song note frequency range (about 0.75-1.1 kHz dominant frequency)"
+  }
+ ]
+}

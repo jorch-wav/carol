@@ -1,0 +1,83 @@
+{
+ "id": "cockatoo",
+ "common_name": "Sulphur-crested Cockatoo",
+ "scientific_name": "Cacatua galerita",
+ "family": "Cacatuidae (cockatoos)",
+ "overview": "The sulphur-crested cockatoo is a big white parrot with a tall, lemon-yellow crest that it flicks up when excited or alarmed. It lives in noisy flocks across eastern and northern Australia, in forests, farmland and city parks, and it is famous for its ear-splitting screech. Cockatoos are clever and playful: in Sydney some have learned to lift the lids of wheelie bins, and a captive bird called Snowball showed that cockatoos can bob in time to music. They can live for decades, and pets have reached 70 years or more.",
+ "deep_dive": {
+  "habitat": "Places with trees: woodland, open forest, rainforest edges, river red gums, farmland, wetlands, coasts and leafy suburbs. Flocks feed on the ground (seeds, nuts, roots and berries) and roost together in tall trees. They need large tree hollows to nest, and they chew wood a lot, including decking and window frames in towns.",
+  "range": "Northern and eastern Australia from the Kimberley across the Top End and down the east coast to Tasmania and south-eastern South Australia; also New Guinea and nearby islands. Introduced around Perth, in New Zealand, Singapore and Palau. Four subspecies are listed; the Australian birds are galerita (south and east) and fitzroyi (north).",
+  "behaviour": "Very social. Flocks of tens to hundreds feed together, and while they feed on the ground a few birds sit high in a tree as lookouts and screech if danger appears - so well known that 'cocky' became Australian slang for a lookout. Pairs stay together, both parents prepare the hollow, incubate the two or three eggs and feed the chicks, and young birds stay with their family for months. They strip twigs and leaves they do not eat, perhaps to keep the bill worn down.",
+  "voice": "Mostly loud, harsh screeches: a long, grating 'raark' that often ends with a slight upward lift, given in flight, from perches and as a contact call within the flock. Alarm calls are shorter, harsher screeches given by lookouts and repeated by the flock. Young birds beg with a rasping, more tonal call. In our recordings most energy sits between about 1 and 6 kHz with a peak around 2-2.5 kHz; some calls show stacks of harmonics about 350-750 Hz apart, but much of the screech is noisy. An acoustics study (Fletcher 2000) found that the basic sulphur-crested cockatoo call is chaotic rather than a clean set of harmonics, with a broad spectrum peaking near 2.5 kHz, and estimated that the bird radiates at least 100 mW of sound.",
+  "anatomy": "A parrot (order Psittaciformes, family Cacatuidae), not a songbird. Parrots have a syrinx at the bottom of the windpipe rather than where it splits into the bronchi, with a pair of thin lateral tympaniform membranes as the sound source; endoscope work on cockatiels (also a cockatoo) showed these membranes sit partly drawn into the airway as a narrow slot, and two small muscles inside the syrinx push them further in or pull them out. Parrots then shape the sound with a thick, movable tongue, beak opening and even windpipe length, which change the resonances of the vocal tract. Fletcher (2000) suggested the cockatoo's harsh, chaotic screech comes from strongly coupled, nonlinear vibration in the syrinx driven by very high sound pressure. The bill is large, strongly hooked and grey-black; the crest feathers are long, narrow and sulphur-yellow, folding back flat when relaxed. (No cockatoo-specific syrinx dissection was consulted; the membrane and tongue findings come from cockatiels and monk parakeets.)"
+ },
+ "tags": {
+  "features": [
+   "screecher",
+   "flock caller",
+   "chaotic voice"
+  ],
+  "region": [
+   "Eastern Australia",
+   "Northern Australia",
+   "Tasmania",
+   "New Guinea"
+  ]
+ },
+ "facts_sources": [
+  {
+   "title": "Sulphur-crested cockatoo - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Sulphur-crested_cockatoo",
+   "licence": "CC BY-SA 4.0 (text paraphrased, not copied)",
+   "used_for": "overview, size, plumage, bill and eye colour, range, introductions, subspecies, behaviour (lookouts, bins, dancing), breeding, lifespan"
+  },
+  {
+   "title": "Sulphur-crested Cockatoo - BirdLife Australia bird profile",
+   "url": "https://birdlife.org.au/bird-profiles/sulphur-crested-cockatoo/",
+   "licence": "(c) BirdLife Australia - facts only, paraphrased",
+   "used_for": "screech ending with an upward inflection, habitat, flock lookouts, twig stripping, breeding"
+  },
+  {
+   "title": "Cacatua (Cacatua) galerita - Atlas of Living Australia",
+   "url": "https://bie.ala.org.au/species/https://biodiversity.org.au/afd/taxa/2c33a1fd-34f4-48ec-9ae6-38b51f2aa7ea",
+   "licence": "ALA terms of use - facts only",
+   "used_for": "taxonomy (Cacatuidae, Psittaciformes)"
+  },
+  {
+   "title": "Fletcher, N. H. (2000) A class of chaotic bird calls? Journal of the Acoustical Society of America 108(2): 821-826",
+   "url": "https://doi.org/10.1121/1.429615",
+   "licence": "facts only",
+   "used_for": "chaotic call structure, broad spectrum peaking about 2.5 kHz, radiated power at least 100 mW, coupled nonlinear syrinx hypothesis"
+  },
+  {
+   "title": "Larsen, O. N. & Goller, F. (2002) Direct observation of syringeal muscle function in songbirds and a parrot. Journal of Experimental Biology 205: 25-35",
+   "url": "https://doi.org/10.1242/jeb.205.1.25",
+   "licence": "facts only (abstract)",
+   "used_for": "cockatiel syrinx: lateral tympaniform membranes form a narrow slot; m. syringealis superficialis and profundus move them"
+  },
+  {
+   "title": "Ohms, V. R., Beckers, G. J. L., ten Cate, C. & Suthers, R. A. (2012) Vocal tract articulation revisited: the case of the monk parakeet. Journal of Experimental Biology 215: 85-92",
+   "url": "https://doi.org/10.1242/jeb.064717",
+   "licence": "facts only (abstract)",
+   "used_for": "parrots shape sound with tongue height, beak opening and tracheal length"
+  },
+  {
+   "title": "Parrot - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Parrot",
+   "licence": "CC BY-SA 4.0 (paraphrased)",
+   "used_for": "parrot syrinx position at the base of the trachea"
+  },
+  {
+   "title": "IOC World Bird List v15.2 (Gill, Rasmussen & Donsker, eds.)",
+   "url": "https://www.worldbirdnames.org/new/ioc-lists/master-list-2/",
+   "licence": "CC BY 4.0 - facts only",
+   "used_for": "taxonomy: order Psittaciformes, family Cacatuidae, Cacatua galerita (Latham, 1790), subspecies triton, eleonora, fitzroyi, galerita"
+  },
+  {
+   "title": "Xeno-canto recordings listed in sources.json (own measurements)",
+   "url": "https://xeno-canto.org/species/Cacatua-galerita",
+   "licence": "recordings CC BY-NC-SA; measurements are our own",
+   "used_for": "energy band (about 1-6 kHz, peak 2-2.5 kHz) and harmonic spacing of tonal segments (about 350-750 Hz)"
+  }
+ ]
+}

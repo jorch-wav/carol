@@ -1,0 +1,53 @@
+{
+ "id": "kookaburra",
+ "common_name": "Laughing Kookaburra",
+ "scientific_name": "Dacelo novaeguineae",
+ "family": "Alcedinidae (kingfishers; subfamily Halcyoninae)",
+ "overview": "The laughing kookaburra is the world's largest kingfisher, a stocky brown-and-cream bird with a big bill and a dark stripe through the eye. It lives in family groups in the forests, farms and suburbs of eastern Australia. Its famous 'laugh' is really a territory song: one bird starts with a low chuckle, then throws its head back and the rest of the family joins in. Families answer each other across the bush, especially at dawn and dusk.",
+ "deep_dive": {
+  "habitat": "Open eucalypt forest and woodland, especially where the ground is grassy or the understorey is sparse; also wetland edges, farmland with roadside trees, and city parks and gardens. It needs tree hollows (or holes dug into tree termite nests) for nesting.",
+  "range": "Native to eastern mainland Australia, from Cape York Peninsula south to Victoria (Cape Otway / Wilsons Promontory) and west to the Yorke Peninsula and Flinders Ranges in South Australia, on both sides of the Great Dividing Range. Introduced to south-west Western Australia, Tasmania, Kangaroo Island, Flinders Island and a small area north of Auckland, New Zealand.",
+  "behaviour": "Stays in the same territory all year. A breeding pair, usually together for life, is helped by up to five grown offspring from earlier years, which defend the territory and help raise the chicks. It hunts by waiting on a branch or wire and pouncing on prey on the ground: insects, worms, lizards, mice, frogs, small birds and sometimes snakes. Neighbouring families also defend borders with display flights.",
+  "voice": "The laugh is a territorial call used between family groups, heard at any time but most often at dawn and dusk. One bird starts with a low, hiccuping chuckle and breaks into loud laughter; others often join in, and a reply from a neighbouring family can set the whole group off. The chorus has been described as five variable parts: 'kooa', a cackle, a rolling, fast 'oo-oo-oo', a loud 'ha-ha', then the male's 'go-go' or the female's gurgle. BirdLife Australia renders the loud call as 'koo-koo-koo-koo-koo-kaa-kaa-kaa' and also notes a shorter 'koooa'. The laugh is learned: parents sing parts of it to fledglings, who take about two weeks of practice to get it right. Kookaburras also squawk (when nesting, being submissive, or as chicks waiting for food) and give deep 'chuck' calls when feeding young. Neighbouring groups take turns rather than overlapping their choruses.",
+  "anatomy": "Not a songbird: kingfishers belong to the order Coraciiformes, so the kookaburra has a non-passerine (non-oscine) syrinx. Wikipedia's account says it has a tracheo-bronchial syrinx with two sources of vibration, so it can produce two frequencies at once, each with many harmonics, driven by air pushed from the lungs into the bronchi. The bill is long, heavy and robust, black on top and pale below."
+ },
+ "tags": {
+  "features": [
+   "laugher",
+   "chorus singer",
+   "duetter"
+  ],
+  "region": [
+   "Eastern Australia",
+   "South-eastern Australia",
+   "South-west Western Australia (introduced)",
+   "Tasmania (introduced)"
+  ]
+ },
+ "facts_sources": [
+  {
+   "title": "Laughing kookaburra - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Laughing_kookaburra",
+   "licence": "CC BY-SA 4.0 (text paraphrased, not copied)",
+   "used_for": "overview, habitat, range, behaviour, voice (chorus elements, learning), syrinx (two sources), bill"
+  },
+  {
+   "title": "Laughing Kookaburra - BirdLife Australia bird profile",
+   "url": "https://birdlife.org.au/bird-profiles/laughing-kookaburra/",
+   "licence": "(c) BirdLife Australia - facts only, paraphrased",
+   "used_for": "call renderings, range (Cape York to Wilsons Promontory), habitat"
+  },
+  {
+   "title": "Dacelo novaeguineae - Atlas of Living Australia",
+   "url": "https://bie.ala.org.au/species/https://biodiversity.org.au/afd/taxa/1fc76c4d-4830-4129-9b86-1c7e944c3c50",
+   "licence": "ALA terms of use - facts only",
+   "used_for": "taxonomy (Alcedinidae, Coraciiformes), pointer to Indigenous name source"
+  },
+  {
+   "title": "Gamilaraay, Yuwaalaraay & Yuwaalayaay language names for plants and animals (ALA list dr13266; knowledge holders Harry White, Bernadette Duncan, Ted Fields Jnr, Rhonda Ashby with Michelle McKemey)",
+   "url": "https://lists.ala.org.au/speciesListItem/list/dr13266?q=Dacelo+novaeguineae",
+   "licence": "ALA species list - names cited only",
+   "used_for": "Indigenous name"
+  }
+ ]
+}

@@ -1,0 +1,63 @@
+{
+ "id": "rosella",
+ "common_name": "Crimson Rosella",
+ "scientific_name": "Platycercus elegans",
+ "family": "Psittacidae (parrots)",
+ "overview": "The crimson rosella is a bright red and blue parrot about 36 cm long, much of it tail, found in the forests and gardens of eastern and south-eastern Australia. Young birds start out mostly green and slowly turn red. Rosellas travel in pairs or small groups and chatter noisily while they feed. Their best-known sounds are clear, piping whistles and quick 'wik wik' calls in flight.",
+ "deep_dive": {
+  "habitat": "Coastal and mountain forests at all altitudes, preferring older, wetter forests: rainforest, wet and dry eucalypt forest, river forests and woodland. Also farmland, parks, reserves, gardens and golf courses, but rarely treeless country. Roosts high in trees at night.",
+  "range": "Eastern and south-eastern Australia: south-east South Australia, Victoria, the ACT and eastern New South Wales into south-east Queensland, plus a separate population in north Queensland. The species also includes the yellow rosella (Murray River) and the orange Adelaide rosella; the recordings here come from crimson-coloured populations. Introduced to Norfolk Island.",
+  "behaviour": "Mostly sedentary. Outside the breeding season adults move in pairs or small groups while young birds form flocks of up to about 20. They eat seeds, fruit, flowers, nectar and buds, plus insects, feeding in trees, shrubs and on the ground. Pairs nest in deep tree hollows, only the female incubates, and the pair chatters at other rosellas that come near the nest.",
+  "voice": "BirdLife Australia describes a repeated 'wik, wik' or 'chalk, chalk' given in flight and a piping 'who-he-who' when perched. Feeding groups are conspicuous and chatter noisily, and nesting pairs chatter at intruding rosellas.",
+  "anatomy": "A parrot (order Psittaciformes), not a songbird. The parrot syrinx sits at the base of the windpipe and has complex syringeal muscles and a pair of lateral tympaniform membranes that help set the pitch. A study abstract on parrot syrinx evolution describes parrots as having intrinsic syringeal muscles but only one sound source, unlike songbirds which keep two. Parrots also shape their sound with the fleshy, movable tongue: in monk parakeets, tiny tongue movements change the vocal-tract resonances (formants) of their calls. (These are parrot-wide findings, not rosella-specific studies.) Male crimson rosellas are up to 15% larger and have a relatively larger, wider beak than females."
+ },
+ "tags": {
+  "features": [
+   "whistler",
+   "chatterer"
+  ],
+  "region": [
+   "Eastern Australia",
+   "South-eastern Australia",
+   "North Queensland"
+  ]
+ },
+ "facts_sources": [
+  {
+   "title": "Crimson rosella - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Crimson_rosella",
+   "licence": "CC BY-SA 4.0 (text paraphrased, not copied)",
+   "used_for": "overview, habitat, range, subspecies, behaviour, chattering, beak size difference"
+  },
+  {
+   "title": "Crimson Rosella - BirdLife Australia bird profile",
+   "url": "https://birdlife.org.au/bird-profiles/crimson-rosella/",
+   "licence": "(c) BirdLife Australia - facts only, paraphrased",
+   "used_for": "call renderings ('wik, wik', 'chalk, chalk', 'who-he-who'), behaviour"
+  },
+  {
+   "title": "Platycercus elegans - Atlas of Living Australia",
+   "url": "https://bie.ala.org.au/species/https://biodiversity.org.au/afd/taxa/5e0f496f-5045-41ff-8c03-f3c8fd4f8ccd",
+   "licence": "ALA terms of use - facts only",
+   "used_for": "taxonomy (Psittacidae, Psittaciformes); no Indigenous names listed"
+  },
+  {
+   "title": "Parrot - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Parrot",
+   "licence": "CC BY-SA 4.0 (paraphrased)",
+   "used_for": "parrot syrinx position, syringeal muscles, lateral tympaniform membranes"
+  },
+  {
+   "title": "Muhammad, J. (2022) Elucidating the evolution of the parrot vocal organ and links to bioacoustic traits (abstract, UT Austin)",
+   "url": "https://www.jsg.utexas.edu/events/files/Muhammad_abstract.pdf",
+   "licence": "facts only",
+   "used_for": "parrots: intrinsic syringeal muscles and a single sound source"
+  },
+  {
+   "title": "For imitative parrots, wagging tongues may be key to vocalization (EurekAlert!/Cell Press, 6 Sep 2004) on Beckers, Nelson & Suthers 2004, Current Biology 14:1592-1597",
+   "url": "https://www.eurekalert.org/news-releases/738938",
+   "licence": "facts only",
+   "used_for": "tongue movements change vocal-tract formants in monk parakeets"
+  }
+ ]
+}

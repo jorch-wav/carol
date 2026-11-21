@@ -1,0 +1,64 @@
+{
+ "id": "bellminer",
+ "common_name": "Bell Miner",
+ "scientific_name": "Manorina melanophrys",
+ "family": "Meliphagidae (honeyeaters)",
+ "overview": "The bell miner, or 'bellbird', is a small olive-green honeyeater of south-eastern Australia's forest gullies. It is far easier to hear than to see: a colony of them fills the trees with endless, sweet, bell-like 'tink' notes, each bird ringing at a slightly different pitch, so the whole gully sounds like wind chimes. Colonies guard their patch fiercely and live mostly on tiny sap-sucking insects called psyllids.",
+ "deep_dive": {
+  "habitat": "The edges of wet and dry eucalypt forest and thick woodland, often in broad gullies, on coastal plains or beside rainforest, and usually near permanent water. Bell miners like a dense shrubby understorey under a fairly open canopy. They also live in suburban bushland, parks and gardens along creeks.",
+  "range": "South-eastern mainland Australia, from around Gympie in south-east Queensland south to Victoria (including Melbourne), mostly in the wetter coastal and mountain areas. Not in Tasmania.",
+  "behaviour": "Lives in colonies of about 8 to more than 200 birds made up of family groups, which stay in the same place for years and drive most other small birds out of their territory. They feed high in the canopy, mainly on psyllids and their sugary lerp covers, plus nectar, manna and small insects. Because they keep other insect-eaters away, big colonies are linked to a forest dieback called Bell Miner Associated Dieback. Pairs usually mate for life, and up to 20 helpers, often related young birds, help feed and guard the chicks. The female builds a thin cup nest and lays usually two eggs.",
+  "voice": "The main call is a clear, ringing, bell-like 'tink' (or 'ping'), given over and over through the day, from just before sunrise to just after sunset, as a contact and territorial call. There are also hiccupping notes and harsher calls. In our recordings each tink starts with a very short, sharp downward sweep and then rings as a pure tone of about 2.5-3.1 kHz (most often about 2.8 kHz) that fades away like a struck bell.",
+  "anatomy": "A songbird (order Passeriformes). Like all songbirds it has a tracheobronchial syrinx with a sound source on each side that can be controlled separately. It is the smallest miner, about 17.5-20 cm long and about 25-35 g. The short, slightly down-curved bill is bright yellow, the legs orange, and there is a bare red-orange patch of skin behind the eye. (No bell miner-specific syrinx study was consulted; these points are general songbird anatomy.)"
+ },
+ "tags": {
+  "features": [
+   "bell-like tink",
+   "colony caller",
+   "pure tone",
+   "chorus"
+  ],
+  "region": [
+   "South-eastern Australia",
+   "Eastern Australia"
+  ]
+ },
+ "facts_sources": [
+  {
+   "title": "Bell miner - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Bell_miner",
+   "licence": "CC BY-SA 4.0 (text paraphrased, not copied)",
+   "used_for": "overview, size, plumage, habitat, range, colonies, psyllid diet, Bell Miner Associated Dieback, cooperative breeding, tinkling and 'ping' calls"
+  },
+  {
+   "title": "Bell Miner - The Australian Museum",
+   "url": "https://australian.museum/learn/animals/birds/bell-miner/",
+   "licence": "(c) Australian Museum - facts only, paraphrased",
+   "used_for": "identification, habitat, range, sedentary colonies, canopy feeding, 'tink' call through the day, other calls, breeding and helpers"
+  },
+  {
+   "title": "Manorina melanophrys - Atlas of Living Australia",
+   "url": "https://bie.ala.org.au/species/https://biodiversity.org.au/afd/taxa/c78d1e86-c51b-4c83-b0ff-fe051ca06e70",
+   "licence": "ALA terms of use - facts only",
+   "used_for": "taxonomy (family Meliphagidae, order Passeriformes)"
+  },
+  {
+   "title": "Syrinx (bird anatomy) - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Syrinx_(bird_anatomy)",
+   "licence": "CC BY-SA 4.0 (paraphrased)",
+   "used_for": "songbirds have a tracheobronchial syrinx; left/right sides modulated independently"
+  },
+  {
+   "title": "IOC World Bird List (Gill, Donsker & Rasmussen, eds.), via World Bird Names species page",
+   "url": "https://www.worldbirdnames.com/bird/bell-miner/17268.html",
+   "licence": "CC BY 4.0 - facts only",
+   "used_for": "taxonomy: Passeriformes, Meliphagidae, Manorina melanophrys (Latham, 1801), protonym Turdus melanophrys"
+  },
+  {
+   "title": "Xeno-canto recordings listed in sources.json (own measurements)",
+   "url": "https://xeno-canto.org/species/Manorina-melanophrys",
+   "licence": "recordings CC BY-NC-SA; measurements are our own",
+   "used_for": "tink tone ~2.5-3.1 kHz (median ~2.8 kHz) with a short broadband attack"
+  }
+ ]
+}

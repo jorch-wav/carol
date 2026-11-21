@@ -1,0 +1,74 @@
+{
+ "id": "cardinal",
+ "common_name": "Northern Cardinal",
+ "scientific_name": "Cardinalis cardinalis",
+ "family": "Cardinalidae (cardinals, grosbeaks and allies)",
+ "overview": "The northern cardinal is a stocky, crested songbird of eastern and central North America and Mexico. The male is bright red all over with a black mask around his thick, coral-red bill; the female is a warm buff-brown with red tinges on her crest, wings and tail. Cardinals stay in the same area all year, come readily to backyard feeders and sing loud, clear whistles even in winter, which makes them one of the best-loved birds in North America. It is the official state bird of seven US states (Illinois, Indiana, Kentucky, North Carolina, Ohio, Virginia and West Virginia), more than any other bird. Unusually for a North American songbird, the female sings too.",
+ "deep_dive": {
+  "habitat": "Places with thick, low cover next to open ground: woodland edges, thickets, hedgerows, overgrown fields, swamps and wetland edges, desert washes with mesquite in the south-west, and especially suburban gardens and parks. Cardinals have done well alongside people, helped by shrubby gardens and bird feeders.",
+  "range": "Resident across south-eastern Canada and the eastern and central United States (from Maine west to Minnesota and south to Texas), with separate populations in New Mexico, southern Arizona and south-eastern California, then south through much of Mexico to northern Guatemala and Belize. Over the last century the range has spread north into New England and southern Canada. Introduced to Bermuda (around 1700) and Hawaii (1929). The IOC list recognises 19 subspecies; the nominate cardinalis lives in south-east Canada and the central and eastern USA.",
+  "behaviour": "Does not migrate. Pairs often stay together through the year, and in winter cardinals may gather in loose flocks. In spring males defend territories by singing from high perches and chasing rivals, and some males famously attack their own reflection in windows and car mirrors. A courting male feeds seeds to the female beak to beak. They eat mainly seeds, grains and fruit, plus insects such as beetles, cicadas and grasshoppers, and the chicks are fed almost entirely on insects. Two or more broods a year are common.",
+  "voice": "The song is a series of loud, clear, slurred whistles, each syllable type repeated several times before switching to another, often speeding up into a trill. People write it as 'cheer-cheer-cheer', 'what-cheer, what-cheer', 'birdie-birdie-birdie' or 'purty-purty'. Each syllable is usually a smooth frequency sweep, up or down, that can cover as much as two octaves, roughly from 1 kHz up to 8-9 kHz (most energy about 1.5-4.5 kHz in our recordings). The song is learned, so it varies from region to region, and a male has several song types. Both sexes sing, and the female sometimes sings from the nest. The common call is a sharp, metallic 'chip' (most energy about 4-8 kHz), used as a contact call and, given rapidly, as an alarm. Cardinals sing for much of the year, from late winter into late summer.",
+  "anatomy": "A songbird (order Passeriformes) with the songbird two-sided syrinx: there is a sound source on each side where the windpipe splits into the two bronchi, each with its own muscles. Cardinals are a classic case of splitting the job between the two sides. Frequencies below about 3.5 kHz are sung with the left side and higher ones with the right side, and most syllables use both: when a sweep crosses about 3.5 kHz, sound production switches from one side to the other in the middle of the note, so smoothly that it can't be seen on a sonogram or heard. Between syllables a singing cardinal takes tiny 'minibreaths' (up to about 16 syllables a second; faster trills use pulsed breathing instead). X-ray films show that cardinals also tune their throat to the note they are singing: by moving the tongue bone (hyoid) and expanding the top of the oesophagus they enlarge the throat cavity to about 2 ml for low notes (around 1.5-2 kHz) and shrink it to about 0.6 ml for high notes (around 5 kHz), so the main vocal-tract resonance follows the song's fundamental and the whistles come out pure, with weak harmonics. The beak opens wider on the highest notes. The bill itself is a thick, cone-shaped, coral-red seed-cracking bill."
+ },
+ "tags": {
+  "features": [
+   "whistler",
+   "frequency sweeps",
+   "two-voice (left/right syrinx switch)",
+   "female singer",
+   "chipper"
+  ],
+  "region": [
+   "North America",
+   "Eastern & Central USA",
+   "South-eastern Canada",
+   "Mexico",
+   "Hawaii & Bermuda (introduced)"
+  ]
+ },
+ "facts_sources": [
+  {
+   "title": "Northern cardinal - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Northern_cardinal",
+   "licence": "CC BY-SA 4.0 (text paraphrased, not copied)",
+   "used_for": "overview, plumage, size, range and introductions, habitat, diet, behaviour, state birds (seven: IL, IN, KY, NC, OH, VA, WV), learned regional song, chip call"
+  },
+  {
+   "title": "Northern Cardinal - Sounds and Vocal Behavior, Birds of the World (Cornell Lab of Ornithology)",
+   "url": "https://birdsoftheworld.org/bow/species/norcar/cur/sounds",
+   "licence": "(c) Cornell Lab of Ornithology - facts only, paraphrased (summary via search snippets; subscription page)",
+   "used_for": "song type renderings ('what cheer', 'cheer', 'birdie'), chip call energy 4-8 kHz, the ~3.5 kHz boundary between syrinx sides"
+  },
+  {
+   "title": "Northern Cardinal - Audubon Guide to North American Birds",
+   "url": "https://www.audubon.org/field-guide/bird/northern-cardinal",
+   "licence": "(c) National Audubon Society - facts only, paraphrased",
+   "used_for": "song renderings ('what-cheer', 'purty'), metallic chip"
+  },
+  {
+   "title": "Suthers, R. A. (1999) Peripheral mechanisms for singing: motor strategies for vocal diversity. In Adams, N. J. & Slotow, R. H. (eds) Proc. 22nd Int. Ornithol. Congr., Durban: 491-508. BirdLife South Africa",
+   "url": "https://www.internationalornithology.org/PROCEEDINGS_Durban/Symposium/S09/S09.2.htm",
+   "licence": "facts only",
+   "used_for": "left side below ~3.5 kHz, right side above; mid-syllable side switch; seamless transitions; minibreaths up to ~16 syllables/s; sweeps up to two octaves"
+  },
+  {
+   "title": "Riede, T., Suthers, R. A., Fletcher, N. H. & Blevins, W. E. (2006) Songbirds tune their vocal tract to the fundamental frequency of their song. PNAS 103(14): 5543-5548. doi:10.1073/pnas.0601262103",
+   "url": "https://doi.org/10.1073/pnas.0601262103",
+   "licence": "facts only",
+   "used_for": "cardinal song f0 ~1-9 kHz; oropharyngeal-oesophageal cavity ~2 ml at low f0 and ~0.6 ml at ~5 kHz; hyoid movements; beak gape at high notes"
+  },
+  {
+   "title": "Lateralization of bird song - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Lateralization_of_bird_song",
+   "licence": "CC BY-SA 4.0 (paraphrased)",
+   "used_for": "cardinal sweeps ~6-7 kHz down to 2 kHz switch sides at 3.5-4.0 kHz (citing Suthers 1997)"
+  },
+  {
+   "title": "IOC World Bird List v15.2 (Gill, Donsker & Rasmussen, eds) - Cardinals & allies",
+   "url": "https://www.worldbirdnames.org/new/bow/cardinals/",
+   "licence": "CC BY 4.0 - facts only",
+   "used_for": "taxonomy (Cardinalidae; Cardinalis cardinalis (Linnaeus, 1758)), subspecies ranges"
+  }
+ ]
+}

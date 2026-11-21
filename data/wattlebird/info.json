@@ -1,0 +1,71 @@
+{
+ "id": "wattlebird",
+ "common_name": "Red Wattlebird",
+ "scientific_name": "Anthochaera carunculata",
+ "family": "Meliphagidae (honeyeaters)",
+ "overview": "The red wattlebird is a large, streaky grey-brown honeyeater with a yellow belly and little pinkish-red flaps of skin (wattles) hanging from its cheeks. It lives across southern Australia in forests, parks and gardens, wherever there are flowering trees full of nectar. It is loud, bossy and busy, chasing other birds away from its favourite flowers. Its voice is not pretty but it is memorable: harsh coughs, cackles and a loud 'chock', with whistles from the female.",
+ "deep_dive": {
+  "habitat": "Mostly open eucalypt forest and woodland, especially with a shrubby or grassy understorey; less often heath, shrubland or wet-forest edges. Common in towns: parks, reserves, gardens, golf courses, orchards and vineyards. Recorded up to about 1,900 m.",
+  "range": "Southern Australia: south-east Queensland, eastern New South Wales and the ACT, Victoria, south-east South Australia, and south-west Western Australia. Mostly resident, but birds move around to follow flowering banksias and eucalypts, and some move downhill in winter. Replaced in Tasmania by the yellow wattlebird.",
+  "behaviour": "Loud and active; found alone, in pairs or small family groups when breeding, and in big flocks (up to several hundred) in winter. Very territorial around rich nectar sources, chasing smaller honeyeaters and even mobbing magpies, kookaburras and small hawks. Feeds mainly on nectar with a brush-tipped tongue, plus insects, berries and manna. Builds a cup-shaped nest in a tree fork and raises one or two broods a year.",
+  "voice": "A noisy bird with many raucous calls. Pairs seem to duet, especially at food: the male gives a loud, guttural cackle (strongest around 1-3 kHz) described as squawking, coughing or hiccuping, and the female answers with a whistled call of up to five quick whistles, which may rise in pitch, repeated 3-4 times. Both sexes give a single 'chock' contact note that can be harsh or have 4-5 clear harmonics. When mobbing they alternate two alarm calls: a harsh, wide-band call (about 1.3-5.9 kHz) and a lower staccato call (about 1.1-2.2 kHz). BirdLife Australia lists coughs, a harsh 'yac a yac' and a loud 'chok'. A Noongar (Yuat) knowledge record also describes it as sounding like a high-pitched whistle.",
+  "anatomy": "A songbird (order Passeriformes), so it has the songbird tracheobronchial syrinx with a sound source on each side where the windpipe splits; birds can control the two sides independently and songbirds keep two sound sources. (No wattlebird-specific syrinx study was consulted.) Other features: a long, slightly curved bill and a brush-tipped tongue with about 120 bristles for lapping nectar, and the fleshy red neck wattles that give the bird its name."
+ },
+ "tags": {
+  "features": [
+   "harsh caller",
+   "cackler",
+   "whistler",
+   "duetter"
+  ],
+  "region": [
+   "Southern Australia",
+   "South-eastern Australia",
+   "South-west Western Australia"
+  ]
+ },
+ "facts_sources": [
+  {
+   "title": "Red wattlebird - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Red_wattlebird",
+   "licence": "CC BY-SA 4.0 (text paraphrased, not copied)",
+   "used_for": "overview, habitat, range, behaviour, voice (cackle, whistle, chock, alarm frequencies), tongue"
+  },
+  {
+   "title": "Red Wattlebird - BirdLife Australia bird profile",
+   "url": "https://birdlife.org.au/bird-profiles/red-wattlebird/",
+   "licence": "(c) BirdLife Australia - facts only, paraphrased",
+   "used_for": "call renderings, behaviour"
+  },
+  {
+   "title": "Anthochaera carunculata - Atlas of Living Australia",
+   "url": "https://bie.ala.org.au/species/https://biodiversity.org.au/afd/taxa/8204979f-5302-41ea-943f-01d3c420f7bb",
+   "licence": "ALA terms of use - facts only",
+   "used_for": "taxonomy (Meliphagidae, Passeriformes), pointer to Indigenous name source"
+  },
+  {
+   "title": "Syrinx (bird anatomy) - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Syrinx_(bird_anatomy)",
+   "licence": "CC BY-SA 4.0 (paraphrased)",
+   "used_for": "songbird tracheobronchial syrinx"
+  },
+  {
+   "title": "Bird vocalization - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Bird_vocalization",
+   "licence": "CC BY-SA 4.0 (paraphrased)",
+   "used_for": "independent control of the two sides"
+  },
+  {
+   "title": "Muhammad, J. (2022) Elucidating the evolution of the parrot vocal organ and links to bioacoustic traits (abstract, UT Austin)",
+   "url": "https://www.jsg.utexas.edu/events/files/Muhammad_abstract.pdf",
+   "licence": "facts only",
+   "used_for": "songbirds retain two sound sources"
+  },
+  {
+   "title": "Noongar Boodjar Plants and Animals: Djangkang (Noongar Boodjar Language Centre)",
+   "url": "https://profiles.ala.org.au/opus/noongar/profile/Djangkang",
+   "licence": "(c) Noongar Boodjar Language Cultural Aboriginal Corporation, all rights reserved - name cited only",
+   "used_for": "Noongar (Yuat) name, 'high pitch whistle' description"
+  }
+ ]
+}

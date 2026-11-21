@@ -1,0 +1,13 @@
+[package]
+name = "carol-cli"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+
+[[bin]]
+name = "carol"
+path = "src/main.rs"
+
+[dependencies]
+carol-core = { path = "../core" }
+serde_json = "1"

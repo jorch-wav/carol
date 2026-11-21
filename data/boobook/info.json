@@ -1,0 +1,76 @@
+{
+ "id": "boobook",
+ "common_name": "Australian Boobook",
+ "scientific_name": "Ninox boobook",
+ "family": "Strigidae (typical owls)",
+ "overview": "The Australian boobook (also called southern boobook or mopoke) is the smallest owl on the Australian mainland: a compact, dark-brown owl with pale spots, a pale-rimmed face and big greenish-yellow eyes. It is far more often heard than seen. Its two-note 'boo-book' hoot, the second note a little lower, carries up to a kilometre through the night and gave the bird both its English name and its Dharug name.",
+ "deep_dive": {
+  "habitat": "Almost any country with trees: eucalypt forest, woodland, scrub, semi-desert watercourses, farmland and suburbs with scattered trees. By day it roosts in dense foliage, or in caves and ledges where trees are scarce.",
+  "range": "Throughout mainland Australia, scarcer in the arid interior where it keeps to river lines; many offshore islands; southern New Guinea, Timor and the Lesser Sunda Islands. Tasmania's boobook is now a separate species. Birds in the cooler south are larger than northern ones.",
+  "behaviour": "Mostly nocturnal, sometimes active at dawn and dusk. Hunts insects, small mammals and birds by pouncing from a perch. Pairs hold territories in the breeding season (about July to February) and nest in tree hollows, laying two or three white eggs. Small birds mob it if they find it roosting. Banded birds have lived almost 16 years.",
+  "voice": "The main call is the double hoot 'boo-book' (or 'mo-poke'), repeated for long periods, especially in the two hours after dusk and before dawn. The male's hoot is higher and shorter than the female's and is heard far more often. In our recordings each pair is a short first note (about 0.12-0.15 s) at about 650-780 Hz followed about 0.4 s later by a slightly longer, lower note (about 0.16-0.2 s at 560-710 Hz), repeated every 3-5 s. The hoot is almost a pure tone: Fletcher (2000) found the boobook call nearly sinusoidal with one dominant frequency. Other calls: a single hoot as alarm, a harsher hoot when mobbing intruders, repeated croaks or grunts during courtship, a purring or braying contact call near the nest (rich in harmonics up to about 3 kHz), a low trill from the female, and hissing, wheezy begging calls from young birds (energy around 4.5-6.5 kHz).",
+  "anatomy": "An owl (order Strigiformes), not a songbird. Owls have a bronchial syrinx: the sound-making part sits a little down each bronchus, so there are two sources, worked by a single pair of muscles (Miller 1934, North American owls). How owls hoot is not well studied. Great horned owls are described as hooting with the bill closed and the throat swollen (Kinstler 2009), which would filter the sound towards a pure tone, but a survey of closed-mouth calling (Riede et al. 2016) coded the five owls it looked at, great horned owl included, as open-mouth callers, and did not include Ninox. No study of how the boobook itself hoots was found. The bill is small, hooked and black with a blue-grey base; the feet are feathered, with greyish to pinkish-brown toes."
+ },
+ "tags": {
+  "features": [
+   "hooter",
+   "night caller",
+   "duetter"
+  ],
+  "region": [
+   "Australia-wide",
+   "Southern New Guinea",
+   "Timor and Lesser Sundas"
+  ]
+ },
+ "facts_sources": [
+  {
+   "title": "Australian boobook - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Australian_boobook",
+   "licence": "CC BY-SA 4.0 (text paraphrased, not copied)",
+   "used_for": "overview, names, taxonomy and splits, size, plumage, eye/bill/feet colour, habitat, range, behaviour, breeding, call types and timing, longevity"
+  },
+  {
+   "title": "Ninox (Ninox) boobook - Atlas of Living Australia",
+   "url": "https://bie.ala.org.au/species/https://biodiversity.org.au/afd/taxa/68fc5ba7-463f-4a86-8314-e42a5a8d0455",
+   "licence": "ALA terms of use - facts only",
+   "used_for": "taxonomy (Strigidae, Strigiformes)"
+  },
+  {
+   "title": "Fletcher, N. H. (2000) A class of chaotic bird calls? Journal of the Acoustical Society of America 108(2): 821-826",
+   "url": "https://doi.org/10.1121/1.429615",
+   "licence": "facts only",
+   "used_for": "boobook call nearly sinusoidal, one dominant frequency, no pitch change (bird recorded near Canberra, then filed as Ninox novaeseelandiae)"
+  },
+  {
+   "title": "Miller, A. H. (1934) The vocal apparatus of some North American owls. The Condor 36(5): 204-213",
+   "url": "https://doi.org/10.2307/1363856",
+   "licence": "facts only (abstract/first pages)",
+   "used_for": "owl syrinx is bronchial; one pair of intrinsic muscles; sex differences"
+  },
+  {
+   "title": "Kinstler, K. A. (2009) Great Horned Owl Bubo virginianus vocalizations and associated behaviours. Ardea 97(4): 413-420",
+   "url": "https://doi.org/10.5253/078.097.0403",
+   "licence": "facts only (as summarised in search results; full text not read)",
+   "used_for": "hoots given with bill closed and throat swollen (great horned owl, not boobook)"
+  },
+  {
+   "title": "Riede, T., Eliason, C. M., Miller, E. H., Goller, F. & Clarke, J. A. (2016) Coos, booms, and hoots: the evolution of closed-mouth vocal behavior in birds. Evolution 70(8): 1734-1746",
+   "url": "https://doi.org/10.1111/evo.12988",
+   "licence": "facts only",
+   "used_for": "five owls (Strix varia, Bubo virginianus, Athene cunicularia, Tyto alba, Otus scops) coded open-mouth; Ninox not sampled (Table S3)"
+  },
+  {
+   "title": "IOC World Bird List v15.2 (Gill, Rasmussen & Donsker, eds.)",
+   "url": "https://www.worldbirdnames.org/new/ioc-lists/master-list-2/",
+   "licence": "CC BY 4.0 - facts only",
+   "used_for": "taxonomy: order Strigiformes, family Strigidae, Ninox boobook (Latham, 1801), English name Australian Boobook (changed from Southern Boobook), 7 subspecies"
+  },
+  {
+   "title": "Xeno-canto recordings listed in sources.json (own measurements)",
+   "url": "https://xeno-canto.org/species/Ninox-boobook",
+   "licence": "recordings CC BY-NC-SA; measurements are our own",
+   "used_for": "hoot note pitches, durations and spacing; braying and begging call bands"
+  }
+ ]
+}

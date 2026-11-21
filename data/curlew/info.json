@@ -1,0 +1,72 @@
+{
+ "id": "curlew",
+ "common_name": "Bush Stone-curlew",
+ "scientific_name": "Burhinus grallarius",
+ "family": "Burhinidae (stone-curlews, thick-knees)",
+ "overview": "The bush stone-curlew is a tall, long-legged, streaky grey-brown ground bird with huge yellow eyes. By day it stands frozen among leaf litter, trusting its camouflage; at night it walks about hunting insects and gives the eerie, wailing 'weer-lo' call that many people mistake for a scream. It is still common in parks and suburbs of Brisbane, Cairns and Townsville, but has become rare in the south.",
+ "deep_dive": {
+  "habitat": "Open woodland with grassy ground and fallen timber, rainforest edges, grassy plains, scrub and inland watercourses; also golf courses, cemeteries and parks in northern towns. It avoids dense rainforest, true desert and bare farmland.",
+  "range": "Mainland Australia except most of the west coast; rare in the south-east and south-west, where foxes, cats and land clearing have caused big declines. Also a small population in southern New Guinea. It does not migrate. Reintroduced to Mulligans Flat sanctuary in Canberra from 2014.",
+  "behaviour": "Mainly nocturnal and usually alone or in pairs. Hunts insects, spiders, frogs, lizards and small mammals by walking slowly and gleaning or probing the ground, especially on moonlit nights. When disturbed by day it freezes in a stiff, odd pose, or crouches and creeps away; it flies only if pressed, on long broad wings. Lays two eggs on bare ground, and both parents incubate and guard them. Threatened adults spread their wings high and hiss.",
+  "voice": "The territorial call is a loud, plaintive, rising and falling wail written 'weer-lo' or 'wee-loo', repeated four or five times and sometimes building to a trilled, screeching climax. Pairs and neighbours often call together, so several birds wail in chorus, mostly at night and more before rain. When scared it screeches like a possum, and at the nest it hisses. In our recordings the wail has a clear fundamental mostly around 1.5-2.8 kHz (some notes start near 1 kHz) with a few harmonics, and most energy between about 1.3 and 6 kHz.",
+  "anatomy": "A shorebird relative (order Charadriiformes), not a songbird, so it has a simpler non-passerine syrinx where the windpipe meets the bronchi, with fewer syringeal muscles than a songbird. A survey of closed-mouth calling in birds (Riede et al. 2016) coded the bush stone-curlew as an open-mouth caller. The bill is short, stout and black; the iris is bright yellow with a black skin ring; the long legs are olive-green with thickened 'knee' (actually ankle) joints. (No stone-curlew-specific syrinx study was found; the syrinx description is general for non-passerines.)"
+ },
+ "tags": {
+  "features": [
+   "wailer",
+   "night caller",
+   "duetter",
+   "chorus singer"
+  ],
+  "region": [
+   "Northern Australia",
+   "Eastern Australia",
+   "Australia-wide (rare in south)",
+   "Southern New Guinea"
+  ]
+ },
+ "facts_sources": [
+  {
+   "title": "Bush stone-curlew - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Bush_stone-curlew",
+   "licence": "CC BY-SA 4.0 (text paraphrased, not copied)",
+   "used_for": "overview, taxonomy, size, plumage, eye, bill and leg colour, habitat, range and decline, behaviour, freezing, voice ('weeloo', chorus, rain, possum-like screech, hissing), breeding"
+  },
+  {
+   "title": "Bush Stone-curlew - BirdLife Australia bird profile",
+   "url": "https://birdlife.org.au/bird-profiles/bush-stone-curlew/",
+   "licence": "(c) BirdLife Australia - facts only, paraphrased",
+   "used_for": "'weer-lo' call repeated 4-5 times with trilled crescendo, size, habitat, diet"
+  },
+  {
+   "title": "Burhinus (Burhinus) grallarius - Atlas of Living Australia",
+   "url": "https://bie.ala.org.au/species/https://biodiversity.org.au/afd/taxa/cd4e3b1b-4387-4338-8fc8-0da4f30a9e0b",
+   "licence": "ALA terms of use - facts only",
+   "used_for": "taxonomy (Burhinidae, Charadriiformes)"
+  },
+  {
+   "title": "Riede, T., Eliason, C. M., Miller, E. H., Goller, F. & Clarke, J. A. (2016) Coos, booms, and hoots: the evolution of closed-mouth vocal behavior in birds. Evolution 70(8): 1734-1746",
+   "url": "https://doi.org/10.1111/evo.12988",
+   "licence": "facts only",
+   "used_for": "Burhinus grallarius coded as open-mouth vocaliser (Table S3, 672 g)"
+  },
+  {
+   "title": "Syrinx (bird anatomy) - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Syrinx_(bird_anatomy)",
+   "licence": "CC BY-SA 4.0 (paraphrased)",
+   "used_for": "non-passerine tracheobronchial syrinx with few intrinsic muscles"
+  },
+  {
+   "title": "IOC World Bird List v15.2 (Gill, Rasmussen & Donsker, eds.)",
+   "url": "https://www.worldbirdnames.org/new/ioc-lists/master-list-2/",
+   "licence": "CC BY 4.0 - facts only",
+   "used_for": "taxonomy: order Charadriiformes, family Burhinidae, Burhinus grallarius (Latham, 1801)"
+  },
+  {
+   "title": "Xeno-canto recordings listed in sources.json (own measurements)",
+   "url": "https://xeno-canto.org/species/Burhinus-grallarius",
+   "licence": "recordings CC BY-NC-SA; measurements are our own",
+   "used_for": "fundamental (about 1-2.8 kHz) and energy band (about 1.3-6 kHz)"
+  }
+ ]
+}

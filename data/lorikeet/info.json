@@ -1,0 +1,77 @@
+{
+ "id": "lorikeet",
+ "common_name": "Rainbow Lorikeet",
+ "scientific_name": "Trichoglossus moluccanus",
+ "family": "Psittaculidae (Old World parrots; lorikeets and lories)",
+ "overview": "The rainbow lorikeet is a small, fast, very bright parrot with a blue head, a green back, a blazing orange chest and a red beak. Noisy flocks zip between flowering trees along the east coast of Australia, screeching as they fly, and then chatter non-stop while they feed. Instead of cracking seeds like most parrots, lorikeets lap up nectar and pollen with a brush-tipped tongue. They are one of the most often seen birds in Australia and are common in city gardens.",
+ "deep_dive": {
+  "habitat": "Anywhere with flowering or fruiting trees: rainforest, coastal scrub, eucalypt woodland, parks, gardens and street trees. They follow the flowering of eucalypts, grevilleas, bottlebrushes and other nectar plants, and gather in big communal roosts at dusk.",
+  "range": "The east and south-east of mainland Australia, from Cape York down the coast through New South Wales and Victoria to south-eastern South Australia. Introduced and now established around Perth (since the 1960s) and in Tasmania; an illegal release in Auckland was later removed. The IOC list now treats the coconut lorikeet (T. haematodus, New Guinea and islands) and the red-collared lorikeet (T. rubritorquis, northern Australia) as separate species. Two subspecies: moluccanus (east and south-east) and septentrionalis (Cape York).",
+  "behaviour": "Lives in pairs inside larger flocks. Flocks fly fast and direct, screeching, and can be aggressive at feeders and around nest hollows, pushing out other hollow-nesting birds. Pairs stay together for a long time. They nest in tree hollows on chewed wood; both parents prepare the hollow and feed the young, but only the female incubates the one to three eggs. In parks many birds are tame enough to be hand-fed.",
+  "voice": "Very noisy. Flight calls are sharp, rolling screeches given over and over; perched and feeding birds keep up a constant, shrill chattering and twittering, and pairs swap soft contact notes. Alarm calls are harsh, rapid screeches. In our recordings the calls have bright harmonic stacks with fundamentals of roughly 0.8-4 kHz (most around 2-3.5 kHz) and energy between about 2 and 8 kHz, higher and more tonal than the cockatoo's screech.",
+  "anatomy": "A parrot (order Psittaciformes), not a songbird. The parrot syrinx sits at the base of the windpipe with a pair of thin lateral tympaniform membranes as a single sound source, moved by two small muscles inside the syrinx. Parrots then shape the sound with their thick, movable tongue, beak opening and windpipe length, which shift the vocal-tract resonances (studied in monk parakeets). The lorikeet's tongue ends in a brush of fine papillae for gathering pollen and nectar. The beak is small, hooked and coral red; young birds have a dark beak that turns orange-red as they grow. (These are parrot-wide findings, not lorikeet-specific studies.)"
+ },
+ "tags": {
+  "features": [
+   "screecher",
+   "chatterer",
+   "flock caller"
+  ],
+  "region": [
+   "Eastern Australia",
+   "South-eastern Australia",
+   "North Queensland",
+   "South-west Western Australia (introduced)"
+  ]
+ },
+ "facts_sources": [
+  {
+   "title": "Rainbow lorikeet - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Rainbow_lorikeet",
+   "licence": "CC BY-SA 4.0 (text paraphrased, not copied)",
+   "used_for": "overview, size, plumage, beak colour, taxonomy and 2019 split, range, introductions, diet and brush tongue, breeding"
+  },
+  {
+   "title": "Rainbow Lorikeet - BirdLife Australia bird profile",
+   "url": "https://birdlife.org.au/bird-profiles/rainbow-lorikeet/",
+   "licence": "(c) BirdLife Australia - facts only, paraphrased",
+   "used_for": "frequent screeching and chattering, fast flocks, communal roosts, Perth population, aggression at hollows, breeding roles"
+  },
+  {
+   "title": "Trichoglossus moluccanus - Atlas of Living Australia",
+   "url": "https://bie.ala.org.au/species/https://biodiversity.org.au/afd/taxa/4dfe64e2-a213-45c3-b585-cfcd690451ec",
+   "licence": "ALA terms of use - facts only",
+   "used_for": "taxonomy check"
+  },
+  {
+   "title": "Larsen, O. N. & Goller, F. (2002) Direct observation of syringeal muscle function in songbirds and a parrot. Journal of Experimental Biology 205: 25-35",
+   "url": "https://doi.org/10.1242/jeb.205.1.25",
+   "licence": "facts only (abstract)",
+   "used_for": "parrot syrinx: lateral tympaniform membranes and two intrinsic muscles (cockatiel)"
+  },
+  {
+   "title": "Ohms, V. R., Beckers, G. J. L., ten Cate, C. & Suthers, R. A. (2012) Vocal tract articulation revisited: the case of the monk parakeet. Journal of Experimental Biology 215: 85-92",
+   "url": "https://doi.org/10.1242/jeb.064717",
+   "licence": "facts only (abstract)",
+   "used_for": "tongue height, beak opening and tracheal length as vocal articulators"
+  },
+  {
+   "title": "Beckers, G. J. L., Nelson, B. S. & Suthers, R. A. (2004) Vocal-tract filtering by lingual articulation in a parrot. Current Biology 14: 1592-1597",
+   "url": "https://doi.org/10.1016/j.cub.2004.08.057",
+   "licence": "facts only",
+   "used_for": "tongue position changes formants"
+  },
+  {
+   "title": "IOC World Bird List v15.2 (Gill, Rasmussen & Donsker, eds.)",
+   "url": "https://www.worldbirdnames.org/new/ioc-lists/master-list-2/",
+   "licence": "CC BY 4.0 - facts only",
+   "used_for": "taxonomy: Psittaculidae, Trichoglossus moluccanus (Gmelin, 1788), subspecies septentrionalis and moluccanus; T. haematodus and T. rubritorquis separate"
+  },
+  {
+   "title": "iNaturalist recordings listed in sources.json (own measurements)",
+   "url": "https://www.inaturalist.org/taxa/980095-Trichoglossus-moluccanus",
+   "licence": "recordings CC BY-NC / CC BY / CC0; measurements are our own",
+   "used_for": "fundamental (about 0.8-4 kHz) and energy band (about 2-8 kHz)"
+  }
+ ]
+}

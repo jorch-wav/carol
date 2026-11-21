@@ -1,0 +1,16 @@
+# build output
+engine/target/
+# downloaded source material (recordings, scans): not redistributed here
+data/*/raw/
+data/*/rec/
+data/*/compare/
+data/*/plate.jpg
+data/illustrations/
+# fitter working files (the presets in web/presets are the results)
+fits/
+# local Pi wiring
+site/
+*.log
+__pycache__/
+web/img/icon-old.svg
+data/*/names_local.json

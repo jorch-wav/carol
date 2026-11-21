@@ -1,0 +1,96 @@
+{
+ "id": "lyrebird",
+ "common_name": "Superb Lyrebird",
+ "scientific_name": "Menura novaehollandiae",
+ "family": "Menuridae (lyrebirds)",
+ "overview": "The superb lyrebird is a big, brown, pheasant-sized songbird of the damp forests of south-eastern Australia, and one of the best mimics on Earth. Most of what a male sings is borrowed: kookaburras, whipbirds, currawongs, rosellas, and now and then a camera shutter or a chainsaw, mixed in with the lyrebird's own loud whistles. In winter the male clears a small mound on the forest floor, throws his amazing tail forward over his head like a silvery veil, and sings and dances for the females.",
+ "deep_dive": {
+  "habitat": "Wet forest and rainforest with a deep, moist layer of leaf litter on the ground, and also wet and dry eucalypt (sclerophyll) forest. Lyrebirds live and feed on the ground but fly or clamber up into trees to roost at night.",
+  "range": "South-eastern mainland Australia, from southern Victoria through eastern New South Wales to south-eastern Queensland. It was released in southern Tasmania between 1934 and 1954 and is doing well there. Several subspecies are recognised, for example victoriae in Victoria's mountain forests.",
+  "behaviour": "Mostly solitary and settled: a bird rarely leaves its home patch, which is a few kilometres across. It feeds by raking the soil and leaf litter with its strong feet for worms, insects, spiders and other small animals, and sometimes fungi or seeds. It flies only weakly on short round wings and prefers to run. Males hold territories with several display mounds, sing and dance on them in the winter breeding season, and mate with several females. The female alone builds a large domed nest, lays a single egg and raises the chick, which can take up to about seven weeks to hatch.",
+  "voice": "A very loud, varied songster. Roughly 70-80% of a male's song is mimicry, mostly of other birds (with surprising accuracy), but the rest is its own: loud descending whistles often repeated as 'pew, pew, pew', a high whistle before them, a low gravelly 'gulla-gulla' and an explosive 'plick' during display, clicking sounds while leading another bird to a mound, and a loud alarm shriek. Females sing and mimic too. Each area has its own 'dialect' of territorial song and favourite models. In our recordings the song mostly sits between about 1 and 4.5 kHz, while the alarm shrieks are higher, around 5-6 kHz.",
+  "anatomy": "A songbird (order Passeriformes), and one of the largest. Like all songbirds it has a tracheobronchial syrinx, where the windpipe splits into the two bronchi, so there is a sound source on each side that can be controlled separately. The lyrebird's syrinx is unusual, though: an anatomical survey (Ames 1971, cited by Gaunt 1983) found only three pairs of intrinsic syringeal muscles, while other famous mimics such as the mockingbird and hill myna have at least four. So a superb vocal mimic doesn't need the most complex syrinx. The male's tail has sixteen feathers: two broad S-shaped outer 'lyrates' with brown and buff bands, twelve lacy silvery 'filamentaries' and two narrow middle feathers. A male is about 80-100 cm long, and the tail alone can be up to about 70 cm."
+ },
+ "tags": {
+  "features": [
+   "mimic",
+   "whistler",
+   "ground bird",
+   "display dancer",
+   "female song"
+  ],
+  "region": [
+   "South-eastern Australia",
+   "Eastern Australia",
+   "Tasmania (introduced)"
+  ]
+ },
+ "facts_sources": [
+  {
+   "title": "Superb lyrebird - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Superb_lyrebird",
+   "licence": "CC BY-SA 4.0 (text paraphrased, not copied)",
+   "used_for": "overview, size and tail length, tail feathers, habitat, range, Tasmanian introduction, diet, breeding, share of mimicry (70-80%), female song, naming history"
+  },
+  {
+   "title": "Superb Lyrebird - BirdLife Australia bird profile",
+   "url": "https://birdlife.org.au/bird-profiles/superb-lyrebird/",
+   "licence": "(c) BirdLife Australia - facts only, paraphrased",
+   "used_for": "colours (rufous wings, black bill and legs), home range, foraging, own whistles and cackles, alarm shriek, display mounds"
+  },
+  {
+   "title": "Menura novaehollandiae - Atlas of Living Australia",
+   "url": "https://bie.ala.org.au/species/https://biodiversity.org.au/afd/taxa/944960f7-4a3f-4de8-a1fd-0f037af45a23",
+   "licence": "ALA terms of use - facts only",
+   "used_for": "taxonomy (family Menuridae, order Passeriformes)"
+  },
+  {
+   "title": "Taylor, I. (1986) The song of the Superb Lyrebird in the Australian Capital Territory. Corella 10(2): 46-54",
+   "url": "https://absa.asn.au/wp-content/uploads/2021/09/Cor-Vol-10-Pg46-51_Song_ofthe_SuperbLyrebird.pdf",
+   "licence": "facts only",
+   "used_for": "own calls (~30% of output): descending 'pew, pew, pew' whistles, preceding high whistle, display 'gulla-gulla' and 'plick'; regional repertoires"
+  },
+  {
+   "title": "Robinson, F. N. & Curtis, H. S. (1996) The vocal displays of the lyrebirds (Menuridae). Emu 96(4): 258-275",
+   "url": "https://doi.org/10.1071/MU9960258",
+   "licence": "facts only (abstract)",
+   "used_for": "mimicry plus learned, regionally varying territorial song"
+  },
+  {
+   "title": "Dalziell, A. H. & Welbergen, J. A. (2016) Elaborate mimetic vocal displays by female superb lyrebirds. Frontiers in Ecology and Evolution 4: 34",
+   "url": "https://doi.org/10.3389/fevo.2016.00034",
+   "licence": "CC BY 4.0 - facts only",
+   "used_for": "females also sing and mimic"
+  },
+  {
+   "title": "Dalziell, A. H., Maisey, A. C., Magrath, R. D. & Welbergen, J. A. (2021) Male lyrebirds create a complex acoustic illusion of a mobbing flock during courtship and copulation. Current Biology 31: 1970-1976",
+   "url": "https://doi.org/10.1016/j.cub.2021.02.003",
+   "licence": "facts only",
+   "used_for": "mimicry used in different display contexts"
+  },
+  {
+   "title": "Gaunt, A. S. (1983) An hypothesis concerning the relationship of syringeal structure to vocal abilities. Auk 100(4): 853-862 (citing Ames, P. L. 1971, The morphology of the syrinx in passerine birds, Bull. Peabody Mus. Nat. Hist. 37: 1-194)",
+   "url": "https://sora.unm.edu/sites/default/files/journals/auk/v100n04/p0853-p0862.pdf",
+   "licence": "facts only",
+   "used_for": "lyrebird has three pairs of intrinsic syringeal muscles; mockingbird and hill myna at least four"
+  },
+  {
+   "title": "Syrinx (bird anatomy) - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Syrinx_(bird_anatomy)",
+   "licence": "CC BY-SA 4.0 (paraphrased)",
+   "used_for": "songbirds have a tracheobronchial syrinx; left/right sides modulated independently"
+  },
+  {
+   "title": "IOC World Bird List (Gill, Donsker & Rasmussen, eds.), via World Bird Names species page",
+   "url": "https://www.worldbirdnames.com/bird/superb-lyrebird/16977.html",
+   "licence": "CC BY 4.0 - facts only",
+   "used_for": "taxonomy: Passeriformes, Menuridae, Menura novaehollandiae Latham, 1801"
+  },
+  {
+   "title": "Xeno-canto recordings listed in sources.json (own measurements)",
+   "url": "https://xeno-canto.org/species/Menura-novaehollandiae",
+   "licence": "recordings CC BY-NC-SA; measurements are our own",
+   "used_for": "song mostly ~1-4.5 kHz, alarm shrieks ~5-6 kHz"
+  }
+ ]
+}

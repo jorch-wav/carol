@@ -1,0 +1,85 @@
+{
+ "id": "magpie",
+ "common_name": "Australian Magpie",
+ "scientific_name": "Gymnorhina tibicen",
+ "family": "Artamidae (butcherbirds, currawongs, woodswallows and magpie)",
+ "overview": "The Australian magpie is a big black-and-white songbird that you can find across most of Australia, strolling over lawns, parks and paddocks. It lives in family groups that hold the same patch of land for years. On its own a magpie sings a soft, rambling warble; together, a group throws back their heads and 'carols' a loud, flute-like song to tell the neighbours the territory is taken. Magpies can also copy the calls of other birds and animals.",
+ "deep_dive": {
+  "habitat": "Open country with trees nearby: grassland, farmland, parks, gardens, golf courses and streets. Magpies nest and shelter in trees but find most of their food on the ground. They avoid the densest forests and true deserts, and only use rainforest or wet forest next to cleared land.",
+  "range": "Most of mainland Australia and Tasmania, except the tip of Cape York, the Gibson and Great Sandy Deserts and south-west Tasmania; also the Trans-Fly region of southern New Guinea. Introduced to New Zealand (1860s-1870s) and western Taveuni in Fiji. Birds in different regions differ in the black or white 'saddle' on the back.",
+  "behaviour": "Active by day and usually stays in one place all year. Groups defend a territory, sometimes for many years, with carolling, border displays and group flights. Sentinel birds give rallying calls when a bird of prey appears, and the group mobs it. Magpies walk rather than hop, play a lot when young, and eat mostly insects and other small animals found in the ground. In spring a small minority of breeding birds, almost always males, swoop people near their nests.",
+  "voice": "One of Australia's best-known songbirds, with a huge range of calls spanning up to about four octaves. A lone bird gives a quiet, complex warble (subsong) around 2-4 kHz that does not carry far and can go on for a long time. Pairs and groups give loud 'carolling': one bird starts and others join, mostly around 6-8 kHz, in a short phrase of 4-5 elements with noisy slurs between, while tilting the head back and puffing the chest. Groups give a short repeated carol before dawn and after dusk in winter and spring. Young birds beg with loud, high (about 8 kHz) repeated calls, and adults have high alarm and rallying calls (8-10 kHz), including distinct calls for eagles and monitor lizards. Magpies mimic more than 35 other bird species, as well as dogs, horses and even sirens. BirdLife Australia describes the song as a loud, musical, flute-like song often given as a duet or by groups.",
+  "anatomy": "A songbird (order Passeriformes). Like all songbirds it has a tracheobronchial syrinx: the voice box sits where the windpipe (trachea) splits into the two bronchi, so there is a sound source on each side. Birds can control the two sides independently, which is how some species sing two notes at once; songbirds keep these two sound sources. The bill is a strong, wedge-shaped, bluish-white and black bill with a small hook at the tip. (No magpie-specific syrinx study was consulted; these points are general songbird anatomy.)"
+ },
+ "tags": {
+  "features": [
+   "whistler",
+   "warbler",
+   "group singer (carolling)",
+   "mimic"
+  ],
+  "region": [
+   "Australia-wide",
+   "Eastern Australia",
+   "Western Australia",
+   "Tasmania",
+   "Southern New Guinea"
+  ]
+ },
+ "facts_sources": [
+  {
+   "title": "Australian magpie - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Australian_magpie",
+   "licence": "CC BY-SA 4.0 (text paraphrased, not copied)",
+   "used_for": "overview, habitat, range, behaviour, voice (frequencies, carolling, mimicry), bill"
+  },
+  {
+   "title": "Australian Magpie - BirdLife Australia bird profile",
+   "url": "https://birdlife.org.au/bird-profiles/australian-magpie/",
+   "licence": "(c) BirdLife Australia - facts only, paraphrased",
+   "used_for": "voice description, habitat"
+  },
+  {
+   "title": "Gymnorhina tibicen - Atlas of Living Australia",
+   "url": "https://bie.ala.org.au/species/https://biodiversity.org.au/afd/taxa/5291343e-fdeb-4a65-8ba5-928f5b96acf5",
+   "licence": "ALA terms of use - facts only",
+   "used_for": "taxonomy (family Artamidae, order Passeriformes), pointers to Indigenous name sources"
+  },
+  {
+   "title": "Syrinx (bird anatomy) - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Syrinx_(bird_anatomy)",
+   "licence": "CC BY-SA 4.0 (paraphrased)",
+   "used_for": "songbirds have a tracheobronchial syrinx; left/right sides modulated independently"
+  },
+  {
+   "title": "Bird vocalization - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Bird_vocalization",
+   "licence": "CC BY-SA 4.0 (paraphrased)",
+   "used_for": "two sides of the syrinx controlled independently, two notes at once"
+  },
+  {
+   "title": "Muhammad, J. (2022) Elucidating the evolution of the parrot vocal organ and links to bioacoustic traits (abstract, Jackson School of Geosciences, UT Austin)",
+   "url": "https://www.jsg.utexas.edu/events/files/Muhammad_abstract.pdf",
+   "licence": "facts only",
+   "used_for": "songbirds retain two sound sources"
+  },
+  {
+   "title": "Noongar Boodjar Plants and Animals: Goorrbarroo (Knapp et al. 2025, Noongar Boodjar Language Centre)",
+   "url": "https://profiles.ala.org.au/opus/noongar/profile/Goorrbarroo",
+   "licence": "(c) Noongar Boodjar Language Cultural Aboriginal Corporation, all rights reserved - names cited only",
+   "used_for": "Noongar names"
+  },
+  {
+   "title": "South East Arnhem Land plants and animals: Gududook",
+   "url": "https://profiles.ala.org.au/opus/896e4aa1-72a7-46d9-beb3-7c30f5f96016/profile/Gududook",
+   "licence": "Contains Indigenous Cultural and Intellectual Property - names cited only",
+   "used_for": "Wägilak and Alawa names"
+  },
+  {
+   "title": "Gamilaraay, Yuwaalaraay & Yuwaalayaay language names for plants and animals (ALA list dr13266; knowledge holders Harry White, Bernadette Duncan, Ted Fields Jnr, Rhonda Ashby with Michelle McKemey)",
+   "url": "https://lists.ala.org.au/speciesListItem/list/dr13266?q=Cracticus+tibicen",
+   "licence": "ALA species list - names cited only",
+   "used_for": "Gamilaraay/Yuwaalaraay/Yuwaalayaay names"
+  }
+ ]
+}
