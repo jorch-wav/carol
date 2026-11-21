@@ -4,12 +4,14 @@ import { hexRGB } from './birdmodel.js';
 const VS = `attribute vec3 p; attribute vec3 n; uniform mat4 M, VP; uniform mat3 N; varying vec3 vn; varying vec3 vw;
 void main(){ vec4 w = M * vec4(p,1.); vw = w.xyz; vn = normalize(N * n); gl_Position = VP * w; }`;
 // mode: 0 glass (anatomy through translucent skin), 1 solid with soft light, 2 toon (bands + ink outline), 3 x-ray
-const FS = `precision mediump float; varying vec3 vn; varying vec3 vw; uniform vec3 col, eye; uniform float a, glow, mode, skin;
+const FS = `precision mediump float; varying vec3 vn; varying vec3 vw; uniform vec3 col, eye; uniform float a, glow, mode, skin, enh;
 void main(){ vec3 n = normalize(vn); vec3 l = normalize(vec3(.5,.8,.6)); vec3 v = normalize(eye - vw);
  float nd = max(dot(n,l),0.); float r = pow(1.-max(dot(n,v),0.),2.5);
  float sp = pow(max(dot(reflect(-l,n),v),0.),24.)*.25;
  vec3 c; float al = a + r*a*.6;
- if (mode < .5) { c = col*(nd*.75+.3) + sp + r*.25*col; }
+ if (mode < .5 && enh > .5) { vec3 hemi = mix(vec3(.36,.33,.3), vec3(1.,.97,.92), n.y*.5+.5);
+   c = col*(hemi*.4 + nd*.55) + sp*.55 + r*(col*.35 + vec3(.08,.07,.06)); al = skin > .5 ? a*1.3 + r*.2 : a + r*a*.4; }
+ else if (mode < .5) { c = col*(nd*.75+.3) + sp + r*.25*col; }
  else if (mode < 1.5) { vec3 hemi = mix(vec3(.42,.38,.34), vec3(1.,.97,.92), n.y*.5+.5);
    c = col*(hemi*.55 + nd*.6) + sp*.6 + r*.35*vec3(1.,.9,.75); al = a; }
  else if (mode < 2.5) { float b = nd > .6 ? 1.05 : nd > .22 ? .78 : .52; c = col*b + step(.92, max(dot(reflect(-l,n),v),0.))*.25; al = a; }
@@ -83,12 +85,13 @@ export class View3D {
     const pr = this.pr = gl.createProgram();
     gl.attachShader(pr, sh(gl.VERTEX_SHADER, VS)); gl.attachShader(pr, sh(gl.FRAGMENT_SHADER, FS)); gl.linkProgram(pr);
     gl.useProgram(pr);
-    this.loc = {}; for (const k of ['M', 'VP', 'N', 'col', 'eye', 'a', 'glow', 'mode', 'skin']) this.loc[k] = gl.getUniformLocation(pr, k);
+    this.loc = {}; for (const k of ['M', 'VP', 'N', 'col', 'eye', 'a', 'glow', 'mode', 'skin', 'enh']) this.loc[k] = gl.getUniformLocation(pr, k);
     this.ap = gl.getAttribLocation(pr, 'p'); this.an = gl.getAttribLocation(pr, 'n');
     this.mesh = { sph: this.upload(sphere()), cyl: this.upload(cylinder()), cone: this.upload(cone()) };
     this.yaw = 0.5; this.pitch = 0.15; this.dist = 1; this.auto = false; this.sel = null;
     this.style = 0;   // 0 glass, 1 solid, 2 toon, 3 x-ray
     this.outlineCull = 'back';
+    this.enhance = true;   // the improved current look: sky-and-ground light, rim glow, a branch and shadow, eye highlights
     let drag = null; const pts = new Map();
     canvas.addEventListener('pointerdown', (e) => { canvas.setPointerCapture(e.pointerId); pts.set(e.pointerId, [e.clientX, e.clientY]); drag = { x: e.clientX, y: e.clientY, yaw: this.yaw, pitch: this.pitch, moved: 0 }; this.auto = false; });
     canvas.addEventListener('pointermove', (e) => {
@@ -137,13 +140,29 @@ export class View3D {
     const asp = W / H, tgt = this.frame.c, R = this.frame.r * (asp < 1.2 ? 2.9 / asp : 2.4) * this.dist;
     const eye = [tgt[0] + R * Math.cos(this.pitch) * Math.sin(this.yaw), tgt[1] + R * Math.sin(this.pitch), tgt[2] + R * Math.cos(this.pitch) * Math.cos(this.yaw)];
     const VP = m4.mul(m4.persp(0.75, W / H, 1, 120), m4.look(eye, tgt, [0, 1, 0]));
-    gl.uniformMatrix4fv(this.loc.VP, false, VP); gl.uniform3fv(this.loc.eye, eye); gl.uniform1f(this.loc.mode, this.style);
+    gl.uniformMatrix4fv(this.loc.VP, false, VP); gl.uniform3fv(this.loc.eye, eye); gl.uniform1f(this.loc.mode, this.style); gl.uniform1f(this.loc.enh, this.enhance ? 1 : 0);
     const items = [];
     const st = this.style, solid = st === 1 || st === 2;
     for (const p of model.parts) {
       // solid and toon: the skin is opaque, so the organs only show when you pick a part
       if (solid && p.layer > 0 && !(this.sel && p.part === this.sel) && p.part !== 'beak' && p.part !== 'eye' && p.part !== 'markings') continue;
       for (const it of this.instances(p)) items.push(it);
+    }
+    if (this.enhance && st === 0) {
+      // a branch under the feet and its soft shadow; a highlight in each eye
+      const legs = model.parts.filter((p) => p.part === 'legs' && p.kind === 'tube');
+      if (legs.length) {
+        const feet = legs.map((l) => l.pts[l.pts.length - 1]), fy = Math.min(...feet.map((f) => f[1])) - 0.15;
+        const fx = feet.reduce((a, f) => a + f[0], 0) / feet.length, body = model.parts.find((p) => p.id === 'body'), span = body ? body.r[0] * 2.4 : 8;
+        for (const it of this.instances({ kind: 'tube', pts: [[fx - span * 0.6, fy - 0.2, -0.3], [fx, fy, 0.2], [fx + span * 0.55, fy - 0.1, 0.6]], r: 0.22, color: '#6b4e34', layer: 1, alpha: 1 })) items.push(it);
+        const sr = [span * 0.45, 0.04, 1.6], sax = [sr[0], 0, 0], say = [0, sr[1], 0], saz = [0, 0, sr[2]], sc = [fx, fy - 0.3, 0.2];
+        items.push({ mesh: 'sph', M: m4.basis(sax, say, saz, sc), N: normalMat(sax, say, saz), col: [0.05, 0.04, 0.03], a: 0.22, glow: 0, c: sc });
+      }
+      for (const e of model.parts.filter((p) => p.part === 'eye' && p.kind === 'ell')) {
+        const r = e.r[0] * 0.32, ax = [r, 0, 0], ay = [0, r, 0], az = [0, 0, r];
+        const c = [e.c[0] + e.r[0] * 0.35, e.c[1] + e.r[1] * 0.4, e.c[2] + Math.sign(e.c[2] || 1) * e.r[2] * 0.75];
+        items.push({ mesh: 'sph', M: m4.basis(ax, ay, az, c), N: normalMat(ax, ay, az), col: [1, 1, 1], a: 0.95, glow: 0, c });
+      }
     }
     // toon: an ink outline round the skin (each skin shape drawn slightly larger, back faces only, in near-black)
     if (st === 2) for (const it of items.filter((i) => i.skin)) {

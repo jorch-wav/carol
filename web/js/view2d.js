@@ -7,7 +7,8 @@ export class View2D {
   constructor(canvas) {
     this.cv = canvas; this.ctx = canvas.getContext('2d');
     this.sel = null; this.labels = true; this.rings = [];
-    this.style = 0;   // 0 cutaway (translucent), 1 plate (ink & watercolour), 2 field guide (solid + cutaway lens), 3 x-ray
+    this.style = 0;
+    this.enhance = true;   // the improved current look: one outer outline, soft light on the plumage, a branch   // 0 cutaway (translucent), 1 plate (ink & watercolour), 2 field guide (solid + cutaway lens), 3 x-ray
     this.box = null;
     // pinch / wheel zoom and drag to pan, inside the bird panel only; double-tap resets
     this.zoom = 1; this.pan = [0, 0];
@@ -75,8 +76,17 @@ export class View2D {
       g.addColorStop(0, 'rgba(242,214,160,.16)'); g.addColorStop(1, 'rgba(242,214,160,0)');
       ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
     }
-    // skin silhouette: soft fill
-    for (const p of parts.filter((q) => q.layer === 0)) this.shape(p, X, Y, s, p.color, p.wing ? 0.5 : 0.78, null);
+    // a branch under the feet
+    if (this.enhance) this.branch(parts, X, Y, s);
+    // skin silhouette: soft fill (enhanced: lit from above-left, so the bird looks rounded)
+    for (const p of parts.filter((q) => q.layer === 0)) {
+      if (this.enhance && p.kind === 'ell' && !p.wing) {
+        const cx = X(p.c[0] - p.r[0] * 0.3), cy = Y(p.c[1] + p.r[1] * 0.45), R = Math.max(p.r[0], p.r[1]) * s * 1.7;
+        const g = ctx.createRadialGradient(cx, cy, R * 0.05, cx, cy, R);
+        g.addColorStop(0, mixHex(p.color, '#ffffff', 0.22)); g.addColorStop(0.6, p.color); g.addColorStop(1, mixHex(p.color, '#000000', 0.3));
+        this.shape(p, X, Y, s, null, 0, null); ctx.globalAlpha = 0.82; ctx.fillStyle = g; ctx.fill(); ctx.globalAlpha = 1;
+      } else this.shape(p, X, Y, s, p.color, p.wing ? 0.5 : 0.78, null);
+    }
     // organs
     for (const p of inner) {
       const hl = this.sel && p.part === this.sel;
@@ -91,7 +101,8 @@ export class View2D {
     }
     // skin outline + wing as a dashed outline, so the cutaway reads
     ctx.save(); ctx.setLineDash([]);
-    for (const p of skin) this.shape(p, X, Y, s, null, 0, 'rgba(241,236,226,.8)', 1.6);
+    if (this.enhance) this.silhouette(skin, X, Y, s, W, H);   // one clean outer outline instead of every oval's
+    else for (const p of skin) this.shape(p, X, Y, s, null, 0, 'rgba(241,236,226,.8)', 1.6);
     for (const p of parts.filter((q) => q.wing)) { ctx.setLineDash([6 * this.dpr, 5 * this.dpr]); this.shape(p, X, Y, s, null, 0, 'rgba(241,236,226,.8)', 1.6); }
     ctx.restore();
 
@@ -143,6 +154,40 @@ export class View2D {
         ctx.fillText(text, pick.tx, pick.ly);
       }
     }
+  }
+  /** The bird's outer outline only: the union of the skin shapes, traced once (offscreen mask, grown, minus itself). */
+  silhouette(skin, X, Y, s, W, H) {
+    const d = this.dpr || 1;
+    if (!this._mask || this._mask.width !== W || this._mask.height !== H) { this._mask = document.createElement('canvas'); this._mask.width = W; this._mask.height = H; this._edge = document.createElement('canvas'); this._edge.width = W; this._edge.height = H; }
+    const m = this._mask.getContext('2d'), e = this._edge.getContext('2d');
+    m.clearRect(0, 0, W, H);
+    const main = this.ctx; this.ctx = m;
+    for (const p of skin) { if (p.kind === 'tube') { this.shape(p, X, Y, s, '#fff', 1, null); continue; } this.shape(p, X, Y, s, '#fff', 1, null); }
+    this.ctx = main;
+    e.clearRect(0, 0, W, H);
+    const w = 1.8 * d;
+    for (let k = 0; k < 12; k++) { const a = k / 12 * 6.283; e.drawImage(this._mask, Math.cos(a) * w, Math.sin(a) * w); }
+    e.globalCompositeOperation = 'source-in'; e.fillStyle = 'rgba(241,236,226,.9)'; e.fillRect(0, 0, W, H);
+    e.globalCompositeOperation = 'destination-out'; e.drawImage(this._mask, 0, 0);
+    e.globalCompositeOperation = 'source-over';
+    this.ctx.drawImage(this._edge, 0, 0);
+  }
+  /** A thin branch under the bird's feet, with a twig or two. */
+  branch(parts, X, Y, s) {
+    const ctx = this.ctx, d = this.dpr || 1, legs = parts.filter((p) => p.part === 'legs' && p.kind === 'tube');
+    if (!legs.length) return;
+    const feet = legs.map((l) => l.pts[l.pts.length - 1]);
+    const fy = Math.min(...feet.map((f) => f[1])) - 0.12, fx = feet.reduce((a, f) => a + f[0], 0) / feet.length;
+    const body = parts.find((p) => p.id === 'body'), span = body ? body.r[0] * 2.4 : 8;
+    ctx.save(); ctx.lineCap = 'round';
+    const grad = ctx.createLinearGradient(0, Y(fy) - 6 * d, 0, Y(fy) + 8 * d);
+    grad.addColorStop(0, '#8a6a48'); grad.addColorStop(1, '#4a3626');
+    ctx.strokeStyle = grad; ctx.lineWidth = Math.max(4 * d, 0.34 * s);
+    ctx.beginPath(); ctx.moveTo(X(fx - span * 0.6), Y(fy - 0.25)); ctx.quadraticCurveTo(X(fx), Y(fy + 0.12), X(fx + span * 0.55), Y(fy - 0.1)); ctx.stroke();
+    ctx.lineWidth = Math.max(2 * d, 0.14 * s);
+    ctx.beginPath(); ctx.moveTo(X(fx + span * 0.28), Y(fy - 0.02)); ctx.quadraticCurveTo(X(fx + span * 0.42), Y(fy + 0.45), X(fx + span * 0.5), Y(fy + 0.95)); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(X(fx - span * 0.35), Y(fy - 0.16)); ctx.lineTo(X(fx - span * 0.46), Y(fy - 0.75)); ctx.stroke();
+    ctx.restore();
   }
   /** The alternative looks: 1 Gould plate (ink and watercolour on paper), 2 field guide (solid bird, a
    *  round cutaway onto the voice organs), 3 x-ray (glowing outline, vivid organs). */
