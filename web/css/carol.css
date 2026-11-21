@@ -68,7 +68,7 @@ button { cursor: pointer; }
 .seg button.on { background: #3d2b10; color: var(--amber-2); }
 
 /* ---------------------------------------------------------------- work area */
-.work { display: grid; grid-template-columns: minmax(290px, 30%) minmax(0, 1fr); min-height: 0; min-width: 0; position: relative; }
+.work { display: grid; grid-template-columns: max(290px, 30%) minmax(0, 1fr); min-height: 0; min-width: 0; position: relative; }
 .view { position: relative; border-right: 1px solid var(--line); background: radial-gradient(90% 75% at 50% 45%, #4a4743, #34312d); min-height: 0; overflow: hidden; }
 .view canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: none; touch-action: none; }
 .view canvas.on { display: block; }
