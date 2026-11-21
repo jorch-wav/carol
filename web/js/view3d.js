@@ -4,7 +4,7 @@ import { hexRGB } from './birdmodel.js';
 const VS = `attribute vec3 p; attribute vec3 n; uniform mat4 M, VP; uniform mat3 N; varying vec3 vn; varying vec3 vw;
 void main(){ vec4 w = M * vec4(p,1.); vw = w.xyz; vn = normalize(N * n); gl_Position = VP * w; }`;
 // mode: 0 glass (anatomy through translucent skin), 1 solid with soft light, 2 toon (bands + ink outline), 3 x-ray
-const FS = `precision mediump float; varying vec3 vn; varying vec3 vw; uniform vec3 col, eye; uniform float a, glow, mode, skin, enh;
+const FS = `precision mediump float; varying vec3 vn; varying vec3 vw; uniform vec3 col, eye; uniform float a, glow, mode, skin, enh, line, fogN, fogF;
 void main(){ vec3 n = normalize(vn); vec3 l = normalize(vec3(.5,.8,.6)); vec3 v = normalize(eye - vw);
  float nd = max(dot(n,l),0.); float r = pow(1.-max(dot(n,v),0.),2.5);
  float sp = pow(max(dot(reflect(-l,n),v),0.),24.)*.25;
@@ -15,7 +15,16 @@ void main(){ vec3 n = normalize(vn); vec3 l = normalize(vec3(.5,.8,.6)); vec3 v 
  else if (mode < 1.5) { vec3 hemi = mix(vec3(.42,.38,.34), vec3(1.,.97,.92), n.y*.5+.5);
    c = col*(hemi*.55 + nd*.6) + sp*.6 + r*.35*vec3(1.,.9,.75); al = a; }
  else if (mode < 2.5) { float b = nd > .6 ? 1.05 : nd > .22 ? .78 : .52; c = col*b + step(.92, max(dot(reflect(-l,n),v),0.))*.25; al = a; }
- else { if (skin > .5) { c = vec3(.4,.8,1.)*(.15 + r*1.4); al = .02 + r*.5; } else { c = col*1.15 + r*.5; al = a; } }
+ else if (mode < 3.5) { if (skin > .5) { c = vec3(.4,.8,1.)*(.15 + r*1.4); al = .02 + r*.5; } else { c = col*1.15 + r*.5; al = a; } }
+ else {
+   // scan: cross-section rings on the skin (brighter where the surface turns away), a faint rim glow,
+   // translucent organs with their own rings; everything fades with depth
+   vec3 cream = vec3(.95,.92,.86), amber = vec3(.95,.66,.23);
+   if (line > .5) { if (skin > .5) { c = mix(cream*.75, amber, r); al = .16 + r*.8; } else { c = col*1.25 + .08; al = .45 + r*.45; } }
+   else if (skin > .5) { c = mix(cream, amber, .4)*(r*1.3); al = r*r*.38; }
+   else { c = col*(.5 + nd*.35) + r*.55*col; al = a*.5 + r*.35; }
+   float f = clamp((length(eye - vw) - fogN)/(fogF - fogN), 0., 1.); al *= 1. - f*.8;
+ }
  c += glow*vec3(1.,.75,.3)*r*1.5;
  gl_FragColor = vec4(c, al); }`;
 
@@ -55,6 +64,50 @@ function cone(n = 14) { // base ellipse at x=0 (radius 1), tip at x=1
   return { v, idx };
 }
 
+// line meshes for the scan style: normals point outward, so lines brighten at the silhouette
+function ringsSphere(nr = 11, seg = 40) {   // slices across the long (x) axis, plus three meridians
+  const v = [], idx = []; let k = 0;
+  const loop = (pts) => { const s0 = k; for (const q of pts) { v.push(...q, ...q); k++; } for (let i = 0; i < pts.length; i++) idx.push(s0 + i, s0 + (i + 1) % pts.length); };
+  for (let i = 1; i < nr; i++) {
+    const x = -1 + 2 * i / nr, rr = Math.sqrt(1 - x * x), pts = [];
+    for (let j = 0; j < seg; j++) { const a = 2 * Math.PI * j / seg; pts.push([x, rr * Math.cos(a), rr * Math.sin(a)]); }
+    loop(pts);
+  }
+  for (const ph of [0, Math.PI / 2, Math.PI]) {
+    const pts = []; for (let j = 0; j < seg; j++) { const a = 2 * Math.PI * j / seg; pts.push([Math.cos(a), Math.sin(a) * Math.cos(ph), Math.sin(a) * Math.sin(ph)]); }
+    loop(pts);
+  }
+  return { v, idx, lines: true };
+}
+function ringsCyl(nr = 4, seg = 20) {   // circles along a segment (cartilage rings on the windpipe)
+  const v = [], idx = []; let k = 0;
+  for (let i = 0; i < nr; i++) {
+    const x = (i + 0.5) / nr, s0 = k;
+    for (let j = 0; j < seg; j++) { const a = 2 * Math.PI * j / seg, y = Math.cos(a), z = Math.sin(a); v.push(x, y, z, 0, y, z); k++; }
+    for (let j = 0; j < seg; j++) idx.push(s0 + j, s0 + (j + 1) % seg);
+  }
+  return { v, idx, lines: true };
+}
+function ringsCone(nr = 5, seg = 20) {
+  const v = [], idx = []; let k = 0;
+  for (let i = 0; i < nr; i++) {
+    const x = i / nr, rr = 1 - x, s0 = k;
+    for (let j = 0; j < seg; j++) { const a = 2 * Math.PI * j / seg, y = Math.cos(a), z = Math.sin(a); v.push(x, rr * y, rr * z, 0.7, y * 0.7, z * 0.7); k++; }
+    for (let j = 0; j < seg; j++) idx.push(s0 + j, s0 + (j + 1) % seg);
+  }
+  // two edges to the tip
+  for (const a of [Math.PI / 2, -Math.PI / 2]) { v.push(0, Math.cos(a), Math.sin(a), 0, 0, 1, 1, 0, 0, 0, 0, 1); idx.push(k, k + 1); k += 2; }
+  return { v, idx, lines: true };
+}
+function gridMesh(n = 12) {   // a floor grid, x and z in -1..1, normals up
+  const v = [], idx = []; let k = 0;
+  for (let i = 0; i <= n; i++) {
+    const t = -1 + 2 * i / n;
+    v.push(t, 0, -1, 0, 1, 0, t, 0, 1, 0, 1, 0, -1, 0, t, 0, 1, 0, 1, 0, t, 0, 1, 0); idx.push(k, k + 1, k + 2, k + 3); k += 4;
+  }
+  return { v, idx, lines: true };
+}
+
 // --- tiny mat4 (column-major) ---
 const m4 = {
   mul(a, b) { const o = new Float32Array(16); for (let c = 0; c < 4; c++) for (let r = 0; r < 4; r++) { let s = 0; for (let k = 0; k < 4; k++) s += a[k * 4 + r] * b[c * 4 + k]; o[c * 4 + r] = s; } return o; },
@@ -85,11 +138,14 @@ export class View3D {
     const pr = this.pr = gl.createProgram();
     gl.attachShader(pr, sh(gl.VERTEX_SHADER, VS)); gl.attachShader(pr, sh(gl.FRAGMENT_SHADER, FS)); gl.linkProgram(pr);
     gl.useProgram(pr);
-    this.loc = {}; for (const k of ['M', 'VP', 'N', 'col', 'eye', 'a', 'glow', 'mode', 'skin', 'enh']) this.loc[k] = gl.getUniformLocation(pr, k);
+    this.loc = {}; for (const k of ['M', 'VP', 'N', 'col', 'eye', 'a', 'glow', 'mode', 'skin', 'enh', 'line', 'fogN', 'fogF']) this.loc[k] = gl.getUniformLocation(pr, k);
     this.ap = gl.getAttribLocation(pr, 'p'); this.an = gl.getAttribLocation(pr, 'n');
-    this.mesh = { sph: this.upload(sphere()), cyl: this.upload(cylinder()), cone: this.upload(cone()) };
+    this.mesh = { sph: this.upload(sphere()), cyl: this.upload(cylinder()), cone: this.upload(cone()),
+      lsph: this.upload(ringsSphere()), lcyl: this.upload(ringsCyl()), lcone: this.upload(ringsCone()), grid: this.upload(gridMesh()) };
+    // the scan style's live readouts: a 2D layer over the 3D canvas
+    this.ov = document.createElement('canvas'); this.ov.id = 'view3dLabels'; canvas.after(this.ov);
     this.yaw = 0.5; this.pitch = 0.15; this.dist = 1; this.auto = false; this.sel = null;
-    this.style = 0;   // 0 glass, 1 solid, 2 toon, 3 x-ray
+    this.style = 4;   // 0 glass, 1 solid, 2 toon, 3 x-ray, 4 scan (cross-section rings, readouts)
     this.outlineCull = 'back';
     this.enhance = true;   // the improved current look: sky-and-ground light, rim glow, a branch and shadow, eye highlights
     let drag = null; const pts = new Map();
@@ -114,14 +170,17 @@ export class View3D {
     const gl = this.gl;
     const vb = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, vb); gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(m.v), gl.STATIC_DRAW);
     const ib = gl.createBuffer(); gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, ib); gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(m.idx), gl.STATIC_DRAW);
-    return { vb, ib, n: m.idx.length };
+    return { vb, ib, n: m.idx.length, lines: !!m.lines };
   }
   resize() {
     const r = this.cv.getBoundingClientRect(), d = Math.min(1.5, devicePixelRatio || 1);
     this.cv.width = Math.max(1, r.width * d); this.cv.height = Math.max(1, r.height * d);
+    if (this.ov) { this.ov.width = this.cv.width; this.ov.height = this.cv.height; this.dpr = d; }
   }
-  draw(model, dt) {
+  draw(model, dt, tele) {
     if (!this.ok) return;
+    if (this.style === 4) return this.drawScan(model, dt, tele);
+    if (this._ovOn) { this.ov.getContext('2d').clearRect(0, 0, this.ov.width, this.ov.height); this._ovOn = false; }
     const gl = this.gl, W = this.cv.width, H = this.cv.height;
     if (this.auto) this.yaw += dt * 0.25;
     gl.viewport(0, 0, W, H);
@@ -190,7 +249,7 @@ export class View3D {
     if (p.kind === 'ell') {
       const c = Math.cos(p.rot || 0), s = Math.sin(p.rot || 0);
       const ax = [c * p.r[0], s * p.r[0], 0], ay = [-s * p.r[1], c * p.r[1], 0], az = [0, 0, p.r[2]];
-      return [{ mesh: 'sph', M: m4.basis(ax, ay, az, p.c), N: normalMat(ax, ay, az), col, a, glow, c: p.c, skin }];
+      return [{ mesh: 'sph', M: m4.basis(ax, ay, az, p.c), N: normalMat(ax, ay, az), col, a, glow, c: p.c, skin, part: p.part }];
     }
     if (p.kind === 'cone') {
       const d = sub(p.tip, p.base), up = [0, 1, 0];
@@ -218,7 +277,144 @@ export class View3D {
     gl.uniform1f(this.loc.skin, i.skin && !i.outline ? 1 : 0);
     if (i.outline) { gl.enable(gl.CULL_FACE); gl.cullFace(this.outlineCull === 'back' ? gl.BACK : gl.FRONT); }
     else { gl.cullFace(gl.BACK); if (i.mesh === 'sph' && i.a < 0.99) gl.enable(gl.CULL_FACE); else gl.disable(gl.CULL_FACE); }
-    gl.drawElements(gl.TRIANGLES, m.n, gl.UNSIGNED_SHORT, 0);
+    gl.uniform1f(this.loc.line, m.lines ? 1 : 0);
+    gl.drawElements(m.lines ? gl.LINES : gl.TRIANGLES, m.n, gl.UNSIGNED_SHORT, 0);
+  }
+  /** Camera for this frame (shared by both draw paths): frames the bird, returns {eye, tgt, VP}. */
+  camera(model, dt) {
+    const W = this.cv.width, H = this.cv.height;
+    if (this.auto) this.yaw += dt * 0.25;
+    let x0 = 1e9, x1 = -1e9, y0 = 1e9, y1 = -1e9;
+    for (const p of model.parts) {
+      const q = p.kind === 'ell' ? [[p.c[0] - p.r[0], p.c[1] - p.r[1]], [p.c[0] + p.r[0], p.c[1] + p.r[1]]] : p.kind === 'tube' ? p.pts : [p.base, p.tip];
+      for (const v of q) { x0 = Math.min(x0, v[0]); x1 = Math.max(x1, v[0]); y0 = Math.min(y0, v[1]); y1 = Math.max(y1, v[1]); }
+    }
+    const fr = { c: [(x0 + x1) / 2, (y0 + y1) / 2, 0], r: Math.max(x1 - x0, (y1 - y0) * 1.2) / 2, y0 };
+    if (!this.frame || this.snap) { this.frame = fr; this.snap = false; }
+    else { for (let i = 0; i < 2; i++) this.frame.c[i] += (fr.c[i] - this.frame.c[i]) * 0.2; this.frame.r += (fr.r - this.frame.r) * 0.2; this.frame.y0 = fr.y0; }
+    const asp = W / H, tgt = this.frame.c, R = this.frame.r * (asp < 1.2 ? 2.9 / asp : 2.4) * this.dist;
+    const eye = [tgt[0] + R * Math.cos(this.pitch) * Math.sin(this.yaw), tgt[1] + R * Math.sin(this.pitch), tgt[2] + R * Math.cos(this.pitch) * Math.cos(this.yaw)];
+    const VP = m4.mul(m4.persp(0.75, W / H, 1, 120), m4.look(eye, tgt, [0, 1, 0]));
+    return { eye, tgt, VP, R };
+  }
+  /** Scan style: the skin as cross-section rings, organs inside, depth fade, floor grid, live readouts. */
+  drawScan(model, dt, tele) {
+    const gl = this.gl, W = this.cv.width, H = this.cv.height;
+    const { eye, tgt, VP, R } = this.camera(model, dt);
+    gl.viewport(0, 0, W, H);
+    gl.clearColor(0.055, 0.05, 0.045, 1); gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+    gl.enable(gl.BLEND); gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA); gl.enable(gl.DEPTH_TEST); gl.depthFunc(gl.LEQUAL);
+    gl.uniformMatrix4fv(this.loc.VP, false, VP); gl.uniform3fv(this.loc.eye, eye); gl.uniform1f(this.loc.mode, 4); gl.uniform1f(this.loc.enh, 0);
+    gl.uniform1f(this.loc.fogN, R * 0.75); gl.uniform1f(this.loc.fogF, R * 1.45);
+    const outside = (p) => p.layer === 0 || ['beak', 'markings', 'crest', 'streamers'].includes(p.part);
+    const skinParts = model.parts.filter((p) => outside(p) && p.part !== 'eye');
+    const inner = model.parts.filter((p) => !outside(p) && p.part !== 'eye');
+    const lineOf = { sph: 'lsph', cyl: 'lcyl', cone: 'lcone' };
+    // floor grid under the feet
+    const fy = (this.frame.y0 ?? 0) - 0.15, gs = this.frame.r * 0.85, gax = [gs, 0, 0], gay = [0, 1, 0], gaz = [0, 0, gs];
+    gl.depthMask(false);
+    this.drawItem({ mesh: 'grid', M: m4.basis(gax, gay, gaz, [tgt[0], fy, 0]), N: normalMat([1, 0, 0], [0, 1, 0], [0, 0, 1]), col: [0.45, 0.4, 0.34], a: 0.13, glow: 0, c: [0, 0, 0] });
+    // organs: translucent fills, then their rings
+    const org = []; for (const p of inner) for (const it of this.instances(p)) org.push(it);
+    const depth = (i) => -dot(sub(i.c, eye), sub(tgt, eye));
+    org.sort((a, b) => depth(a) - depth(b));
+    for (const i of org) this.drawItem({ ...i, a: Math.max(0.35, i.a * 0.8) });
+    for (const i of org) if (lineOf[i.mesh] && i.mesh !== 'cyl') this.drawItem({ ...i, mesh: lineOf[i.mesh] });
+    // windpipe cartilage rings, one per ring the model gives
+    for (const p of inner.filter((q) => q.part === 'trachea' && q.kind === 'tube')) {
+      for (let k = 1; k < p.pts.length; k++) {
+        const a0 = p.pts[k - 1], d = sub(p.pts[k], a0), ref = Math.abs(d[1]) > 0.9 * Math.hypot(...d) ? [1, 0, 0] : [0, 1, 0];
+        const az = mul3(norm(cross(d, ref)), p.r * 1.15), ay = mul3(norm(cross(az, d)), p.r * 1.15);
+        this.drawItem({ mesh: 'lcyl', M: m4.basis(d, ay, az, a0), N: normalMat(d, ay, az), col: [0.95, 0.9, 0.78], a: 1, glow: 0, c: a0 });
+      }
+    }
+    // skin: depth only (so only the front surface's rings show), then rings, then a faint rim glow
+    gl.clear(gl.DEPTH_BUFFER_BIT);
+    const skin = []; for (const p of skinParts) for (const it of this.instances(p)) skin.push(it);
+    // (pushed back a little, so rings lying on the surface always pass)
+    gl.colorMask(false, false, false, false); gl.depthMask(true); gl.enable(gl.POLYGON_OFFSET_FILL); gl.polygonOffset(2, 4);
+    for (const i of skin) this.drawItem({ ...i, a: 1 });
+    gl.disable(gl.POLYGON_OFFSET_FILL); gl.colorMask(true, true, true, true); gl.depthMask(false);
+    for (const i of skin) {
+      const mk = i.part === 'markings', col = mk ? i.col.map((v, k) => v * 0.7 + [0.95, 0.92, 0.86][k] * 0.3) : i.col;
+      this.drawItem({ ...i, mesh: lineOf[i.mesh], skin: !mk, col });
+    }
+    gl.enable(gl.CULL_FACE); gl.cullFace(gl.BACK);
+    for (const i of skin) if (i.mesh === 'sph') this.drawItem({ ...i, a: 0.5, skin: true });
+    // the eyes: small solid dots on top
+    for (const p of model.parts.filter((q) => q.part === 'eye' && q.kind === 'ell' && !q.far)) {
+      const r = p.r[0] * 0.75, ax = [r, 0, 0], ay = [0, r, 0], az = [0, 0, r * 0.6];
+      this.drawItem({ mesh: 'sph', M: m4.basis(ax, ay, az, p.c), N: normalMat(ax, ay, az), col: [0.05, 0.045, 0.04], a: 1, glow: 0, c: p.c });
+      this.drawItem({ mesh: 'lsph', M: m4.basis(ax, ay, az, p.c), N: normalMat(ax, ay, az), col: [0.95, 0.66, 0.23], a: 1, glow: 0, c: p.c, skin: true });
+    }
+    // air
+    gl.disable(gl.DEPTH_TEST);
+    for (const a of model.air || []) {
+      const r = a.r * 0.8, ax = [r, 0, 0], ay = [0, r, 0], az = [0, 0, r];
+      this.drawItem({ mesh: 'sph', M: m4.basis(ax, ay, az, a.c), N: normalMat(ax, ay, az), col: [0.85, 0.95, 1], a: Math.min(0.95, a.a * 1.1), glow: 0, c: a.c });
+    }
+    gl.enable(gl.DEPTH_TEST); gl.depthMask(true);
+    this.readouts(model, VP, tele);
+  }
+  /** Live numbers beside the organs, each with a leader line (the scan style). */
+  readouts(model, VP, tele) {
+    const ov = this.ov, ctx = ov.getContext('2d'), W = ov.width, H = ov.height, d = this.dpr || 1;
+    this._ovOn = true;
+    ctx.clearRect(0, 0, W, H);
+    if (!tele) return;
+    const proj = (c) => { const x = VP[0] * c[0] + VP[4] * c[1] + VP[8] * c[2] + VP[12], y = VP[1] * c[0] + VP[5] * c[1] + VP[9] * c[2] + VP[13], w = VP[3] * c[0] + VP[7] * c[1] + VP[11] * c[2] + VP[15]; return [(x / w * 0.5 + 0.5) * W, (0.5 - y / w * 0.5) * H]; };
+    const find = (part) => model.parts.find((p) => p.part === part);
+    const centre = (p) => p ? (p.kind === 'ell' ? p.c : p.kind === 'cone' ? p.tip : p.pts[Math.floor(p.pts.length / 2)]) : null;
+    const sing = tele[0] > 0.5, f0 = tele[3], kHz = (v) => v >= 1000 ? (v / 1000).toFixed(2) + ' kHz' : Math.round(v) + ' Hz';
+    const rows = [
+      ['SYRINX', model.syr, sing ? kHz(f0) : '—', 'tension ' + (tele[2] ?? 0).toFixed(2)],
+      ['AIR SACS', centre(find('airsacs')), sing ? 'pressure ' + (tele[1] ?? 0).toFixed(2) : 'at rest', null],
+      ['THROAT', centre(find('oec')) || centre(find('sac')), tele[9] > 0 ? kHz(tele[9]) : '—', null],
+      ['MOUTH', centre(find('tongue')), tele[10] > 0 ? 'F1 ' + kHz(tele[10]) : '—', tele[11] > 0 ? 'F2 ' + kHz(tele[11]) : null],
+      ['BEAK', centre(find('beak')), 'gape ' + Math.round((tele[8] ?? 0) * 100) + '%', null],
+    ].filter((r) => r[1]);
+    ctx.textBaseline = 'middle';
+    // small panels (the Pi's side panel, phones): a compact legend in the bottom-left corner, a dot on each organ
+    if (W / d < 560) {
+      const items = rows.map(([name, at, v1, v2]) => { const [px, py] = proj(at); return { name, v1: v2 && name === 'MOUTH' ? v1 : v1, px, py }; });
+      const lh = 15 * d, x0 = 12 * d; let y = H - 14 * d - (items.length - 1) * lh;
+      ctx.fillStyle = 'rgba(14,13,12,.72)'; ctx.fillRect(x0 - 6 * d, y - 10 * d, 150 * d, items.length * lh + 6 * d);
+      items.forEach((r, k) => {
+        if (r.px > 0 && r.px < W && r.py > 0 && r.py < H) {
+          ctx.fillStyle = 'rgba(242,169,59,.95)'; ctx.beginPath(); ctx.arc(r.px, r.py, 2.4 * d, 0, 6.283); ctx.fill();
+          ctx.font = `700 ${Math.round(8 * d)}px CarolLabel, sans-serif`; ctx.fillStyle = 'rgba(242,194,122,.9)'; ctx.fillText(String(k + 1), r.px + 5 * d, r.py - 6 * d);
+        }
+        ctx.font = `700 ${Math.round(9 * d)}px CarolLabel, sans-serif`; ctx.fillStyle = 'rgba(241,236,226,.55)'; ctx.fillText(`${k + 1} ${r.name}`, x0, y + k * lh);
+        ctx.font = `700 ${Math.round(11 * d)}px CarolLabel, sans-serif`; ctx.fillStyle = '#f2c27a'; ctx.fillText(r.v1, x0 + 62 * d, y + k * lh);
+      });
+      return;
+    }
+    const pts = rows.map(([name, at, v1, v2]) => { const [px, py] = proj(at); return { name, v1, v2, px, py }; }).filter((r) => r.px > 0 && r.px < W && r.py > 0 && r.py < H);
+    // two columns at the sides (organs on the left half label to the left), ordered top to bottom, evenly spaced
+    const colW = 118 * d, gap = 44 * d, top = 58 * d, bot = H - 60 * d;
+    const bx = pts.length ? [Math.min(...pts.map((r) => r.px)), Math.max(...pts.map((r) => r.px))] : [0, W];
+    const mid = (bx[0] + bx[1]) / 2;
+    for (const side of [0, 1]) {
+      const col = pts.filter((r) => (r.px >= mid) === !!side).sort((a, b) => a.py - b.py);
+      let y = top;
+      for (const r of col) {
+        r.ly = Math.max(y, Math.min(bot, r.py - 10 * d)); y = r.ly + gap;
+        r.lx = side ? W - colW - 14 * d : 14 * d;
+        r.side = side;
+      }
+    }
+    for (const r of pts) {
+      const ex = r.side ? r.lx - 6 * d : r.lx + colW + 6 * d;
+      ctx.strokeStyle = 'rgba(242,169,59,.5)'; ctx.lineWidth = d;
+      ctx.beginPath(); ctx.moveTo(r.px, r.py); ctx.lineTo(ex, r.ly); ctx.lineTo(r.side ? ex + 4 * d : ex - 4 * d, r.ly); ctx.stroke();
+      ctx.fillStyle = 'rgba(242,169,59,.95)'; ctx.beginPath(); ctx.arc(r.px, r.py, 2.4 * d, 0, 6.283); ctx.fill();
+      ctx.textAlign = r.side ? 'left' : 'right';
+      const tx = r.side ? r.lx : r.lx + colW;
+      ctx.fillStyle = 'rgba(241,236,226,.5)'; ctx.font = `700 ${Math.round(9 * d)}px CarolLabel, sans-serif`; ctx.fillText(r.name, tx, r.ly - 9 * d);
+      ctx.fillStyle = '#f2c27a'; ctx.font = `700 ${Math.round(13 * d)}px CarolLabel, sans-serif`; ctx.fillText(r.v1, tx, r.ly + 5 * d);
+      if (r.v2) { ctx.fillStyle = 'rgba(241,236,226,.55)'; ctx.font = `400 ${Math.round(10 * d)}px CarolLabel, sans-serif`; ctx.fillText(r.v2, tx, r.ly + 19 * d); }
+    }
+    ctx.textAlign = 'left';
   }
 }
 function sub(a, b) { return [a[0] - b[0], a[1] - b[1], a[2] - b[2]]; }

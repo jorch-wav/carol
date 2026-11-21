@@ -619,6 +619,11 @@ class App {
     $('learnDone').onclick = () => this.setLearning(false);
     $('saveMineBtn').onclick = () => this.saveMyPreset().then(() => this.presets.el.hidden || this.presets.render());
     zoomable($('plate'), $('plateImg'), { onSwipe: (d) => this.swipePlate(d) });
+    // 3D look: SCAN (cross-section rings, live readouts) or GLASS (the see-through bird)
+    this.v3.style = ls.get('carol-3d-look', 'scan') === 'glass' ? 0 : 4;
+    const lookBtn = () => { $('v3Style').textContent = this.v3.style === 4 ? 'SCAN' : 'GLASS'; $('v3Style').classList.toggle('on', this.v3.style === 4); };
+    lookBtn();
+    $('v3Style').onclick = () => { this.v3.style = this.v3.style === 4 ? 0 : 4; ls.set('carol-3d-look', this.v3.style === 4 ? 'scan' : 'glass'); lookBtn(); };
     $('viewHud').addEventListener('pointerdown', (e) => { e.stopPropagation(); const h = $('viewHud'); clearTimeout(this._hud); if (h.classList.contains('open')) { h.innerHTML = ''; h.classList.remove('open'); } else h.classList.add('open'); });
     document.querySelectorAll('#viewSize button').forEach((b) => b.onclick = () => this.setViewSize(this.viewSize === b.dataset.size ? '' : b.dataset.size));
     this.setViewSize(ls.get('carol-viewsize', ''));
@@ -683,6 +688,7 @@ class App {
     document.querySelectorAll('#viewSeg button').forEach((b) => b.classList.toggle('on', b.dataset.view === v));
     $('view2d').classList.toggle('on', v === '2d');
     $('view3d').classList.toggle('on', v === '3d');
+    $('v3Style').hidden = v !== '3d';
     $('sono').classList.toggle('on', v === 'sono');
     $('wave').classList.toggle('on', v === 'wave');
     this.audio.scopeOn(v === 'wave');
@@ -734,7 +740,7 @@ class App {
       const cc = this.currentCall();
       this.model = compute(this.bird.body, this.morphLook(now), this.values, this.audio.tele, now / 1000, { refHz: cc && cc.ref_hz });
       this.morphKnobs(now);
-      if (this.view === '2d') this.v2.draw(this.model); else this.v3.draw(this.model, Math.min(0.1, dt * 2));
+      if (this.view === '2d') this.v2.draw(this.model); else this.v3.draw(this.model, Math.min(0.1, dt * 2), this.audio.tele);
       this.frames = (this.frames || 0) + 1;
     };
     requestAnimationFrame(frame);
