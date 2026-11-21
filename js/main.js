@@ -80,6 +80,9 @@ class App {
       if (this.audio.running) { $('start').hidden = true; removeEventListener('pointerdown', go, true); removeEventListener('keydown', go, true); }
     };
     addEventListener('pointerdown', go, true); addEventListener('keydown', go, true);
+    // iPhone: sound even with the ring/silent switch on silent (needs a real tap, so try on release too)
+    const unmute = () => { this.audio.unmuteIOS(); if (this.audio._silent) { removeEventListener('touchend', unmute, true); removeEventListener('click', unmute, true); } };
+    addEventListener('touchend', unmute, true); addEventListener('click', unmute, true);
     $('startBtn').onclick = go;
     go().then(() => { if (!this.audio.running) $('start').hidden = false; });
   }

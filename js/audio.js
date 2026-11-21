@@ -13,7 +13,19 @@ export class CarolAudio {
     this.onTele = null;
     this.pending = [];
   }
+  /** iPhone/iPad: play through the silent switch, like a music app does. Must run inside a tap. */
+  unmuteIOS() {
+    try { if (navigator.audioSession) navigator.audioSession.type = 'playback'; } catch {}
+    // older iOS: a silent looping <audio> element moves the page into the "playback" audio session
+    if (this._silent || !/iP(hone|ad|od)|Macintosh/.test(navigator.userAgent) || !('ontouchend' in document)) return;
+    const n = 4410, b = new ArrayBuffer(44 + n * 2), v = new DataView(b), str = (o, t) => [...t].forEach((c, i) => v.setUint8(o + i, c.charCodeAt(0)));
+    str(0, 'RIFF'); v.setUint32(4, 36 + n * 2, true); str(8, 'WAVEfmt '); v.setUint32(16, 16, true); v.setUint16(20, 1, true); v.setUint16(22, 1, true);
+    v.setUint32(24, 44100, true); v.setUint32(28, 88200, true); v.setUint16(32, 2, true); v.setUint16(34, 16, true); str(36, 'data'); v.setUint32(40, n * 2, true);
+    const a = this._silent = new Audio(URL.createObjectURL(new Blob([b], { type: 'audio/wav' })));
+    a.loop = true; a.setAttribute('playsinline', ''); a.play().catch(() => { this._silent = null; });
+  }
   async start() {
+    this.unmuteIOS();
     if (this.ctx) { if (this.ctx.state !== 'running') await this.ctx.resume(); return; }
     const q = new URLSearchParams(location.search);
     let lat = q.get('latency');
