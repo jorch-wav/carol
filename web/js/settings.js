@@ -1,4 +1,5 @@
 // Settings (⚙): MIDI in / learn / out, tempo sync, tuning and playing, audio, sharing.
+import { icon } from './icons.js';
 const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const $ = (id) => document.getElementById(id);
 
@@ -47,7 +48,7 @@ export class SettingsUI {
       <h2>MIDI learn</h2>
       <p>Link any knob, fader or pedal to any of Carol's knobs: press <b>START</b>, touch a knob on screen, then move the controller. Do as many as you like, then press <b>DONE</b>.</p>
       <div class="im-actions" style="justify-content:flex-start"><button class="rocker" id="stLearn">${app.learning ? 'DONE' : 'START MIDI LEARN'}</button>${learn.length ? '<button class="rocker" id="stLearnClear">CLEAR ALL</button>' : ''}</div>
-      ${learn.length ? `<ul class="st-list">${learn.map(([cc, k]) => { const [, ch, n] = cc.split(':'); return `<li><span>CC ${n} <small>ch ${Number(ch) + 1}</small> → <b>${esc(label(k))}</b></span><button class="x" data-unlearn="${esc(cc)}">✕</button></li>`; }).join('')}</ul>` : '<p class="st-note">No links yet.</p>'}
+      ${learn.length ? `<ul class="st-list">${learn.map(([cc, k]) => { const [, ch, n] = cc.split(':'); return `<li><span>CC ${n} <small>ch ${Number(ch) + 1}</small> → <b>${esc(label(k))}</b></span><button class="x" data-unlearn="${esc(cc)}" aria-label="Remove">${icon('close')}</button></li>`; }).join('')}</ul>` : '<p class="st-note">No links yet.</p>'}
 
       <h2>MIDI out</h2>
       <p>Send what Carol plays (keys, pads and sequencer) as notes to another synth or a DAW.</p>

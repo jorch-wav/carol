@@ -1,5 +1,6 @@
 // Guided tour: "press this, hear that". Each step lights a body part and its knobs, can move a knob
 // to show what it does, and plays the bird's call. Every knob it touches is put back afterwards.
+import { icon } from './icons.js';
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
@@ -7,7 +8,7 @@ function steps(app) {
   const b = app.bird, has = (k) => !!app.knobs[k];
   const lbl = (k) => (app.knobs[k] ? app.knobs[k].p.label : k);
   const out = [
-    { part: null, text: `This is the <b>${esc(b.name)}</b>. Listen to its <b>${esc(b.calls[0].name.toLowerCase())}</b>, made by Carol's model of its body, not a recording. Press <b>▶ HEAR</b> any time.` },
+    { part: null, text: `This is the <b>${esc(b.name)}</b>. Listen to its <b>${esc(b.calls[0].name.toLowerCase())}</b>, made by Carol's model of its body, not a recording. Press <b>HEAR</b> any time.` },
     { part: 'airsacs', knobs: ['pressure'], demo: { pressure: 0.6 }, text: `It starts with air. The <b>air sacs</b> squeeze air up through the voice box. Hear it with less push: <b>${lbl('pressure')}</b> turned down, quieter and thinner.` },
     { part: 'syrinx', knobs: ['tension'], demo: { tension: -0.2 }, text: `The <b>syrinx</b> is the voice box, deep in the chest. With the muscles slack (<b>${lbl('tension')}</b> down) its labia buzz in pulses instead of whistling. Hear the buzz.` },
     { part: 'trachea', knobs: ['trachea'], demo: { trachea: (v) => Math.min(22, v * 2.2) }, text: `The sound travels up the <b>windpipe</b>, which adds echoes and resonances. Here it is with a windpipe twice as long.` },
@@ -45,7 +46,7 @@ export class Tour {
     app.v2.sel = app.v3.sel = s.part;
     for (const k of s.knobs) app.knobs[k].flash();
     this.el.innerHTML = `<div class="tr-card"><div class="tr-n">${this.i + 1} / ${this.list.length}</div><p>${s.text}</p>
-      <div class="tr-btns"><button class="rocker" data-t="back" ${this.i ? '' : 'disabled'}>‹ BACK</button>${s.demo ? '<button class="rocker" data-t="orig">▶ ORIGINAL</button>' : ''}<button class="rocker" data-t="hear">▶ HEAR${s.demo ? ' THE CHANGE' : ''}</button><button class="rocker" data-t="next">${s.end ? 'FINISH' : 'NEXT ›'}</button><button class="x" data-t="close">✕</button></div></div>`;
+      <div class="tr-btns"><button class="rocker" data-t="back" ${this.i ? '' : 'disabled'}>${icon('prev')} BACK</button>${s.demo ? `<button class="rocker" data-t="orig">${icon('play')} ORIGINAL</button>` : ''}<button class="rocker" data-t="hear">${icon('play')} HEAR${s.demo ? ' THE CHANGE' : ''}</button><button class="rocker" data-t="next">${s.end ? 'FINISH' : 'NEXT ' + icon('next')}</button><button class="x" data-t="close" aria-label="Close">${icon('close')}</button></div></div>`;
     this.el.querySelectorAll('[data-t]').forEach((b) => b.onclick = () => this.act(b.dataset.t));
     if (s.demo || this.i === 0) this.hear(!!s.demo);
   }

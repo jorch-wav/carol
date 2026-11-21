@@ -1,4 +1,5 @@
 // Learning layer: out of the way until asked for. Overview, deep dive, how Carol sings it, sources.
+import { icon } from './icons.js';
 const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const link = (url, text) => url ? `<a href="${esc(url)}" target="_blank" rel="noopener">${esc(text || url)}</a>` : esc(text);
 
@@ -45,7 +46,7 @@ export class Learn {
       const pl = this.app.plateOf(b);
       if (pl) h += `<img class="plate-small" src="${esc(pl.image)}" alt="${esc(b.name)}, ${esc(pl.artist || tx.plate_artist || 'John Gould')}">`;
       h += `<p class="lede">${esc(info.overview || 'No notes for this bird yet.')}</p>`;
-      h += `<p><button class="tour-cta" data-tour>▶ TAKE THE TOUR</button> <small>Hear what each part of the body does, one step at a time.</small></p>`;
+      h += `<p><button class="tour-cta" data-tour>${icon('play')} TAKE THE TOUR</button> <small>Hear what each part of the body does, one step at a time.</small></p>`;
       if (b.match) h += `<p>Carol's model of this bird matches its recordings at <b>${Math.round(b.match.total)}%</b>. Open <i>How Carol sings it</i> to see why.</p>`;
     } else if (tab === 'deep') {
       if (tx.genus) {
