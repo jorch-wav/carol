@@ -30,3 +30,4 @@ run() { echo "== $1"; $B fit data/$1 --body $2 --fmin $3 --fmax $4 --budget $BUD
 [ -z "$1" -o "$1" = galah ] && run galah 2 700 8000
 [ -z "$1" -o "$1" = gangang ] && run gangang 2 250 6000
 [ -z "$1" -o "$1" = blackcockatoo ] && run blackcockatoo 2 600 5000
+[ -z "$1" -o "$1" = tui ] && run tui 0 700 9000

@@ -581,6 +581,54 @@ PLATES.update({
 })
 
 
+# Tūī (added 2026-11-22). All xeno-canto, mainland New Zealand (Chatham Island ssp. chathamensis clips excluded),
+# quality A, CC BY-NC-SA 4.0. Call types from the recordists' labels plus our spectrograms (not checked by ear).
+# No clean mainland alarm-call recording exists on xeno-canto (the only labelled ones are Chatham birds or noisy B clips).
+CATEGORY.update({
+    "tui": {
+        "958028": "full song, dense (excited adult male, Tiritiri Matangi; bell notes, clicks, wheezes, high notes to ~10 kHz)",
+        "1169417": "full song, long bout (Golden Bay; bell notes, clicks, wheezes, harmonic stacks)",
+        "1177577": "full song with loud broadband wheezes (spring; some bursts may be wing whirr)",
+        "214591": "song, short bout (Wellington; mixed tonal notes, clicks and one wheeze)",
+        "321682": "song (Whangaparaoa; tonal notes, rapid repeated notes, high slurs)",
+        "562526": "song, long unfiltered bout (Tāwharanui; repeated bell-like notes ~2.7-3.5 kHz, sparse phrases)",
+        "842647": "song: harmonic 'bell' stacks (partials ~1.27 kHz apart) alternating with wheezes (Kāpiti Coast dialect)",
+        "845168": "repeated bell phrase: steady ~1.24 kHz tone + ~2.4 kHz partial (XC type: call; male spring territory song)",
+        "853667": "repeated bell phrase: 2.25 kHz harmonic note, then two simultaneous tones ~1.08 + 1.48 kHz, then a wheeze (XC type: call)",
+        "1166774": "chatter calls (greeting/antagonistic call as one tui joins another; rapid arched notes ~1.3-2.1 kHz)",
+        "853670": "fight calls: rapid harmonic chatter between two tui + wing contact (aggressive/alarm-type candidate)",
+    },
+})
+
+# Tūī plate: Keulemans' chromolithograph in Buller's 2nd edition (1888); the 1873 1st-edition plate is in plates/.
+PLATES.update({
+    "tui": dict(image={
+        "file": "plate.jpg",
+        "raw_file": "raw/historybirdsnew1bull_0201.jp2",
+        "work": "Walter L. Buller, A History of the Birds of New Zealand, 2nd ed. (London: published for the subscribers by "
+                "the author, 1888), 2 vols issued in 13 parts, imperial quarto, colour-printed lithographs",
+        "artist": "John Gerrard Keulemans",
+        "year": "1888",
+        "volume": "I",
+        "plate": "X (Alexander Turnbull Library 'Plate X. 1888'; not printed on the plate)",
+        "name_on_plate": "Prosthemadera novæ zealandiæ.",
+        "other_lettering": "'Tui or Parson Bird.' (title), '(Adult and Young.)'",
+        "gould_common_name": "Tui or Parson Bird",
+        "artist_credit_on_plate": "J. G. Keulemans delt. & lith.",
+        "printer_on_plate": "Judd & Co. Limited, Imp.",
+        "artist_died": 1912,
+        "copy": "Naturalis Biodiversity Center copy, digitised for the Biodiversity Heritage Library (Internet Archive historybirdsnew1bull)",
+        "source_page_url": "https://archive.org/details/historybirdsnew1bull/page/n200/mode/1up",
+        "source_file_url": "https://archive.org/download/historybirdsnew1bull/historybirdsnew1bull_jp2.zip/"
+                           "historybirdsnew1bull_jp2%2Fhistorybirdsnew1bull_0201.jp2",
+        "bhl_url": None,
+        "other_copies": ["https://natlib.govt.nz/records/22645090 (Alexander Turnbull Library, ref. PUBL-0012-10)"],
+        "licence": "Public domain (published 1888; artist died 1912; BHL/IA: 'no longer under copyright protection')",
+        "processing": "JP2 -> RGB, resized to 900 px tall (Lanczos), JPEG quality 85, no crop (tools/make_plate.py)",
+    }),
+})
+
+
 def probe(path):
     out = subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration:stream=sample_rate,channels,bits_per_sample",
                           "-of", "json", path], capture_output=True, text=True).stdout

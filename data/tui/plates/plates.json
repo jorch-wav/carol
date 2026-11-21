@@ -1,0 +1,28 @@
+[
+  {
+    "file": "plates/buller-1873.jpg",
+    "raw_file": "plates/raw/NHM243352_0136.jp2",
+    "artist": "John Gerrard Keulemans",
+    "work": "Walter L. Buller, A History of the Birds of New Zealand, 1st ed. (London: John van Voorst, 1873), 1 vol. issued in 5 parts, royal quarto, hand-coloured lithographs",
+    "year": "1873",
+    "volume": null,
+    "plate": "unnumbered (bound between pp. 86 and 87; Alexander Turnbull Library ref. PUBL-0134-087, 'opp. p. 87')",
+    "name_on_plate": "Prosthemadera novæ zealandiæ.",
+    "other_lettering": "'(Adult and Young)'",
+    "gould_common_name": "Tui or Parson Bird",
+    "common_name_note": "English name from Buller's text heading '(TUI OR PARSON BIRD.)'; only the Latin name is lettered on the plate",
+    "artist_credit_on_plate": "Keulemans' monogram in the image and scale mark '3/4' (no artist or printer line lettered on this copy).",
+    "artist_died": 1912,
+    "copy": "Natural History Museum Library, London copy, digitised for the Biodiversity Heritage Library (Internet Archive NHM243352)",
+    "source_page_url": "https://archive.org/details/NHM243352/page/n135/mode/1up",
+    "source_file_url": "https://archive.org/download/NHM243352/NHM243352_jp2.zip/NHM243352_jp2%2FNHM243352_0136.jp2",
+    "bhl_url": null,
+    "bhl_note": "BHL blocks scripted access, so no BHL page id was looked up; the Smithsonian copy (IA historyofbirdsof00bull) lacks this plate",
+    "other_copies": [
+      "https://commons.wikimedia.org/wiki/File:History_of_the_birds_of_NZ_1st_ed_p086-2.jpg",
+      "https://commons.wikimedia.org/wiki/File:Keulemans_tui.jpg"
+    ],
+    "licence": "Public domain (published 1873; artist died 1912; IA: 'Out of copyright'; Wikimedia Commons: PD-old)",
+    "processing": "JP2 -> RGB, cropped to the plate leaf (box 80,130,2960,4070; drops the scanner background and the facing text page), resized to 900 px tall (Lanczos), JPEG quality 85 (tools/make_plate.py)"
+  }
+]

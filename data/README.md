@@ -92,3 +92,26 @@ plus spectrograms, not listening.
 All xeno-canto clips CC BY-NC-SA 3.0/4.0; the iNaturalist ones CC BY-NC. Every bird also has 1-2 extra plates in
 `<bird>/plates/` (Mathews/Grønvold, Greene/Lydon, Shaw & Nodder...), each documented in its `plates.json`.
 Frogmouth: whether it calls with the bill closed is undocumented; the open-mouth model also fitted better (87% vs 85%).
+
+## Tūī (added 2026-11-22)
+
+| bird | count | ids | plate |
+|---|---|---|---|
+| tui | 11 | 958028, 1169417, 1177577, 214591, 321682 (full song); 562526, 842647, 845168, 853667 (bell notes / bell phrases); 1166774, 853670 (chatter / fight calls) | J. G. Keulemans in W. L. Buller, *A History of the Birds of New Zealand*, 2nd ed. (1888), vol. I, pl. X, *Prosthemadera novæ zealandiæ* (Naturalis copy, IA `historybirdsnew1bull`); extra plate in `tui/plates/`: Keulemans' plate from the 1st ed. (1873), NHM London copy (IA `NHM243352`) |
+
+All xeno-canto, mainland New Zealand, quality A, CC BY-NC-SA 4.0 (recordists Ken George, Meena Haribal, Johannes Fischer,
+Arne Thelin, Daniel Hinckley). Both plates are public domain (Keulemans died 1912).
+
+- **Chatham Island tūī excluded.** xeno-canto lists Chatham birds (ssp. *chathamensis*) under the same country; XC927458
+  and XC956332 were downloaded as candidates, found to be from the Chathams, and dropped.
+- **No alarm call.** The only clips labelled "alarm call" are a Chatham bird and a noisy quality-B clip with bellbird and
+  whitehead. XC853670 (two tūī fighting) is the nearest aggressive call; the flight "scream" at hawks is missing.
+- **Call types weren't checked by listening.** XC845168 and XC853667 are labelled "call" on XC but are repeated bell
+  phrases. Some broadband bursts in XC1177577 could be wing whirr (adults have a notched 8th primary that whirrs).
+- **Two voices:** XC853667 holds two steady tones (~1.08 and ~1.48 kHz) at once, consistent with the two syrinx sides
+  sounding together, but no tūī syrinx study was found to confirm it.
+- **1873 plate:** the Smithsonian scan of the 1st edition (IA `historyofbirdsof00bull`) lacks the early plates; the NHM
+  copy has it between pp. 86-87. BHL blocks scripted access, so `bhl_url` is empty for both plates.
+- **Māori names:** tūī and kōkō (NZ Birds Online, Te Aka Māori Dictionary); Buller (1888) adds 'Pi-tui'/'Pikari' for the
+  young. Te Ara refused scripted access, so it isn't cited.
+- Facts paraphrased from Wikipedia (CC BY-SA), NZ Birds Online, DOC, Hill & Ji (2014, *Notornis*) and Buller (1888).

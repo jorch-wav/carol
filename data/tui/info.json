@@ -1,0 +1,100 @@
+{
+ "id": "tui",
+ "common_name": "Tūī",
+ "scientific_name": "Prosthemadera novaeseelandiae",
+ "family": "Meliphagidae (honeyeaters)",
+ "overview": "The tūī is a big New Zealand honeyeater that looks black from a distance but shimmers blue, green and bronze up close. Two curled white tufts (poi) hang at its throat, a lacy collar of fine white-shafted feathers covers the back and sides of its neck, and a small white bar shows on each wing. Early settlers called it the parson bird because the tufts looked like a clergyman's white bands. It is loud, busy and bossy, chasing other birds out of flowering trees with whirring wings. Its song is famous: chiming bell notes mixed with clicks, coughs, creaks and wheezes, sometimes two sounds at once. Tūī is its Māori name, now its English name too; kōkō is another Māori name.",
+ "deep_dive": {
+  "habitat": "Native forest and scrub, mostly lowland broadleaf forest, up to about 1,500 m. Also regrowth, small forest remnants, exotic plantations, farmland with flowering trees, and leafy suburbs: tūī are one of the commonest birds in Wellington's gardens and parks. They usually nest in native forest or scrub but will fly more than 10 km a day to rich nectar trees such as kōwhai, flax, pūriri, rewarewa, rātā, pōhutukawa and gums.",
+  "range": "Endemic to New Zealand. Widespread on the North, South and Stewart Islands and many offshore islands; scarce only in the drier, open country east of the Southern Alps. Also on Raoul Island in the Kermadecs and the Auckland Islands, its southernmost outpost. Two subspecies: novaeseelandiae on the mainland and outer islands, and the larger Chatham Island tūī (chathamensis), which is threatened. All recordings used here are mainland birds; Chatham Island clips were left out.",
+  "behaviour": "Usually alone, in pairs or small family groups, but many gather at good flowering or fruiting trees. Notoriously aggressive: a tūī will defend a whole tree (or part of one) against other tūī and other birds, puffing up its feathers, chasing with loud whirring wings and mobbing harriers, falcons and magpies. In the breeding season males climb steeply above the canopy, stall and dive back in. Feeds mainly on nectar and honeydew, adds big insects such as cicadas and stick insects when breeding and medium-sized fruit in autumn, and is an important pollinator and seed disperser. The female builds a bulky stick nest high in the canopy and incubates 2-4 eggs for about 14 days; chicks fledge at about 3 weeks. Birds can live 12 years or more.",
+  "voice": "A loud, complex song of tuneful notes mixed with coughs, grunts, clicks, creaks and wheezes; both sexes sing, often in pairs. Buller (1888) compared it to hollow metal rods struck together, a sigh, a sob, a high organ key and even breaking glass, and described a clear, silvery tolling note repeated at dusk. Songs vary between regions and even between neighbouring groups (local dialects), between seasons, sexes and individuals, and tūī sometimes sing at night. They also mimic other birds, ringtones and human speech. In flight they keep in touch, and harass hawks, with a repeated scream. A study at Tāwharanui (Hill & Ji 2014) sorted song syllables into six common types: harmonic stacks (the commonest), rapidly repeated notes, harsh throaty notes, trills, high notes with a fundamental of 5 kHz or more, and low notes below 2 kHz; males averaged 23 syllables per song and females 8. In our recordings most song energy lies between about 1 and 7.5 kHz (median about 1.5-3 kHz); an excited male on Tiritiri Matangi reaches 9-10 kHz, with about a fifth of its energy above 8 kHz. Bell notes are clean harmonic stacks: one bird repeats a note at about 1.24 kHz with a strong partial near 2.4 kHz and overtones to about 10 kHz; another phrase opens with a 2.25 kHz note and overtones, then holds two steady tones at about 1.08 and 1.48 kHz at the same time; Kāpiti Coast bell notes have partials about 1.27 kHz apart, strongest near 2.5 kHz. Wheezes are noisy bursts spanning about 1 to over 10 kHz, and chatter calls are fast arched notes mostly between 1.3 and 2.1 kHz.",
+  "anatomy": "A songbird (order Passeriformes), so it has the songbird tracheobronchial syrinx, with a sound source on each side where the windpipe splits into the two bronchi; songbirds can drive the two sides independently and sing two notes at once. New Zealand sources describe the tūī's 'dual voice box' letting it make two sounds simultaneously, and some of our spectrograms show two steady, non-harmonically related tones at the same moment (about 1.08 and 1.48 kHz), consistent with that. No tūī-specific syrinx study was found. Other features: a curved black bill and, like other honeyeaters, a brush-tipped tongue for nectar; short, broad wings for dense forest, with a notch in the 8th primary feather of adults that makes the whirring flight sound; the two white throat tufts (poi), a collar of filamentous white-shafted neck feathers, and a small white wing bar. Mainland birds are about 27-32 cm long; males are larger (about 125 g on average) than females (about 90 g). Buller's 1888 male measured 12.75 in (32 cm) with a 6 in (15 cm) wing, a 5 in (13 cm) tail and a 1 in (2.5 cm) bill. Juveniles are slate-grey to brownish, without the tufts at first."
+ },
+ "tags": {
+  "features": [
+   "two-voice singer",
+   "bell notes",
+   "clicks and wheezes",
+   "mimic",
+   "local dialects"
+  ],
+  "region": [
+   "New Zealand"
+  ]
+ },
+ "facts_sources": [
+  {
+   "title": "Tūī - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/T%C5%AB%C4%AB",
+   "licence": "CC BY-SA 4.0 (text paraphrased, not copied)",
+   "used_for": "overview, size (27-32 cm) and weights, plumage (poi, lacy collar, wing patch, iridescence), parson-bird name, dual voice box and song components (via NZ Geographic 2020), mimicry, song variation by region/season/sex (Hill et al. 2013, 2015, 2017), night singing, range incl. Kermadec and Auckland Islands, habitat and altitude, behaviour, diet, breeding, subspecies, taxonomy history (Merops novaeseelandiae Gmelin 1788; Prosthemadera Gray 1840)"
+  },
+  {
+   "title": "Robertson, H. A. 2013 [updated 2025]. Tūī | tui. In Miskelly, C. M. (ed.) New Zealand Birds Online",
+   "url": "https://www.nzbirdsonline.org.nz/species/tui",
+   "licence": "(c) New Zealand Birds Online - facts only, paraphrased",
+   "used_for": "length (30 cm) and mean weights (male 125 g, female 90 g), plumage and juveniles, notched 8th primary and wing whirr, song description (tuneful notes with coughs, grunts, wheezes), flight scream at raptors, distribution, habitat, 10 km commutes, aggression and display flight, food, breeding, longevity, subspecies and status, Māori name kōkō"
+  },
+  {
+   "title": "Hill, S. D. & Ji, W. (2014) Categorisation of common syllable types in the complex vocalisations of tui (Prosthemadera novaeseelandiae). Notornis 61: 54-56",
+   "url": "https://www.birdsnz.org.nz/wp-content/uploads/2021/12/Hill___Ji_2014.pdf",
+   "licence": "(c) Ornithological Society of New Zealand - facts only, paraphrased",
+   "used_for": "six common syllable types (harmonic, rapid multiple-note repetition, harsh, trill, high-frequency >= 5 kHz, low-frequency < 2 kHz); syllables per song by sex (23 male, 8 female); Tāwharanui weights"
+  },
+  {
+   "title": "Buller, W. L. (1888) A History of the Birds of New Zealand, 2nd ed., vol. 1, pp. 94-101 (Tui or Parson Bird) and plate",
+   "url": "https://archive.org/details/historybirdsnew1bull",
+   "licence": "Public domain",
+   "used_for": "song description (metal rods, organ note, silvery toll at dusk, breaking glass), both sexes sing, plumage, measurements of a male (length 12.75 in, wing 6, tail 5, culmen 1), Māori names recorded by Buller (Tui and Koko; the young 'Pi-tui' or 'Pikari')"
+  },
+  {
+   "title": "Tūī - Department of Conservation (Te Papa Atawhai)",
+   "url": "https://www.doc.govt.nz/nature/native-animals/birds/birds-a-z/tui/",
+   "licence": "(c) Department of Conservation - facts only",
+   "used_for": "mimicry of bellbirds and phone ringtones, mobbing of harriers and falcons, nectar plants, threats"
+  },
+  {
+   "title": "tūī - Te Aka Māori Dictionary (Moorfield)",
+   "url": "https://maoridictionary.co.nz/word/8660",
+   "licence": "(c) John C Moorfield, Te Aka Māori Dictionary - name cited only",
+   "used_for": "Māori name tūī (noun; songbird with glossy black plumage and two white throat tufts that imitates other birds), kōkō listed as a synonym"
+  },
+  {
+   "title": "Syrinx (bird anatomy) - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Syrinx_(bird_anatomy)",
+   "licence": "CC BY-SA 4.0 (paraphrased)",
+   "used_for": "songbird tracheobronchial syrinx with two sound sources"
+  },
+  {
+   "title": "Bird vocalization - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Bird_vocalization",
+   "licence": "CC BY-SA 4.0 (paraphrased)",
+   "used_for": "independent control of the two sides of the syrinx"
+  },
+  {
+   "title": "Honeyeater - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Honeyeater",
+   "licence": "CC BY-SA 4.0 (paraphrased)",
+   "used_for": "brush-tipped honeyeater tongue"
+  },
+  {
+   "title": "Prosthemadera novaeseelandiae - GBIF Backbone Taxonomy",
+   "url": "https://www.gbif.org/species/2487029",
+   "licence": "CC BY 4.0 - facts only",
+   "used_for": "taxonomy (Passeriformes, Meliphagidae; authority J. F. Gmelin 1788; subspecies chathamensis Hartert 1928; kermadecensis treated as a synonym)"
+  },
+  {
+   "title": "IOC World Bird List v15.2 (Gill, Rasmussen & Donsker, eds.)",
+   "url": "https://www.worldbirdnames.org/new/ioc-lists/master-list-2/",
+   "licence": "CC BY 4.0 - facts only",
+   "used_for": "taxonomy: order Passeriformes, family Meliphagidae, Prosthemadera novaeseelandiae (Gmelin, 1788), English name Tui"
+  },
+  {
+   "title": "Xeno-canto recordings listed in sources.json (own measurements)",
+   "url": "https://xeno-canto.org/species/Prosthemadera-novaeseelandiae",
+   "licence": "recordings CC BY-NC-SA; measurements are our own",
+   "used_for": "song energy about 1-7.5 kHz (median 1.5-3 kHz), excited male to 9-10 kHz; bell notes at 1.24 kHz (+2.4 kHz partial) and 2.25 kHz with overtones to about 10 kHz; simultaneous 1.08 + 1.48 kHz tones; partial spacing about 1.27 kHz; wheezes about 1-10+ kHz; chatter 1.3-2.1 kHz"
+  }
+ ]
+}
