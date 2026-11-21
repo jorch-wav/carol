@@ -2,7 +2,7 @@
  "collections": [
   {
    "name": "Australasia",
-   "count": 19,
+   "count": 20,
    "cover": "magpie",
    "region": "Australia, New Guinea, New Zealand",
    "about": "Birds of Australia and its neighbours, from the garden to the bush. Plates by John Gould, The Birds of Australia."
@@ -276,6 +276,51 @@
      "caption": "Gracius J. Broinowski, The Birds of Australia, vol. III, pl. 17: Cacatua galerita (Vieill.) (Great Sulphur-crested Cockatoo)",
      "artist": "Gracius J. Broinowski",
      "year": "1887"
+    }
+   ]
+  },
+  {
+   "id": "galah",
+   "name": "Galah",
+   "sci": "Eolophus roseicapilla",
+   "authority": "(Vieillot, 1817)",
+   "order": "Psittaciformes",
+   "family": "Cacatuidae",
+   "body": "parrot",
+   "tags": {
+    "features": [
+     "screecher",
+     "flock caller",
+     "acrobat"
+    ],
+    "region": [
+     "Australia-wide",
+     "South-eastern Australia",
+     "Tasmania (introduced)",
+     "New Zealand (introduced)"
+    ]
+   },
+   "collection": "Australasia",
+   "family_name": "Cockatoos",
+   "tax": [
+    18,
+    6
+   ],
+   "image": "img/galah.jpg",
+   "image_caption": "John Gould, The Birds of Australia, vol. V, pl. 4: Cacatua Eos (Rose-breasted Cockatoo)",
+   "match": 69.6,
+   "plates": [
+    {
+     "image": "img/galah.jpg",
+     "caption": "John Gould, The Birds of Australia, vol. V, pl. 4: Cacatua Eos (Rose-breasted Cockatoo)",
+     "artist": "John Gould",
+     "year": "1840"
+    },
+    {
+     "image": "img/galah/greene-lydon-1884.jpg",
+     "caption": "Alexander Francis Lydon (drawn); colour-printed by Benjamin Fawcett, William Thomas Greene, Parrots in Captivity, with notes on several species by the Hon. and Rev. F. G. Dutton, vol. I, pl. 5: Rose-Breasted Cockatoo (Rose-breasted Cockatoo)",
+     "artist": "Alexander Francis Lydon (drawn); colour-printed by Benjamin Fawcett",
+     "year": "1884"
     }
    ]
   },
