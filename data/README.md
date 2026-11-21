@@ -73,3 +73,22 @@ xeno-canto restricts rainbow lorikeet recordings for conservation reasons (trapp
 lorikeet preset is fitted to research-grade iNaturalist sounds from Australia instead (files `rec/INAT<id>.wav`,
 API records in `raw/INAT<id>.json`; coordinates are not copied). Call types again come from the recordists' labels
 plus spectrograms, not listening.
+
+## Victorian birds (added 2026-11-21)
+
+| bird | recordings | plate (Gould, *The Birds of Australia*) |
+|---|---|---|
+| helmeted | 10 — **yellow-tufted honeyeater** (8 iNaturalist CC BY-NC from Victoria, 2 xeno-canto from NSW): no public recordings of the helmeted honeyeater (*L. m. cassidix*) exist, so the preset is the species, named "Yellow-tufted honeyeater" | Supplement (1851-69) pl. 39, *Ptilotis cassidix* |
+| fairywren | 10 (reel songs, family calls, alarm) | vol. III pl. 18, *Malurus cyaneus* |
+| shrikethrush | 10 (songs, calls) | vol. II pl. 74, *Colluricincla harmonica* |
+| whistler | 10 (songs with whip-crack, calls; 3 from Tasmania) | vol. II pl. 64, *Pachycephala gutturalis* |
+| raven | 10 (calls, flight calls, subsong, begging) | vol. IV pl. 18, *Corvus coronoides* (no plate of the little raven exists: described 1912) |
+| wagtail | 11 (songs, rattles) | vol. II pl. 86, *Rhipidura motacilloides* |
+| frogmouth | 11 ('oom' series, huff, alarm, begging) | vol. II pl. 4, *Podargus Cuvieri* |
+| galah | 10 (contact/flight calls, screech, alarm, begging) | vol. V pl. 4, *Cacatua Eos* |
+| gangang | 10 ('creaky gate' calls, alarm) | vol. V pl. 14, *Callocephalon galeatum* |
+| blackcockatoo | 10 (wails, flight screeches, shriek, begging) | vol. V pl. 11, *Calyptorhynchus funereus* |
+
+All xeno-canto clips CC BY-NC-SA 3.0/4.0; the iNaturalist ones CC BY-NC. Every bird also has 1-2 extra plates in
+`<bird>/plates/` (Mathews/Grønvold, Greene/Lydon, Shaw & Nodder...), each documented in its `plates.json`.
+Frogmouth: whether it calls with the bill closed is undocumented; the open-mouth model also fitted better (87% vs 85%).
