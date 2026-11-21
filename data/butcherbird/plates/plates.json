@@ -11,8 +11,11 @@
     "volume": "-",
     "plate": "20",
     "artist_died": 1880,
-    "copy": "BHL scan via Flickr on Wikimedia Commons",
-    "licence": "Public domain (published 1877; artist died 1880)"
+    "copy": "BHL scan via Flickr on Wikimedia Commons (this copy is uncoloured)",
+    "licence": "Public domain (published 1877; artist died 1880)",
+    "name_on_plate": "Cracticus nigrogularis; Cracticus destructor",
+    "gould_common_name": "Black-throated Crow-Shrike; Butcher Bird",
+    "artist_credit_on_plate": "small credit lines at the plate foot, not legible at checking size (uncoloured copy)"
   },
   {
     "file": "plates/broinowski.jpg",
@@ -27,6 +30,9 @@
     "plate": "2",
     "artist_died": 1913,
     "copy": "Internet Archive birdsofaustralia06broi via Flickr (Internet Archive Book Images) on Wikimedia Commons",
-    "licence": "Public domain (published 1887-1891; artist died 1913)"
+    "licence": "Public domain (published 1887-1891; artist died 1913)",
+    "name_on_plate": "1. Cracticus nigrogularis (Gould) [with 2. Cracticus picatus]",
+    "gould_common_name": "Black-throated Crow-Shrike",
+    "artist_credit_on_plate": "'G. J. Broinowski, Fecit'"
   }
 ]

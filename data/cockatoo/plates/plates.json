@@ -12,7 +12,10 @@
     "plate": "3",
     "artist_died": 1888,
     "copy": "BHL scan via Flickr on Wikimedia Commons",
-    "licence": "Public domain (published 1832; artist died 1888)"
+    "licence": "Public domain (published 1832; artist died 1888)",
+    "name_on_plate": "Plyctolophus galeritus",
+    "gould_common_name": "Greater Sulphur-crested Cockatoo",
+    "artist_credit_on_plate": "'E. Lear' credit at foot (small)"
   },
   {
     "file": "plates/broinowski.jpg",
@@ -27,6 +30,9 @@
     "plate": "17",
     "artist_died": 1913,
     "copy": "Internet Archive birdsofaustralia03broi via Flickr (Internet Archive Book Images) on Wikimedia Commons",
-    "licence": "Public domain (published 1887-1891; artist died 1913)"
+    "licence": "Public domain (published 1887-1891; artist died 1913)",
+    "name_on_plate": "Cacatua galerita (Vieill.)",
+    "gould_common_name": "Great Sulphur-crested Cockatoo",
+    "artist_credit_on_plate": "'G. J. Broinowski'"
   }
 ]

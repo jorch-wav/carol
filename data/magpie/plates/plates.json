@@ -12,7 +12,10 @@
     "plate": "12",
     "artist_died": 1912,
     "copy": "scan on Wikimedia Commons (File:Keulemans Onze vogels 3 12.jpg)",
-    "licence": "Public domain (published 1876; artist died 1912)"
+    "licence": "Public domain (published 1876; artist died 1912)",
+    "name_on_plate": "Barita tibicen (per Commons; Dutch caption only)",
+    "gould_common_name": "De fluiter",
+    "artist_credit_on_plate": "small credit lines at the plate foot, not legible at checking size (Keulemans per Commons)"
   },
   {
     "file": "plates/prevost-coquille.jpg",
@@ -27,6 +30,9 @@
     "plate": "20",
     "artist_died": 1846,
     "copy": "scan on Wikimedia Commons (File:Voyage autour du monde (Pl. 20) (Gymnorhina tibicen).jpg)",
-    "licence": "Public domain (published 1826-1830; artist died 1846)"
+    "licence": "Public domain (published 1826-1830; artist died 1846)",
+    "name_on_plate": "Cassican flûteur (Barita tibicen?)",
+    "gould_common_name": "Cassican flûteur",
+    "artist_credit_on_plate": "small credit lines at the plate foot, not legible at checking size"
   }
 ]

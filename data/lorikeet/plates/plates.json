@@ -13,7 +13,10 @@
     "artist_died": 1917,
     "copy": "BHL scan (page 41557131) on Wikimedia Commons",
     "bhl_url": "https://www.biodiversitylibrary.org/page/41557131",
-    "licence": "Public domain (published 1884; artist died 1917)"
+    "licence": "Public domain (published 1884; artist died 1917)",
+    "name_on_plate": "Blue Mountain Lory",
+    "gould_common_name": "Blue Mountain Lory",
+    "artist_credit_on_plate": "none legible"
   },
   {
     "file": "plates/diggles-companion.jpg",
@@ -27,7 +30,10 @@
     "volume": "-",
     "plate": "55",
     "artist_died": 1880,
-    "copy": "BHL scan via Flickr on Wikimedia Commons",
-    "licence": "Public domain (published 1877; artist died 1880)"
+    "copy": "BHL scan via Flickr on Wikimedia Commons (this copy is uncoloured)",
+    "licence": "Public domain (published 1877; artist died 1880)",
+    "name_on_plate": "Trichoglossus Swainsoni [with Trichoglossus rubritorquis]",
+    "gould_common_name": "Swainson's Lorikeet",
+    "artist_credit_on_plate": "small credit lines at the plate foot, not legible at checking size (uncoloured copy)"
   }
 ]

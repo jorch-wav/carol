@@ -2,7 +2,7 @@
  "collections": [
   {
    "name": "Australasia",
-   "count": 16,
+   "count": 17,
    "cover": "magpie",
    "region": "Australia, New Guinea, New Zealand",
    "about": "Birds of Australia and its neighbours, from the garden to the bush. Plates by John Gould, The Birds of Australia."
@@ -112,6 +112,18 @@
      "caption": "John Gould, The Birds of Australia, vol. VI, pl. 5: Oedicnemus grallarius (Southern Stone Plover)",
      "artist": "John Gould",
      "year": "1840"
+    },
+    {
+     "image": "img/curlew/huet-pretre-temminck.jpg",
+     "caption": "Nicolas Huet / Jean-Gabriel Pr\u00eatre, C. J. Temminck & M. Laugier, Nouveau recueil de planches colori\u00e9es d'oiseaux, vol. -: Oedicnemus longipes (per Commons; caption cropped from this scan) (not visible)",
+     "artist": "Nicolas Huet / Jean-Gabriel Pr\u00eatre",
+     "year": "1838"
+    },
+    {
+     "image": "img/curlew/mathews-keulemans.jpg",
+     "caption": "John Gerrard Keulemans, Gregory M. Mathews, The Birds of Australia, vol. III, pl. 173: Burhinus magnirostris (Stone-Plover)",
+     "artist": "John Gerrard Keulemans",
+     "year": "1910"
     }
    ]
   },
@@ -150,6 +162,18 @@
      "caption": "John Gould, The Birds of Australia, vol. I, pl. 32: Athene boobook (Boobook Owl)",
      "artist": "John Gould",
      "year": "1840"
+    },
+    {
+     "image": "img/boobook/diggles-companion.jpg",
+     "caption": "Silvester Diggles, Companion to Gould's Handbook; or, Synopsis of the Birds of Australia, vol. -, pl. 10: Athene boobook (Boobook Owl)",
+     "artist": "Silvester Diggles",
+     "year": "1877"
+    },
+    {
+     "image": "img/boobook/broinowski.jpg",
+     "caption": "Gracius J. Broinowski, The Birds of Australia, vol. VI: 1. Spiloglaux boobook [with 2. Spiloglaux maculatus] (Boobook Owl)",
+     "artist": "Gracius J. Broinowski",
+     "year": "1887"
     }
    ]
   },
@@ -189,6 +213,18 @@
      "caption": "John Gould, The Birds of Australia, vol. II, pl. 18: Dacelo gigantea (Great Brown Kingfisher)",
      "artist": "John Gould",
      "year": "1840"
+    },
+    {
+     "image": "img/kookaburra/martinet-planches-enluminees.jpg",
+     "caption": "Fran\u00e7ois-Nicolas Martinet (engraver/painter), under Edme-Louis Daubenton, Buffon & Daubenton, Planches enlumin\u00e9es d'histoire naturelle, vol. -, pl. 663: Martin-p\u00eacheur, de la Nouvelle Guin\u00e9e (Martin-p\u00eacheur de la Nouvelle Guin\u00e9e)",
+     "artist": "Fran\u00e7ois-Nicolas Martinet (engraver/painter), under Edme-Louis Daubenton",
+     "year": "1765"
+    },
+    {
+     "image": "img/kookaburra/broinowski.jpg",
+     "caption": "Gracius J. Broinowski, The Birds of Australia, vol. VI: 2. Dacelo gigas (G. R. Gray) [with 1. Tanysiptera sylvia] (Laughing Jackass)",
+     "artist": "Gracius J. Broinowski",
+     "year": "1887"
     }
    ]
   },
@@ -228,6 +264,18 @@
      "caption": "John Gould, The Birds of Australia, vol. V, pl. 1: Cacatua galerita: Vieill (Crested Cockatoo)",
      "artist": "John Gould",
      "year": "1840"
+    },
+    {
+     "image": "img/cockatoo/lear-psittacidae.jpg",
+     "caption": "Edward Lear, Illustrations of the Family of Psittacidae, or Parrots, vol. -, pl. 3: Plyctolophus galeritus (Greater Sulphur-crested Cockatoo)",
+     "artist": "Edward Lear",
+     "year": "1832"
+    },
+    {
+     "image": "img/cockatoo/broinowski.jpg",
+     "caption": "Gracius J. Broinowski, The Birds of Australia, vol. III, pl. 17: Cacatua galerita (Vieill.) (Great Sulphur-crested Cockatoo)",
+     "artist": "Gracius J. Broinowski",
+     "year": "1887"
     }
    ]
   },
@@ -265,6 +313,18 @@
      "caption": "John Gould, The Birds of Australia, vol. V, pl. 23: Platycercus pennantii (Pennant's Parrakeet)",
      "artist": "John Gould",
      "year": "1840"
+    },
+    {
+     "image": "img/rosella/barraband-levaillant.jpg",
+     "caption": "Jacques Barraband, Fran\u00e7ois Levaillant, Histoire naturelle des perroquets, vol. II, pl. 78: La Perruche \u00e0 large queue (Perruche \u00e0 large queue)",
+     "artist": "Jacques Barraband",
+     "year": "1801"
+    },
+    {
+     "image": "img/rosella/broinowski.jpg",
+     "caption": "Gracius J. Broinowski, The Birds of Australia, vol. III, pl. 27: 2. Platycercus pennantii (Lath.) [with 1. Platycercus adelaidensis] (Pennant's Parrakeet)",
+     "artist": "Gracius J. Broinowski",
+     "year": "1887"
     }
    ]
   },
@@ -304,6 +364,18 @@
      "caption": "John Gould, The Birds of Australia, vol. V, pl. 48: Trichoglossus Swainsonii: Jard. & Selb (Swainson's Lorikeet)",
      "artist": "John Gould",
      "year": "1840"
+    },
+    {
+     "image": "img/lorikeet/greene-parrots-in-captivity.jpg",
+     "caption": "Alexander Francis Lydon (attributed; plates printed by B. Fawcett), W. T. Greene, Parrots in Captivity, vol. 1, pl. 8: Blue Mountain Lory (Blue Mountain Lory)",
+     "artist": "Alexander Francis Lydon (attributed; plates printed by B. Fawcett)",
+     "year": "1884"
+    },
+    {
+     "image": "img/lorikeet/diggles-companion.jpg",
+     "caption": "Silvester Diggles, Companion to Gould's Handbook; or, Synopsis of the Birds of Australia, vol. -, pl. 55: Trichoglossus Swainsoni [with Trichoglossus rubritorquis] (Swainson's Lorikeet)",
+     "artist": "Silvester Diggles",
+     "year": "1877"
     }
    ]
   },
@@ -344,6 +416,63 @@
      "caption": "John Gould, The Birds of Australia, vol. III, pl. 14: Menura superba (Lyre-Bird)",
      "artist": "John Gould",
      "year": "1840"
+    },
+    {
+     "image": "img/lyrebird/vieillot-oudart-galerie.jpg",
+     "caption": "Paul Louis Oudart (drawing); lithographed by C. Motte, L. P. Vieillot, La galerie des oiseaux, vol. 1, pl. 197: (caption on facing text; plate numbered 197) (not lettered)",
+     "artist": "Paul Louis Oudart (drawing); lithographed by C. Motte",
+     "year": "1834"
+    },
+    {
+     "image": "img/lyrebird/mathews-gronvold.jpg",
+     "caption": "Henrik Gr\u00f6nvold, Gregory M. Mathews, The Birds of Australia, vol. VII, pl. 363: Menura victoriae (Victorian Lyre-bird)",
+     "artist": "Henrik Gr\u00f6nvold",
+     "year": "1910"
+    }
+   ]
+  },
+  {
+   "id": "fairywren",
+   "name": "Superb Fairywren",
+   "sci": "Malurus cyaneus",
+   "authority": "(Ellis, 1782)",
+   "order": "Passeriformes",
+   "family": "Maluridae",
+   "body": "songbird",
+   "tags": {
+    "features": [
+     "trill (reel song)",
+     "high pitched",
+     "family group",
+     "cocked tail"
+    ],
+    "region": [
+     "South-eastern Australia",
+     "Victoria",
+     "Tasmania"
+    ]
+   },
+   "collection": "Australasia",
+   "family_name": "Fairywrens",
+   "tax": [
+    19,
+    9
+   ],
+   "image": "img/fairywren.jpg",
+   "image_caption": "John Gould, The Birds of Australia, vol. III, pl. 18: Malurus cyaneus: Vieill (Blue Wren)",
+   "match": 77.8,
+   "plates": [
+    {
+     "image": "img/fairywren.jpg",
+     "caption": "John Gould, The Birds of Australia, vol. III, pl. 18: Malurus cyaneus: Vieill (Blue Wren)",
+     "artist": "John Gould",
+     "year": "1840"
+    },
+    {
+     "image": "img/fairywren/mathews-1922-23.jpg",
+     "caption": "Henrik Gr\u00f6nvold, Gregory M. Mathews, The Birds of Australia, vol. X, pl. 459: Malurus cyaneus (Blue Wren) (Blue Wren)",
+     "artist": "Henrik Gr\u00f6nvold",
+     "year": "1922"
     }
    ]
   },
@@ -383,6 +512,18 @@
      "caption": "John Gould, The Birds of Australia, vol. IV, pl. 55: Anthochaera carunculata (Wattled Honey-eater)",
      "artist": "John Gould",
      "year": "1840"
+    },
+    {
+     "image": "img/wattlebird/mathews-gronvold.jpg",
+     "caption": "Henrik Gr\u00f6nvold, Gregory M. Mathews, The Birds of Australia, vol. XII, pl. 549: Coleia carunculata (Red Wattle-bird)",
+     "artist": "Henrik Gr\u00f6nvold",
+     "year": "1910"
+    },
+    {
+     "image": "img/wattlebird/broinowski.jpg",
+     "caption": "Gracius J. Broinowski, The Birds of Australia, vol. IV: 2. Anthochaera carunculata [with 1. Anthochaera inauris] (Wattled Honey-eater)",
+     "artist": "Gracius J. Broinowski",
+     "year": "1887"
     }
    ]
   },
@@ -466,6 +607,18 @@
      "caption": "John Gould, The Birds of Australia, vol. IV, pl. 80: Myzantha viridis (Australian Bell-bird)",
      "artist": "John Gould",
      "year": "1840"
+    },
+    {
+     "image": "img/bellminer/jardine-selby.jpg",
+     "caption": "Prideaux John Selby / William Jardine, Sir William Jardine & Prideaux John Selby, Illustrations of Ornithology, vol. I, pl. 78: Manorina viridis (not lettered)",
+     "artist": "Prideaux John Selby / William Jardine",
+     "year": "1826"
+    },
+    {
+     "image": "img/bellminer/mathews-gronvold.jpg",
+     "caption": "Henrik Gr\u00f6nvold, Gregory M. Mathews, The Birds of Australia, vol. XII, pl. 545: Manorina melanophrys (Bell Minah)",
+     "artist": "Henrik Gr\u00f6nvold",
+     "year": "1910"
     }
    ]
   },
@@ -506,6 +659,18 @@
      "caption": "John Gould, The Birds of Australia, vol. III, pl. 15: Psophodes crepitans (Coach-whip Bird)",
      "artist": "John Gould",
      "year": "1840"
+    },
+    {
+     "image": "img/whipbird/diggles-companion.jpg",
+     "caption": "Silvester Diggles, Companion to Gould's Handbook; or, Synopsis of the Birds of Australia, vol. -, pl. 26: Psophodes crepitans [with Sphenostoma cristata] (Coach-whip Bird)",
+     "artist": "Silvester Diggles",
+     "year": "1877"
+    },
+    {
+     "image": "img/whipbird/mathews-gronvold.jpg",
+     "caption": "Henrik Gr\u00f6nvold, Gregory M. Mathews, The Birds of Australia, vol. IX, pl. 431: Psophodes olivaceus [with Psophodes nigrogularis] (Coachwhip-bird)",
+     "artist": "Henrik Gr\u00f6nvold",
+     "year": "1910"
     }
    ]
   },
@@ -548,6 +713,18 @@
      "caption": "John Gould, The Birds of Australia, vol. II, pl. 49: Cracticus nigrogularis (Black-throated Crow-Shrike)",
      "artist": "John Gould",
      "year": "1840"
+    },
+    {
+     "image": "img/butcherbird/diggles-companion.jpg",
+     "caption": "Silvester Diggles, Companion to Gould's Handbook; or, Synopsis of the Birds of Australia, vol. -, pl. 20: Cracticus nigrogularis; Cracticus destructor (Black-throated Crow-Shrike; Butcher Bird)",
+     "artist": "Silvester Diggles",
+     "year": "1877"
+    },
+    {
+     "image": "img/butcherbird/broinowski.jpg",
+     "caption": "Gracius J. Broinowski, The Birds of Australia, vol. VI, pl. 2: 1. Cracticus nigrogularis (Gould) [with 2. Cracticus picatus] (Black-throated Crow-Shrike)",
+     "artist": "Gracius J. Broinowski",
+     "year": "1887"
     }
    ]
   },
@@ -589,6 +766,18 @@
      "caption": "John Gould, The Birds of Australia, vol. II, pl. 46: Gymnorhina tibicen (Piping Crow-Shrike)",
      "artist": "John Gould",
      "year": "1840"
+    },
+    {
+     "image": "img/magpie/keulemans-onze-vogels.jpg",
+     "caption": "John Gerrard Keulemans, J. G. Keulemans, Onze vogels in huis en tuin, vol. III, pl. 12: Barita tibicen (per Commons; Dutch caption only) (De fluiter)",
+     "artist": "John Gerrard Keulemans",
+     "year": "1876"
+    },
+    {
+     "image": "img/magpie/prevost-coquille.jpg",
+     "caption": "Lucien Alphonse Pr\u00e9vost (painter), Louis Isidore Duperrey, vol. Atlas, Oiseaux, pl. 20: Cassican fl\u00fbteur (Barita tibicen?) (Cassican fl\u00fbteur)",
+     "artist": "Lucien Alphonse Pr\u00e9vost (painter)",
+     "year": "1826"
     }
    ]
   },

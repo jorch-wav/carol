@@ -12,7 +12,10 @@
     "plate": "not checked",
     "artist_died": 1840,
     "copy": "scan on Wikimedia Commons (File:Burhinus grallarius 1838.jpg)",
-    "licence": "Public domain (published by 1839; artists died 1830 / c. 1840)"
+    "licence": "Public domain (published by 1839; artists died 1830 / c. 1840)",
+    "name_on_plate": "Oedicnemus longipes (per Commons; caption cropped from this scan)",
+    "gould_common_name": "not visible",
+    "artist_credit_on_plate": "not visible (Commons: Huet / Prêtre)"
   },
   {
     "file": "plates/mathews-keulemans.jpg",
@@ -28,6 +31,9 @@
     "volume": "III",
     "plate": "173",
     "artist_died": 1912,
-    "licence": "Public domain (published before 1930; artist died 1912)"
+    "licence": "Public domain (published before 1930; artist died 1912)",
+    "name_on_plate": "Burhinus magnirostris",
+    "gould_common_name": "Stone-Plover",
+    "artist_credit_on_plate": "'J. G. Keulemans, del.' / 'Witherby & Co.'"
   }
 ]
