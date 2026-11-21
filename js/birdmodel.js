@@ -57,7 +57,7 @@ function bezier(p0, p1, p2, n) {
 let sing = 0;
 // air particles (persist between frames): s = position along the airway 0..1, side = which bronchus
 const AIR = [];
-let airT = 0, airSpawn = 0;
+let airT = 0, airSpawn = 0, airFade = 1;
 
 export function compute(body, lookIn, v, tele, t, extra = {}) {
   const L = Object.assign({}, DEFAULT_LOOK, lookIn || {});
@@ -226,7 +226,10 @@ export function compute(body, lookIn, v, tele, t, extra = {}) {
   const path = (side, toSac) => [...start(side), ...tr, ...(toSac ? [sacEnd] : [tail, out])];
   const flow = singing ? Math.min(1.6, 0.25 + pLive) : 0.12 + 0.04 * breathe;
   // spawn in step with the flow speed, so the stream stays evenly spread (about 30-60 particles)
-  const rate = singing ? flow * (34 + 26 * Math.min(1, level * 4)) * Math.min(1.4, press2) : flow * 30;
+  // air only moves while the bird sings; when it stops, what is in the airway fades away
+  const rate = singing ? flow * (34 + 26 * Math.min(1, level * 4)) * Math.min(1.4, press2) : 0;
+  airFade = singing ? 1 : Math.max(0, airFade - dtA / 0.45);
+  if (!singing && airFade <= 0) AIR.length = 0;
   airSpawn += rate * dtA;
   while (airSpawn >= 1 && AIR.length < 160) {
     airSpawn -= 1;
@@ -251,7 +254,7 @@ export function compute(body, lookIn, v, tele, t, extra = {}) {
     const jit = (singing ? turbK * 0.35 + 0.03 : 0.02) * (a.s > syrS ? 1 : 0.4);
     const c = [p0[0] + (p1[0] - p0[0]) * u + jit * Math.sin(t * 17 + a.jx), p0[1] + (p1[1] - p0[1]) * u + jit * Math.cos(t * 13 + a.jx * 1.7), p0[2] + (p1[2] - p0[2]) * u];
     const fade = Math.min(1, a.s * 8) * Math.min(1, (1 - a.s) * 6);
-    air.push({ c, r: a.hiss ? 0.035 : 0.055 + 0.03 * Math.min(1, press2), a: (a.hiss ? 0.4 : singing ? 0.8 : 0.4) * fade, hiss: a.hiss });
+    air.push({ c, r: a.hiss ? 0.035 : 0.055 + 0.03 * Math.min(1, press2), a: (a.hiss ? 0.4 : 0.8) * fade * airFade, hiss: a.hiss });
   }
 
   // a soft breathing bob of the whole bird with each phrase
