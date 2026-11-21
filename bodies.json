@@ -374,13 +374,13 @@
         "parrot",
         "dove"
       ],
-      "default": 0.0,
-      "help": "0 one-shot: the whole call plays. 1 gate: stops on key release. 2 loop: repeats while held.",
+      "default": 3.0,
+      "help": "ONE: the whole call plays once. GATE: it stops when you let go. LOOP: the whole call repeats while held. SUSTAIN: like a synth - the call starts, then rocks back and forth through its loudest stretch for as long as you hold the key, and plays its ending when you let go.",
       "index": 21,
       "key": "mode",
       "label": "KEY MODE",
       "log": false,
-      "max": 2.0,
+      "max": 3.0,
       "min": 0.0,
       "section": "PLAY",
       "unit": ""

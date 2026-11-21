@@ -33,7 +33,7 @@
       <div class="top-buttons">
         <button class="rocker" id="resetBtn" title="Return every knob to the fitted bird"><span class="long">RESET TO BIRD</span><span class="short">↺</span></button>
         <div class="seg" id="viewSeg">
-          <button data-view="2d" class="on">2D</button><button data-view="3d">3D</button><button data-view="sono">SONO</button><button data-view="plate">PLATE</button>
+          <button data-view="2d" class="on">2D</button><button data-view="3d">3D</button><button data-view="sono">SONO</button><button data-view="wave">WAVE</button><button data-view="plate">PLATE</button>
         </div>
         <button class="rocker learn" id="learnBtn" title="About this bird">LEARN</button>
         <button class="rocker gear" id="setBtn" title="Settings: MIDI, tempo, tuning, sharing" aria-label="Settings">⚙</button>
@@ -46,9 +46,9 @@
         <canvas id="view2d"></canvas>
         <canvas id="view3d"></canvas>
         <canvas id="sono"></canvas>
+        <canvas id="wave"></canvas>
         <figure id="plate"><img id="plateImg" alt=""><figcaption id="plateCap"></figcaption>
-          <div class="pl-nav"><button id="plPrev" aria-label="Previous plate">‹</button><span id="plWho"></span><span class="pl-dots" id="plDots"></span><button id="plNext" aria-label="Next plate">›</button><button id="plMine" class="pl-mine">+ MY PICTURE</button></div>
-          <input type="file" id="plFile" accept="image/*" hidden>
+          <div class="pl-nav"><button id="plPrev" aria-label="Previous plate">‹</button><span id="plWho"></span><span class="pl-dots" id="plDots"></span><button id="plNext" aria-label="Next plate">›</button></div>
         </figure>
         <div class="view-hud" id="viewHud"></div>
         <div class="view-size" id="viewSize">

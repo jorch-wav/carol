@@ -1,10 +1,11 @@
 // Carol — app glue.
-import { CarolAudio } from './audio.js';
+import { CarolAudio, PLAYER_KEYS } from './audio.js';
 import { Knob, toNorm } from './knob.js';
-import { compute, PART_INFO } from './birdmodel.js';
+import { compute, PART_INFO, mixHex } from './birdmodel.js';
 import { View2D } from './view2d.js';
 import { View3D } from './view3d.js';
 import { Sono } from './sono.js';
+import { Wave } from './wave.js';
 import { zoomable } from './zoom.js';
 import { PlayBar } from './playbar.js';
 import { Presets } from './presets.js';
@@ -19,8 +20,7 @@ import { FX_PARAMS, saveFile } from './fx.js';
 
 const SECTIONS = ['LUNGS', 'SYRINX', 'WINDPIPE', 'THROAT', 'TONGUE', 'BEAK', 'PLAY', 'SHAPE', 'LFO', 'FX'];
 // player controls: not part of the bird, so no amber "real bird" dot
-const PLAYER_KEYS = ['mode', 'volume', 'speed', 'sweep', 'attack', 'release', 'glide', 'vmode', 'lfo_rate', 'vibrato', 'tremolo'];
-const STEPPED = { mode: ['ONE', 'GATE', 'LOOP'], vmode: ['POLY', 'MONO', 'LEGATO'] };
+const STEPPED = { mode: ['ONE', 'GATE', 'LOOP', 'SUSTAIN'], vmode: ['POLY', 'MONO', 'LEGATO'] };
 // Order for hardware knob pages and the Korg K1-K8.
 const HW_ORDER = ['pressure', 'tension', 'mass', 'trachea', 'oec', 'tongue_h', 'beak', 'turb', 'breath', 'echo', 'oec_track', 'tongue_p', 'beak_track', 'two', 'two_int', 'split', 'coupling', 'oec_depth', 'mouth_q', 'pulse', 'speed', 'sweep', 'mode', 'volume', 'sac', 'sac_q', 'closure', 'mouth', 'attack', 'release', 'glide', 'vmode', 'lfo_rate', 'vibrato', 'tremolo', 'fx_cut', 'fx_res', 'fx_dtime', 'fx_fb', 'fx_dmix', 'fx_rsize', 'fx_rmix'];
 const ls = { get(k, d) { try { const v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch { return d; } }, set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} } };
@@ -44,6 +44,7 @@ class App {
     this.v2 = new View2D($('view2d'));
     this.v3 = new View3D($('view3d'));
     this.sono = new Sono($('sono'));
+    this.wave = new Wave($('wave'));
     this.playbar = new PlayBar(this);
     this.presets = new Presets(this);
     this.learn = new Learn(this);
@@ -101,6 +102,7 @@ class App {
     this.mainKnob.steps = Math.max(2, this.index.length);
   }
   async loadBird(id) {
+    const prevLook = this.bird && this.bird.look, prevVals = { ...this.values };
     const mine = (this.myPresets || []).find((m) => m.id === id);
     if (mine) { await this.loadBird(mine.base); this.applyTweaks(mine.t, true); ls.set('carol-bird', id); this.toast(mine.name); return; }
     const b = this.userBirds[id] || await (await fetch(`presets/${id}.json`)).json();
@@ -113,6 +115,14 @@ class App {
     this.showPlate();
     $('matchBadge').innerHTML = b.match ? `<b>${Math.round(b.match.total)}%</b>MATCH TO BIRD` : '';
     this.buildPanel();
+    // morph: the bird reshapes from the old one, and the knobs both birds share glide to their new settings
+    if (prevLook && prevLook !== b.look) {
+      this.morph = { from: prevLook, to: b.look, t0: performance.now() };
+      const glide = {};
+      for (const [k, kn] of Object.entries(this.knobs)) if (prevVals[k] !== undefined && !kn.steps) glide[k] = [toNorm(kn.p, prevVals[k]), kn.u];
+      this.knobGlide = { keys: glide, t0: performance.now() };
+      for (const [k, [u0]] of Object.entries(glide)) this.knobs[k].setU(u0, false);
+    }
     // new bird: reframe both views right away, zoom back to 1
     this.v2.box = null; this.v2.zoom = 1; this.v2.pan = [0, 0]; this.v3.snap = true; this.v3.dist = 1;
     // restore this bird's tweaks
@@ -126,12 +136,9 @@ class App {
     this.toast(b.name);
   }
   // ---------------------------------------------------------------- plates (each bird has a small gallery)
-  /** A bird's plates (preset or index entry), plus your own picture if you added one. */
+  /** A bird's plates (preset or index entry). */
   plates(b) {
-    const list = (b.plates && b.plates.length ? b.plates : b.image ? [{ image: b.image, caption: b.image_caption || b.name, artist: '' }] : []).slice();
-    const mine = ls.get('carol-myplate-' + b.id, null);
-    if (mine) list.push({ image: mine, caption: 'Your picture (only on this device)', artist: 'You', mine: true });
-    return list;
+    return (b.plates && b.plates.length ? b.plates : b.image ? [{ image: b.image, caption: b.image_caption || b.name, artist: '' }] : []).slice();
   }
   /** Which plate to show: the one you picked for this bird, else your preferred artist, else the first. */
   plateIndex(b) {
@@ -154,28 +161,26 @@ class App {
     const b = this.bird, p = this.plateOf(b), list = this.plates(b), i = this.plateIndex(b);
     const th = $('birdThumb'); if (p) { th.src = p.image; th.style.display = ''; } else th.style.display = 'none';
     const pi = $('plateImg'); if (p) pi.src = p.image; else pi.removeAttribute('src');
-    const full = p && !p.mine && b.sources && b.sources.plates ? (b.sources.plates.find((q) => q.image === p.image) || {}).credit : null;
+    const full = p && b.sources && b.sources.plates ? (b.sources.plates.find((q) => q.image === p.image) || {}).credit : null;
     $('plateCap').textContent = p ? (full || p.caption) : 'No illustration for this bird.';
     $('plDots').innerHTML = list.length > 1 ? list.map((q, k) => `<button class="${k === i ? 'on' : ''}" data-k="${k}" title="${(q.artist || '').replace(/"/g, '')}${q.year ? ', ' + q.year : ''}"></button>`).join('') : '';
     $('plDots').querySelectorAll('[data-k]').forEach((x) => x.onclick = (e) => { e.stopPropagation(); this.setPlate(b, Number(x.dataset.k)); });
     $('plPrev').hidden = $('plNext').hidden = list.length < 2;
     $('plWho').textContent = p ? `${p.artist || ''}${p.year ? ' · ' + p.year : ''}` : '';
-    $('plMine').textContent = p && p.mine ? 'REMOVE MY PICTURE' : '+ MY PICTURE';
   }
-  /** Your own picture for this bird: scaled down and kept on this device. */
-  addMyPlate(file) {
-    const b = this.bird, img = new Image(), url = URL.createObjectURL(file);
-    img.onload = () => {
-      const k = Math.min(1, 900 / Math.max(img.width, img.height)), cv = document.createElement('canvas');
-      cv.width = Math.round(img.width * k); cv.height = Math.round(img.height * k);
-      cv.getContext('2d').drawImage(img, 0, 0, cv.width, cv.height);
-      URL.revokeObjectURL(url);
-      try { localStorage.setItem('carol-myplate-' + b.id, JSON.stringify(cv.toDataURL('image/jpeg', 0.82))); } catch { this.toast('Not enough space to keep that picture'); return; }
-      this.setPlate(b, this.plates(b).length - 1);
-    };
-    img.src = url;
+  morphLook(now) {
+    const m = this.morph; if (!m) return this.bird.look;
+    const t = Math.min(1, (now - m.t0) / 1100), e = t * t * (3 - 2 * t);
+    if (t >= 1) { this.morph = null; return this.bird.look; }
+    return lerpLook(m.from, m.to, e);
   }
-  birdValue(p) { return this.bird.params[p.key] ?? p.default; }
+  morphKnobs(now) {
+    const g = this.knobGlide; if (!g) return;
+    const t = Math.min(1, (now - g.t0) / 900), e = t * t * (3 - 2 * t);
+    for (const [k, [u0, u1]] of Object.entries(g.keys)) if (this.knobs[k]) this.knobs[k].setU(u0 + (u1 - u0) * e, false);
+    if (t >= 1) this.knobGlide = null;
+  }
+  birdValue(p) { return PLAYER_KEYS.includes(p.key) ? p.default : (this.bird.params[p.key] ?? p.default); }
   buildPanel() {
     const box = $('knobs'); box.innerHTML = ''; this.knobs = {}; this.values = {};
     const body = this.bird.body;
@@ -200,7 +205,7 @@ class App {
       g.style.gridTemplateRows = `repeat(${Math.min(3, list.length)}, auto)`;
       for (const p of list) {
         const k = new Knob(p, {
-          steps: p.steps || (STEPPED[p.key] ? 3 : 0), stepLabels: p.stepLabels || STEPPED[p.key] || [],
+          steps: p.steps || (STEPPED[p.key] ? STEPPED[p.key].length : 0), stepLabels: p.stepLabels || STEPPED[p.key] || [],
           onChange: (v) => this.setValue(p.key, v, true),
           onTouch: (kn) => { this.hint(p); if (this.learning) { document.querySelectorAll('.kn.learn-target').forEach((e) => e.classList.remove('learn-target')); this.learnTarget = p.key; (kn || this.knobs[p.key]).el.classList.add('learn-target'); } },
         });
@@ -553,7 +558,18 @@ class App {
     else if (i === 3) { this.playbar.toggle(); return; }
     this.markPage(); this.toast('KNOBS: ' + this.pageKeys().map((k) => this.knobs[k].p.label).join(' · '));
   }
-  hwEncoder(d) { this.presets.step(d > 0 ? 1 : -1); }
+  hwEncoder(d) { if (!this.presets.el.hidden) this.presets.step(d > 0 ? 1 : -1); else this.stepBird(d > 0 ? 1 : -1); }
+  /** The BIRD knob / main encoder: straight to the next bird (no menu), which morphs into place. */
+  stepBird(d) {
+    const ids = this.index.map((b) => b.id);
+    const cur = this._stepTarget ?? Math.max(0, ids.indexOf(ls.get('carol-bird', this.bird && this.bird.id)));
+    const i = ((cur + d) % ids.length + ids.length) % ids.length;
+    this._stepTarget = i;
+    const b = this.index[i];
+    this.toast(`${b.name} · ${b.collection || ''}`);
+    clearTimeout(this._stepT);
+    this._stepT = setTimeout(() => { this._stepTarget = null; this.loadBird(b.id); }, 180);   // turning fast: load where you stop
+  }
   hwClick() {
     if (!this.presets.el.hidden) { this.presets.confirm(true); return; }
     // preview the selected call
@@ -568,7 +584,7 @@ class App {
     this.mainKnob.svg.innerHTML = '';
     this.mainKnob.setU = ((orig) => (u, fire) => {
       const prev = this.mainKnob.u; orig.call(this.mainKnob, u, false);
-      if (fire) { const n = this.mainKnob.steps - 1; const d = Math.round((this.mainKnob.u - prev) * n); if (d) this.presets.step(d); }
+      if (fire) { const n = this.mainKnob.steps - 1; const d = Math.round((this.mainKnob.u - prev) * n); if (d) this.stepBird(d); }
     })(this.mainKnob.setU);
     this.mainKnob.resetToBird = () => {};
     $('mainKnob').appendChild(this.mainKnob.el);
@@ -586,13 +602,6 @@ class App {
     zoomable($('plate'), $('plateImg'));
     $('plPrev').onclick = (e) => { e.stopPropagation(); this.setPlate(this.bird, this.plateIndex(this.bird) - 1); };
     $('plNext').onclick = (e) => { e.stopPropagation(); this.setPlate(this.bird, this.plateIndex(this.bird) + 1); };
-    $('plMine').onclick = (e) => {
-      e.stopPropagation();
-      const p = this.plateOf(this.bird);
-      if (p && p.mine) { localStorage.removeItem('carol-myplate-' + this.bird.id); ls.set('carol-plate-' + this.bird.id, 0); this.showPlate(); }
-      else $('plFile').click();
-    };
-    $('plFile').onchange = (e) => { const f = e.target.files[0]; if (f) this.addMyPlate(f); e.target.value = ''; };
     document.querySelectorAll('#viewSize button').forEach((b) => b.onclick = () => this.setViewSize(this.viewSize === b.dataset.size ? '' : b.dataset.size));
     this.setViewSize(ls.get('carol-viewsize', ''));
     document.querySelectorAll('#viewSeg button').forEach((b) => b.onclick = () => this.setView(b.dataset.view));
@@ -656,6 +665,8 @@ class App {
     $('view2d').classList.toggle('on', v === '2d');
     $('view3d').classList.toggle('on', v === '3d');
     $('sono').classList.toggle('on', v === 'sono');
+    $('wave').classList.toggle('on', v === 'wave');
+    this.audio.scopeOn(v === 'wave');
     $('plate').classList.toggle('on', v === 'plate');
     this.resize();
   }
@@ -684,7 +695,7 @@ class App {
     const seg = $('viewSeg'), phone = innerWidth <= 900;
     if (phone && seg.parentElement.id !== 'view') $('view').appendChild(seg);
     else if (!phone && seg.parentElement.id === 'view') document.querySelector('.top-buttons').insertBefore(seg, $('learnBtn'));
-    this.v2.resize(); this.v3.resize(); this.sono.resize(); this.fitKnobs();
+    this.v2.resize(); this.v3.resize(); this.sono.resize(); this.wave.resize(); this.fitKnobs();
   }
   toast(t) {
     const el = $('toast'); el.textContent = t; el.hidden = false;
@@ -700,13 +711,35 @@ class App {
       acc = 0;
       if (!this.bird || this.view === 'plate' || document.hidden) return;
       if (this.view === 'sono') { this.sono.draw(this.audio.analyser, this.audio.tele, dt); return; }
+      if (this.view === 'wave') { this.wave.draw(this.audio.scope, this.audio.tele, { closure: this.values.closure }); return; }
       const cc = this.currentCall();
-      this.model = compute(this.bird.body, this.bird.look, this.values, this.audio.tele, now / 1000, { refHz: cc && cc.ref_hz });
+      this.model = compute(this.bird.body, this.morphLook(now), this.values, this.audio.tele, now / 1000, { refHz: cc && cc.ref_hz });
+      this.morphKnobs(now);
       if (this.view === '2d') this.v2.draw(this.model); else this.v3.draw(this.model, Math.min(0.1, dt * 2));
       this.frames = (this.frames || 0) + 1;
     };
     requestAnimationFrame(frame);
   }
+}
+
+/** Blend two birds' looks (sizes, beaks, colours; crests and streamers grow or shrink away). */
+function lerpLook(a, b, t) {
+  if (!a || !b) return b || a;
+  const num = (x, y) => x + (y - x) * t;
+  const any = (x, y) => {
+    if (typeof x === 'number' && typeof y === 'number') return num(x, y);
+    if (typeof x === 'string' && typeof y === 'string' && x[0] === '#' && y[0] === '#') return mixHex(x, y, t);
+    if (Array.isArray(x) && Array.isArray(y)) return x.length === y.length && typeof x[0] === 'number' ? x.map((v, i) => num(v, y[i])) : (t < 0.5 ? x : y);
+    if (x && y && typeof x === 'object' && typeof y === 'object') { const o = {}; for (const k of new Set([...Object.keys(x), ...Object.keys(y)])) o[k] = k in x && k in y ? any(x[k], y[k]) : (k in y ? y[k] : x[k]); return o; }
+    return t < 0.5 ? x : y;
+  };
+  const out = any(a, b);
+  // a crest or tail streamers only one bird has: grow in / shrink away
+  for (const k of ['crest', 'streamers']) {
+    if (a[k] && !b[k]) out[k] = { ...a[k], len: a[k].len * (1 - t) };
+    else if (!a[k] && b[k]) out[k] = { ...b[k], len: b[k].len * t };
+  }
+  return out;
 }
 
 // A synth panel, not a web page: no browser right-click / long-press menu anywhere.
