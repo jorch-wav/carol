@@ -1,0 +1,614 @@
+{
+  "bodies": [
+    "songbird",
+    "kingfisher",
+    "parrot",
+    "dove"
+  ],
+  "params": [
+    {
+      "bodies": [
+        "songbird",
+        "kingfisher",
+        "parrot",
+        "dove"
+      ],
+      "default": 1.0,
+      "help": "How hard the air sacs squeeze. More pressure: louder, and the labia swing wider.",
+      "index": 0,
+      "key": "pressure",
+      "label": "AIR PRESSURE",
+      "log": false,
+      "max": 1.6,
+      "min": 0.4,
+      "section": "LUNGS",
+      "unit": "x"
+    },
+    {
+      "bodies": [
+        "songbird",
+        "kingfisher",
+        "parrot",
+        "dove"
+      ],
+      "default": 0.3,
+      "help": "Muscle tension on the labia. High: pure whistle (Hopf regime). Low: buzzy pulses (saddle-node regime).",
+      "index": 1,
+      "key": "tension",
+      "label": "SYRINX TENSION",
+      "log": false,
+      "max": 0.85,
+      "min": -0.5,
+      "section": "SYRINX",
+      "unit": ""
+    },
+    {
+      "bodies": [
+        "songbird",
+        "kingfisher",
+        "parrot",
+        "dove"
+      ],
+      "default": 0.0,
+      "help": "Lighter labia vibrate faster. Shifts the whole bird's pitch.",
+      "index": 2,
+      "key": "mass",
+      "label": "LABIA MASS",
+      "log": false,
+      "max": 12.0,
+      "min": -12.0,
+      "section": "SYRINX",
+      "unit": "st"
+    },
+    {
+      "bodies": [
+        "songbird",
+        "kingfisher",
+        "parrot",
+        "dove"
+      ],
+      "default": 6.0,
+      "help": "Length of the trachea. Sets its resonances and echo time.",
+      "index": 3,
+      "key": "trachea",
+      "label": "WINDPIPE LENGTH",
+      "log": true,
+      "max": 22.0,
+      "min": 1.5,
+      "section": "WINDPIPE",
+      "unit": "cm"
+    },
+    {
+      "bodies": [
+        "songbird",
+        "kingfisher",
+        "parrot",
+        "dove"
+      ],
+      "default": 0.2,
+      "help": "How much sound reflects back down the windpipe to the syrinx.",
+      "index": 4,
+      "key": "echo",
+      "label": "WINDPIPE ECHO",
+      "log": false,
+      "max": 0.8,
+      "min": -0.8,
+      "section": "WINDPIPE",
+      "unit": ""
+    },
+    {
+      "bodies": [
+        "songbird",
+        "kingfisher",
+        "dove"
+      ],
+      "default": 2500.0,
+      "help": "Resonance of the oropharyngeal-oesophageal cavity (OEC), the throat space behind the beak.",
+      "index": 5,
+      "key": "oec",
+      "label": "THROAT SAC",
+      "log": true,
+      "max": 9000.0,
+      "min": 400.0,
+      "section": "THROAT",
+      "unit": "Hz"
+    },
+    {
+      "bodies": [
+        "songbird",
+        "kingfisher",
+        "dove"
+      ],
+      "default": 0.6,
+      "help": "How much the bird re-sizes its throat to follow the note. High = purer tone.",
+      "index": 6,
+      "key": "oec_track",
+      "label": "THROAT TRACKING",
+      "log": false,
+      "max": 1.0,
+      "min": 0.0,
+      "section": "THROAT",
+      "unit": ""
+    },
+    {
+      "bodies": [
+        "songbird",
+        "kingfisher",
+        "parrot",
+        "dove"
+      ],
+      "default": 0.5,
+      "help": "Beak gape. Wider opens up the high frequencies.",
+      "index": 7,
+      "key": "beak",
+      "label": "BEAK OPENING",
+      "log": false,
+      "max": 1.0,
+      "min": 0.0,
+      "section": "BEAK",
+      "unit": ""
+    },
+    {
+      "bodies": [
+        "songbird",
+        "kingfisher",
+        "parrot",
+        "dove"
+      ],
+      "default": 0.4,
+      "help": "Birds open the beak wider for higher notes. This is how much.",
+      "index": 8,
+      "key": "beak_track",
+      "label": "BEAK FOLLOWS PITCH",
+      "log": false,
+      "max": 1.0,
+      "min": 0.0,
+      "section": "BEAK",
+      "unit": ""
+    },
+    {
+      "bodies": [
+        "songbird",
+        "kingfisher",
+        "parrot",
+        "dove"
+      ],
+      "default": 0.1,
+      "help": "Irregular airflow that shakes the labia. Makes calls rough and harsh.",
+      "index": 9,
+      "key": "turb",
+      "label": "TURBULENCE",
+      "log": false,
+      "max": 1.0,
+      "min": 0.0,
+      "section": "LUNGS",
+      "unit": ""
+    },
+    {
+      "bodies": [
+        "songbird",
+        "kingfisher",
+        "parrot",
+        "dove"
+      ],
+      "default": 0.05,
+      "help": "Hiss of air rushing through the syrinx.",
+      "index": 10,
+      "key": "breath",
+      "label": "BREATH NOISE",
+      "log": false,
+      "max": 1.0,
+      "min": 0.0,
+      "section": "LUNGS",
+      "unit": ""
+    },
+    {
+      "bodies": [
+        "songbird",
+        "kingfisher"
+      ],
+      "default": 0.0,
+      "help": "The other side of the syrinx singing at the same time.",
+      "index": 11,
+      "key": "two",
+      "label": "SECOND VOICE",
+      "log": false,
+      "max": 1.0,
+      "min": 0.0,
+      "section": "SYRINX",
+      "unit": ""
+    },
+    {
+      "bodies": [
+        "songbird",
+        "kingfisher"
+      ],
+      "default": 7.0,
+      "help": "Pitch of the second voice relative to the first.",
+      "index": 12,
+      "key": "two_int",
+      "label": "VOICE INTERVAL",
+      "log": false,
+      "max": 12.0,
+      "min": -12.0,
+      "section": "SYRINX",
+      "unit": "st"
+    },
+    {
+      "bodies": [
+        "songbird"
+      ],
+      "default": 2000.0,
+      "help": "Songbirds sing low notes on the left side and high notes on the right. This is the crossover.",
+      "index": 13,
+      "key": "split",
+      "label": "SIDE SWITCH",
+      "log": true,
+      "max": 8000.0,
+      "min": 400.0,
+      "section": "SYRINX",
+      "unit": "Hz"
+    },
+    {
+      "bodies": [
+        "kingfisher"
+      ],
+      "default": 0.3,
+      "help": "How strongly the two sound membranes push on each other. High coupling gives the rough, chaotic laugh.",
+      "index": 14,
+      "key": "coupling",
+      "label": "MEMBRANE COUPLING",
+      "log": false,
+      "max": 1.0,
+      "min": 0.0,
+      "section": "SYRINX",
+      "unit": ""
+    },
+    {
+      "bodies": [
+        "songbird",
+        "kingfisher",
+        "parrot"
+      ],
+      "default": 0.5,
+      "help": "Raising the tongue shrinks the mouth and lifts the first resonance.",
+      "index": 15,
+      "key": "tongue_h",
+      "label": "TONGUE HEIGHT",
+      "log": false,
+      "max": 1.0,
+      "min": 0.0,
+      "section": "TONGUE",
+      "unit": ""
+    },
+    {
+      "bodies": [
+        "songbird",
+        "kingfisher",
+        "parrot"
+      ],
+      "default": 0.5,
+      "help": "Moving the tongue forward lifts the second resonance.",
+      "index": 16,
+      "key": "tongue_p",
+      "label": "TONGUE FRONT/BACK",
+      "log": false,
+      "max": 1.0,
+      "min": 0.0,
+      "section": "TONGUE",
+      "unit": ""
+    },
+    {
+      "bodies": [
+        "songbird",
+        "kingfisher",
+        "parrot"
+      ],
+      "default": 0.5,
+      "help": "How sharply the mouth rings at its resonances.",
+      "index": 17,
+      "key": "mouth_q",
+      "label": "MOUTH RESONANCE",
+      "log": false,
+      "max": 1.0,
+      "min": 0.0,
+      "section": "TONGUE",
+      "unit": ""
+    },
+    {
+      "bodies": [
+        "kingfisher",
+        "parrot"
+      ],
+      "default": 0.0,
+      "help": "Sharpens each breath pulse, like the chopped 'ha-ha' of a laugh.",
+      "index": 18,
+      "key": "pulse",
+      "label": "BREATH PULSE",
+      "log": false,
+      "max": 1.0,
+      "min": 0.0,
+      "section": "LUNGS",
+      "unit": ""
+    },
+    {
+      "bodies": [
+        "songbird",
+        "kingfisher",
+        "parrot",
+        "dove"
+      ],
+      "default": 1.0,
+      "help": "Plays the call faster or slower without changing its pitch.",
+      "index": 19,
+      "key": "speed",
+      "label": "CALL SPEED",
+      "log": true,
+      "max": 2.0,
+      "min": 0.25,
+      "section": "PLAY",
+      "unit": "x"
+    },
+    {
+      "bodies": [
+        "songbird",
+        "kingfisher",
+        "parrot",
+        "dove"
+      ],
+      "default": 1.0,
+      "help": "Depth of the call's pitch movement. 1 = as the bird sings it.",
+      "index": 20,
+      "key": "sweep",
+      "label": "PITCH SWEEP",
+      "log": false,
+      "max": 2.0,
+      "min": 0.0,
+      "section": "PLAY",
+      "unit": "x"
+    },
+    {
+      "bodies": [
+        "songbird",
+        "kingfisher",
+        "parrot",
+        "dove"
+      ],
+      "default": 0.0,
+      "help": "0 one-shot: the whole call plays. 1 gate: stops on key release. 2 loop: repeats while held.",
+      "index": 21,
+      "key": "mode",
+      "label": "KEY MODE",
+      "log": false,
+      "max": 2.0,
+      "min": 0.0,
+      "section": "PLAY",
+      "unit": ""
+    },
+    {
+      "bodies": [
+        "songbird",
+        "kingfisher",
+        "parrot",
+        "dove"
+      ],
+      "default": 0.8,
+      "help": "Output level.",
+      "index": 22,
+      "key": "volume",
+      "label": "VOLUME",
+      "log": false,
+      "max": 1.0,
+      "min": 0.0,
+      "section": "PLAY",
+      "unit": ""
+    },
+    {
+      "bodies": [
+        "songbird",
+        "kingfisher",
+        "dove"
+      ],
+      "default": 0.7,
+      "help": "How strongly the throat cavity filters the sound. Low lets the raw buzz of the syrinx through.",
+      "index": 23,
+      "key": "oec_depth",
+      "label": "THROAT FILTER",
+      "log": false,
+      "max": 1.0,
+      "min": 0.0,
+      "section": "THROAT",
+      "unit": ""
+    },
+    {
+      "bodies": [
+        "songbird",
+        "kingfisher",
+        "parrot",
+        "dove"
+      ],
+      "default": 0.15,
+      "help": "How fully the labia shut the airway on each cycle. Closing chops the airflow into pulses: a bright, buzzy, harmonic-rich voice.",
+      "index": 24,
+      "key": "closure",
+      "label": "LABIAL CLOSURE",
+      "log": false,
+      "max": 1.0,
+      "min": 0.0,
+      "section": "SYRINX",
+      "unit": ""
+    },
+    {
+      "bodies": [
+        "songbird",
+        "kingfisher"
+      ],
+      "default": 0.0,
+      "help": "How much the mouth and tongue shape the sound after the throat. Parrots always use theirs; other birds use it less.",
+      "index": 25,
+      "key": "mouth",
+      "label": "MOUTH SHAPING",
+      "log": false,
+      "max": 1.0,
+      "min": 0.0,
+      "section": "TONGUE",
+      "unit": ""
+    },
+    {
+      "bodies": [
+        "dove"
+      ],
+      "default": 0.6,
+      "help": "Doves coo with the beak shut and the oesophagus blown up like a balloon. The thin neck wall then rings at the note and radiates it: a soft, pure hoot. This is how much of the sound leaves through the neck instead of the beak.",
+      "index": 26,
+      "key": "sac",
+      "label": "NECK INFLATION",
+      "log": false,
+      "max": 1.0,
+      "min": 0.0,
+      "section": "THROAT",
+      "unit": ""
+    },
+    {
+      "bodies": [
+        "dove"
+      ],
+      "default": 0.4,
+      "help": "How sharply the inflated neck sac rings. Higher: purer, more hollow coo.",
+      "index": 27,
+      "key": "sac_q",
+      "label": "SAC RESONANCE",
+      "log": false,
+      "max": 1.0,
+      "min": 0.0,
+      "section": "THROAT",
+      "unit": ""
+    },
+    {
+      "bodies": [
+        "songbird",
+        "kingfisher",
+        "parrot",
+        "dove"
+      ],
+      "default": 0.002,
+      "help": "How long each note takes to fade in. Long attack: the call swells up softly.",
+      "index": 28,
+      "key": "attack",
+      "label": "ATTACK",
+      "log": true,
+      "max": 2.0,
+      "min": 0.002,
+      "section": "SHAPE",
+      "unit": "s"
+    },
+    {
+      "bodies": [
+        "songbird",
+        "kingfisher",
+        "parrot",
+        "dove"
+      ],
+      "default": 0.02,
+      "help": "How long a note takes to fade out after the call ends or you let go (in GATE mode).",
+      "index": 29,
+      "key": "release",
+      "label": "RELEASE",
+      "log": true,
+      "max": 4.0,
+      "min": 0.02,
+      "section": "SHAPE",
+      "unit": "s"
+    },
+    {
+      "bodies": [
+        "songbird",
+        "kingfisher",
+        "parrot",
+        "dove"
+      ],
+      "default": 0.0,
+      "help": "Portamento: each new note slides from the last note's pitch. 0 = jump straight there.",
+      "index": 30,
+      "key": "glide",
+      "label": "GLIDE",
+      "log": false,
+      "max": 1.0,
+      "min": 0.0,
+      "section": "SHAPE",
+      "unit": "s"
+    },
+    {
+      "bodies": [
+        "songbird",
+        "kingfisher",
+        "parrot",
+        "dove"
+      ],
+      "default": 0.0,
+      "help": "POLY: every key its own bird. MONO: one bird; a new key restarts the call at the new pitch. LEGATO: one bird; a new key while one is held just bends the call to the new pitch.",
+      "index": 31,
+      "key": "vmode",
+      "label": "VOICES",
+      "log": false,
+      "max": 2.0,
+      "min": 0.0,
+      "section": "SHAPE",
+      "unit": ""
+    },
+    {
+      "bodies": [
+        "songbird",
+        "kingfisher",
+        "parrot",
+        "dove"
+      ],
+      "default": 5.0,
+      "help": "Speed of the wobble used by vibrato and tremolo.",
+      "index": 32,
+      "key": "lfo_rate",
+      "label": "LFO RATE",
+      "log": true,
+      "max": 12.0,
+      "min": 0.1,
+      "section": "LFO",
+      "unit": "Hz"
+    },
+    {
+      "bodies": [
+        "songbird",
+        "kingfisher",
+        "parrot",
+        "dove"
+      ],
+      "default": 0.0,
+      "help": "Wobbles the pitch, in cents (100 = a semitone).",
+      "index": 33,
+      "key": "vibrato",
+      "label": "VIBRATO",
+      "log": false,
+      "max": 100.0,
+      "min": 0.0,
+      "section": "LFO",
+      "unit": "c"
+    },
+    {
+      "bodies": [
+        "songbird",
+        "kingfisher",
+        "parrot",
+        "dove"
+      ],
+      "default": 0.0,
+      "help": "Wobbles the air pressure, so the loudness and tone pulse together, the way a bird's breathing would.",
+      "index": 34,
+      "key": "tremolo",
+      "label": "TREMOLO",
+      "log": false,
+      "max": 1.0,
+      "min": 0.0,
+      "section": "LFO",
+      "unit": ""
+    }
+  ]
+}

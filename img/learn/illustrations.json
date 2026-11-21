@@ -1,0 +1,78 @@
+[
+ {
+  "file": "bird-breathing-airflow.svg",
+  "title": "How air flows through a bird",
+  "caption": "Birds breathe with balloon-like air sacs that pump air through stiff lungs, so fresh air flows through the lungs in the same direction when the bird breathes in and when it breathes out. That steady stream of air is what powers a bird's voice.",
+  "topic": "breathing",
+  "author": "L. Shyamal (based on R. McNeill Alexander, Animals)",
+  "source_url": "https://commons.wikimedia.org/wiki/File:BirdRespiration.svg",
+  "licence": "Public domain (released by the author)",
+  "licence_url": "https://commons.wikimedia.org/wiki/Template:PD-self",
+  "credit": "Bird respiration diagram by L. Shyamal, via Wikimedia Commons (public domain).",
+  "modified": "Removed editor metadata, added a viewBox so it scales, added sans-serif font fallback; drawing unchanged."
+ },
+ {
+  "file": "bird-air-sacs.svg",
+  "title": "A bird's air sacs",
+  "caption": "Besides its lungs, a bird has a set of thin-walled air sacs that fill much of its body and even reach into some bones. They act like bellows, storing and pushing the air that a bird sings with.",
+  "topic": "breathing",
+  "author": "C. Abraczinskas (from Sereno et al. 2008, PLoS ONE 3(9): e3303)",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Cranial_sinus_and_postcranial_air_sac_systems_in_birds.svg",
+  "licence": "CC BY 2.5",
+  "licence_url": "https://creativecommons.org/licenses/by/2.5/",
+  "credit": "Air sac diagram by C. Abraczinskas, from Sereno et al. (2008) PLoS ONE 3(9): e3303, via Wikimedia Commons, CC BY 2.5.",
+  "modified": "Kept English labels only (removed French language layer), removed editor metadata and embedded SVG fonts, added sans-serif font fallback."
+ },
+ {
+  "file": "syrinx-schematic-gille.jpg",
+  "title": "The syrinx: a bird's voice box",
+  "caption": "Birds make sound with a syrinx, found deep in the chest where the windpipe splits into the two bronchi, not in the throat like our larynx. Thin membranes in its walls vibrate as air rushes past, a bit like the reed of a clarinet.",
+  "topic": "syrinx",
+  "author": "Uwe Gille",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Syrinx.jpg",
+  "licence": "CC BY-SA 3.0 (also GFDL)",
+  "licence_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+  "credit": "Syrinx schematic by Uwe Gille, via Wikimedia Commons, CC BY-SA 3.0.",
+  "modified": "none (original file, 250x313 px)",
+  "legend": "1 last free tracheal ring; 2 tympanum; 3 first group of syringeal rings; 4 pessulus; 5 lateral tympaniform membrane; 6 medial tympaniform membrane; 7 second group of syringeal rings; 8 main bronchus; 9 bronchial cartilage"
+ },
+ {
+  "file": "haecker-1900-fig2-blackbird-syrinx-section.png",
+  "title": "Inside a blackbird's syrinx (1900)",
+  "caption": "A slice through the syrinx of a male blackbird, with the windpipe at the top and the two bronchi below. The thin membranes and soft lips on each side are where the sound starts, and the muscles alongside tighten or loosen them to change the note.",
+  "topic": "syrinx",
+  "author": "Valentin Häcker",
+  "source_url": "https://www.biodiversitylibrary.org/page/952214",
+  "licence": "Public domain",
+  "licence_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+  "credit": "Valentin Häcker, Der Gesang der Vögel: seine anatomischen und biologischen Grundlagen (Jena: Gustav Fischer, 1900), Fig. 2, p. 5. Public domain; scan via Biodiversity Heritage Library / Internet Archive (MBLWHOI Library).",
+  "modified": "Cropped Fig. 2 from p. 5 (scan leaf n14 of archive.org item dergesangdervg00hack; BHL page 952214), caption text removed, converted to greyscale, paper whitened, resized to 1400 px wide.",
+  "legend": "T.r. tracheal ring; T. tympanum (drum); M. muscles; B.I-B.III first to third bronchial half-rings; sl. semilunar membrane; St. pessulus (bridge); m.t.e. external tympaniform membrane; l.e. outer labium; l.i. inner labium; m.t.i. internal tympaniform membrane; h. cavity (part of an air sac); bd. bronchidesmus"
+ },
+ {
+  "file": "haecker-1900-fig5-flycatcher-simple-syrinx.png",
+  "title": "A simple syrinx: tyrant flycatcher (1900)",
+  "caption": "The syrinx of a ruddy-tailed flycatcher, a perching bird that is not a true songbird, has just one simple pair of muscles running down each side. Compare it with the crow's syrinx, where many small muscles give songbirds much finer control over their voice.",
+  "topic": "voice",
+  "author": "Valentin Häcker (after Johannes Müller)",
+  "source_url": "https://www.biodiversitylibrary.org/page/952194",
+  "licence": "Public domain",
+  "licence_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+  "credit": "Valentin Häcker, Der Gesang der Vögel: seine anatomischen und biologischen Grundlagen (Jena: Gustav Fischer, 1900), Fig. 5 (after J. Müller), p. 10. Public domain; scan via Biodiversity Heritage Library / Internet Archive (MBLWHOI Library).",
+  "modified": "Cropped Fig. 5 (Myiobius erythrurus) from p. 10 (scan leaf n19 of archive.org item dergesangdervg00hack; BHL page 952194), caption removed, converted to greyscale, paper whitened.",
+  "legend": "tr.br. tracheobronchial muscle; st.t. sternotracheal muscle"
+ },
+ {
+  "file": "haecker-1900-fig9-crow-songbird-syrinx-muscles.png",
+  "title": "A songbird's syrinx muscles: carrion crow (1900)",
+  "caption": "Crows are songbirds, and their syrinx is wrapped in several pairs of small muscles; here the outer layer has been removed to show the deeper ones. Each side can be controlled separately, which is how some songbirds sing two notes at once.",
+  "topic": "voice",
+  "author": "Valentin Häcker",
+  "source_url": "https://www.biodiversitylibrary.org/page/952211",
+  "licence": "Public domain",
+  "licence_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+  "credit": "Valentin Häcker, Der Gesang der Vögel: seine anatomischen und biologischen Grundlagen (Jena: Gustav Fischer, 1900), Fig. 9, p. 13. Public domain; scan via Biodiversity Heritage Library / Internet Archive (MBLWHOI Library).",
+  "modified": "Cropped Fig. 9 from p. 13 (scan leaf n22 of archive.org item dergesangdervg00hack; BHL page 952211), caption removed, converted to greyscale, paper whitened.",
+  "legend": "tr.br.v. ventral tracheobronchial muscle; tr.br.o. oblique tracheobronchial muscle; tr.br.d.l. long dorsal tracheobronchial muscle; tr.br.d.b. short dorsal tracheobronchial muscle; syr.v. ventral syringeal muscle; syr.vl. ventrolateral syringeal muscle; syr.d. dorsal syringeal muscle; B.III third bronchial half-ring"
+ }
+]

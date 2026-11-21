@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>Carol</title>
+<meta name="description" content="Carol: a bird synthesiser that plays real bird voices with physical models of the syrinx.">
+<link rel="icon" href="img/icon.svg">
+<link rel="apple-touch-icon" href="img/icon-180.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#141312">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<!-- not black-translucent: iOS 26.1+ blurs any page drawn under the status bar (WebKit 317153) -->
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Carol">
+<link rel="stylesheet" href="css/carol.css">
+</head>
+<body>
+<div id="app">
+  <div class="cheek left" aria-hidden="true"></div>
+  <main class="panel">
+    <header class="topbar">
+      <div class="logo">Carol<small>bird synthesiser</small></div>
+      <button class="bird-chip" id="birdChip" title="Browse birds">
+        <img id="birdThumb" alt="">
+        <span><b id="birdName">—</b><i id="birdSci"></i></span>
+      </button>
+      <div class="main-knob-wrap">
+        <div id="mainKnob"></div>
+        <label>BIRD</label>
+      </div>
+      <div class="top-buttons">
+        <button class="rocker" id="resetBtn" title="Return every knob to the fitted bird"><span class="long">RESET TO BIRD</span><span class="short">↺</span></button>
+        <div class="seg" id="viewSeg">
+          <button data-view="2d" class="on">2D</button><button data-view="3d">3D</button><button data-view="sono">SONO</button><button data-view="plate">PLATE</button>
+        </div>
+        <button class="rocker learn" id="learnBtn" title="About this bird">LEARN</button>
+        <button class="rocker gear" id="setBtn" title="Settings: MIDI, tempo, tuning, sharing" aria-label="Settings">⚙</button>
+      </div>
+      <div class="match" id="matchBadge" title="How close the fitted model gets to the recordings"></div>
+    </header>
+
+    <section class="work">
+      <div class="view" id="view">
+        <canvas id="view2d"></canvas>
+        <canvas id="view3d"></canvas>
+        <canvas id="sono"></canvas>
+        <figure id="plate"><img id="plateImg" alt=""><figcaption id="plateCap"></figcaption></figure>
+        <div class="view-hud" id="viewHud"></div>
+        <div class="view-size" id="viewSize">
+          <button data-size="hidden" title="Hide the bird">▁</button>
+          <button data-size="big" title="Big bird: hide the knobs">⤢</button>
+          <button data-size="full" title="Full screen">⛶</button>
+        </div>
+      </div>
+      <div class="knobs" id="knobs"></div>
+      <div class="kbar" id="kbar"></div>
+    </section>
+
+    <footer class="playbar" id="playbar">
+      <div class="pb-head">
+        <button class="pb-handle" id="pbHandle" aria-label="Show play bar"><span></span></button>
+        <div class="pb-tabs" id="pbTabs">
+          <button data-tab="keys" class="on">KEYS</button><button data-tab="pads">PADS</button><button data-tab="seq">SEQ</button>
+        </div>
+        <div class="pb-scale">
+          <label>SCALE</label>
+          <select id="scaleType"></select>
+          <select id="scaleRoot"></select>
+        </div>
+        <div class="pb-oct">
+          <button id="octDown">−</button><span id="octVal">OCT 0</span><button id="octUp">+</button>
+        </div>
+        <div class="pb-perf">
+          <button id="holdBtn" title="Hold: notes keep sounding after you let go">HOLD</button><button id="rptBtn" title="Repeat: held calls retrigger in time (speed in Settings)">RPT</button><button id="recBtn" class="rec" title="Record what you play (with effects) to a WAV file">●<span class="long"> REC</span></button>
+        </div>
+        <div class="pb-call" id="pbCall"></div>
+      </div>
+      <div class="pb-body">
+        <div class="keys" id="keys"></div>
+        <div class="pads" id="pads"></div>
+        <div class="seq" id="seq"></div>
+      </div>
+    </footer>
+  </main>
+  <div class="cheek right" aria-hidden="true"></div>
+</div>
+
+<!-- presets screen (main knob) -->
+<div class="overlay" id="presets" hidden>
+  <div class="ps-plate"><img id="psImg" alt=""><div class="ps-cap" id="psCap"></div></div>
+  <div class="ps-side">
+    <div class="ps-head"><h2>BIRDS</h2><input type="search" id="psSearch" placeholder="Search birds, families, places" autocomplete="off"><button class="x" data-close>✕</button></div>
+    <div class="ps-cats" id="psCats" role="tablist"></div>
+    <p class="ps-about" id="psAbout"></p>
+    <ol class="ps-list" id="psList"></ol>
+    <div class="ps-foot">
+      <span class="hint">Turn the BIRD knob to browse (it moves on to the next collection) · tap to load</span>
+      <button class="rocker" id="saveMineBtn">+ SAVE CURRENT SOUND</button>
+      <button class="rocker" id="importBtn">+ IMPORT YOUR OWN</button>
+    </div>
+  </div>
+</div>
+
+<!-- learning layer -->
+<div class="overlay learn-layer" id="learn" hidden>
+  <div class="ll-sheet">
+    <div class="ll-head">
+      <div class="ll-tabs" id="llTabs">
+        <button data-tab="overview" class="on">OVERVIEW</button><button data-tab="deep">DEEP DIVE</button><button data-tab="anatomy">ANATOMY</button><button data-tab="voice">HOW CAROL SINGS IT</button><button data-tab="sources">SOURCES</button>
+      </div>
+      <button class="x" data-close><span>✕</span></button>
+    </div>
+    <article class="ll-body" id="llBody"></article>
+  </div>
+</div>
+
+<!-- import -->
+<div class="overlay" id="import" hidden>
+  <div class="im-sheet">
+    <div class="ll-head"><h2>IMPORT YOUR OWN BIRD</h2><button class="x" data-close>✕</button></div>
+    <div class="im-body">
+      <p>Add one or more recordings of a single bird species. Carol finds its clearest calls, then tunes the body model until it sounds closest. Nothing leaves this device.</p>
+      <label class="field">Name <input id="imName" placeholder="e.g. Backyard butcherbird"></label>
+      <label class="field">Body type
+        <select id="imBody"><option value="0">Songbird</option><option value="1">Non-songbird (kingfisher)</option><option value="2">Parrot</option><option value="3">Dove</option></select>
+      </label>
+      <label class="field">Pitch range
+        <select id="imRange"><option value="250,9000">Normal (250 Hz – 9 kHz)</option><option value="150,4000">Low voice (150 Hz – 4 kHz)</option><option value="800,12000">High voice (800 Hz – 12 kHz)</option></select>
+      </label>
+      <label class="field">Recordings <input id="imFiles" type="file" accept="audio/*" multiple></label>
+      <label class="field">Recordist / licence <input id="imCredit" placeholder="e.g. Your name, CC BY 4.0"></label>
+      <div class="im-progress" id="imProgress" hidden><div class="bar"><span id="imBar"></span></div><div id="imStatus"></div></div>
+      <div class="im-actions"><button class="rocker" id="imGo">FIT MY BIRD</button></div>
+    </div>
+  </div>
+</div>
+
+<div class="overlay viewer" id="viewer" hidden><div class="vw-box" id="vwBox"><img id="vwImg" alt=""></div><div class="vw-cap" id="vwCap"></div><button class="x" data-close>✕</button></div>
+<!-- settings -->
+<div class="overlay learn-layer" id="settings" hidden>
+  <div class="ll-sheet">
+    <div class="ll-head"><h2>SETTINGS</h2><button class="x" data-close><span>✕</span></button></div>
+    <article class="ll-body st-body" id="stBody"></article>
+  </div>
+</div>
+<div class="overlay" id="seqEdit" hidden></div>
+<div class="tour" id="tour" hidden></div>
+<div class="learn-bar" id="learnBar" hidden><span>MIDI LEARN: touch a knob, then move a controller</span><button class="rocker" id="learnDone">DONE</button></div>
+<div class="toast" id="toast" hidden></div>
+<div class="start" id="start" hidden><button class="rocker" id="startBtn">TAP TO WAKE CAROL</button></div>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
