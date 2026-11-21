@@ -16,11 +16,24 @@ const CURVES = {
 export class Midi {
   constructor(app) { this.app = app; this.acc = null; this.outs = []; this.ins = []; this.onDevices = null; this.clockN = 0; }
   get s() { return this.app.settings; }
-  async start() {
-    if (!navigator.requestMIDIAccess) return;
+  async start(tries = 0) {
+    // iPhone/iPad: Safari has no MIDI, but apps such as Web MIDI Browser add it, sometimes just after the page
+    // loads, so look again for a few seconds before giving up
+    if (!navigator.requestMIDIAccess) { if (tries < 8) setTimeout(() => this.start(tries + 1), 500); return; }
+    if (this.acc) return;
     try {
       this.acc = await navigator.requestMIDIAccess();
-      this.bind(); this.acc.onstatechange = () => this.bind();
+      this.known = new Set([...this.acc.inputs.values()].map((i) => i.name));
+      this.bind();
+      this.acc.onstatechange = (e) => {
+        const port = e && e.port;
+        if (port && port.type === 'input' && !String(port.name).includes('Carol-Keys') && !String(port.name).includes('Through')) {
+          const on = port.state === 'connected';
+          if (on !== this.known.has(port.name)) { on ? this.known.add(port.name) : this.known.delete(port.name); this.app.toast(`${port.name} ${on ? 'connected' : 'disconnected'}`); }
+        }
+        this.bind();
+      };
+      this.onDevices && this.onDevices();
     } catch (e) { console.warn('MIDI unavailable', e); }
   }
   bind() {
