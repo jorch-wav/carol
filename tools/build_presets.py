@@ -201,7 +201,7 @@ LOOKS = {
     'robin': {'body': [3.8, 2.7, 2.5], 'head': 1.6, 'neck': 0.55, 'tail': 2.6,
               'beak': {'len': 0.95, 'depth': 0.36, 'curve': 0.06, 'hook': 0},
               'colors': {'body': '#7a6a4f', 'belly': '#ede8df', 'head': '#7a6a4f', 'wing': '#6e5d44', 'tail': '#6b5a42', 'beak': '#2a2622', 'beak2': '#2a2622', 'eye': '#111111', 'legs': '#8c6e54'},
-              'accents': [{'body': True, 'at': [2.2, 0.9, 0], 'r': [1.8, 1.85, 2.05], 'rot': -0.2, 'color': '#9ea3a6', 'layer': 0},
+              'accents': [{'body': True, 'at': [2.05, 0.95, 0], 'r': [1.65, 1.7, 1.95], 'rot': -0.2, 'color': '#9ea3a6', 'layer': 0},
                           {'body': True, 'at': [2.35, 0.85, 0], 'r': [1.65, 1.7, 1.95], 'rot': -0.2, 'color': '#dd6a2e', 'layer': 0},
                           {'at': [0.75, -0.6, 0.5], 'r': [0.75, 0.6, 0.45], 'rot': 0.2, 'color': '#dd6a2e'}]},
     # breeding male; streamers ~1.6-2x body length (upper tail coverts)

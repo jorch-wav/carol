@@ -1,5 +1,5 @@
 // 2D side cutaway of the shared bird model.
-import { PART_INFO } from './birdmodel.js';
+import { PART_INFO, mixHex } from './birdmodel.js';
 
 const LABEL_POS = { airsacs: [-0.6, -2.4], lungs: [-2.6, 1.0], syrinx: [-2.0, 2.0], trachea: [1.9, -0.9], oec: [-2.4, -0.4], beak: [0.6, 1.3], tongue: [1.4, -2.3], sac: [1.8, -1.6] };
 
@@ -7,6 +7,7 @@ export class View2D {
   constructor(canvas) {
     this.cv = canvas; this.ctx = canvas.getContext('2d');
     this.sel = null; this.labels = true; this.rings = [];
+    this.style = 0;   // 0 cutaway (translucent), 1 plate (ink & watercolour), 2 field guide (solid + cutaway lens), 3 x-ray
     this.box = null;
     // pinch / wheel zoom and drag to pan, inside the bird panel only; double-tap resets
     this.zoom = 1; this.pan = [0, 0];
@@ -48,6 +49,7 @@ export class View2D {
   }
   draw(model) {
     const { emit } = model;
+    this.lastAir = model.air;
     const parts = model.parts.filter((p) => !p.far); // side view: the near side only
     const ctx = this.ctx, W = this.cv.width, H = this.cv.height;
     if (W < 2) return;
@@ -65,6 +67,7 @@ export class View2D {
 
     const skin = parts.filter((p) => p.layer === 0 && !p.wing);
     const inner = parts.filter((p) => p.layer > 0).sort((a, b) => zOf(a) - zOf(b));
+    if (this.style) { this.drawStyled(parts, X, Y, s, W, H, emit); return; }
     // soft light behind the bird so dark plumage still reads
     const body = parts.find((p) => p.id === 'body');
     if (body) {
@@ -139,6 +142,70 @@ export class View2D {
         ctx.textAlign = pick.left ? 'right' : 'left';
         ctx.fillText(text, pick.tx, pick.ly);
       }
+    }
+  }
+  /** The alternative looks: 1 Gould plate (ink and watercolour on paper), 2 field guide (solid bird, a
+   *  round cutaway onto the voice organs), 3 x-ray (glowing outline, vivid organs). */
+  drawStyled(parts, X, Y, s, W, H, emit) {
+    const ctx = this.ctx, d = this.dpr || 1, st = this.style;
+    const OUTER = new Set(['body', 'neck', 'head', 'wing', 'tail', 'legs', 'eye', 'markings', 'beak', 'crest', 'streamers']);
+    const outer = parts.filter((p) => OUTER.has(p.part) || p.layer === 0);
+    const organs = parts.filter((p) => !outer.includes(p) && p.part).sort((a, b) => zOf(a) - zOf(b));
+    const ordered = [...outer.filter((p) => p.layer === 0 && !p.wing), ...outer.filter((p) => p.wing), ...outer.filter((p) => p.layer > 0)];
+    const shade = (p, light, dark) => {
+      if (p.kind !== 'ell') return p.color;
+      const cx = X(p.c[0] - p.r[0] * 0.35), cy = Y(p.c[1] + p.r[1] * 0.45), R = Math.max(p.r[0], p.r[1]) * s * 1.6;
+      const g = ctx.createRadialGradient(cx, cy, R * 0.05, cx, cy, R);
+      g.addColorStop(0, mixHex(p.color, '#ffffff', light)); g.addColorStop(0.55, p.color); g.addColorStop(1, mixHex(p.color, '#000000', dark));
+      return g;
+    };
+    const fillShape = (p, fill, alpha, stroke, lw) => {
+      if (p.kind === 'tube') { this.shape(p, X, Y, s, typeof fill === 'string' ? fill : p.color, alpha, null); return; }
+      this.shape(p, X, Y, s, null, 0, null); ctx.globalAlpha = alpha; ctx.fillStyle = fill; ctx.fill(); ctx.globalAlpha = 1;
+      if (stroke) { ctx.strokeStyle = stroke; ctx.lineWidth = lw * d; ctx.stroke(); }
+    };
+    const bodyP = parts.find((p) => p.id === 'body');
+    if (st === 1) {
+      // paper, a soft vignette, then the bird in watercolour washes with an ink line, feathers hatched on the wing
+      ctx.fillStyle = '#efe6d2'; ctx.fillRect(0, 0, W, H);
+      const v = ctx.createRadialGradient(W / 2, H / 2, Math.min(W, H) * 0.3, W / 2, H / 2, Math.max(W, H) * 0.75);
+      v.addColorStop(0, 'rgba(0,0,0,0)'); v.addColorStop(1, 'rgba(120,90,50,.18)'); ctx.fillStyle = v; ctx.fillRect(0, 0, W, H);
+      for (const p of ordered) {
+        fillShape(p, shade(p, 0.28, 0.28), 0.93, 'rgba(43,33,24,.85)', 1.25);
+        if (p.wing && p.kind === 'ell') {
+          ctx.save(); this.shape(p, X, Y, s, null, 0, null); ctx.clip();
+          ctx.strokeStyle = 'rgba(43,33,24,.35)'; ctx.lineWidth = d;
+          for (let k = -6; k <= 6; k++) { const ox = p.c[0] + k * p.r[0] * 0.16; ctx.beginPath(); ctx.moveTo(X(ox + p.r[0] * 0.5), Y(p.c[1] + p.r[1])); ctx.quadraticCurveTo(X(ox), Y(p.c[1]), X(ox - p.r[0] * 0.6), Y(p.c[1] - p.r[1])); ctx.stroke(); }
+          ctx.restore();
+        }
+      }
+    } else if (st === 2) {
+      // a clean, solid bird; a round window on the chest shows the voice organs at work
+      for (const p of ordered) fillShape(p, shade(p, 0.18, 0.18), 1, 'rgba(241,236,226,.55)', 1);
+      if (bodyP) {
+        const syr = organs.find((p) => p.part === 'syrinx'), cxm = syr ? (syr.c[0] + bodyP.c[0]) / 2 : bodyP.c[0], cym = syr ? (syr.c[1] + bodyP.c[1]) / 2 : bodyP.c[1];
+        const R = bodyP.r[1] * 0.95 * s;
+        ctx.save(); ctx.beginPath(); ctx.arc(X(cxm), Y(cym), R, 0, 6.283); ctx.clip();
+        ctx.fillStyle = '#f4ecdc'; ctx.fillRect(0, 0, W, H);
+        for (const p of organs) this.shape(p, X, Y, s, p.color, p.alpha ?? 1, this.sel === p.part ? '#ffcf7a' : 'rgba(0,0,0,.45)', this.sel === p.part ? 2.5 : 1);
+        ctx.restore();
+        ctx.strokeStyle = '#2b2118'; ctx.lineWidth = 3 * d; ctx.beginPath(); ctx.arc(X(cxm), Y(cym), R, 0, 6.283); ctx.stroke();
+        ctx.strokeStyle = 'rgba(241,236,226,.8)'; ctx.lineWidth = 1.2 * d; ctx.setLineDash([5 * d, 4 * d]); ctx.beginPath(); ctx.arc(X(cxm), Y(cym), R + 4 * d, 0, 6.283); ctx.stroke(); ctx.setLineDash([]);
+      }
+    } else {
+      // x-ray: the body as a glowing outline, the organs bright inside it
+      ctx.fillStyle = '#0b1116'; ctx.fillRect(0, 0, W, H);
+      ctx.save(); ctx.shadowColor = 'rgba(110,210,255,.9)'; ctx.shadowBlur = 10 * d;
+      for (const p of ordered) { if (p.kind === 'tube') { this.shape(p, X, Y, s, 'rgba(120,210,255,.35)', 1, null); continue; } this.shape(p, X, Y, s, 'rgba(90,170,220,.05)', 1, 'rgba(140,220,255,.85)', 1.3); }
+      ctx.restore();
+      ctx.save(); ctx.shadowBlur = 6 * d;
+      for (const p of organs) { ctx.shadowColor = p.color; this.shape(p, X, Y, s, mixHex(p.color, '#ffffff', 0.12), Math.min(1, (p.alpha ?? 1) + 0.2), this.sel === p.part ? '#ffcf7a' : null, 2); }
+      ctx.restore();
+    }
+    // air (cutaway and x-ray only: the plate is a painting)
+    if (st !== 1) for (const a of this.lastAir || []) {
+      if (a.c[2] < -0.05) continue;
+      ctx.fillStyle = `rgba(236,248,255,${a.a})`; ctx.beginPath(); ctx.arc(X(a.c[0]), Y(a.c[1]), Math.max(1.5 * d, a.r * s), 0, 6.283); ctx.fill();
     }
   }
   shape(p, X, Y, s, fill, alpha, stroke, lw = 1) {
