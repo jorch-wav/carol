@@ -210,7 +210,9 @@ export function compute(body, lookIn, v, tele, t, extra = {}) {
   const thK = v.tongue_h ?? 0.4, tp = v.tongue_p ?? 0.5;
   const th = singing && tele[10] > 0 ? Math.max(-0.3, Math.min(1.3, Math.log2(tele[10] / 800) / 1.6)) : thK;
   const tScale = body === 'parrot' ? 1 : 0.6;
-  if (body !== 'dove') P({ id: 'tongue', kind: 'ell', c: [bb[0] + 0.2 + tp * 0.45 * tScale, bb[1] - B.depth * 0.45 + th * 0.28 * tScale, 0], r: [0.75 * tScale, 0.24 * tScale + 0.06, 0.32 * tScale], rot: -0.15, color: '#d77c8a', layer: 2, part: 'tongue' });
+  // the tongue stays inside the beak, however short the beak is
+  const tLen = Math.min(0.75 * tScale, B.len * 0.36), tX = Math.min(0.2 + tp * 0.45 * tScale, B.len * 0.42);
+  if (body !== 'dove') P({ id: 'tongue', kind: 'ell', c: [bb[0] + tX, bb[1] - B.depth * 0.45 + th * 0.28 * tScale, 0], r: [tLen, Math.min(0.24 * tScale + 0.06, B.depth * 0.32), 0.32 * tScale], rot: -0.15, color: '#d77c8a', layer: 2, part: 'tongue' });
 
   // --- air: particles flow from the air sacs, through the bronchi and the syrinx, up the windpipe and out
   // of the beak (doves: into the neck sac). Faster with more pressure, jittery with turbulence, a faint

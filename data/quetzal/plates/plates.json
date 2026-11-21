@@ -1,0 +1,26 @@
+[
+  {
+    "file": "plates/gould-1835-38.jpg",
+    "raw_file": "plates/raw/monographtrogon00goul_0104.jp2",
+    "artist": "John Gould and Elizabeth Gould",
+    "work": "John Gould, A Monograph of the Trogonidae, or Family of Trogons, 1st ed. (London, 1835-1838), 1 vol. issued in 3 parts, imperial folio",
+    "year": "1835-1838 (1st edition)",
+    "volume": "single volume (1st edition)",
+    "plate": "21 (handwritten '21' top left; BHL 'Pl. 21'; folding plate)",
+    "name_on_plate": "Trogon resplendens",
+    "gould_common_name": "Resplendent Trogon",
+    "artist_credit_on_plate": "Drawn from Nature & on Stone by J. & E. Gould.",
+    "printer_on_plate": "Printed by C. Hullmandel.",
+    "artist_died": 1881,
+    "other_artists_died": {
+      "Elizabeth Gould": 1841
+    },
+    "note": "Same author as the existing plate.jpg (2nd ed., 1875, Gould & W. Hart) but a different work/edition and a different drawing (John & Elizabeth Gould).",
+    "copy": "Smithsonian Libraries copy, digitised for the Biodiversity Heritage Library (Internet Archive monographtrogon00goul)",
+    "source_page_url": "https://archive.org/details/monographtrogon00goul/page/n103/mode/1up",
+    "source_file_url": "https://archive.org/download/monographtrogon00goul/monographtrogon00goul_jp2.zip/monographtrogon00goul_jp2%2Fmonographtrogon00goul_0104.jp2",
+    "bhl_url": "https://www.biodiversitylibrary.org/page/58474132",
+    "licence": "Public domain (published 1835-1838; artists died 1841 and 1881; BHL/IA: 'no longer under copyright protection')",
+    "processing": "JP2 -> RGB, resized to 900 px tall (Lanczos), JPEG quality 85, no crop (tall folding plate, 338x900) (tools/make_plate.py)"
+  }
+]
