@@ -2,7 +2,7 @@
  "collections": [
   {
    "name": "Australasia",
-   "count": 17,
+   "count": 19,
    "cover": "magpie",
    "region": "Australia, New Guinea, New Zealand",
    "about": "Birds of Australia and its neighbours, from the garden to the bush. Plates by John Gould, The Birds of Australia."
@@ -671,6 +671,100 @@
      "caption": "Henrik Gr\u00f6nvold, Gregory M. Mathews, The Birds of Australia, vol. IX, pl. 431: Psophodes olivaceus [with Psophodes nigrogularis] (Coachwhip-bird)",
      "artist": "Henrik Gr\u00f6nvold",
      "year": "1910"
+    }
+   ]
+  },
+  {
+   "id": "shrikethrush",
+   "name": "Grey Shrikethrush",
+   "sci": "Colluricincla harmonica",
+   "authority": "(Latham, 1801)",
+   "order": "Passeriformes",
+   "family": "Pachycephalidae",
+   "body": "songbird",
+   "tags": {
+    "features": [
+     "whistler",
+     "melodious song",
+     "pure tones",
+     "pair bond"
+    ],
+    "region": [
+     "Australia-wide",
+     "South-eastern Australia",
+     "Victoria",
+     "Tasmania",
+     "Southern New Guinea"
+    ]
+   },
+   "collection": "Australasia",
+   "family_name": "Whistlers and shrike-thrushes",
+   "tax": [
+    19,
+    12
+   ],
+   "image": "img/shrikethrush.jpg",
+   "image_caption": "John Gould, The Birds of Australia, vol. II, pl. 74: Colluricincla harmonica (Harmonious Colluricincla)",
+   "match": 73.9,
+   "plates": [
+    {
+     "image": "img/shrikethrush.jpg",
+     "caption": "John Gould, The Birds of Australia, vol. II, pl. 74: Colluricincla harmonica (Harmonious Colluricincla)",
+     "artist": "John Gould",
+     "year": "1840"
+    },
+    {
+     "image": "img/shrikethrush/mathews-1922-23.jpg",
+     "caption": "Henrik Gr\u00f6nvold, Gregory M. Mathews, The Birds of Australia, vol. X, pl. 478: Colluricincla harmonica (Grey Shrike-Thrush) (Grey Shrike-Thrush)",
+     "artist": "Henrik Gr\u00f6nvold",
+     "year": "1922"
+    }
+   ]
+  },
+  {
+   "id": "whistler",
+   "name": "Australian Golden Whistler",
+   "sci": "Pachycephala pectoralis",
+   "authority": "(Latham, 1801)",
+   "order": "Passeriformes",
+   "family": "Pachycephalidae",
+   "body": "songbird",
+   "tags": {
+    "features": [
+     "whistler",
+     "whip-crack",
+     "frequency sweep",
+     "female song"
+    ],
+    "region": [
+     "Eastern Australia",
+     "South-eastern Australia",
+     "Victoria",
+     "Tasmania",
+     "Southern Western Australia"
+    ]
+   },
+   "collection": "Australasia",
+   "family_name": "Whistlers and shrike-thrushes",
+   "tax": [
+    19,
+    12
+   ],
+   "image": "img/whistler.jpg",
+   "image_caption": "John Gould, The Birds of Australia, vol. II, pl. 64: Pachycephala gutturalis (Guttural Pachycephala)",
+   "match": 80.2,
+   "plates": [
+    {
+     "image": "img/whistler.jpg",
+     "caption": "John Gould, The Birds of Australia, vol. II, pl. 64: Pachycephala gutturalis (Guttural Pachycephala)",
+     "artist": "John Gould",
+     "year": "1840"
+    },
+    {
+     "image": "img/whistler/mathews-1919-20.jpg",
+     "caption": "Henrik Gr\u00f6nvold, Gregory M. Mathews, The Birds of Australia, vol. VIII, pl. 391: Pachycephala pectoralis. (White-throated Thickhead.) (White-throated Thickhead)",
+     "artist": "Henrik Gr\u00f6nvold",
+     "year": "1919"
     }
    ]
   },
