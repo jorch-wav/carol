@@ -8,7 +8,7 @@
 export const PART_INFO = {
   airsacs: { label: 'AIR SACS', knobs: ['pressure', 'pulse'], text: 'Air sacs squeeze air past the syrinx. More pressure = louder and further past the onset of sound.' },
   lungs: { label: 'LUNGS', knobs: ['pressure'], text: 'Bird lungs are stiff; the air sacs do the pumping.' },
-  syrinx: { label: 'SYRINX', knobs: ['tension', 'closure', 'mass', 'two', 'two_int', 'split', 'coupling', 'turb', 'breath'], text: 'The voice box at the bottom of the windpipe. Its labia or membranes vibrate in the airflow: redder with more tension, bigger with more mass, glowing on the side that sings. Watch the air (blue) bunch up and burst through as they open and close.' },
+  syrinx: { label: 'SYRINX', knobs: ['tension', 'closure', 'mass', 'two', 'two_int', 'split', 'coupling', 'turb', 'breath'], text: 'The voice box at the bottom of the windpipe. Its labia or membranes vibrate in the airflow: redder with more tension, bigger with more mass, glowing on the side that sings. Watch the air bunch up and burst through as they open and close.' },
   bronchi: { label: 'BRONCHI', knobs: ['split', 'two'], text: 'Each bronchus has its own sound source in songbirds, so they can sing two notes at once. The side that sings glows: SIDE SWITCH sets where low notes (left) hand over to high ones (right); SECOND VOICE lights up the other side too.' },
   trachea: { label: 'WINDPIPE', knobs: ['trachea', 'echo'], text: 'The trachea carries sound to the mouth and adds its own resonances and echoes.' },
   oec: { label: 'THROAT SAC', knobs: ['oec', 'oec_track', 'oec_depth'], text: 'The oropharyngeal-oesophageal cavity. Songbirds inflate it to tune it to the note and filter out overtones.' },
