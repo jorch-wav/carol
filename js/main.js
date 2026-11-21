@@ -110,9 +110,7 @@ class App {
     this.callIdx = Math.min(ls.get('carol-call-' + id, 0), b.calls.length - 1);
     // header
     $('birdName').textContent = b.name; $('birdSci').textContent = b.sci || '';
-    const th = $('birdThumb'); if (b.image) { th.src = b.image; th.style.display = ''; } else th.style.display = 'none';
-    const pi = $('plateImg'); if (b.image) pi.src = b.image; else pi.removeAttribute('src');
-    $('plateCap').textContent = b.sources && b.sources.image ? b.sources.image.credit : (b.image ? '' : 'No illustration for this bird.');
+    this.showPlate();
     $('matchBadge').innerHTML = b.match ? `<b>${Math.round(b.match.total)}%</b>MATCH TO BIRD` : '';
     this.buildPanel();
     // new bird: reframe both views right away, zoom back to 1
@@ -126,6 +124,56 @@ class App {
     if (this.tour && !this.tour.el.hidden) this.tour.close();
     const i = this.index.findIndex((x) => x.id === id); if (i >= 0) this.mainKnob.setU(i / (this.mainKnob.steps - 1));
     this.toast(b.name);
+  }
+  // ---------------------------------------------------------------- plates (each bird has a small gallery)
+  /** A bird's plates (preset or index entry), plus your own picture if you added one. */
+  plates(b) {
+    const list = (b.plates && b.plates.length ? b.plates : b.image ? [{ image: b.image, caption: b.image_caption || b.name, artist: '' }] : []).slice();
+    const mine = ls.get('carol-myplate-' + b.id, null);
+    if (mine) list.push({ image: mine, caption: 'Your picture (only on this device)', artist: 'You', mine: true });
+    return list;
+  }
+  /** Which plate to show: the one you picked for this bird, else your preferred artist, else the first. */
+  plateIndex(b) {
+    const list = this.plates(b); if (!list.length) return -1;
+    const pick = ls.get('carol-plate-' + b.id, null);
+    if (pick !== null && pick < list.length) return pick;
+    const pref = this.settings.prefArtist;
+    const i = pref ? list.findIndex((p) => (p.artist || '').includes(pref)) : -1;
+    return i >= 0 ? i : 0;
+  }
+  plateOf(b) { const list = this.plates(b), i = this.plateIndex(b); return i >= 0 ? list[i] : null; }
+  setPlate(b, i) {
+    const n = this.plates(b).length; if (!n) return;
+    ls.set('carol-plate-' + b.id, ((i % n) + n) % n);
+    if (this.bird && b.id === this.bird.id) this.showPlate();
+    if (!this.presets.el.hidden) this.presets.showPlate();
+  }
+  /** Show the chosen plate in the top bar thumbnail and the PLATE view. */
+  showPlate() {
+    const b = this.bird, p = this.plateOf(b), list = this.plates(b), i = this.plateIndex(b);
+    const th = $('birdThumb'); if (p) { th.src = p.image; th.style.display = ''; } else th.style.display = 'none';
+    const pi = $('plateImg'); if (p) pi.src = p.image; else pi.removeAttribute('src');
+    const full = p && !p.mine && b.sources && b.sources.plates ? (b.sources.plates.find((q) => q.image === p.image) || {}).credit : null;
+    $('plateCap').textContent = p ? (full || p.caption) : 'No illustration for this bird.';
+    $('plDots').innerHTML = list.length > 1 ? list.map((q, k) => `<button class="${k === i ? 'on' : ''}" data-k="${k}" title="${(q.artist || '').replace(/"/g, '')}${q.year ? ', ' + q.year : ''}"></button>`).join('') : '';
+    $('plDots').querySelectorAll('[data-k]').forEach((x) => x.onclick = (e) => { e.stopPropagation(); this.setPlate(b, Number(x.dataset.k)); });
+    $('plPrev').hidden = $('plNext').hidden = list.length < 2;
+    $('plWho').textContent = p ? `${p.artist || ''}${p.year ? ' · ' + p.year : ''}` : '';
+    $('plMine').textContent = p && p.mine ? 'REMOVE MY PICTURE' : '+ MY PICTURE';
+  }
+  /** Your own picture for this bird: scaled down and kept on this device. */
+  addMyPlate(file) {
+    const b = this.bird, img = new Image(), url = URL.createObjectURL(file);
+    img.onload = () => {
+      const k = Math.min(1, 900 / Math.max(img.width, img.height)), cv = document.createElement('canvas');
+      cv.width = Math.round(img.width * k); cv.height = Math.round(img.height * k);
+      cv.getContext('2d').drawImage(img, 0, 0, cv.width, cv.height);
+      URL.revokeObjectURL(url);
+      try { localStorage.setItem('carol-myplate-' + b.id, JSON.stringify(cv.toDataURL('image/jpeg', 0.82))); } catch { this.toast('Not enough space to keep that picture'); return; }
+      this.setPlate(b, this.plates(b).length - 1);
+    };
+    img.src = url;
   }
   birdValue(p) { return this.bird.params[p.key] ?? p.default; }
   buildPanel() {
@@ -411,6 +459,7 @@ class App {
     if (['midiIn', 'midiOut'].includes(k) && this.midi.acc) this.midi.bind();
     if (k === 'sync' && this.seq.playing) this.seq.stop();
     if (k === 'sync') this.seq.renderTransport();
+    if (k === 'prefArtist') this.showPlate();
   }
   setLearning(on) {
     this.learning = on; this.learnTarget = null;
@@ -535,6 +584,15 @@ class App {
     $('learnDone').onclick = () => this.setLearning(false);
     $('saveMineBtn').onclick = () => this.saveMyPreset().then(() => this.presets.el.hidden || this.presets.render());
     zoomable($('plate'), $('plateImg'));
+    $('plPrev').onclick = (e) => { e.stopPropagation(); this.setPlate(this.bird, this.plateIndex(this.bird) - 1); };
+    $('plNext').onclick = (e) => { e.stopPropagation(); this.setPlate(this.bird, this.plateIndex(this.bird) + 1); };
+    $('plMine').onclick = (e) => {
+      e.stopPropagation();
+      const p = this.plateOf(this.bird);
+      if (p && p.mine) { localStorage.removeItem('carol-myplate-' + this.bird.id); ls.set('carol-plate-' + this.bird.id, 0); this.showPlate(); }
+      else $('plFile').click();
+    };
+    $('plFile').onchange = (e) => { const f = e.target.files[0]; if (f) this.addMyPlate(f); e.target.value = ''; };
     document.querySelectorAll('#viewSize button').forEach((b) => b.onclick = () => this.setViewSize(this.viewSize === b.dataset.size ? '' : b.dataset.size));
     this.setViewSize(ls.get('carol-viewsize', ''));
     document.querySelectorAll('#viewSeg button').forEach((b) => b.onclick = () => this.setView(b.dataset.view));

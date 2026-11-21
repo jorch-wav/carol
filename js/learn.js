@@ -42,7 +42,8 @@ export class Learn {
     const tx = b.taxonomy || {};
     let h = `<h1>${esc(b.name)}</h1><p class="sci"><i>${esc(b.sci)}</i> ${esc(tx.authority || '')}${tx.family ? ' · ' + esc(tx.family) + ', ' + esc(tx.order) : (info.family ? ' · ' + esc(info.family) : '')}</p>`;
     if (tab === 'overview') {
-      if (b.image) h += `<img class="plate-small" src="${esc(b.image)}" alt="${esc(b.name)}, ${esc(tx.plate_artist || 'John Gould')}">`;
+      const pl = this.app.plateOf(b);
+      if (pl) h += `<img class="plate-small" src="${esc(pl.image)}" alt="${esc(b.name)}, ${esc(pl.artist || tx.plate_artist || 'John Gould')}">`;
       h += `<p class="lede">${esc(info.overview || 'No notes for this bird yet.')}</p>`;
       h += `<p><button class="tour-cta" data-tour>▶ TAKE THE TOUR</button> <small>Hear what each part of the body does, one step at a time.</small></p>`;
       if (b.match) h += `<p>Carol's model of this bird matches its recordings at <b>${Math.round(b.match.total)}%</b>. Open <i>How Carol sings it</i> to see why.</p>`;
@@ -91,7 +92,8 @@ export class Learn {
       const s = b.sources || {};
       h += `<h2>Recordings</h2><table><tr><th>Recording</th><th>Recordist</th><th>Licence</th><th>Place, date</th></tr>` +
         (s.recordings || []).map((r) => `<tr><td>${link(r.url, r.id)}</td><td>${esc(r.recordist)}</td><td>${link(r.licence_url, r.licence)}</td><td>${esc(r.location || '')} ${esc(r.date || '')}</td></tr>`).join('') + `</table>`;
-      if (s.image) h += `<h2>Illustration</h2><p>${esc(s.image.credit)}. ${link(s.image.url, s.image.source || 'Source')}${s.image.bhl ? ' · ' + link(s.image.bhl, 'Biodiversity Heritage Library') : ''}. ${esc(s.image.licence || 'Public domain')}.</p>`;
+      if (s.plates && s.plates.length) h += `<h2>Illustrations</h2><ul>` + s.plates.map((p) => `<li>${esc(p.credit)}. ${link(p.url, 'Scan')}${p.bhl ? ' · ' + link(p.bhl, 'Biodiversity Heritage Library') : ''}. ${esc(p.licence || 'Public domain')}.</li>`).join('') + `</ul>`;
+      else if (s.image) h += `<h2>Illustration</h2><p>${esc(s.image.credit)}. ${link(s.image.url, s.image.source || 'Source')}${s.image.bhl ? ' · ' + link(s.image.bhl, 'Biodiversity Heritage Library') : ''}. ${esc(s.image.licence || 'Public domain')}.</p>`;
       if ((s.facts || []).length) h += `<h2>Facts</h2><ul>` + s.facts.map((f) => `<li>${link(f.url, f.title)}${f.licence ? ' — ' + esc(f.licence) : ''}${f.used_for ? ' <small>(' + esc(f.used_for) + ')</small>' : ''}</li>`).join('') + `</ul>`;
       if (this.figs.length) h += `<h2>Anatomy illustrations</h2><ul>` + this.figs.map((f) => `<li>${esc(f.title)}: ${esc(f.credit)} ${link(f.source_url, 'Source')} · ${link(f.licence_url, f.licence)}${f.modified ? ' <small>(' + esc(f.modified) + ')</small>' : ''}</li>`).join('') + `</ul>`;
       h += `<h2>Science</h2><ul>` + (s.science || []).map((f) => `<li>${link(f.url, f.title)}</li>`).join('') + `</ul>`;

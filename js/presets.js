@@ -94,8 +94,19 @@ export class Presets {
     const b = this.visible[this.hi];
     const img = document.getElementById('psImg'), cap = document.getElementById('psCap');
     if (!b) { img.removeAttribute('src'); cap.textContent = ''; return; }
-    if (b.image) img.src = b.image; else img.removeAttribute('src');
-    cap.textContent = b.image_caption || b.name;
+    const p = this.app.plateOf(b), n = this.app.plates(b).length;
+    if (p) img.src = p.image; else img.removeAttribute('src');
+    cap.textContent = p ? p.caption : b.name;
+    // flip between this bird's plates right here
+    let nav = document.getElementById('psPlNav');
+    if (!nav) {
+      nav = document.createElement('div'); nav.id = 'psPlNav'; nav.className = 'ps-plnav';
+      nav.innerHTML = '<button data-d="-1" aria-label="Previous plate">‹</button><span></span><button data-d="1" aria-label="Next plate">›</button>';
+      img.parentElement.appendChild(nav);
+      nav.querySelectorAll('[data-d]').forEach((x) => x.onclick = (e) => { e.stopPropagation(); const bb = this.visible[this.hi]; if (bb) this.app.setPlate(bb, this.app.plateIndex(bb) + Number(x.dataset.d)); });
+    }
+    nav.hidden = n < 2;
+    nav.querySelector('span').textContent = p ? `${p.artist || ''}${p.year ? ' · ' + p.year : ''} (${this.app.plateIndex(b) + 1}/${n})` : '';
     this.list.querySelectorAll('li[data-i]').forEach((li) => li.classList.toggle('hi', Number(li.dataset.i) === this.hi));
     const cur = this.list.querySelector('li.hi'); cur && cur.scrollIntoView({ block: 'nearest' });
   }
