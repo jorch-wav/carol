@@ -302,7 +302,10 @@ class App {
     const tablet = innerWidth <= 900, hidden = this.viewSize === 'hidden';
     const total = work.clientWidth, H = box.clientHeight - 12;
     let best = { k: 0, rows: 3, vw: 0 };
-    const widths = tablet || hidden ? [0] : [0.44, 0.4, 0.36, 0.32, 0.3, 0.28, 0.26];
+    // the bird panel keeps one width per screen size (chosen once), so it doesn't jump between birds
+    const sizeKey = `${total}x${H}`;
+    if (this._vwKey !== sizeKey) { this._vwKey = sizeKey; this._vwF = null; }
+    const widths = tablet || hidden ? [0] : this._vwF ? [this._vwF] : [0.44, 0.4, 0.36, 0.32, 0.3, 0.28, 0.26];
     for (const f of widths) {
       const vw = tablet ? 0 : hidden ? 46 : Math.max(300, total * f), W = (tablet ? box.clientWidth : total - vw) - 14;
       for (const rows of [1, 2, 3, 4, 5]) {
@@ -312,7 +315,8 @@ class App {
         if (lo > best.k + 2) best = { k: lo, rows, vw };   // a narrower view must earn its keep
       }
     }
-    if (!best.k) best = { k: 40, rows: 3, vw: tablet ? 0 : Math.max(300, total * 0.3) };
+    if (!best.k) best = { k: 40, rows: 3, vw: tablet ? 0 : Math.max(300, total * (this._vwF || 0.3)) };
+    if (!tablet && !hidden && !this._vwF) this._vwF = best.vw / total;
     if (!tablet && !hidden) { const cols = `${Math.round(best.vw)}px 1fr`; if (work.style.gridTemplateColumns !== cols) work.style.gridTemplateColumns = cols; }
     if (tablet) work.style.gridTemplateColumns = '';
     box.style.setProperty('--knob', clamp(best.k) + 'px');
