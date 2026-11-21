@@ -2,7 +2,7 @@
  "collections": [
   {
    "name": "Australasia",
-   "count": 12,
+   "count": 14,
    "cover": "magpie",
    "region": "Australia, New Guinea, New Zealand",
    "about": "Birds of Australia and its neighbours, from the garden to the bush. Plates by John Gould, The Birds of Australia."
@@ -503,6 +503,85 @@
    ]
   },
   {
+   "id": "wagtail",
+   "name": "Willie-wagtail",
+   "sci": "Rhipidura leucophrys",
+   "authority": "(Latham, 1801)",
+   "order": "Passeriformes",
+   "family": "Rhipiduridae",
+   "body": "songbird",
+   "tags": {
+    "features": [
+     "whistler",
+     "night singer",
+     "chatterer (rattle alarm)",
+     "tail-wagger"
+    ],
+    "region": [
+     "Australia-wide",
+     "New Guinea",
+     "Solomon Islands and Bismarck Archipelago",
+     "Moluccas"
+    ]
+   },
+   "collection": "Australasia",
+   "family_name": "Fantails",
+   "tax": [
+    19,
+    15
+   ],
+   "image": "img/wagtail.jpg",
+   "image_caption": "John Gould, The Birds of Australia, vol. II, pl. 86: Rhipidura motacilloides: Vig. & Horsf (Black Fantailed Flycatcher)",
+   "match": 81.5,
+   "plates": [
+    {
+     "image": "img/wagtail.jpg",
+     "caption": "John Gould, The Birds of Australia, vol. II, pl. 86: Rhipidura motacilloides: Vig. & Horsf (Black Fantailed Flycatcher)",
+     "artist": "John Gould",
+     "year": "1840"
+    }
+   ]
+  },
+  {
+   "id": "raven",
+   "name": "Little Raven",
+   "sci": "Corvus mellori",
+   "authority": "Mathews, 1912",
+   "order": "Passeriformes",
+   "family": "Corvidae",
+   "body": "songbird",
+   "tags": {
+    "features": [
+     "harsh caller",
+     "croaker",
+     "flock caller",
+     "wing-flicker"
+    ],
+    "region": [
+     "South-eastern Australia",
+     "Victoria",
+     "Kangaroo Island and King Island"
+    ]
+   },
+   "collection": "Australasia",
+   "family_name": "Crows and ravens",
+   "tax": [
+    19,
+    16
+   ],
+   "image": "img/raven.jpg",
+   "image_caption": "John Gould, The Birds of Australia, vol. IV, pl. 18: Corvus coronoides: Vig. et Horsf (White-eyed Crow)",
+   "match": 69.9,
+   "plates": [
+    {
+     "image": "img/raven.jpg",
+     "caption": "John Gould, The Birds of Australia, vol. IV, pl. 18: Corvus coronoides: Vig. et Horsf (White-eyed Crow)",
+     "artist": "John Gould",
+     "year": "1840"
+    }
+   ]
+  },
+  {
    "id": "pigeon",
    "name": "Rock Dove (feral pigeon)",
    "sci": "Columba livia",
@@ -538,6 +617,18 @@
      "caption": "John Gould, The Birds of Great Britain, vol. IV, pl. 3: Columba livia, Temm (Rock-Pigeon)",
      "artist": "John Gould",
      "year": "1862"
+    },
+    {
+     "image": "img/pigeon/dresser-1871-81.jpg",
+     "caption": "John Gerrard Keulemans, Henry Eeles Dresser, A History of the Birds of Europe, including all the species inhabiting the Western Palaearctic Region, vol. VII, pl. 457: Columba livia (Rock Dove)",
+     "artist": "John Gerrard Keulemans",
+     "year": "1871"
+    },
+    {
+     "image": "img/pigeon/lilford-thorburn.jpg",
+     "caption": "Archibald Thorburn, Thomas Powys, 4th Baron Lilford, Coloured Figures of the Birds of the British Islands, vol. IV, pl. 41: Columba livia, J. F. Gmelin (Rock-Dove)",
+     "artist": "Archibald Thorburn",
+     "year": "1885"
     }
    ]
   },
@@ -580,6 +671,18 @@
      "caption": "John Gould, The Birds of Great Britain, vol. II, pl. 48: Erythacus rubecula (Robin, or Redbreast)",
      "artist": "John Gould",
      "year": "1862"
+    },
+    {
+     "image": "img/robin/dresser-1871-81.jpg",
+     "caption": "John Gerrard Keulemans, Henry Eeles Dresser, A History of the Birds of Europe, including all the species inhabiting the Western Palaearctic Region, vol. II, pl. 51: Erithacus rubecula (Redbreast)",
+     "artist": "John Gerrard Keulemans",
+     "year": "1871"
+    },
+    {
+     "image": "img/robin/lilford-thorburn.jpg",
+     "caption": "Archibald Thorburn, Thomas Powys, 4th Baron Lilford, Coloured Figures of the Birds of the British Islands, vol. III, pl. 3: Erithacus rubecula (Linn.) (Robin)",
+     "artist": "Archibald Thorburn",
+     "year": "1885"
     }
    ]
   },
@@ -622,6 +725,18 @@
      "caption": "John James Audubon, The Birds of America, vol. II, pl. 159: Fringilla cardinalis, Bonap (Cardinal Grosbeak)",
      "artist": "John James Audubon",
      "year": "1827"
+    },
+    {
+     "image": "img/cardinal/wilson-1810.jpg",
+     "caption": "Alexander Wilson (drawn); engraved by Alexander Lawson, Alexander Wilson, American Ornithology; or, The Natural History of the Birds of the United States, vol. II: 1. Cardinal Grosbeak. 2. Female & egg. 3. Red Tanager. 4. Female & egg. (text: Loxia cardinalis, Linn.) (Cardinal Grosbeak)",
+     "artist": "Alexander Wilson (drawn); engraved by Alexander Lawson",
+     "year": "1810"
+    },
+    {
+     "image": "img/cardinal/catesby-1729-32.jpg",
+     "caption": "Mark Catesby (drawn and etched), Mark Catesby, The Natural History of Carolina, Florida and the Bahama Islands, vol. I: Coccothraustes rubra (The red Bird)",
+     "artist": "Mark Catesby (drawn and etched)",
+     "year": "1729"
     }
    ]
   },
@@ -659,6 +774,12 @@
      "caption": "John Gould, A Monograph of the Trogonidae, or Family of Trogons, 2nd ed., part III: Pharomacrus mocinno (Quezal)",
      "artist": "John Gould",
      "year": "1858"
+    },
+    {
+     "image": "img/quetzal/gould-1835-38.jpg",
+     "caption": "John Gould and Elizabeth Gould, John Gould, A Monograph of the Trogonidae, or Family of Trogons, 1st ed., vol. single volume (1st edition), pl. 21: Trogon resplendens (Resplendent Trogon)",
+     "artist": "John Gould and Elizabeth Gould",
+     "year": "1835"
     }
    ]
   }
