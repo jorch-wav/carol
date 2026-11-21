@@ -4,26 +4,36 @@ Carol plays real bird voices with **synthesis, not samples**. Each bird is a phy
 of how it makes sound — air sacs → syrinx → windpipe → throat → mouth → beak — tuned
 automatically until it sounds as close as it can to field recordings of that bird.
 
-Two collections so far (16 birds):
+26 birds so far, grouped by the region they're native to:
 
 | Bird | Collection | Body type | Match to recordings |
 |---|---|---|---|
-| Crimson rosella | Australian Birds | parrot | 86% |
-| Australian magpie | Australian Birds | songbird | 79% |
-| Laughing kookaburra | Australian Birds | non-songbird (kingfisher model) | 74% |
-| Red wattlebird | Australian Birds | songbird | 68% |
-| Australian boobook | Australian Birds | non-songbird (open mouth) | 92% |
-| Bell miner | Australian Birds | songbird | 88% |
-| Bush stone-curlew | Australian Birds | non-songbird (open mouth) | 86% |
-| Pied butcherbird | Australian Birds | songbird | 79% |
-| Rainbow lorikeet | Australian Birds | parrot | 77% |
-| Superb lyrebird | Australian Birds | songbird | 75% |
-| Sulphur-crested cockatoo | Australian Birds | parrot | 69% |
-| Eastern whipbird | Australian Birds | songbird | 62% |
-| European robin | Birds of the World | songbird | 87% |
-| Rock dove (feral pigeon) | Birds of the World | dove | 84% |
-| Resplendent quetzal | Birds of the World | non-songbird (kingfisher model) | 81% |
-| Northern cardinal | Birds of the World | songbird | 72% |
+| Crimson rosella | Australasia | parrot | 86% |
+| Australian magpie | Australasia | songbird | 79% |
+| Laughing kookaburra | Australasia | non-songbird (kingfisher model) | 74% |
+| Red wattlebird | Australasia | songbird | 68% |
+| Australian boobook | Australasia | non-songbird (open mouth) | 92% |
+| Bell miner | Australasia | songbird | 88% |
+| Bush stone-curlew | Australasia | non-songbird (open mouth) | 86% |
+| Pied butcherbird | Australasia | songbird | 79% |
+| Rainbow lorikeet | Australasia | parrot | 77% |
+| Superb lyrebird | Australasia | songbird | 75% |
+| Sulphur-crested cockatoo | Australasia | parrot | 69% |
+| Eastern whipbird | Australasia | songbird | 62% |
+| Yellow-tufted honeyeater | Australasia (Victoria) | songbird | 88% |
+| Tawny frogmouth | Australasia (Victoria) | non-songbird (open mouth) | 87% |
+| Willie wagtail | Australasia (Victoria) | songbird | 82% |
+| Yellow-tailed black-cockatoo | Australasia (Victoria) | parrot | 82% |
+| Golden whistler | Australasia (Victoria) | songbird | 80% |
+| Superb fairywren | Australasia (Victoria) | songbird | 78% |
+| Grey shrike-thrush | Australasia (Victoria) | songbird | 74% |
+| Little raven | Australasia (Victoria) | songbird | 70% |
+| Galah | Australasia (Victoria) | parrot | 70% |
+| Gang-gang cockatoo | Australasia (Victoria) | parrot | 66% |
+| European robin | World | songbird | 87% |
+| Rock dove (feral pigeon) | World | dove | 84% |
+| Resplendent quetzal | World | non-songbird (kingfisher model) | 81% |
+| Northern cardinal | World | songbird | 72% |
 
 **Play it: https://jorch-wav.github.io/carol/**
 
