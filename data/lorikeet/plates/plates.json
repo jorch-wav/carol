@@ -14,5 +14,20 @@
     "copy": "BHL scan (page 41557131) on Wikimedia Commons",
     "bhl_url": "https://www.biodiversitylibrary.org/page/41557131",
     "licence": "Public domain (published 1884; artist died 1917)"
+  },
+  {
+    "file": "plates/diggles-companion.jpg",
+    "raw_file": "plates/raw/Diggles_Companion_pl55.jpg",
+    "source_page_url": "https://commons.wikimedia.org/wiki/File:Companion_to_Gould%27s_Handbook;_or,_Synopsis_of_the_birds_of_Australia_(Plate_55)_(6797542114).jpg",
+    "source_file_url": "https://upload.wikimedia.org/wikipedia/commons/0/0a/Companion_to_Gould%27s_Handbook%3B_or%2C_Synopsis_of_the_birds_of_Australia_%28Plate_55%29_%286797542114%29.jpg",
+    "processing": "Commons original JPEG -> RGB, resized to 900 px tall (Lanczos), JPEG quality 85, no crop (tools/make_plate.py)",
+    "artist": "Silvester Diggles",
+    "work": "Silvester Diggles, Companion to Gould's Handbook; or, Synopsis of the Birds of Australia (Brisbane, 1877)",
+    "year": "1877",
+    "volume": "-",
+    "plate": "55",
+    "artist_died": 1880,
+    "copy": "BHL scan via Flickr on Wikimedia Commons",
+    "licence": "Public domain (published 1877; artist died 1880)"
   }
 ]

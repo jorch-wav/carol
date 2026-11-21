@@ -1,0 +1,33 @@
+[
+  {
+    "file": "plates/huet-pretre-temminck.jpg",
+    "raw_file": "plates/raw/Burhinus_grallarius_1838.jpg",
+    "source_page_url": "https://commons.wikimedia.org/wiki/File:Burhinus_grallarius_1838.jpg",
+    "source_file_url": "https://upload.wikimedia.org/wikipedia/commons/8/87/Burhinus_grallarius_1838.jpg",
+    "processing": "Commons original JPEG -> RGB, resized to 900 px tall (Lanczos), JPEG quality 85, no crop (tools/make_plate.py)",
+    "artist": "Nicolas Huet / Jean-Gabriel Prêtre",
+    "work": "C. J. Temminck & M. Laugier, Nouveau recueil de planches coloriées d'oiseaux (Paris, 1820-1839)",
+    "year": "1838 (Commons date)",
+    "volume": "-",
+    "plate": "not checked",
+    "artist_died": 1840,
+    "copy": "scan on Wikimedia Commons (File:Burhinus grallarius 1838.jpg)",
+    "licence": "Public domain (published by 1839; artists died 1830 / c. 1840)"
+  },
+  {
+    "file": "plates/mathews-keulemans.jpg",
+    "raw_file": "plates/raw/birdsaustralia3math_0466.jp2",
+    "copy": "Smithsonian Libraries copy, digitised for the Biodiversity Heritage Library (Internet Archive birdsaustralia3math)",
+    "source_page_url": "https://archive.org/details/birdsaustralia3math/page/n465/mode/1up",
+    "source_file_url": "https://archive.org/download/birdsaustralia3math/birdsaustralia3math_jp2.zip/birdsaustralia3math_jp2%2Fbirdsaustralia3math_0466.jp2",
+    "bhl_url": "https://www.biodiversitylibrary.org/page/53230518",
+    "processing": "JP2 -> RGB, resized to 900 px tall (Lanczos), JPEG quality 85, no crop (tools/make_plate.py)",
+    "artist": "John Gerrard Keulemans",
+    "work": "Gregory M. Mathews, The Birds of Australia (London: Witherby & Co., 1910-1927), 12 vols + supplements, royal quarto, hand-coloured lithographs",
+    "year": "vol. III (1910-1927 series)",
+    "volume": "III",
+    "plate": "173",
+    "artist_died": 1912,
+    "licence": "Public domain (published before 1930; artist died 1912)"
+  }
+]

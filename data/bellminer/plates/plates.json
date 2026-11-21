@@ -13,5 +13,21 @@
     "artist_died": 1867,
     "copy": "BHL scan via Flickr on Wikimedia Commons",
     "licence": "Public domain (published 1826-1843; artists died 1867/1874)"
+  },
+  {
+    "file": "plates/mathews-gronvold.jpg",
+    "raw_file": "plates/raw/birdsaustraliaxiimath_0055.jp2",
+    "copy": "Smithsonian Libraries copy, digitised for the Biodiversity Heritage Library (Internet Archive birdsaustraliaxiimath)",
+    "source_page_url": "https://archive.org/details/birdsaustraliaxiimath/page/n54/mode/1up",
+    "source_file_url": "https://archive.org/download/birdsaustraliaxiimath/birdsaustraliaxiimath_jp2.zip/birdsaustraliaxiimath_jp2%2Fbirdsaustraliaxiimath_0055.jp2",
+    "bhl_url": "https://www.biodiversitylibrary.org/page/57350543",
+    "processing": "JP2 -> RGB, resized to 900 px tall (Lanczos), JPEG quality 85, no crop (tools/make_plate.py)",
+    "artist": "Henrik Grönvold",
+    "work": "Gregory M. Mathews, The Birds of Australia (London: Witherby & Co., 1910-1927), 12 vols + supplements, royal quarto, hand-coloured lithographs",
+    "year": "vol. XII (1910-1927 series)",
+    "volume": "XII",
+    "plate": "545",
+    "artist_died": 1940,
+    "licence": "Public domain (published before 1930; artist died 1940)"
   }
 ]
