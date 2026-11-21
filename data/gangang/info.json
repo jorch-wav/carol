@@ -1,0 +1,89 @@
+{
+ "id": "gangang",
+ "common_name": "Gang-gang Cockatoo",
+ "scientific_name": "Callocephalon fimbriatum",
+ "family": "Cacatuidae (cockatoos)",
+ "overview": "The gang-gang is a small, stocky grey cockatoo of the cool mountain forests of south-eastern Australia. Males wear a scarlet head with a wispy, curling red crest; females have a grey head and are finely barred with salmon-pink and yellow. Its call is famous: a creaky, rising screech that sounds like a rusty gate opening or a cork being pulled from a bottle. Gang-gangs are quiet, gentle feeders, and a flock in a tree is often found by the sound of nibbling and falling gumnuts. The species has declined steeply and is now listed as Endangered in Australia. It is the bird emblem of the ACT.",
+ "deep_dive": {
+  "habitat": "In summer, tall, cool and wet mountain forests and woodlands with a dense shrubby understorey, high on the Great Dividing Range. In autumn and winter many move down to drier, more open forest, woodland, parks and suburban gardens (for example around Canberra). They nest in hollows of living eucalypts, often near water.",
+  "range": "South-eastern mainland Australia: south-central New South Wales and the ACT through Victoria to the south-west of the state (IOC: 'sc NSW to sw VIC'). Extinct on King Island; introduced on Kangaroo Island. No subspecies are recognised. The type locality is the Bass River, Victoria.",
+  "behaviour": "Moves up and down the mountains with the seasons. Feeds mostly in the canopy on eucalypt and wattle seeds, introduced hawthorn berries and other fruits, nuts and insect larvae, usually holding food in its left foot. Outside the breeding season it forms flocks of up to about 60; while breeding it lives in pairs or family groups. Pairs are monogamous, both parents incubate the two eggs for about 30 days, and young are fed for weeks after leaving the nest, sometimes in creches with other families. Numbers fell about 69% over three generations, and the 2019-20 bushfires burnt 28-36% of its range; land clearing that removes old hollow trees is a major threat.",
+  "voice": "The contact and flight call is a creaky, rising screech - BirdLife writes it 'ky-or-ark' - likened to a creaking gate or a squeaky cork. Feeding birds give soft growls. Fletcher (2000) analysed gang-gang and sulphur-crested cockatoo calls and found them chaotic rather than neatly harmonic: a broad spectrum peaked near 2.5 kHz with several dominant components whose strength and phase wander unpredictably; the gang-gang call was a little higher-pitched with less obvious sub-structure than the sulphur-crested cockatoo's. In our recordings each creak is a noisy, buzzy band from about 1.7 to 6 kHz with two strong formant-like bands near 2.0-2.3 kHz and 3.0-3.5 kHz, a dense comb of components about 350-450 Hz apart (the 'creak'), and short pulse trains at the onset. Soft growls are frequency-modulated harmonic stacks about 0.7 kHz apart between roughly 1.6 and 4.5 kHz.",
+  "anatomy": "A parrot (order Psittaciformes, family Cacatuidae), not a songbird. Parrots have a syrinx at the bottom of the windpipe, not where it splits into the bronchi, with a pair of thin lateral tympaniform membranes as a single sound source; endoscope work on cockatiels (also a cockatoo) showed the membranes sit partly drawn into the airway as a narrow slot, and two small muscles inside the syrinx push them further in or pull them out. Parrots then shape the sound with a thick, movable tongue, beak opening and even windpipe length, which shift the resonances of the vocal tract much like vowels in human speech (shown in monk parakeets). Fletcher (2000) suggested the harsh, chaotic cockatoo call comes from strongly coupled, nonlinear vibration in the syrinx driven by very loud sound pressure. The bill is short, broad, and pale horn-coloured; the crest feathers are filamentous and curl forward. Molecular studies place the gang-gang among the white cockatoos (subfamily Cacatuinae), not with the black cockatoos it was once grouped with. (No gang-gang-specific syrinx dissection was consulted.)"
+ },
+ "tags": {
+  "features": [
+   "creaky caller",
+   "chaotic voice",
+   "quiet feeder",
+   "growler"
+  ],
+  "region": [
+   "South-eastern Australia",
+   "Victoria",
+   "ACT and southern NSW"
+  ]
+ },
+ "facts_sources": [
+  {
+   "title": "Gang-gang cockatoo - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Gang-gang_cockatoo",
+   "licence": "CC BY-SA 4.0 (text paraphrased, not copied)",
+   "used_for": "overview, size (32-37 cm, 230-334 g, wingspan 62-76 cm), plumage by sex, creaky-gate/cork call, taxonomy history (Grant 1803, Lesson 1837), type locality, range, conservation status, decline and bushfire figures, ACT emblem, breeding"
+  },
+  {
+   "title": "Gang-gang Cockatoo - BirdLife Australia bird profile",
+   "url": "https://birdlife.org.au/bird-profiles/gang-gang-cockatoo/",
+   "licence": "(c) BirdLife Australia - facts only, paraphrased",
+   "used_for": "'ky-or-ark' call, feeding growls, altitudinal movement, habitat, diet, left-footedness, flock size, breeding, creches, EPBC Endangered / IUCN Vulnerable"
+  },
+  {
+   "title": "Callocephalon fimbriatum - Atlas of Living Australia",
+   "url": "https://bie.ala.org.au/species/https://biodiversity.org.au/afd/taxa/6c646af8-06fb-40ae-83aa-3dd001cc4ea6",
+   "licence": "ALA terms of use - facts only",
+   "used_for": "taxonomy (Cacatuidae, Psittaciformes)"
+  },
+  {
+   "title": "Fletcher, N. H. (2000) A class of chaotic bird calls? Journal of the Acoustical Society of America 108(2): 821-826",
+   "url": "https://doi.org/10.1121/1.429615",
+   "licence": "facts only",
+   "used_for": "gang-gang and sulphur-crested cockatoo calls are chaotic; broad spectrum peaking about 2.5 kHz; gang-gang higher-pitched with less sub-structure; coupled nonlinear syrinx hypothesis"
+  },
+  {
+   "title": "Larsen, O. N. & Goller, F. (2002) Direct observation of syringeal muscle function in songbirds and a parrot. Journal of Experimental Biology 205: 25-35",
+   "url": "https://doi.org/10.1242/jeb.205.1.25",
+   "licence": "facts only (abstract)",
+   "used_for": "cockatiel (a cockatoo) syrinx: lateral tympaniform membranes form a narrow slot; two intrinsic muscles move them"
+  },
+  {
+   "title": "Ohms, V. R., Beckers, G. J. L., ten Cate, C. & Suthers, R. A. (2012) Vocal tract articulation revisited: the case of the monk parakeet. Journal of Experimental Biology 215: 85-92",
+   "url": "https://doi.org/10.1242/jeb.064717",
+   "licence": "facts only (abstract)",
+   "used_for": "parrots shape sound with tongue height, beak opening and tracheal length"
+  },
+  {
+   "title": "Beckers, G. J. L., Nelson, B. S. & Suthers, R. A. (2004) Vocal-tract filtering by lingual articulation in a parrot. Current Biology 14: 1592-1597",
+   "url": "https://doi.org/10.1016/j.cub.2004.08.057",
+   "licence": "facts only (abstract)",
+   "used_for": "tongue position shifts parrot vocal-tract resonances (formant-like filtering)"
+  },
+  {
+   "title": "Parrot - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Parrot",
+   "licence": "CC BY-SA 4.0 (paraphrased)",
+   "used_for": "parrot syrinx position at the base of the trachea"
+  },
+  {
+   "title": "IOC World Bird List v15.2 (Gill, Rasmussen & Donsker, eds.)",
+   "url": "https://www.worldbirdnames.org/new/ioc-lists/master-list-2/",
+   "licence": "CC BY 4.0 - facts only",
+   "used_for": "taxonomy: order Psittaciformes, family Cacatuidae, Callocephalon fimbriatum (Grant, 1803), monotypic; range 'sc NSW to sw VIC'"
+  },
+  {
+   "title": "Xeno-canto recordings listed in sources.json (own measurements)",
+   "url": "https://xeno-canto.org/species/Callocephalon-fimbriatum",
+   "licence": "recordings CC BY-NC-SA; measurements are our own",
+   "used_for": "energy about 1.7-6 kHz, bands near 2.0-2.3 and 3.0-3.5 kHz, component spacing about 350-450 Hz, growl harmonics about 0.7 kHz apart"
+  }
+ ]
+}

@@ -517,3 +517,15 @@ body.kstrip .kn .dial { touch-action: pan-x; }   /* swipe sideways to scroll, dr
 .ps-list li.fam { display: flex; gap: 8px; align-items: baseline; padding: 10px 12px 2px; cursor: default; border: 0; background: none; }
 .ps-list li.fam span { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--amber); }
 .ps-list li.fam i { font-size: 12px; color: var(--faint); }
+/* plate gallery: flip between each bird's plates (and your own picture) */
+.pl-nav { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 2px 8px 6px; font-family: var(--font); color: #6b604f; font-size: 12px; letter-spacing: 1px; flex-wrap: wrap; }
+.pl-nav button { background: #efe6d2; border: 1px solid #b7aa8f; color: var(--ink); border-radius: 4px; min-width: 34px; min-height: 30px; font-size: 18px; line-height: 1; font-family: inherit; }
+.pl-nav button[hidden] { display: none; }
+.pl-nav .pl-mine { font-size: 11px; letter-spacing: 1px; padding: 0 10px; margin-left: 6px; }
+.pl-dots { display: inline-flex; gap: 6px; }
+.pl-dots button { width: 10px; height: 10px; min-width: 0; min-height: 0; padding: 0; border-radius: 50%; background: #d6ccb6; border: 1px solid #b7aa8f; }
+.pl-dots button.on { background: #7a3d12; border-color: #7a3d12; }
+.ps-plate { position: relative; }
+.ps-plnav { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 0 8px 4px; font-family: var(--font); color: #6b604f; font-size: 12px; letter-spacing: 1px; }
+.ps-plnav[hidden] { display: none; }
+.ps-plnav button { background: #efe6d2; border: 1px solid #b7aa8f; color: var(--ink); border-radius: 4px; min-width: 34px; min-height: 28px; font-size: 18px; line-height: 1; }

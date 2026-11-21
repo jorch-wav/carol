@@ -1,0 +1,66 @@
+{
+ "id": "wagtail",
+ "common_name": "Willie-wagtail",
+ "scientific_name": "Rhipidura leucophrys",
+ "family": "Rhipiduridae (fantails)",
+ "overview": "The willie wagtail is a small, bold, black-and-white fantail that is at home on almost every lawn, paddock and sports oval in Australia. It never stops moving: it swings its long tail from side to side, fans it, darts after insects and chases off birds many times its size, from magpies to eagles. It is famous for two sounds: a cheerful whistled song, often heard on moonlit nights and remembered as 'sweet pretty creature', and a scolding 'chit-chit-chit' chatter like a child's rattle.",
+ "deep_dive": {
+  "habitat": "Semi-open country with scattered trees, often near water: open woodland, grassland, farms, parks, gardens and sports grounds. It avoids dense forest, including rainforest and wet sclerophyll forest, and is very much at ease around people.",
+  "range": "Almost all of mainland Australia, where it mostly stays put all year; also New Guinea, the Bismarck Archipelago, the Solomon Islands and the Moluccas. Only a vagrant to Tasmania. Three subspecies: leucophrys in central and southern Australia, the smaller picata in the north, and the larger melaleuca in New Guinea and nearby islands. An attempt to introduce it to Hawaii in the 1920s failed.",
+  "behaviour": "Unlike most fantails it spends much of its time on the ground, wagging its tail sideways as it hunts, and it also hawks insects in flight. It often follows cattle and sheep for the insects they stir up and even picks ticks off them. Fiercely territorial: it mobs much bigger birds, usually from behind, and pairs defend their patch with looping, diving display flights. The white eyebrows flare when it is aggressive and almost vanish when it backs down. Usually pairs for life and can raise up to four broods a season in a neat grass cup bound with spider web on a horizontal branch.",
+  "voice": "The song is a bright, rhythmic phrase of clear whistled notes, rendered 'sweet pretty creature' or 'sweet pretty little creature', sung by day and, mostly by males in the breeding season, through the night, more on moonlit nights. In our recordings the song notes are pure whistles and short slurs at about 2.5-5 kHz, a few notes per phrase, phrases repeated every few seconds. The alarm and scolding call is a rapid, scratchy 'chit-chit-chit' rattle used to warn off rivals and predators and to signal to the mate: in our clips a string of broadband clicks spanning about 3-7 kHz at roughly 7-9 pulses per second. BirdLife also lists other scolding and chattering notes.",
+  "anatomy": "A songbird (order Passeriformes) in the 'core corvine' group, so a distant relative of the ravens. Like all songbirds it has a tracheobronchial syrinx with a sound source on each side, controlled separately, which suits its pure, fast-changing whistles; the rattle is a train of short noisy pulses. The bill is short, slender, black and slightly hooked, ringed by rictal bristles; legs black and longer than in other fantails. Black head, throat, upperparts, wings and tail, with a white eyebrow, white 'whisker' marks and white underparts; dark brown iris. Length 19-21.5 cm, of which the tail is about 10-11 cm; weight 17-24 g. (No wagtail-specific syrinx study was found; these points are general songbird anatomy.)"
+ },
+ "tags": {
+  "features": [
+   "whistler",
+   "night singer",
+   "chatterer (rattle alarm)",
+   "tail-wagger"
+  ],
+  "region": [
+   "Australia-wide",
+   "New Guinea",
+   "Solomon Islands and Bismarck Archipelago",
+   "Moluccas"
+  ]
+ },
+ "facts_sources": [
+  {
+   "title": "Willie wagtail - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Willie_wagtail",
+   "licence": "CC BY-SA 4.0 (text paraphrased, not copied)",
+   "used_for": "size, plumage, bill and legs, tail wagging, eyebrow display, song and night singing, chit-chit alarm (Gould's 'child's rattle'), range, subspecies, habitat, foraging, mobbing, breeding, taxonomy (Latham 1801, Turdus leucophrys, core corvine group)"
+  },
+  {
+   "title": "Willie Wagtail - BirdLife Australia bird profile",
+   "url": "https://birdlife.org.au/bird-profiles/willie-wagtail/",
+   "licence": "(c) BirdLife Australia - facts only, paraphrased",
+   "used_for": "voice ('sweet-pretty-creature', calling through the night, scolding and chattering notes), habitat, behaviour, nest"
+  },
+  {
+   "title": "IOC World Bird List (Gill, Donsker & Rasmussen, eds.), via World Bird Names species page",
+   "url": "https://www.worldbirdnames.com/bird/willie-wagtail/19296.html",
+   "licence": "CC BY 4.0 - facts only",
+   "used_for": "taxonomy: Passeriformes, Rhipiduridae, Rhipidura leucophrys (Latham, 1801), protonym Turdus leucophrys, type locality New Holland (= Sydney)"
+  },
+  {
+   "title": "Rhipidura leucophrys - GBIF",
+   "url": "https://www.gbif.org/species/5231722",
+   "licence": "facts only",
+   "used_for": "taxonomy cross-check (GBIF gives the year as 1802)"
+  },
+  {
+   "title": "Syrinx (bird anatomy) - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Syrinx_(bird_anatomy)",
+   "licence": "CC BY-SA 4.0 (paraphrased)",
+   "used_for": "songbirds have a tracheobronchial syrinx; left/right sides controlled independently"
+  },
+  {
+   "title": "Xeno-canto recordings listed in sources.json (own measurements)",
+   "url": "https://xeno-canto.org/species/Rhipidura-leucophrys",
+   "licence": "recordings CC BY-NC-SA; measurements are our own",
+   "used_for": "song note range 2.5-5 kHz, rattle bandwidth 3-7 kHz and pulse rate 7-9 per second"
+  }
+ ]
+}

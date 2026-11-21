@@ -60,7 +60,15 @@
    ],
    "image": "img/curlew.jpg",
    "image_caption": "John Gould, The Birds of Australia, vol. VI, pl. 5: Oedicnemus grallarius (Southern Stone Plover)",
-   "match": 86.1
+   "match": 86.1,
+   "plates": [
+    {
+     "image": "img/curlew.jpg",
+     "caption": "John Gould, The Birds of Australia, vol. VI, pl. 5: Oedicnemus grallarius (Southern Stone Plover)",
+     "artist": "John Gould",
+     "year": "1840"
+    }
+   ]
   },
   {
    "id": "boobook",
@@ -90,7 +98,15 @@
    ],
    "image": "img/boobook.jpg",
    "image_caption": "John Gould, The Birds of Australia, vol. I, pl. 32: Athene boobook (Boobook Owl)",
-   "match": 92.5
+   "match": 92.5,
+   "plates": [
+    {
+     "image": "img/boobook.jpg",
+     "caption": "John Gould, The Birds of Australia, vol. I, pl. 32: Athene boobook (Boobook Owl)",
+     "artist": "John Gould",
+     "year": "1840"
+    }
+   ]
   },
   {
    "id": "kookaburra",
@@ -121,7 +137,15 @@
    ],
    "image": "img/kookaburra.jpg",
    "image_caption": "John Gould, The Birds of Australia, vol. II, pl. 18: Dacelo gigantea (Great Brown Kingfisher)",
-   "match": 74.1
+   "match": 74.1,
+   "plates": [
+    {
+     "image": "img/kookaburra.jpg",
+     "caption": "John Gould, The Birds of Australia, vol. II, pl. 18: Dacelo gigantea (Great Brown Kingfisher)",
+     "artist": "John Gould",
+     "year": "1840"
+    }
+   ]
   },
   {
    "id": "cockatoo",
@@ -152,7 +176,15 @@
    ],
    "image": "img/cockatoo.jpg",
    "image_caption": "John Gould, The Birds of Australia, vol. V, pl. 1: Cacatua galerita: Vieill (Crested Cockatoo)",
-   "match": 69.3
+   "match": 69.3,
+   "plates": [
+    {
+     "image": "img/cockatoo.jpg",
+     "caption": "John Gould, The Birds of Australia, vol. V, pl. 1: Cacatua galerita: Vieill (Crested Cockatoo)",
+     "artist": "John Gould",
+     "year": "1840"
+    }
+   ]
   },
   {
    "id": "rosella",
@@ -181,7 +213,15 @@
    ],
    "image": "img/rosella.jpg",
    "image_caption": "John Gould, The Birds of Australia, vol. V, pl. 23: Platycercus pennantii (Pennant's Parrakeet)",
-   "match": 86.3
+   "match": 86.3,
+   "plates": [
+    {
+     "image": "img/rosella.jpg",
+     "caption": "John Gould, The Birds of Australia, vol. V, pl. 23: Platycercus pennantii (Pennant's Parrakeet)",
+     "artist": "John Gould",
+     "year": "1840"
+    }
+   ]
   },
   {
    "id": "lorikeet",
@@ -212,7 +252,15 @@
    ],
    "image": "img/lorikeet.jpg",
    "image_caption": "John Gould, The Birds of Australia, vol. V, pl. 48: Trichoglossus Swainsonii: Jard. & Selb (Swainson's Lorikeet)",
-   "match": 77.4
+   "match": 77.4,
+   "plates": [
+    {
+     "image": "img/lorikeet.jpg",
+     "caption": "John Gould, The Birds of Australia, vol. V, pl. 48: Trichoglossus Swainsonii: Jard. & Selb (Swainson's Lorikeet)",
+     "artist": "John Gould",
+     "year": "1840"
+    }
+   ]
   },
   {
    "id": "lyrebird",
@@ -244,7 +292,15 @@
    ],
    "image": "img/lyrebird.jpg",
    "image_caption": "John Gould, The Birds of Australia, vol. III, pl. 14: Menura superba (Lyre-Bird)",
-   "match": 74.5
+   "match": 74.5,
+   "plates": [
+    {
+     "image": "img/lyrebird.jpg",
+     "caption": "John Gould, The Birds of Australia, vol. III, pl. 14: Menura superba (Lyre-Bird)",
+     "artist": "John Gould",
+     "year": "1840"
+    }
+   ]
   },
   {
    "id": "wattlebird",
@@ -275,7 +331,15 @@
    ],
    "image": "img/wattlebird.jpg",
    "image_caption": "John Gould, The Birds of Australia, vol. IV, pl. 55: Anthochaera carunculata (Wattled Honey-eater)",
-   "match": 68.4
+   "match": 68.4,
+   "plates": [
+    {
+     "image": "img/wattlebird.jpg",
+     "caption": "John Gould, The Birds of Australia, vol. IV, pl. 55: Anthochaera carunculata (Wattled Honey-eater)",
+     "artist": "John Gould",
+     "year": "1840"
+    }
+   ]
   },
   {
    "id": "bellminer",
@@ -305,7 +369,15 @@
    ],
    "image": "img/bellminer.jpg",
    "image_caption": "John Gould, The Birds of Australia, vol. IV, pl. 80: Myzantha viridis (Australian Bell-bird)",
-   "match": 88.1
+   "match": 88.1,
+   "plates": [
+    {
+     "image": "img/bellminer.jpg",
+     "caption": "John Gould, The Birds of Australia, vol. IV, pl. 80: Myzantha viridis (Australian Bell-bird)",
+     "artist": "John Gould",
+     "year": "1840"
+    }
+   ]
   },
   {
    "id": "whipbird",
@@ -337,7 +409,15 @@
    ],
    "image": "img/whipbird.jpg",
    "image_caption": "John Gould, The Birds of Australia, vol. III, pl. 15: Psophodes crepitans (Coach-whip Bird)",
-   "match": 61.7
+   "match": 61.7,
+   "plates": [
+    {
+     "image": "img/whipbird.jpg",
+     "caption": "John Gould, The Birds of Australia, vol. III, pl. 15: Psophodes crepitans (Coach-whip Bird)",
+     "artist": "John Gould",
+     "year": "1840"
+    }
+   ]
   },
   {
    "id": "butcherbird",
@@ -371,7 +451,15 @@
    ],
    "image": "img/butcherbird.jpg",
    "image_caption": "John Gould, The Birds of Australia, vol. II, pl. 49: Cracticus nigrogularis (Black-throated Crow-Shrike)",
-   "match": 79.3
+   "match": 79.3,
+   "plates": [
+    {
+     "image": "img/butcherbird.jpg",
+     "caption": "John Gould, The Birds of Australia, vol. II, pl. 49: Cracticus nigrogularis (Black-throated Crow-Shrike)",
+     "artist": "John Gould",
+     "year": "1840"
+    }
+   ]
   },
   {
    "id": "magpie",
@@ -404,7 +492,15 @@
    ],
    "image": "img/magpie.jpg",
    "image_caption": "John Gould, The Birds of Australia, vol. II, pl. 46: Gymnorhina tibicen (Piping Crow-Shrike)",
-   "match": 78.5
+   "match": 78.5,
+   "plates": [
+    {
+     "image": "img/magpie.jpg",
+     "caption": "John Gould, The Birds of Australia, vol. II, pl. 46: Gymnorhina tibicen (Piping Crow-Shrike)",
+     "artist": "John Gould",
+     "year": "1840"
+    }
+   ]
   },
   {
    "id": "pigeon",
@@ -435,7 +531,15 @@
    ],
    "image": "img/pigeon.jpg",
    "image_caption": "John Gould, The Birds of Great Britain, vol. IV, pl. 3: Columba livia, Temm (Rock-Pigeon)",
-   "match": 84.1
+   "match": 84.1,
+   "plates": [
+    {
+     "image": "img/pigeon.jpg",
+     "caption": "John Gould, The Birds of Great Britain, vol. IV, pl. 3: Columba livia, Temm (Rock-Pigeon)",
+     "artist": "John Gould",
+     "year": "1862"
+    }
+   ]
   },
   {
    "id": "robin",
@@ -469,7 +573,15 @@
    ],
    "image": "img/robin.jpg",
    "image_caption": "John Gould, The Birds of Great Britain, vol. II, pl. 48: Erythacus rubecula (Robin, or Redbreast)",
-   "match": 86.7
+   "match": 86.7,
+   "plates": [
+    {
+     "image": "img/robin.jpg",
+     "caption": "John Gould, The Birds of Great Britain, vol. II, pl. 48: Erythacus rubecula (Robin, or Redbreast)",
+     "artist": "John Gould",
+     "year": "1862"
+    }
+   ]
   },
   {
    "id": "cardinal",
@@ -503,7 +615,15 @@
    ],
    "image": "img/cardinal.jpg",
    "image_caption": "John James Audubon, The Birds of America, vol. II, pl. 159: Fringilla cardinalis, Bonap (Cardinal Grosbeak)",
-   "match": 72.3
+   "match": 72.3,
+   "plates": [
+    {
+     "image": "img/cardinal.jpg",
+     "caption": "John James Audubon, The Birds of America, vol. II, pl. 159: Fringilla cardinalis, Bonap (Cardinal Grosbeak)",
+     "artist": "John James Audubon",
+     "year": "1827"
+    }
+   ]
   },
   {
    "id": "quetzal",
@@ -532,7 +652,15 @@
    ],
    "image": "img/quetzal.jpg",
    "image_caption": "John Gould, A Monograph of the Trogonidae, or Family of Trogons, 2nd ed., part III: Pharomacrus mocinno (Quezal)",
-   "match": 80.5
+   "match": 80.5,
+   "plates": [
+    {
+     "image": "img/quetzal.jpg",
+     "caption": "John Gould, A Monograph of the Trogonidae, or Family of Trogons, 2nd ed., part III: Pharomacrus mocinno (Quezal)",
+     "artist": "John Gould",
+     "year": "1858"
+    }
+   ]
   }
  ]
 }

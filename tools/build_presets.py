@@ -58,6 +58,12 @@ CALL_TYPES = {
     'lorikeet': {'Screech': ['INAT1752421', 'INAT1677411', 'INAT1979743', 'INAT1969471', 'INAT556449'], 'Call': ['INAT155067'], 'Chatter': ['INAT73279', 'INAT2170180', 'INAT638092', 'INAT171953']},
     'curlew': {'Wail': ['597375', '589419', '1074100', '539222', '539213', '857992', '755680', '1038616', '641037'], 'Alarm': ['539184']},
     'boobook': {'Boo-book': ['351978', '1173887', '414340', '1188100', '1133190', '1094530'], 'Bray': ['863940', '863942'], 'Begging': ['513811', '777794']},
+    'raven': {'Call': ['935829', '996951', '1062642', '211338', '937188', '935842'], 'Flight call': ['539397'], 'Subsong': ['505696'], 'Begging': ['1069409', '330280']},
+    'wagtail': {'Song': ['953372', '935809', '767239', '1069909', '1069588', '155135', '606516'], 'Rattle': ['1170174', '1170177', '1069587', '517759']},
+    'frogmouth': {'Oom': ['953020', '953019', '586832', '375096', '1173996', '561573', '643067', '697079'], 'Huff': ['396564'], 'Alarm': ['692557'], 'Begging': ['842281']},
+    'galah': {'Contact call': ['935423', '953252', '1166610', '506844'], 'Screech': ['1138701'], 'Flight call': ['330259', '495757', '935909'], 'Alarm': ['506845'], 'Begging': ['935797']},
+    'gangang': {'Creak': ['1169134', '1169163', '1169159', '1169118', '1169744', '1072734', '1172996', '330260', '187882'], 'Alarm': ['622269']},
+    'blackcockatoo': {'Wail': ['1166249', '1166250', '1166621', '935512', '935853', '871224'], 'Flight screech': ['1072333', '1103268'], 'Shriek': ['826853'], 'Begging': ['345044']},
     'cardinal': {'Song': ['1093538', '1010609', '1012494', '962371', '738212', '721721'], 'Chip': ['1070756', '682547', '1010649'], 'Alarm': ['1012917']},
     'robin': {'Song': ['1080724', '1089386', '1104628', '1141104'], 'Autumn song': ['943953', '1181903'], 'Tic': ['1192854', '998115'], 'Tsee': ['1191139', '661755'], 'Call': ['1190377']},
     'quetzal': {'Song': ['1188164', '1188163', '774050', '137766', '872148'], 'Call': ['326653', '133593', '498299', '171051'], 'Alarm': ['332262']},
@@ -130,6 +136,37 @@ LOOKS = {
                             {'at': [0.95, 0.35, 0.6], 'r': [0.55, 0.22, 0.2], 'rot': 0.2, 'color': '#eeeae2'},
                             {'body': True, 'at': [-0.6, 0.3, 2.05], 'r': [0.15, 0.15, 0.12], 'rot': 0, 'color': '#f1e9da', 'layer': 0},
                             {'body': True, 'at': [-1.4, 0.0, 2.05], 'r': [0.15, 0.15, 0.12], 'rot': 0, 'color': '#f1e9da', 'layer': 0}]},
+    'raven': {'body': [4.6, 2.6, 2.4], 'head': 1.55, 'neck': 0.9, 'tail': 3.4,
+              'beak': {'len': 1.9, 'depth': 0.75, 'curve': 0.12, 'hook': 0.08},
+              'colors': {'body': '#121214', 'belly': '#151517', 'head': '#141416', 'wing': '#2b3350', 'tail': '#121214', 'beak': '#0c0c0c', 'beak2': '#0c0c0c', 'eye': '#f2f2ee', 'legs': '#121214'},
+              'accents': [{'at': [0.42, 0.25, 0.66], 'r': [0.1, 0.1, 0.08], 'rot': 0, 'color': '#0a0a0a'}]},
+    'wagtail': {'body': [3.4, 2.2, 2.0], 'head': 1.35, 'neck': 0.7, 'tail': 3.9,
+                'beak': {'len': 0.8, 'depth': 0.3, 'curve': 0.08, 'hook': 0.06},
+                'colors': {'body': '#0f0f11', 'belly': '#f6f5f0', 'head': '#0f0f11', 'wing': '#1b1b1e', 'tail': '#111113', 'beak': '#111111', 'beak2': '#111111', 'eye': '#2b1a10', 'legs': '#1a1a1a'},
+                'accents': [{'at': [0.25, 0.55, 0.62], 'r': [0.55, 0.1, 0.14], 'rot': -0.2, 'color': '#ffffff'}]},
+    'frogmouth': {'body': [4.0, 2.9, 2.7], 'head': 2.1, 'neck': 0.3, 'tail': 3.0,
+                  'beak': {'len': 1.0, 'depth': 1.3, 'curve': 0.35, 'hook': 0.2},
+                  'colors': {'body': '#9a958d', 'belly': '#c9c3b8', 'head': '#8f8a83', 'wing': '#8a8076', 'tail': '#8d877e', 'beak': '#4a4a40', 'beak2': '#4a4a40', 'eye': '#e8b82a', 'legs': '#a8957e'},
+                  'accents': [{'body': True, 'at': [-0.7, 0.4, 2.1], 'r': [1.4, 0.12, 0.12], 'rot': -0.2, 'color': '#e8e2d8', 'layer': 0},
+                              {'at': [0.6, 0.9, 0.3], 'r': [0.5, 0.25, 0.4], 'rot': 0.3, 'color': '#3d3631'}]},
+    'galah': {'body': [3.9, 2.5, 2.3], 'head': 1.6, 'neck': 0.7, 'tail': 3.0,
+              'beak': {'len': 0.95, 'depth': 0.8, 'curve': 0.6, 'hook': 0.3},
+              'colors': {'body': '#a9a9ad', 'belly': '#e8607d', 'head': '#e8607d', 'wing': '#a9a9ad', 'tail': '#6e6e72', 'beak': '#e8e0d0', 'beak2': '#ddd5c4', 'eye': '#2a1a14', 'legs': '#8a8a8c'},
+              'crest': {'len': 0.6, 'back': 0.9, 'w': 1.0, 'color': '#f7d3dc'},
+              'accents': [{'at': [-0.15, 0.95, 0], 'r': [1.1, 0.45, 0.9], 'rot': 0, 'color': '#f7d3dc'},
+                          {'at': [0.42, 0.25, 0.62], 'r': [0.3, 0.3, 0.2], 'rot': 0, 'color': '#e05a6a'}]},
+    'gangang': {'body': [3.8, 2.6, 2.4], 'head': 1.6, 'neck': 0.6, 'tail': 2.5,
+                'beak': {'len': 0.95, 'depth': 0.85, 'curve': 0.6, 'hook': 0.32},
+                'colors': {'body': '#5f6266', 'belly': '#6c6f72', 'head': '#d0242a', 'wing': '#55585c', 'tail': '#3e4044', 'beak': '#c9c2b5', 'beak2': '#bdb6a9', 'eye': '#3a2a24', 'legs': '#6f6f72'},
+                'crest': {'len': 1.2, 'back': -0.2, 'w': 0.9, 'color': '#d0242a'},
+                'accents': [{'body': True, 'at': [0.3, -0.3, 2.0], 'r': [1.6, 0.9, 0.2], 'rot': -0.2, 'color': '#9a9ea2', 'layer': 0}]},
+    'blackcockatoo': {'body': [4.6, 2.7, 2.5], 'head': 1.7, 'neck': 0.7, 'tail': 5.0,
+                      'beak': {'len': 1.1, 'depth': 1.0, 'curve': 0.6, 'hook': 0.38},
+                      'colors': {'body': '#2a2422', 'belly': '#2a2422', 'head': '#2a2624', 'wing': '#241f1d', 'tail': '#1e1a19', 'beak': '#2a2a2a', 'beak2': '#2a2a2a', 'eye': '#2a1c18', 'legs': '#6e6a68'},
+                      'crest': {'len': 0.7, 'back': 0.9, 'w': 1.0, 'color': '#2a2624'},
+                      'accents': [{'at': [0.1, -0.2, 0.75], 'r': [0.55, 0.45, 0.25], 'rot': 0, 'color': '#f2cc32'},
+                                  {'at': [0.42, 0.25, 0.62], 'r': [0.3, 0.3, 0.2], 'rot': 0, 'color': '#e08890'},
+                                  {'body': True, 'at': [-5.2, -2.4, 0.5], 'r': [1.4, 0.3, 0.5], 'rot': 0.5, 'color': '#f0d040', 'layer': 0}]},
     'cardinal': {'body': [3.9, 2.5, 2.3], 'head': 1.55, 'neck': 0.75, 'tail': 3.4,
                  'beak': {'len': 1.15, 'depth': 0.95, 'curve': 0.2, 'hook': 0},
                  'colors': {'body': '#c41e2a', 'belly': '#d2423a', 'head': '#cf1f2c', 'wing': '#9e2a2b', 'tail': '#8c2526', 'beak': '#e8603c', 'beak2': '#de5534', 'eye': '#2a1a12', 'legs': '#a07468'},
@@ -198,6 +235,24 @@ TAXONOMY = {
     'boobook': {'order': 'Strigiformes', 'family': 'Strigidae', 'genus': 'Ninox', 'species': 'boobook', 'authority': '(Latham, 1801)',
                 'original': 'Strix boobook Latham, 1801', 'ioc_url': 'https://www.worldbirdnames.com/bird/southern-boobook/9385.html',
                 'gbif_url': 'https://www.gbif.org/species/2497828'},
+    'raven': {'order': 'Passeriformes', 'family': 'Corvidae', 'genus': 'Corvus', 'species': 'mellori', 'authority': 'Mathews, 1912',
+              'original': 'Corvus marianae mellori Mathews, 1912', 'ioc_url': 'https://www.worldbirdnames.com/bird/little-raven/20400.html',
+              'gbif_url': 'https://www.gbif.org/species/2482490'},
+    'wagtail': {'order': 'Passeriformes', 'family': 'Rhipiduridae', 'genus': 'Rhipidura', 'species': 'leucophrys', 'authority': '(Latham, 1801)',
+                'original': 'Turdus leucophrys Latham, 1801', 'ioc_url': 'https://www.worldbirdnames.com/bird/willie-wagtail/19296.html',
+                'gbif_url': 'https://www.gbif.org/species/5231722'},
+    'frogmouth': {'order': 'Caprimulgiformes', 'family': 'Podargidae', 'genus': 'Podargus', 'species': 'strigoides', 'authority': '(Latham, 1801)',
+                  'original': 'Caprimulgus strigoides Latham, 1801', 'ioc_url': 'https://www.worldbirdnames.com/bird/tawny-frogmouth/3375.html',
+                  'gbif_url': 'https://www.gbif.org/species/2497109'},
+    'galah': {'order': 'Psittaciformes', 'family': 'Cacatuidae', 'genus': 'Eolophus', 'species': 'roseicapilla', 'authority': '(Vieillot, 1817)',
+              'original': 'Cacatua roseicapilla Vieillot, 1817', 'ioc_url': 'https://www.worldbirdnames.com/bird/galah/11881.html',
+              'gbif_url': 'https://www.gbif.org/species/2479598'},
+    'gangang': {'order': 'Psittaciformes', 'family': 'Cacatuidae', 'genus': 'Callocephalon', 'species': 'fimbriatum', 'authority': '(Grant, 1803)',
+                'original': 'Psittacus fimbriatus Grant, 1803', 'ioc_url': 'https://www.worldbirdnames.com/bird/gang-gang-cockatoo/11877.html',
+                'gbif_url': 'https://www.gbif.org/species/2480030'},
+    'blackcockatoo': {'order': 'Psittaciformes', 'family': 'Cacatuidae', 'genus': 'Zanda', 'species': 'funerea', 'authority': '(Shaw, 1794)',
+                      'original': 'Psittacus funereus Shaw, 1794', 'ioc_url': 'https://www.worldbirdnames.com/bird/yellow-tailed-black-cockatoo/11873.html',
+                      'gbif_url': 'https://www.gbif.org/species/10759934'},
     'cardinal': {'order': 'Passeriformes', 'family': 'Cardinalidae', 'genus': 'Cardinalis', 'species': 'cardinalis', 'authority': '(Linnaeus, 1758)',
                  'original': 'Loxia cardinalis Linnaeus, 1758', 'ioc_url': 'https://www.worldbirdnames.com/bird/northern-cardinal/30864.html',
                  'gbif_url': 'https://www.gbif.org/species/2490384'},
@@ -224,6 +279,10 @@ SCIENCE = [
 ]
 # extra science per body type
 SCIENCE_BIRD = {
+    'frogmouth': [{'title': 'Riede, Eliason, Miller, Goller & Clarke (2016). Coos, booms, and hoots: the evolution of closed-mouth vocal behavior in birds. Evolution 70, 1734-1746', 'url': 'https://doi.org/10.1111/evo.12988'}],
+    'galah': [{'title': 'Pidgeon (1981). Calls of the galah Cacatua roseicapilla and some comparisons with four other species of Australian parrot. Emu 81, 158-168', 'url': 'https://doi.org/10.1071/MU9810158'},
+              {'title': 'Larsen & Goller (2002). Direct observation of syringeal muscle function in songbirds and a parrot. J. Exp. Biol. 205, 25-35', 'url': 'https://doi.org/10.1242/jeb.205.1.25'}],
+    'gangang': [{'title': 'Fletcher (2000). A class of chaotic bird calls? J. Acoust. Soc. Am. 108, 821-826', 'url': 'https://doi.org/10.1121/1.429615'}],
     'cockatoo': [{'title': 'Fletcher (2000). A class of chaotic bird calls? J. Acoust. Soc. Am. 108, 821-826', 'url': 'https://doi.org/10.1121/1.429615'},
                  {'title': 'Larsen & Goller (2002). Direct observation of syringeal muscle function in songbirds and a parrot. J. Exp. Biol. 205, 25-35', 'url': 'https://doi.org/10.1242/jeb.205.1.25'},
                  {'title': 'Ohms, Beckers, ten Cate & Suthers (2012). Vocal tract articulation revisited: the case of the monk parakeet. J. Exp. Biol. 215, 85-92', 'url': 'https://doi.org/10.1242/jeb.064717'}],
@@ -242,6 +301,12 @@ SCIENCE_BIRD = {
 }
 # What is known about this species' voice, and how Carol's model relates to it.
 MODEL_NOTES = {
+    'raven': 'Little ravens call with the bill open, in deep harmonic "ah-ah-ah" notes: a fundamental of only about 200-330 Hz with strong bands near 1.2-1.6 and 2.1-2.5 kHz, probably the throat and mouth ringing. Carol uses its general songbird model, which gives ravens the same two-sided syrinx as the smallest songbirds.',
+    'wagtail': 'The willie wagtail sings clear whistles and slurs at about 2.5-5 kHz ("sweet pretty creature"), and scolds with a "chit-chit" rattle of broadband clicks about 8 times a second. Carol uses its general songbird model.',
+    'frogmouth': 'Frogmouths are not owls: they are related to nightjars, and their syrinx sits down in the two bronchi (Beddard 1886). Nobody has documented whether the "oom" is made with the bill shut. It is almost a pure tone at about 250-350 Hz, low for a bird this size, which hints at closed-mouth calling like a dove, but the only close relative studied (a nightjar) calls with its mouth open (Riede et al. 2016). Carol follows that evidence and uses its open-mouth non-songbird model; see the dove model\'s score on the "How Carol sings it" tab for comparison.',
+    'galah': 'Galahs have a parrot\'s single sound source, with membranes in the windpipe and a muscular tongue that shapes the sound (Larsen & Goller 2002; Beckers et al. 2004). Their calls are arched, buzzy notes with most energy at about 3-5 kHz; a study of wild galahs found nine distinct call structures (Pidgeon 1981). Carol uses its parrot model.',
+    'gangang': 'The gang-gang\'s "creaky gate" is a chaotic call: a broad, rough spectrum peaking near 2.5 kHz, slightly higher than the sulphur-crested cockatoo\'s (Fletcher 2000, who studied exactly this species). Carol uses its parrot model, pushed into its rough, chaotic regime by turbulence and labial closure.',
+    'blackcockatoo': 'The yellow-tailed black-cockatoo\'s wailing "kee-ow" is a clean, rising and falling harmonic stack with a fundamental of about 1 kHz, much purer than other cockatoos\' screeches. No acoustic study of this species exists, so Carol uses its general parrot model.',
     'cockatoo': 'The cockatoo\'s screech is chaotic rather than a clean tone with overtones: a broad, noisy spectrum peaking near 2.5 kHz, radiating at least 100 mW (Fletcher 2000). In its relative the cockatiel, one source does the work: membranes drawn into the windpipe like a slot, moved by two small muscles (Larsen & Goller 2002). Carol uses its parrot model, with the turbulence and labial closure it found pushing the voice into that rough, chaotic regime.',
     'lorikeet': 'There is no study of the lorikeet\'s voice itself, so Carol uses its parrot model: one sound source, a short windpipe and tongue-shaped mouth resonances, which parrots use the way we shape vowels (Beckers et al. 2004). xeno-canto restricts lorikeet recordings for conservation reasons, so this preset was fitted to openly licensed iNaturalist recordings from Australia instead.',
     'curlew': 'Stone-curlews call with the beak open (Riede et al. 2016). There is no study of their syrinx, so Carol uses its general non-songbird model: two membranes where the windpipe meets the bronchi (the same model as the kookaburra and quetzal). The wailing notes sit mostly at about 1.5-2.8 kHz.',
@@ -275,6 +340,32 @@ def short_licence(r):
     return r.get('licence_name', '')
 
 
+def plate_caption(img):
+    import re
+    v = str(img.get('volume') or '')
+    m = re.match(r'Part (\w+)', v)
+    vol = f"part {m.group(1)}, " if m else (f"vol. {v}, " if v else '')
+    pm = re.match(r'(\d+)', str(img.get('plate') or ''))
+    pl = f"pl. {pm.group(1)}: " if pm else ''
+    if not pm and vol: vol = vol[:-2] + ': '
+    work = img.get('work', 'John Gould, The Birds of Australia').split(' (')[0]
+    if img.get('artist') and img['artist'] not in work: work = img['artist'] + ', ' + work
+    return f"{work}, {vol}{pl}{str(img.get('name_on_plate')).rstrip('.')} ({img.get('gould_common_name')})"
+
+
+def plate_entry(img, path):
+    """One plate of a bird's gallery, as the app shows and credits it."""
+    import re
+    work = img.get('work', 'John Gould, The Birds of Australia')
+    artist = img.get('artist') or work.split(',')[0]
+    years = re.findall(r'1[6-9]\d\d', str(img.get('year') or '') + ' ' + work)
+    cap = plate_caption(img)
+    return {'image': path, 'caption': cap, 'artist': artist, 'year': years[0] if years else '',
+            'credit': cap + '. ' + (img.get('artist_credit_on_plate') or '') + ' ' + (img.get('copy') or ''),
+            'url': img.get('source_page_url') or img.get('url'), 'bhl': img.get('bhl_url') or img.get('bhl_page_url'),
+            'licence': 'Public domain'}
+
+
 def licence_note(recs, img):
     lic = sorted({r['licence'] for r in recs if r['used']})
     who = (img.get('artist') or img.get('work', 'Gould').split(',')[0]).split()[-1]
@@ -306,27 +397,32 @@ def build(bid):
     recs = [{'id': rid(r), 'url': r['url'], 'recordist': r['recordist'], 'licence': short_licence(r),
              'licence_url': r['licence_url'], 'location': r.get('location', ''), 'date': r.get('date', ''), 'used': any(c['source'] == rid(r) for c in calls), 'source': r.get('source', 'xeno-canto')}
             for r in src['recordings']]
-    import re
-    v = str(img.get('volume') or '')
-    m = re.match(r'Part (\w+)', v)
-    vol = f"part {m.group(1)}, " if m else (f"vol. {v}, " if v else '')
-    pm = re.match(r'(\d+)', str(img.get('plate') or ''))
-    pl = f"pl. {pm.group(1)}: " if pm else ''
-    if not pm and vol: vol = vol[:-2] + ': '
+    caption = plate_caption(img)
     work = img.get('work', 'John Gould, The Birds of Australia').split(' (')[0]
-    if img.get('artist') and img['artist'] not in work: work = img['artist'] + ', ' + work
-    caption = f"{work}, {vol}{pl}{str(img.get('name_on_plate')).rstrip('.')} ({img.get('gould_common_name')})"
+    # the plate gallery: the main plate, then any extra plates in data/<id>/plates/plates.json
+    plates = [plate_entry(img, f'img/{bid}.jpg')]
+    extra_path = os.path.join(d, 'plates', 'plates.json')
+    if os.path.exists(extra_path):
+        os.makedirs(os.path.join(WEB, 'img', bid), exist_ok=True)
+        for e in json.load(open(extra_path)):
+            fn = os.path.join(d, e['file'])
+            if not os.path.exists(fn):
+                continue
+            dest = f"img/{bid}/{os.path.basename(e['file'])}"
+            shutil.copy(fn, os.path.join(WEB, dest))
+            plates.append(plate_entry(e, dest))
     facts = [{'title': f['title'], 'url': f['url'], 'licence': f.get('licence', ''), 'used_for': f.get('used_for', '')} for f in src.get('facts_sources', [])]
     preset = {
         'id': bid, 'name': info['common_name'], 'sci': info['scientific_name'], 'body': fit['body'], 'collection': COLL_OF.get(bid, 'Australasia'),
         'tags': info.get('tags', {}), 'params': fit['params'], 'scale': fit['scale'], 'match': fit['match'],
-        'look': LOOKS.get(bid), 'model_note': MODEL_NOTES.get(bid), 'image': f'img/{bid}.jpg', 'image_caption': caption,
+        'look': LOOKS.get(bid), 'model_note': MODEL_NOTES.get(bid), 'image': f'img/{bid}.jpg', 'image_caption': caption, 'plates': plates,
         'taxonomy': dict(TAXONOMY.get(bid, {}), list=TAXONOMY_LIST, plate_name=img.get('name_on_plate'), plate_common=img.get('gould_common_name'), plate_artist=img.get('artist') or work.split(',')[0]),
         'info': {'family': info.get('family'), 'overview': info['overview'], 'deep_dive': {k: v for k, v in info['deep_dive'].items() if k != 'indigenous_names'}},
         'sources': {
             'recordings': recs,
             'image': {'credit': caption + '. ' + img.get('artist_credit_on_plate', '') + ' ' + img.get('copy', ''),
                       'url': img.get('source_page_url') or img.get('url'), 'bhl': img.get('bhl_url') or img.get('bhl_page_url'), 'source': 'Scan', 'licence': 'Public domain'},
+            'plates': plates,
             'facts': facts, 'science': SCIENCE + SCIENCE_BODY.get(fit['body'], []) + SCIENCE_BIRD.get(bid, []), 'licence_note': licence_note(recs, img),
         },
         'calls': calls,
@@ -336,7 +432,8 @@ def build(bid):
     return {'id': bid, 'name': preset['name'], 'sci': preset['sci'], 'authority': t.get('authority'), 'order': t.get('order'), 'family': t.get('family'),
             'body': preset['body'], 'tags': preset['tags'], 'collection': preset['collection'],
             'family_name': FAMILY_NAMES.get(t.get('family'), t.get('family')), 'tax': list(tax_key(t))[:2],
-            'image': preset['image'], 'image_caption': caption, 'match': fit['match']['total']}
+            'image': preset['image'], 'image_caption': caption, 'match': fit['match']['total'],
+            'plates': [{'image': p['image'], 'caption': p['caption'], 'artist': p['artist'], 'year': p['year']} for p in plates]}
 
 
 def main():

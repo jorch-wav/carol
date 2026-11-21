@@ -1,0 +1,71 @@
+{
+ "id": "raven",
+ "common_name": "Little Raven",
+ "scientific_name": "Corvus mellori",
+ "family": "Corvidae (crows, ravens, jays and magpies)",
+ "overview": "The little raven is the all-black, white-eyed corvid whose drawn-out 'ah-ah-ah' or 'kar-kar-kar' is the everyday sound of Melbourne's parks, streets and paddocks. It is a little smaller than the Australian raven, with a shorter bill, and it is more sociable: outside the breeding season it gathers in big roaming flocks. When it calls it flicks both wings up a little with each note, a handy way to pick it from its relatives.",
+ "deep_dive": {
+  "habitat": "Open country of almost every kind: grassland, pasture and farmland, open woodland, scrub, coasts, treeless plains and suburbs. It feeds mostly on the ground and roosts and nests in trees nearby.",
+  "range": "South-eastern Australia: southern South Australia, Victoria and much of New South Wales (mostly on and west of the Great Dividing Range, south of Sydney), plus Kangaroo Island and King Island in Bass Strait. Absent from west Gippsland, where the forest raven takes its place. It has become more common in Melbourne since the 1980s.",
+  "behaviour": "Pairs defend only a small patch around the nest for the few months of breeding, often in loose colonies of up to about fifteen pairs a few metres apart, and feed on shared ground away from the nests. Afterwards young and adults join large wandering flocks that follow food, and gather wherever people leave plenty of it. Omnivorous, but eats more insects than the Australian raven (grasshoppers, caterpillars, cicadas, spiders), plus seeds, fruit, eggs, nestlings and carrion. Both parents build a stick nest lined with bark, grass and wool and raise up to six young (usually four or five), which fledge at five to six weeks. Known to use tools and to find food in inventive ways.",
+  "voice": "The usual call is a harsh, guttural series, written 'kar-kar-kar-karrr' or 'ark-ark-ark', or simply 'ah-ah-ah', often with the last note drawn out; each note comes with a small upward flick of the wings. In our recordings the notes last about 0.2-0.5 s and come roughly every 0.6-0.7 s within a series. They are rich harmonic stacks on a low fundamental of about 200-330 Hz, with most of the energy in two broad bands around 1.2-1.6 kHz and 2.1-2.5 kHz, which gives the nasal, croaking quality. Young birds beg with a whining, nasal version of the call. Ravens also have a quiet, creaking 'subsong' given to a mate or flock-mates, and gurgling and honking notes. Mimicry is known mostly from captive birds.",
+  "anatomy": "A songbird (order Passeriformes), despite its harsh voice. Like all songbirds it has a tracheobronchial syrinx, with a sound source on each side where the windpipe splits into the two bronchi, each side under separate muscular control. Its calls are given with the bill open; the strong, steady energy bands at about 1.3-1.6 and 2.2-2.5 kHz in our recordings look like resonances of the throat and mouth acting on a low, harmonic-rich source. Corvids give their quiet 'whisper songs' with the bill almost closed, which acts like an open-mouth tract with a very small opening, not true closed-mouth calling (Riede et al. 2016). Adults have a white iris (young birds' eyes change from blue-grey to brown to hazel over about two years); the bill, legs and feet are black, the throat hackles are fairly long and show when it calls, and the black feathers have grey bases. (No little-raven syrinx study was found; these points are general songbird anatomy plus our own spectrograms.)"
+ },
+ "tags": {
+  "features": [
+   "harsh caller",
+   "croaker",
+   "flock caller",
+   "wing-flicker"
+  ],
+  "region": [
+   "South-eastern Australia",
+   "Victoria",
+   "Kangaroo Island and King Island"
+  ]
+ },
+ "facts_sources": [
+  {
+   "title": "Little raven - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Little_raven",
+   "licence": "CC BY-SA 4.0 (text paraphrased, not copied)",
+   "used_for": "description (size, eye colour by age, grey feather bases), calls and wing-flicking, range, habitat, colonies, flocks, diet, nest, clutch, fledging, tool use, taxonomy (Mathews 1912, Rowley, Jønsson et al. 2012)"
+  },
+  {
+   "title": "Little Raven - Birds in Backyards (BirdLife Australia)",
+   "url": "https://www.birdsinbackyards.net/species/Corvus-mellori",
+   "licence": "(c) BirdLife Australia / Birds in Backyards - facts only, paraphrased",
+   "used_for": "length 48-52 cm, mass about 530 g, short bill and neck, hackles visible when calling, call transcription, breeding season and colonies, distribution"
+  },
+  {
+   "title": "IOC World Bird List (Gill, Donsker & Rasmussen, eds.), via World Bird Names species page",
+   "url": "https://www.worldbirdnames.com/bird/little-raven/20400.html",
+   "licence": "CC BY 4.0 - facts only",
+   "used_for": "taxonomy: Passeriformes, Corvidae, Corvus mellori Mathews, 1912, protonym Corvus marianae mellori, type locality Angas Plains, South Australia"
+  },
+  {
+   "title": "Corvus mellori - GBIF",
+   "url": "https://www.gbif.org/species/2482490",
+   "licence": "facts only",
+   "used_for": "taxonomy cross-check (Corvus mellori Mathews, 1912; Passeriformes, Corvidae)"
+  },
+  {
+   "title": "Syrinx (bird anatomy) - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Syrinx_(bird_anatomy)",
+   "licence": "CC BY-SA 4.0 (paraphrased)",
+   "used_for": "songbirds have a tracheobronchial syrinx; left/right sides controlled independently"
+  },
+  {
+   "title": "Riede, T., Eliason, C. M., Miller, E. H., Goller, F. & Clarke, J. A. (2016) Coos, booms, and hoots: the evolution of closed-mouth vocal behavior in birds. Evolution 70(8): 1734-1746",
+   "url": "https://doi.org/10.1111/evo.12988",
+   "licence": "facts only",
+   "used_for": "corvid whisper songs are given with an almost closed beak and are acoustically an open-mouth tract with a small opening, not closed-mouth vocalisation; no corvid in Table S3"
+  },
+  {
+   "title": "Xeno-canto recordings listed in sources.json (own measurements)",
+   "url": "https://xeno-canto.org/species/Corvus-mellori",
+   "licence": "recordings CC BY-NC-SA; measurements are our own",
+   "used_for": "note lengths and spacing, fundamental 200-330 Hz, energy bands 1.2-1.6 and 2.1-2.5 kHz"
+  }
+ ]
+}

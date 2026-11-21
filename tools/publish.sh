@@ -6,6 +6,9 @@ set -e
 cd "$(dirname "$0")/.."
 NAME=${1:-carol}
 command -v gh >/dev/null || { echo "Install the GitHub CLI first:  sudo apt install gh"; exit 1; }
+# hand gh its saved login directly, so it never asks the desktop keyring (which is locked after an
+# auto-login and pops up an "Unlock Keyring" password box on the Pi's screen)
+[ -z "$GH_TOKEN" ] && GH_TOKEN=$(sed -n 's/^ *oauth_token: *//p' ~/.config/gh/hosts.yml 2>/dev/null | head -1) && export GH_TOKEN
 gh auth status >/dev/null 2>&1 || { echo "Log in first:  gh auth login"; exit 1; }
 LOGIN=$(gh api user -q .login); ID=$(gh api user -q .id)
 [ -d .git ] || git init -q -b main

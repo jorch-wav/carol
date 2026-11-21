@@ -386,6 +386,119 @@ PLATES.update({
 })
 
 
+# Galah, gang-gang cockatoo, yellow-tailed black-cockatoo (added 2026-11-21). All xeno-canto, CC BY-NC-SA.
+# Gang-gang downloads are not restricted on xeno-canto (checked 2026-11-21), so no iNaturalist fallback was needed.
+CATEGORY.update({
+    "galah": {
+        "935423": "contact calls + flight calls ('chet'/'chi-chi' screeches; arched harmonic stacks)",
+        "953252": "single screech (one loud harsh call)",
+        "1138701": "contact screeches (single bird, clean; Tasmania, introduced range)",
+        "1166610": "calls + flight calls",
+        "506844": "calls (adults + juveniles)",
+        "330259": "flight calls (two birds calling while flying away; ssp. albiceps)",
+        "495757": "flight call series (Tasmania, introduced range)",
+        "935909": "flock flight calls (about 30 birds)",
+        "506845": "alarm calls (small flock incl. immatures flying off in alarm)",
+        "935797": "juvenile begging calls (adult feeding 3 young) + calls",
+    },
+    "gangang": {
+        "1169134": "'creaky gate' contact calls (adult male)",
+        "1169163": "'creaky gate' calls + flight calls (adult female)",
+        "1169159": "'creaky gate' flight calls (pair)",
+        "1169118": "'creaky gate' calls + flight calls, long bout (male + female)",
+        "1169744": "creaky calls + flight calls; one tonal growl-like call",
+        "1072734": "'creaky gate' calls, long bout (2 birds)",
+        "1172996": "creaky calls + soft growls",
+        "330260": "creaky calls (wild immature male + captive male at Healesville Sanctuary)",
+        "187882": "flock calls: creaks + frequency-modulated growls (males and females perched and flying)",
+        "622269": "alarm/flight calls (flock startled from a tree by a wedge-tailed eagle; quality B)",
+    },
+    "blackcockatoo": {
+        "1166249": "wailing contact calls ('kee-ow'; clean harmonic stacks)",
+        "1166250": "wailing flight calls (2 birds; clean harmonic stacks)",
+        "1166621": "wailing calls + harsh screech segments",
+        "935512": "wailing calls + flight calls (adult male perched on a treetop)",
+        "935853": "wailing calls + flight calls (few birds)",
+        "871224": "wailing contact calls, long bout (2 birds)",
+        "1072333": "harsh screeching flight calls (4 birds)",
+        "1103268": "flock calls (large flock feeding on pine cones; mixed wails and screeches)",
+        "826853": "harsh squawks and shrieks while feeding on banksia (alarm-type screech candidate; Tasmania, ssp. xanthanota)",
+        "345044": "juvenile begging calls (rasping, rhythmic)",
+    },
+})
+
+PLATES.update({
+    "galah": dict(gould_name="Cacatua Eos.", gould_common_name="Rose-breasted Cockatoo", volume="V", plate="4",
+                  ia_id="birdsAustraliav5Goul", leaf=24, bhl_part="https://www.biodiversitylibrary.org/part/313236",
+                  printer="Hullmandel & Walton"),
+    "blackcockatoo": dict(gould_name="Calyptorhynchus funereus.", gould_common_name="Funereal Cockatoo", volume="V",
+                          plate="11", ia_id="birdsAustraliav5Goul", leaf=52,
+                          bhl_part="https://www.biodiversitylibrary.org/part/313243", printer="Hullmandel & Walton"),
+    "gangang": dict(gould_name="Callocephalon galeatum.", gould_common_name="Gang-gang Cockatoo", volume="V", plate="14",
+                    ia_id="birdsAustraliav5Goul", leaf=64, bhl_part="https://www.biodiversitylibrary.org/part/313246",
+                    printer="Hullmandel & Walton"),
+})
+
+
+# Little raven, willie-wagtail, tawny frogmouth (added 2026-11-21). All xeno-canto, CC BY-NC-SA (3.0/4.0).
+# Call types from the recordists' labels plus our spectrograms (not checked by ear).
+CATEGORY.update({
+    "raven": {
+        "935829": "'ah-ah-ah' call series, long bout (Cape Otway, Vic)",
+        "996951": "'ah-ah-ah' calls, single adult on a fence (some wind)",
+        "1062642": "calls, drawn-out 'aaah' notes (French Island, Vic)",
+        "211338": "'ah-ah-ah' call series (Castlemaine, Vic)",
+        "937188": "calls (park, Ferntree Gully, Vic)",
+        "935842": "call series (XC type: song)",
+        "539397": "flight calls (strong wind)",
+        "505696": "quiet creaking subsong of a single bird, then two loud calls (traffic noise; blackbird, wattlebird in background)",
+        "1069409": "juvenile begging calls (perched near an adult)",
+        "330280": "immature 'honking' calls while eating (other birds audible)",
+    },
+    "wagtail": {
+        "953372": "song ('sweet pretty creature' phrases; Lake Fyans, Vic)",
+        "935809": "song (adult male; Cape Otway, Vic; other birds audible)",
+        "767239": "song, long bout (Wangaratta, Vic; creek and traffic noise)",
+        "1069909": "song (adult male, ssp. leucophrys)",
+        "1069588": "song",
+        "155135": "song phrase (repeated day and night)",
+        "1170174": "alarm rattle 'chit-chit-chit'",
+        "1170177": "alarm rattle (short, clean)",
+        "1069587": "alarm rattle + calls while mobbing a pied currawong",
+        "517759": "ratchetting call (rattle)",
+        "606516": "two birds: ratchety alarm call + whistled notes (magpie in background)",
+    },
+    "frogmouth": {
+        "953020": "'oom' series, probably male, 12 series (female in background; strong wind)",
+        "953019": "'oom' series, probably female (higher, about 345 Hz; strong wind)",
+        "586832": "'oom' series, bird 4 m overhead (light wind)",
+        "375096": "'oom' series, male calling to female in the same tree",
+        "1173996": "'oom' series (Dandenong Ranges, Vic)",
+        "561573": "'oom' series, bird flies in next to the recorder (ssp. brachypterus, central Australia)",
+        "643067": "'oom' calls after dark (rhythmic background sound near 2 kHz)",
+        "697079": "'oom' calls in daylight (magpie and other birds in background)",
+        "396564": "repeated 'huff' call",
+        "692557": "alarm call at roost (noisy bursts; lorikeets nearby)",
+        "842281": "begging calls, 2 juveniles to a parent (crickets in background)",
+    },
+})
+
+# No Gould plate for the little raven (described in 1912): his "White-eyed Crow" stands for the Australian raven complex.
+# Frogmouth: Gould's Podargus Cuvieri (Tasmanian/southern birds, now P. s. strigoides) chosen over P. humeralis
+# (pl. 3, bird shown asleep with the bill hidden) because it shows the open eye, bill and bristles.
+PLATES.update({
+    "raven": dict(gould_name="Corvus coronoides: Vig. et Horsf.", gould_common_name="White-eyed Crow", volume="IV",
+                  plate="18", ia_id="birdsAustraliav4Goul", leaf=84,
+                  bhl_part="https://www.biodiversitylibrary.org/part/313146", printer="Hullmandel & Walton"),
+    "wagtail": dict(gould_name="Rhipidura motacilloides: Vig. & Horsf.", gould_common_name="Black Fantailed Flycatcher",
+                    volume="II", plate="86", ia_id="birdsAustraliav2Goul", leaf=352,
+                    bhl_part="https://www.biodiversitylibrary.org/part/313013", printer="Hullmandel & Walton"),
+    "frogmouth": dict(gould_name="Podargus Cuvieri: Vig. and Horsf.", gould_common_name="Cuvier's Podargus", volume="II",
+                      plate="4", ia_id="birdsAustraliav2Goul", leaf=24,
+                      bhl_part="https://www.biodiversitylibrary.org/part/312931", printer="Hullmandel & Walton"),
+})
+
+
 def probe(path):
     out = subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration:stream=sample_rate,channels,bits_per_sample",
                           "-of", "json", path], capture_output=True, text=True).stdout

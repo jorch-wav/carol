@@ -1,0 +1,89 @@
+{
+ "id": "galah",
+ "common_name": "Galah",
+ "scientific_name": "Eolophus roseicapilla",
+ "family": "Cacatuidae (cockatoos)",
+ "overview": "The galah is a pink-and-grey cockatoo found almost everywhere in Australia, from outback paddocks to city ovals. It has a rose-pink face and chest, a soft grey back and wings, and a pale pink cap it can raise into a small crest. Galahs travel in noisy flocks, feed on seeds on the ground and are known for their bouncy, acrobatic flight. Their name comes from gilaa, a word from the Yuwaalaraay and neighbouring languages of north-western New South Wales, and in Australian slang 'galah' also means a fool.",
+ "deep_dive": {
+  "habitat": "Open country with scattered trees: grassland, farmland, woodland near water, parks, sports fields and towns. Galahs avoid dense, wet forest. Clearing for farming and stock-watering points have helped them spread, and they are now common in cities such as Melbourne, Adelaide and Perth.",
+  "range": "Nearly all of mainland Australia except the driest deserts and the tip of Cape York; mostly inland but spreading towards the coasts. Introduced to Tasmania (big expansion after aviary escapes in the 1960s) and to the Auckland area of New Zealand. IOC lists three subspecies: roseicapilla (Western Australia, paler), albiceps (south-eastern and central-eastern Australia and Tasmania - the Victorian birds) and kuhli (northern Australia).",
+  "behaviour": "Very social. Flocks of ten to a thousand birds feed on the ground on grass seeds and crops in the morning and late afternoon, then shelter in foliage through the heat of the day and roost together at night. Pairs bond for life. They nest in tree hollows lined with leaves; both parents incubate the 2-5 white eggs for about 25 days, and chicks leave the nest about 7 weeks after hatching. Galahs strip bark and leaves from trees, and readily hybridise with other cockatoos. Wild birds seldom live past about 20 years, though captive galahs have reached 70.",
+  "voice": "BirdLife Australia describes the call as a high-pitched screech, often written 'chi-chi'. Galahs are quieter than many other cockatoos. A study in northern New South Wales (Pidgeon 1981) found nine structurally distinct calls and at least twelve calls with different functions, including contact, flight and alarm calls. Young birds beg with a rhythmic, buzzy call. In our recordings the calls are short, bright frequency-swept notes: the lowest strong component sits around 1.8-3.8 kHz (often an arch around 2.5 kHz), with harmonics and side-bands about 0.7-0.9 kHz apart, and most energy between about 2 and 8 kHz, peaking around 3-5 kHz - higher and more tonal than the sulphur-crested cockatoo's screech. Begging calls show a ladder of harmonics only about 400 Hz apart.",
+  "anatomy": "A parrot (order Psittaciformes, family Cacatuidae), not a songbird. Parrots have a syrinx at the bottom of the windpipe, not where it splits into the bronchi, with a pair of thin lateral tympaniform membranes as a single sound source; endoscope work on cockatiels (also a cockatoo) showed the membranes sit partly drawn into the airway as a narrow slot, and two small muscles inside the syrinx push them further in or pull them out. Parrots then shape the sound with a thick, movable tongue, beak opening and even windpipe length, which shift the resonances of the vocal tract much like vowels in human speech (shown in monk parakeets). The bill is short, strong and bone-coloured. The eye is ringed with bare, bumpy pinkish skin; adult males have a very dark brown iris and females a mid-brown to red one. (No galah-specific syrinx study was consulted; the membrane and tongue findings come from cockatiels and monk parakeets.)"
+ },
+ "tags": {
+  "features": [
+   "screecher",
+   "flock caller",
+   "acrobat"
+  ],
+  "region": [
+   "Australia-wide",
+   "South-eastern Australia",
+   "Tasmania (introduced)",
+   "New Zealand (introduced)"
+  ]
+ },
+ "facts_sources": [
+  {
+   "title": "Galah - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Galah",
+   "licence": "CC BY-SA 4.0 (text paraphrased, not copied)",
+   "used_for": "overview, size (35 cm, 270-350 g), plumage, iris colour by sex, name origin, slang, range, introductions, subspecies, behaviour, breeding, lifespan, taxonomy history (Vieillot 1817, Bonaparte 1854)"
+  },
+  {
+   "title": "Galah - BirdLife Australia bird profile",
+   "url": "https://birdlife.org.au/bird-profiles/galah/",
+   "licence": "(c) BirdLife Australia - facts only, paraphrased",
+   "used_for": "'chi-chi' screech, habitat, flocks, communal roosting, acrobatic flight, nest lining, breeding seasons"
+  },
+  {
+   "title": "Eolophus roseicapilla - Atlas of Living Australia",
+   "url": "https://bie.ala.org.au/species/https://biodiversity.org.au/afd/taxa/9b4ad548-8bb3-486a-ab0a-905506c463ea",
+   "licence": "ALA terms of use - facts only",
+   "used_for": "taxonomy (Cacatuidae, Psittaciformes)"
+  },
+  {
+   "title": "Pidgeon, R. (1981) Calls of the galah Cacatua roseicapilla and some comparisons with four other species of Australian parrots. Emu 81(3): 158-168",
+   "url": "https://doi.org/10.1071/MU9810158",
+   "licence": "facts only (abstract)",
+   "used_for": "nine structurally distinct calls, at least twelve functional call types (northern NSW)"
+  },
+  {
+   "title": "Larsen, O. N. & Goller, F. (2002) Direct observation of syringeal muscle function in songbirds and a parrot. Journal of Experimental Biology 205: 25-35",
+   "url": "https://doi.org/10.1242/jeb.205.1.25",
+   "licence": "facts only (abstract)",
+   "used_for": "cockatiel (a cockatoo) syrinx: lateral tympaniform membranes form a narrow slot; two intrinsic muscles move them"
+  },
+  {
+   "title": "Ohms, V. R., Beckers, G. J. L., ten Cate, C. & Suthers, R. A. (2012) Vocal tract articulation revisited: the case of the monk parakeet. Journal of Experimental Biology 215: 85-92",
+   "url": "https://doi.org/10.1242/jeb.064717",
+   "licence": "facts only (abstract)",
+   "used_for": "parrots shape sound with tongue height, beak opening and tracheal length"
+  },
+  {
+   "title": "Beckers, G. J. L., Nelson, B. S. & Suthers, R. A. (2004) Vocal-tract filtering by lingual articulation in a parrot. Current Biology 14: 1592-1597",
+   "url": "https://doi.org/10.1016/j.cub.2004.08.057",
+   "licence": "facts only (abstract)",
+   "used_for": "tongue position shifts parrot vocal-tract resonances (formant-like filtering)"
+  },
+  {
+   "title": "Parrot - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Parrot",
+   "licence": "CC BY-SA 4.0 (paraphrased)",
+   "used_for": "parrot syrinx position at the base of the trachea"
+  },
+  {
+   "title": "IOC World Bird List v15.2 (Gill, Rasmussen & Donsker, eds.)",
+   "url": "https://www.worldbirdnames.org/new/ioc-lists/master-list-2/",
+   "licence": "CC BY 4.0 - facts only",
+   "used_for": "taxonomy: order Psittaciformes, family Cacatuidae, Eolophus roseicapilla (Vieillot, 1817), subspecies kuhli, roseicapilla, albiceps"
+  },
+  {
+   "title": "Xeno-canto recordings listed in sources.json (own measurements)",
+   "url": "https://xeno-canto.org/species/Eolophus-roseicapilla",
+   "licence": "recordings CC BY-NC-SA; measurements are our own",
+   "used_for": "lowest strong component about 1.8-3.8 kHz, side-bands 0.7-0.9 kHz apart, energy about 2-8 kHz peaking 3-5 kHz, begging harmonics about 400 Hz apart"
+  }
+ ]
+}

@@ -5,7 +5,7 @@ const $ = (id) => document.getElementById(id);
 export const DEFAULTS = {
   midiIn: 'all', midiCh: 0, velCurve: 'linear', bendRange: 2,
   midiOut: '', outCh: 1, outNotes: true, outClock: false,
-  learn: {}, a4: 440, voices: 6, latency: '', sync: 'off', rptRate: '1/8',
+  learn: {}, a4: 440, voices: 6, latency: '', sync: 'off', rptRate: '1/8', prefArtist: '',
 };
 export function loadSettings() {
   let s = {};
@@ -65,6 +65,10 @@ export class SettingsUI {
       <label class="field">Call repeater speed ${sel('stRpt', [['1/4', '1/4 note'], ['1/8', '1/8 note'], ['1/8T', '1/8 triplet'], ['1/16', '1/16 note']], s.rptRate)}</label>
       <p class="st-note">Key and scale lock: pick the scale in the play bar; keys, MIDI and the NeoKeys all snap to it. HOLD keeps notes sounding after you let go; RPT repeats the call in time while you hold a key.</p>
 
+      <h2>Plates</h2>
+      <label class="field">Preferred artist ${sel('stArtist', [['', 'None (the first plate)'], ...[...new Set(app.index.flatMap((b) => (b.plates || []).map((p) => p.artist)).filter(Boolean))].sort().map((a) => [a, a])], s.prefArtist || '')}</label>
+      <p class="st-note">Birds with a plate by this artist show it first. You can still flip through every bird's plates in the PLATE view or the bird menu, and Carol remembers your pick for each bird.</p>
+
       <h2>Audio</h2>
       <label class="field">Latency ${sel('stLat', [['', 'Lowest (interactive)'], ['balanced', 'Balanced'], ['playback', 'Safest (playback)']], s.latency)}</label>
       <p class="st-note">Raise it if you hear crackles. Takes effect after a reload.</p>
@@ -79,7 +83,7 @@ export class SettingsUI {
     const on = (id, k, num) => { const e = $(id); if (e) e.onchange = () => this.set(k, num ? Number(e.value) : e.value); };
     on('stIn', 'midiIn'); on('stCh', 'midiCh', 1); on('stVel', 'velCurve'); on('stBend', 'bendRange', 1);
     on('stOut', 'midiOut'); on('stOutCh', 'outCh', 1); on('stSync', 'sync'); on('stA4', 'a4', 1); on('stVoices', 'voices', 1);
-    on('stRpt', 'rptRate'); on('stLat', 'latency');
+    on('stRpt', 'rptRate'); on('stLat', 'latency'); on('stArtist', 'prefArtist');
     $('stOutNotes').onchange = (e) => this.set('outNotes', e.target.checked);
     $('stOutClock').onchange = (e) => this.set('outClock', e.target.checked);
     $('stLearn').onclick = () => { app.setLearning(!app.learning); if (app.learning) this.close(); else this.render(); };

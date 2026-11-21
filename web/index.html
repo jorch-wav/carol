@@ -46,7 +46,10 @@
         <canvas id="view2d"></canvas>
         <canvas id="view3d"></canvas>
         <canvas id="sono"></canvas>
-        <figure id="plate"><img id="plateImg" alt=""><figcaption id="plateCap"></figcaption></figure>
+        <figure id="plate"><img id="plateImg" alt=""><figcaption id="plateCap"></figcaption>
+          <div class="pl-nav"><button id="plPrev" aria-label="Previous plate">‹</button><span id="plWho"></span><span class="pl-dots" id="plDots"></span><button id="plNext" aria-label="Next plate">›</button><button id="plMine" class="pl-mine">+ MY PICTURE</button></div>
+          <input type="file" id="plFile" accept="image/*" hidden>
+        </figure>
         <div class="view-hud" id="viewHud"></div>
         <div class="view-size" id="viewSize">
           <button data-size="hidden" title="Hide the bird">▁</button>

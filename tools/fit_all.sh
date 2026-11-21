@@ -20,3 +20,13 @@ run() { echo "== $1"; $B fit data/$1 --body $2 --fmin $3 --fmax $4 --budget $BUD
 [ -z "$1" -o "$1" = lorikeet ] && run lorikeet 2 700 7000
 [ -z "$1" -o "$1" = curlew ] && run curlew 1 800 3500
 [ -z "$1" -o "$1" = boobook ] && run boobook ${QBODY:-1} 400 1600
+[ -z "$1" -o "$1" = helmeted ] && run helmeted 0 1000 8000
+[ -z "$1" -o "$1" = fairywren ] && run fairywren 0 2500 10000
+[ -z "$1" -o "$1" = shrikethrush ] && run shrikethrush 0 700 5000
+[ -z "$1" -o "$1" = whistler ] && run whistler 0 1000 6500
+[ -z "$1" -o "$1" = raven ] && run raven 0 150 4500
+[ -z "$1" -o "$1" = wagtail ] && run wagtail 0 1500 8000
+[ -z "$1" -o "$1" = frogmouth ] && run frogmouth ${QBODY:-1} 150 900
+[ -z "$1" -o "$1" = galah ] && run galah 2 700 8000
+[ -z "$1" -o "$1" = gangang ] && run gangang 2 250 6000
+[ -z "$1" -o "$1" = blackcockatoo ] && run blackcockatoo 2 600 5000

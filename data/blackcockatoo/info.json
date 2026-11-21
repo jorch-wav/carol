@@ -1,0 +1,83 @@
+{
+ "id": "blackcockatoo",
+ "common_name": "Yellow-tailed Black Cockatoo",
+ "scientific_name": "Zanda funerea",
+ "family": "Cacatuidae (cockatoos)",
+ "overview": "The yellow-tailed black cockatoo is a huge, brownish-black cockatoo with a round yellow patch on each cheek and yellow panels in its long tail. Flocks drift over south-eastern Australia on slow, deep wingbeats, and you usually hear them long before you see them: a far-carrying, mournful wailing 'kee-ow'. They rip open pine cones, banksias and hakeas for seeds and tear into branches to get at fat wood-boring grubs. Males have a black bill and a pink ring around the eye; females have a pale bill, a grey eye-ring and a bigger, brighter cheek patch.",
+ "deep_dive": {
+  "habitat": "Eucalypt forest and woodland from the coast up to about 2,000 m, heathland with banksias and hakeas, and pine plantations; also leafy suburbs of Melbourne, Sydney, Canberra and Adelaide. They roost in tall emergent eucalypts and need very old trees with large hollows to nest.",
+  "range": "South-eastern Australia from central Queensland through New South Wales and Victoria to south-eastern South Australia (with a tiny Eyre Peninsula population), Kangaroo Island, the Bass Strait islands and Tasmania. IOC lists three subspecies: funerea (east-central Queensland to south-central Victoria), whiteae (south-eastern South Australia and Kangaroo Island) and xanthanota (Tasmania and Bass Strait islands); other authors put most western Victorian birds in xanthanota.",
+  "behaviour": "Active by day, noisy and conspicuous. Pairs and family groups fly long distances high overhead; outside the breeding season flocks can top a hundred birds. They feed mostly in trees on the seeds of she-oaks, eucalypts, wattles, banksias, hakeas and introduced pines (a bird may spend twenty minutes on one cone), and they gouge wood to extract beetle and moth larvae. Nests are deep vertical hollows in old eucalypts (one study found nest trees averaged over 200 years old). The female incubates one or two eggs for about four weeks while the male feeds her; usually only one chick survives, and it stays with its parents until the next season. Birds mature at four to six years and can live for decades.",
+  "voice": "The main contact and flight call is a loud, drawn-out wailing 'kee-ow' that carries a long way. Alarm calls are harsh screeches; feeding birds give soft chuckles; juveniles keep up a rhythmic, rasping begging call. In our recordings the wail is a clean stack of harmonics that rises and falls: the fundamental sits around 0.9-1.7 kHz (often about 1 kHz) with harmonics evenly spaced up to about 7 kHz, while screeches turn noisy and broadband. Most energy lies between about 1 and 4.7 kHz, peaking around 1.4-2.2 kHz - lower than the galah or the gang-gang, fitting its much larger body. Begging calls are buzzy bands with components about 300 Hz apart, mostly 1.2-5.5 kHz.",
+  "anatomy": "A parrot (order Psittaciformes, family Cacatuidae), not a songbird. Parrots have a syrinx at the bottom of the windpipe, not where it splits into the bronchi, with a pair of thin lateral tympaniform membranes as a single sound source; endoscope work on cockatiels (also a cockatoo) showed the membranes sit partly drawn into the airway as a narrow slot, and two small muscles inside the syrinx push them further in or pull them out. Parrots then shape the sound with a thick, movable tongue, beak opening and even windpipe length, which shift the resonances of the vocal tract much like vowels in human speech (shown in monk parakeets). The bill is long, with a pointed upper mandible for digging out grubs - grey-black in adult males, pale horn in females and young. The crest is short and mobile, and the tail is long (about 33 cm in eastern birds), about half the bird's length. (No black-cockatoo syrinx study was consulted; the membrane and tongue findings come from cockatiels and monk parakeets.)"
+ },
+ "tags": {
+  "features": [
+   "wailer",
+   "flock caller",
+   "screecher",
+   "slow flier"
+  ],
+  "region": [
+   "South-eastern Australia",
+   "Eastern Australia",
+   "Tasmania"
+  ]
+ },
+ "facts_sources": [
+  {
+   "title": "Yellow-tailed black cockatoo - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Yellow-tailed_black_cockatoo",
+   "licence": "CC BY-SA 4.0 (text paraphrased, not copied)",
+   "used_for": "overview, size (55-65 cm, weights, tail length), plumage and sex differences, calls (kee-ow, alarm, chuckling, begging), taxonomy (Shaw 1794, Calyptorhynchus to Zanda), subspecies, range, habitat, diet, breeding, nest-tree age, maturity, lifespan, conservation"
+  },
+  {
+   "title": "Yellow-tailed Black-Cockatoo - BirdLife Australia bird profile",
+   "url": "https://birdlife.org.au/bird-profiles/yellow-tailed-black-cockatoo/",
+   "licence": "(c) BirdLife Australia - facts only, paraphrased",
+   "used_for": "sex differences (cheek patch, eye-ring, bill), 'kee-ow' contact call, habitat, diet, breeding, decline"
+  },
+  {
+   "title": "Zanda funerea - Atlas of Living Australia",
+   "url": "https://bie.ala.org.au/species/https://biodiversity.org.au/afd/taxa/145b081d-eca7-4d9b-9171-b97e2d061536",
+   "licence": "ALA terms of use - facts only",
+   "used_for": "taxonomy (Cacatuidae, Psittaciformes; genus Zanda)"
+  },
+  {
+   "title": "Larsen, O. N. & Goller, F. (2002) Direct observation of syringeal muscle function in songbirds and a parrot. Journal of Experimental Biology 205: 25-35",
+   "url": "https://doi.org/10.1242/jeb.205.1.25",
+   "licence": "facts only (abstract)",
+   "used_for": "cockatiel (a cockatoo) syrinx: lateral tympaniform membranes form a narrow slot; two intrinsic muscles move them"
+  },
+  {
+   "title": "Ohms, V. R., Beckers, G. J. L., ten Cate, C. & Suthers, R. A. (2012) Vocal tract articulation revisited: the case of the monk parakeet. Journal of Experimental Biology 215: 85-92",
+   "url": "https://doi.org/10.1242/jeb.064717",
+   "licence": "facts only (abstract)",
+   "used_for": "parrots shape sound with tongue height, beak opening and tracheal length"
+  },
+  {
+   "title": "Beckers, G. J. L., Nelson, B. S. & Suthers, R. A. (2004) Vocal-tract filtering by lingual articulation in a parrot. Current Biology 14: 1592-1597",
+   "url": "https://doi.org/10.1016/j.cub.2004.08.057",
+   "licence": "facts only (abstract)",
+   "used_for": "tongue position shifts parrot vocal-tract resonances (formant-like filtering)"
+  },
+  {
+   "title": "Parrot - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Parrot",
+   "licence": "CC BY-SA 4.0 (paraphrased)",
+   "used_for": "parrot syrinx position at the base of the trachea"
+  },
+  {
+   "title": "IOC World Bird List v15.2 (Gill, Rasmussen & Donsker, eds.)",
+   "url": "https://www.worldbirdnames.org/new/ioc-lists/master-list-2/",
+   "licence": "CC BY 4.0 - facts only",
+   "used_for": "taxonomy: order Psittaciformes, family Cacatuidae, Zanda funerea (Shaw, 1794), moved from Calyptorhynchus (White et al. 2011); subspecies funerea, whiteae, xanthanota"
+  },
+  {
+   "title": "Xeno-canto recordings listed in sources.json (own measurements)",
+   "url": "https://xeno-canto.org/species/Zanda-funerea",
+   "licence": "recordings CC BY-NC-SA; measurements are our own",
+   "used_for": "wail fundamental about 0.9-1.7 kHz, harmonics to about 7 kHz, energy about 1-4.7 kHz peaking 1.4-2.2 kHz, begging components about 300 Hz apart"
+  }
+ ]
+}

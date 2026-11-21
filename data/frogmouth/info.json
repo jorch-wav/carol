@@ -1,0 +1,71 @@
+{
+ "id": "frogmouth",
+ "common_name": "Tawny Frogmouth",
+ "scientific_name": "Podargus strigoides",
+ "family": "Podargidae (frogmouths)",
+ "overview": "The tawny frogmouth is the big-headed, mottled grey night bird that spends the day pretending to be a broken branch. It looks like an owl but is a relative of the nightjars, with a huge, wide, froggy bill instead of a hooked beak and weak feet instead of talons. At night, especially in late winter and spring, it gives a soft, deep 'oom-oom-oom', repeated over and over, that you can hear in suburbs right across Australia.",
+ "deep_dive": {
+  "habitat": "Almost anywhere with trees: eucalypt forest and woodland, scrub, heath, savannah, farmland and leafy suburbs. Scarce in dense rainforest, alpine country and treeless desert.",
+  "range": "All of Australia including Tasmania, except some of the driest inland areas (far western Queensland, central Northern Territory, most of the Nullarbor). Three subspecies: strigoides in the east and south-east including Victoria and Tasmania, brachypterus in the west and inland south, and phalaenoides in the north. South-eastern birds are larger than northern ones.",
+  "behaviour": "Nocturnal. By day it sits motionless on an open branch with its head tilted up and eyes almost closed, looking like a snapped-off stump; pairs often roost side by side. At night it drops from a perch onto insects, worms, slugs, snails and the odd small mammal, frog or reptile, and snaps some moths in flight. Pairs bond for life and keep the same territory for ten years or more. Both build a flimsy stick platform in a tree fork and share incubation, the male taking the day shift; one to three eggs, chicks fledge at about 25-35 days. It survives cold nights with shallow torpor and cools itself on hot days by panting.",
+  "voice": "The main call is a low, soft, steady 'oom-oom-oom', a long run of identical notes, mostly at night and especially in the breeding season, when pairs duet by alternating or overlapping their series. In our recordings each 'oom' lasts about 0.3-0.4 s and they come about every 0.5-0.6 s; the note is almost a pure tone with a fundamental of about 250-350 Hz (one bird from central Australia about 310 Hz, a probable female about 345 Hz) and only weak harmonics, often with a short pitch hook at the start. Other sounds: a softer breathy 'whoo', a repeated 'huff', drumming in the breeding season, a buzz when disturbed, a loud hiss and bill-clacking when threatened, an alarm call, and noisy begging calls from young birds (most energy around 0.8-2 kHz in our clip).",
+  "anatomy": "Not a songbird or an owl: frogmouths belong with the nightjars, oilbird, potoos and owlet-nightjars in the nightjar group (order Caprimulgiformes in the IOC list; some lists use a separate order Podargiformes). An old anatomical survey (Beddard 1886) found that the syrinx of Podargus is close to the purely bronchial type of the oilbird: the sound-making parts sit down in the two bronchi, so there are two sources, rather than one at the base of the windpipe. Whether the 'oom' is made with the bill closed and the throat puffed out, as doves coo, is not documented: no study or field description of how this species calls was found. Riede et al. (2016), who surveyed which birds call with a closed mouth, did not include any frogmouth; the only nightjar-group bird they scored, the large-tailed nightjar, calls with an open mouth. Two clues point the other way: the 'oom' is a nearly pure tone, and for a 300-350 g bird its pitch is low, close to the closed-mouth callers in that survey (rock dove, 369 g, about 400 Hz). Treat the calling mechanism as unknown. The bill is very broad and heavy, olive-grey to blackish, hooked at the tip, with tufts of bristles above. Eyes large and yellow, set at the sides of the head. Short legs and weak feet."
+ },
+ "tags": {
+  "features": [
+   "hooter",
+   "night caller",
+   "duetter",
+   "pure tone",
+   "bill-clacker"
+  ],
+  "region": [
+   "Australia-wide",
+   "Tasmania"
+  ]
+ },
+ "facts_sources": [
+  {
+   "title": "Tawny frogmouth - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Tawny_frogmouth",
+   "licence": "CC BY-SA 4.0 (text paraphrased, not copied)",
+   "used_for": "size and mass, plumage morphs, eyes, bill, feet, roosting camouflage, diet, torpor and panting, pair bond, nest, eggs and fledging, voice (oom rate, whoo, duets, drumming, buzz, hiss, clacking, alarm, begging), range, subspecies, taxonomy (Latham 1801)"
+  },
+  {
+   "title": "Tawny Frogmouth - BirdLife Australia bird profile",
+   "url": "https://birdlife.org.au/bird-profiles/tawny-frogmouth/",
+   "licence": "(c) BirdLife Australia - facts only, paraphrased",
+   "used_for": "voice ('soft, deep, continuous ooo-ooo-ooo'), plumage, bill colour, habitat, diet, breeding season, distribution"
+  },
+  {
+   "title": "IOC World Bird List (Gill, Donsker & Rasmussen, eds.), via World Bird Names species page",
+   "url": "https://www.worldbirdnames.com/bird/tawny-frogmouth/3375.html",
+   "licence": "CC BY 4.0 - facts only",
+   "used_for": "taxonomy: Caprimulgiformes, Podargidae, Podargus strigoides (Latham, 1801), protonym Caprimulgus strigoides, type locality New South Wales"
+  },
+  {
+   "title": "Podargus strigoides - GBIF",
+   "url": "https://www.gbif.org/species/2497109",
+   "licence": "facts only",
+   "used_for": "taxonomy cross-check (Podargus strigoides (Latham, 1801); Caprimulgiformes, Podargidae)"
+  },
+  {
+   "title": "Riede, T., Eliason, C. M., Miller, E. H., Goller, F. & Clarke, J. A. (2016) Coos, booms, and hoots: the evolution of closed-mouth vocal behavior in birds. Evolution 70(8): 1734-1746",
+   "url": "https://doi.org/10.1111/evo.12988",
+   "licence": "facts only",
+   "used_for": "no frogmouth in Table S3; large-tailed nightjar Caprimulgus macrurus (66 g) coded open-mouth; rock dove (369 g) closed-mouth with F0 about 400 Hz; closed-mouth callers mostly over 100 g with F0 at or below the low end for their size"
+  },
+  {
+   "title": "Beddard, F. E. (1886) On the syrinx and other points in the anatomy of the Caprimulgidae. Proceedings of the Zoological Society of London 1886: 147-153",
+   "url": "https://biodiversity.org.au/afd/publication/f658ae37-a260-447d-8dc6-4746ed6f7603",
+   "licence": "public domain (1886) - read via OCR snippets and search summaries, full text not read",
+   "used_for": "syrinx of Podargus and Batrachostomus approaches the purely bronchial syrinx of Steatornis (oilbird), unlike the tracheo-bronchial syrinx of true nightjars"
+  },
+  {
+   "title": "Xeno-canto recordings listed in sources.json (own measurements)",
+   "url": "https://xeno-canto.org/species/Podargus-strigoides",
+   "licence": "recordings CC BY-NC-SA; measurements are our own",
+   "used_for": "oom note length 0.3-0.4 s, spacing 0.5-0.6 s, fundamental 250-350 Hz, weak harmonics, begging-call band"
+  }
+ ]
+}
