@@ -156,17 +156,21 @@ class App {
     if (this.bird && b.id === this.bird.id) this.showPlate();
     if (!this.presets.el.hidden) this.presets.showPlate();
   }
+  /** Swipe on the plate: the bird's next / previous plate, with a moment's label saying whose it is. */
+  swipePlate(d) {
+    const b = this.bird, list = this.plates(b); if (list.length < 2) return;
+    this.setPlate(b, this.plateIndex(b) + d);
+    const p = this.plateOf(b), i = this.plateIndex(b), badge = $('plBadge');
+    badge.textContent = `${(p.artist || '').split(/[;(]/)[0].trim()}${p.year ? ' · ' + p.year : ''} · ${i + 1}/${list.length}`;
+    badge.hidden = false; badge.classList.remove('fade'); void badge.offsetWidth; badge.classList.add('fade');
+    clearTimeout(this._badgeT); this._badgeT = setTimeout(() => { badge.hidden = true; }, 1800);
+  }
   /** Show the chosen plate in the top bar thumbnail and the PLATE view. */
   showPlate() {
     const b = this.bird, p = this.plateOf(b), list = this.plates(b), i = this.plateIndex(b);
     const th = $('birdThumb'); if (p) { th.src = p.image; th.style.display = ''; } else th.style.display = 'none';
     const pi = $('plateImg'); if (p) pi.src = p.image; else pi.removeAttribute('src');
-    const full = p && b.sources && b.sources.plates ? (b.sources.plates.find((q) => q.image === p.image) || {}).credit : null;
-    $('plateCap').textContent = p ? (full || p.caption) : 'No illustration for this bird.';
-    $('plDots').innerHTML = list.length > 1 ? list.map((q, k) => `<button class="${k === i ? 'on' : ''}" data-k="${k}" title="${(q.artist || '').replace(/"/g, '')}${q.year ? ', ' + q.year : ''}"></button>`).join('') : '';
-    $('plDots').querySelectorAll('[data-k]').forEach((x) => x.onclick = (e) => { e.stopPropagation(); this.setPlate(b, Number(x.dataset.k)); });
-    $('plPrev').hidden = $('plNext').hidden = list.length < 2;
-    $('plWho').textContent = p ? `${p.artist || ''}${p.year ? ' · ' + p.year : ''}` : '';
+    $('plateCap').textContent = p ? p.caption : 'No illustration for this bird.';   // full credits: Learn > Sources
   }
   morphLook(now) {
     const m = this.morph; if (!m) return this.bird.look;
@@ -599,9 +603,7 @@ class App {
     $('recBtn').onclick = () => this.toggleRec();
     $('learnDone').onclick = () => this.setLearning(false);
     $('saveMineBtn').onclick = () => this.saveMyPreset().then(() => this.presets.el.hidden || this.presets.render());
-    zoomable($('plate'), $('plateImg'));
-    $('plPrev').onclick = (e) => { e.stopPropagation(); this.setPlate(this.bird, this.plateIndex(this.bird) - 1); };
-    $('plNext').onclick = (e) => { e.stopPropagation(); this.setPlate(this.bird, this.plateIndex(this.bird) + 1); };
+    zoomable($('plate'), $('plateImg'), { onSwipe: (d) => this.swipePlate(d) });
     document.querySelectorAll('#viewSize button').forEach((b) => b.onclick = () => this.setViewSize(this.viewSize === b.dataset.size ? '' : b.dataset.size));
     this.setViewSize(ls.get('carol-viewsize', ''));
     document.querySelectorAll('#viewSeg button').forEach((b) => b.onclick = () => this.setView(b.dataset.view));

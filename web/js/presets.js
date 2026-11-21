@@ -98,16 +98,19 @@ export class Presets {
     const p = this.app.plateOf(b), n = this.app.plates(b).length;
     if (p) img.src = p.image; else img.removeAttribute('src');
     cap.textContent = p ? p.caption : b.name;
-    // flip between this bird's plates right here
-    let nav = document.getElementById('psPlNav');
-    if (!nav) {
-      nav = document.createElement('div'); nav.id = 'psPlNav'; nav.className = 'ps-plnav';
-      nav.innerHTML = '<button data-d="-1" aria-label="Previous plate">‹</button><span></span><button data-d="1" aria-label="Next plate">›</button>';
-      img.parentElement.appendChild(nav);
-      nav.querySelectorAll('[data-d]').forEach((x) => x.onclick = (e) => { e.stopPropagation(); const bb = this.visible[this.hi]; if (bb) this.app.setPlate(bb, this.app.plateIndex(bb) + Number(x.dataset.d)); });
+    // swipe the plate sideways to see this bird's other plates
+    if (!img.dataset.swipe) {
+      img.dataset.swipe = '1'; img.draggable = false; img.addEventListener('dragstart', (e) => e.preventDefault());
+      let sx = null;
+      img.parentElement.addEventListener('pointerdown', (e) => { sx = { x: e.clientX, y: e.clientY, t: performance.now() }; });
+      img.parentElement.addEventListener('pointerup', (e) => {
+        if (!sx) return; const dx = e.clientX - sx.x, dy = e.clientY - sx.y, quick = performance.now() - sx.t < 700; sx = null;
+        const bb = this.visible[this.hi];
+        if (bb && quick && Math.abs(dx) > 45 && Math.abs(dy) < Math.abs(dx) * 0.6) this.app.setPlate(bb, this.app.plateIndex(bb) + (dx < 0 ? 1 : -1));
+      });
+      img.parentElement.style.touchAction = 'pan-y';
     }
-    nav.hidden = n < 2;
-    nav.querySelector('span').textContent = p ? `${p.artist || ''}${p.year ? ' · ' + p.year : ''} (${this.app.plateIndex(b) + 1}/${n})` : '';
+    if (n > 1) cap.textContent = `${p.caption}  (${this.app.plateIndex(b) + 1}/${n}, swipe for more)`;
     this.list.querySelectorAll('li[data-i]').forEach((li) => li.classList.toggle('hi', Number(li.dataset.i) === this.hi));
     const cur = this.list.querySelector('li.hi'); cur && cur.scrollIntoView({ block: 'nearest' });
   }

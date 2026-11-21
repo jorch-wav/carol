@@ -540,9 +540,6 @@ body.kstrip .kn .dial { touch-action: pan-x; }   /* swipe sideways to scroll, dr
 .pl-nav { position: relative; z-index: 2; background: var(--paper); }
 .pl-nav button { min-width: 44px; min-height: 36px; touch-action: manipulation; }
 @media (max-width: 900px) {
-  /* the size buttons sit at the bottom-right of the bird panel: keep the plate arrows above them */
-  #plate.on { padding-bottom: 50px; box-sizing: border-box; }
-  .view.bare #plate.on { padding-bottom: 0; }
 }
 .pl-nav .pl-dots button { min-width: 0; min-height: 0; width: 11px; height: 11px; padding: 0; }
 @media (max-width: 900px) {
@@ -555,3 +552,8 @@ body.kstrip .kn .dial { touch-action: pan-x; }   /* swipe sideways to scroll, dr
 /* family headings: English name, then the Latin family on its own (never split mid-word) */
 .ps-list li.fam { flex-wrap: wrap; row-gap: 0; }
 .ps-list li.fam i { white-space: nowrap; }
+/* plate swipe label: appears for a moment after a swipe */
+.pl-badge { position: absolute; left: 50%; top: 45%; transform: translate(-50%, -50%); background: rgba(20,19,18,.78); color: #f1ece2; font-family: var(--font); font-size: 13px; letter-spacing: 1px; padding: 5px 12px; border-radius: 14px; pointer-events: none; z-index: 3; white-space: nowrap; }
+.pl-badge[hidden] { display: none; }
+.pl-badge.fade { animation: plfade 1.8s ease forwards; }
+@keyframes plfade { 0% { opacity: 0; } 12% { opacity: 1; } 75% { opacity: 1; } 100% { opacity: 0; } }
