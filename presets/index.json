@@ -2,7 +2,7 @@
  "collections": [
   {
    "name": "Australasia",
-   "count": 22,
+   "count": 23,
    "cover": "magpie",
    "region": "Australia, New Guinea, New Zealand",
    "about": "Birds of Australia and its neighbours, from the garden to the bush. Plates by John Gould, The Birds of Australia."
@@ -398,7 +398,7 @@
    ],
    "image": "img/blackcockatoo.jpg",
    "image_caption": "John Gould, The Birds of Australia, vol. V, pl. 11: Calyptorhynchus funereus (Funereal Cockatoo)",
-   "match": 81.5,
+   "match": 81.9,
    "plates": [
     {
      "image": "img/blackcockatoo.jpg",
@@ -760,6 +760,50 @@
      "caption": "Henrik Gr\u00f6nvold, Gregory M. Mathews, The Birds of Australia, vol. XII, pl. 545: Manorina melanophrys (Bell Minah)",
      "artist": "Henrik Gr\u00f6nvold",
      "year": "1910"
+    }
+   ]
+  },
+  {
+   "id": "tui",
+   "name": "T\u016b\u012b",
+   "sci": "Prosthemadera novaeseelandiae",
+   "authority": "(Gmelin, 1788)",
+   "order": "Passeriformes",
+   "family": "Meliphagidae",
+   "body": "songbird",
+   "tags": {
+    "features": [
+     "two-voice singer",
+     "bell notes",
+     "clicks and wheezes",
+     "mimic",
+     "local dialects"
+    ],
+    "region": [
+     "New Zealand"
+    ]
+   },
+   "collection": "Australasia",
+   "family_name": "Honeyeaters",
+   "tax": [
+    19,
+    10
+   ],
+   "image": "img/tui.jpg",
+   "image_caption": "John Gerrard Keulemans, Walter L. Buller, A History of the Birds of New Zealand, 2nd ed., vol. I: Prosthemadera nov\u00e6 zealandi\u00e6 (Tui or Parson Bird)",
+   "match": 80.2,
+   "plates": [
+    {
+     "image": "img/tui.jpg",
+     "caption": "John Gerrard Keulemans, Walter L. Buller, A History of the Birds of New Zealand, 2nd ed., vol. I: Prosthemadera nov\u00e6 zealandi\u00e6 (Tui or Parson Bird)",
+     "artist": "John Gerrard Keulemans",
+     "year": "1888"
+    },
+    {
+     "image": "img/tui/buller-1873.jpg",
+     "caption": "John Gerrard Keulemans, Walter L. Buller, A History of the Birds of New Zealand, 1st ed., Prosthemadera nov\u00e6 zealandi\u00e6 (Tui or Parson Bird)",
+     "artist": "John Gerrard Keulemans",
+     "year": "1873"
     }
    ]
   },
