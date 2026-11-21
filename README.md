@@ -25,6 +25,8 @@ Two collections so far (16 birds):
 | Resplendent quetzal | Birds of the World | non-songbird (kingfisher model) | 81% |
 | Northern cardinal | Birds of the World | songbird | 72% |
 
+**Play it: https://jorch-wav.github.io/carol/**
+
 Non-commercial and open source. Runs on a Raspberry Pi 5, and in any modern browser — phone,
 iPad or desktop (add it to your home screen for full screen).
 
@@ -99,7 +101,7 @@ python3 -m http.server -d web 8000        # then open http://localhost:8000
 ./launch.sh                                # on the Pi (Chromium app window, port 5321)
 tools/fit_all.sh [bird]                    # refit (BUDGET=, OUT=, INIT= env)
 tools/build_presets.py [bird]              # fit + info + sources + plate -> web/presets/
-tools/publish.sh                           # push to GitHub + GitHub Pages (needs gh, logged in)
+tools/publish.sh                           # push to GitHub; web/ goes to the gh-pages branch = the live site
 ```
 After changing the engine: `cargo build --release -p carol-cli`, `cargo build --release -p carol-wasm
 --target wasm32-unknown-unknown`, copy the `.wasm` to `web/carol.wasm`, run `carol bodies >

@@ -1,7 +1,7 @@
 #!/bin/bash
 # Publish Carol to your GitHub and turn on GitHub Pages.
 # Needs the GitHub CLI, logged in once:  sudo apt install gh  &&  gh auth login
-# Usage: tools/publish.sh [repo-name]   (default: carol)
+# Usage: [MSG='what changed'] tools/publish.sh [repo-name]   (default: carol)
 set -e
 cd "$(dirname "$0")/.."
 NAME=${1:-carol}
@@ -13,7 +13,7 @@ LOGIN=$(gh api user -q .login); ID=$(gh api user -q .id)
 git config user.name "$LOGIN"
 git config user.email "$ID+$LOGIN@users.noreply.github.com"
 git add -A
-git diff --cached --quiet || git commit -q -m "Carol: bird synthesiser (Rust syrinx engine, WebAssembly, web app)
+git diff --cached --quiet || git commit -q -m "${MSG:-Update Carol}
 
 Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 if ! git remote get-url origin >/dev/null 2>&1; then
@@ -21,9 +21,12 @@ if ! git remote get-url origin >/dev/null 2>&1; then
 else
   git push -u origin main
 fi
-# GitHub Pages from the workflow in .github/workflows/pages.yml
-gh api -X POST "repos/$LOGIN/$NAME/pages" -f build_type=workflow >/dev/null 2>&1 || gh api -X PUT "repos/$LOGIN/$NAME/pages" -f build_type=workflow >/dev/null 2>&1 || true
-gh workflow run pages.yml -R "$LOGIN/$NAME" >/dev/null 2>&1 || true
+# the site: web/ as the gh-pages branch, which GitHub Pages serves (no workflow needed)
+git branch -D gh-pages >/dev/null 2>&1 || true
+git subtree split --prefix web -b gh-pages >/dev/null
+git push -f origin gh-pages
+gh api -X POST "repos/$LOGIN/$NAME/pages" -f "source[branch]=gh-pages" -f "source[path]=/" >/dev/null 2>&1 || \
+  gh api -X PUT "repos/$LOGIN/$NAME/pages" -f build_type=legacy -f "source[branch]=gh-pages" -f "source[path]=/" >/dev/null 2>&1 || true
 echo
 echo "Repo:  https://github.com/$LOGIN/$NAME"
-echo "App:   https://$LOGIN.github.io/$NAME/   (ready in a minute or two, once the Pages workflow finishes)"
+echo "App:   https://$LOGIN.github.io/$NAME/   (updates in a minute or two)"
