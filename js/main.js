@@ -57,7 +57,8 @@ class App {
     await this.refreshIndex();
     const last = ls.get('carol-bird', null);
     const shared = this.readShareLink();
-    await this.loadBird(shared ? shared.bird : this.index.find((b) => b.id === last) ? last : this.index[0].id);
+    const first = this.index.find((b) => b.id === 'magpie') ? 'magpie' : this.index[0].id;
+    await this.loadBird(shared ? shared.bird : this.index.find((b) => b.id === last) ? last : first);
     if (shared) this.applyTweaks(shared.t, true);
     this.setView(this.view);
     this.playbar.syncScale();
