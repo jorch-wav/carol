@@ -17,6 +17,7 @@ import { Sequencer } from './seq.js';
 import { SettingsUI, loadSettings, saveSettings } from './settings.js';
 import { Tour } from './tour.js';
 import { FX_PARAMS, saveFile } from './fx.js';
+import { icon, applyIcons } from './icons.js';
 
 const SECTIONS = ['LUNGS', 'SYRINX', 'WINDPIPE', 'THROAT', 'TONGUE', 'BEAK', 'PLAY', 'SHAPE', 'LFO', 'FX'];
 // player controls: not part of the bird, so no amber "real bird" dot
@@ -53,6 +54,7 @@ class App {
     this.seq = new Sequencer(this);
     this.settingsUI = new SettingsUI(this);
     this.tour = new Tour(this);
+    applyIcons();
     this.buildMainKnob();
     this.bindTop();
     await this.refreshIndex();
@@ -102,7 +104,6 @@ class App {
       if (base) this.index.push({ id: m.id, name: m.name, sci: base.name, body: base.body, image: base.image, image_caption: base.image_caption, collection: 'My Presets', mine: true });
     }
     if (this.myPresets.length) this.collections.push({ name: 'My Presets', region: 'saved sounds', count: this.myPresets.length });
-    this.mainKnob.steps = Math.max(2, this.index.length);
   }
   async loadBird(id) {
     const prevLook = this.bird && this.bird.look, prevVals = { ...this.values };
@@ -135,7 +136,6 @@ class App {
     if (this.learn.openNow) this.learn.show(this.learn.tab);
     if (this.seq) { this.seq.birdChanged(); }
     if (this.tour && !this.tour.el.hidden) this.tour.close();
-    const i = this.index.findIndex((x) => x.id === id); if (i >= 0) this.mainKnob.setU(i / (this.mainKnob.steps - 1));
     this.toast(b.name);
   }
   // ---------------------------------------------------------------- plates (each bird has a small gallery)
@@ -433,10 +433,10 @@ class App {
       await this.audio.start().catch(() => {});
       if (!this.audio.startRec()) return;
       this.recording = performance.now(); b.classList.add('on');
-      this._recT = setInterval(() => { const s = Math.floor((performance.now() - this.recording) / 1000); b.textContent = `■ ${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`; }, 250);
+      this._recT = setInterval(() => { const s = Math.floor((performance.now() - this.recording) / 1000); b.innerHTML = `${icon('stop')}<span> ${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}</span>`; }, 250);
       return;
     }
-    clearInterval(this._recT); this.recording = 0; b.classList.remove('on'); b.innerHTML = '●<span class="long"> REC</span>';
+    clearInterval(this._recT); this.recording = 0; b.classList.remove('on'); b.innerHTML = icon('rec') + '<span class="long"> REC</span>';
     const blob = await this.audio.stopRec();
     if (!blob) return this.toast('Nothing recorded');
     const d = new Date(), stamp = `${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, '0')}${String(d.getDate()).padStart(2, '0')}-${String(d.getHours()).padStart(2, '0')}${String(d.getMinutes()).padStart(2, '0')}${String(d.getSeconds()).padStart(2, '0')}`;
@@ -589,16 +589,10 @@ class App {
   korgKnob(i, u) { const k = this.knobs[this.hwKnobs[i]]; if (k) { k.setU(u, true); k.flash(); } }
 
   // ---------------------------------------------------------------- UI
+  /** Previous / next bird arrows (the on-screen stand-in for the Pi's BIRD encoder). */
   buildMainKnob() {
-    const p = { key: 'bird', label: 'BIRD', min: 0, max: 1, log: false };
-    this.mainKnob = new Knob(p, { steps: 2, stepLabels: [] });
-    this.mainKnob.svg.innerHTML = '';
-    this.mainKnob.setU = ((orig) => (u, fire) => {
-      const prev = this.mainKnob.u; orig.call(this.mainKnob, u, false);
-      if (fire) { const n = this.mainKnob.steps - 1; const d = Math.round((this.mainKnob.u - prev) * n); if (d) this.stepBird(d); }
-    })(this.mainKnob.setU);
-    this.mainKnob.resetToBird = () => {};
-    $('mainKnob').appendChild(this.mainKnob.el);
+    $('birdPrev').onclick = () => this.stepBird(-1);
+    $('birdNext').onclick = () => this.stepBird(1);
   }
   bindTop() {
     $('birdChip').onclick = () => this.presets.open();
@@ -664,8 +658,8 @@ class App {
     document.body.dataset.viewsize = m;
     document.querySelectorAll('#viewSize button').forEach((b) => {
       const on = b.dataset.size === m; b.classList.toggle('on', on);
-      const icon = { hidden: '▁', big: '⤢', full: '⛶' }, tip = { hidden: 'Hide the bird', big: 'Big bird: hide the knobs', full: 'Full screen' };
-      b.textContent = on ? (m === 'hidden' ? '▣' : '⤡') : icon[b.dataset.size];
+      const ic = { hidden: 'hide', big: 'expand', full: 'full' }, tip = { hidden: 'Hide the bird', big: 'Big bird: hide the knobs', full: 'Full screen' };
+      b.innerHTML = icon(on ? (m === 'hidden' ? 'show' : 'shrink') : ic[b.dataset.size]);
       b.title = on ? (m === 'hidden' ? 'Show the bird' : 'Back to the synth') : tip[b.dataset.size];
     });
     requestAnimationFrame(() => this.resize());

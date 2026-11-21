@@ -181,7 +181,7 @@ select { background: #24211e; border: 1px solid #3f3a34; border-radius: 3px; pad
 .ps-about { margin: 4px 2px 8px; font-family: "CarolText", serif; font-size: 14px; color: var(--dim); line-height: 1.35; flex: 0 0 auto; }
 .ps-list li { display: grid; grid-template-columns: 1fr auto; gap: 2px 10px; padding: 9px 12px; border-radius: 4px; border: 1px solid transparent; cursor: pointer; }
 .ps-list li.hi { background: #2b2116; border-color: var(--amber); }
-.ps-list li.cur b::after { content: " ●"; color: var(--amber); font-size: 12px; }
+.ps-list li.cur b::after { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--amber); margin-left: 8px; vertical-align: 2px; }
 .ps-list b { font-size: 19px; letter-spacing: 1px; text-transform: uppercase; min-width: 0; overflow-wrap: anywhere; line-height: 1.2; }
 .ps-list i { font-family: "CarolText", serif; color: var(--dim); min-width: 0; overflow-wrap: anywhere; line-height: 1.3; }
 .ps-list .tags { grid-column: 1 / -1; font-size: 12px; color: var(--faint); letter-spacing: .5px; }
@@ -235,7 +235,10 @@ select { background: #24211e; border: 1px solid #3f3a34; border-radius: 3px; pad
   .bird-chip img { width: 34px; height: 40px; }
   .bird-chip b { font-size: 14px; }
   .bird-chip i { font-size: 12px; }
-  .main-knob-wrap, .match { display: none; }
+  .match { display: none; }
+  .bird-arrows { gap: 3px; }
+  .bird-arrows .rocker { min-width: 34px; padding: 4px 3px; }
+  .bird-arrows .ic { width: 20px; height: 20px; }
   .top-buttons { margin-left: 0; gap: 5px; }
   .rocker { padding: 5px 8px; font-size: 12px; letter-spacing: 1px; min-height: 38px; }
   #resetBtn .long { display: none; }
@@ -300,8 +303,8 @@ body[data-viewsize="full"] .view { position: fixed; inset: 0; z-index: 15; borde
 
 /* collapsible knob sections: tap the title */
 .section h3 { cursor: pointer; }
-.section h3::after { content: " ▾"; color: var(--faint); font-size: 10px; }
-.section.collapsed h3::after { content: " ▸"; }
+.section h3::after { content: ""; display: inline-block; width: 5px; height: 5px; margin-left: 9px; border-right: 1.5px solid var(--faint); border-bottom: 1.5px solid var(--faint); transform: rotate(45deg); vertical-align: 4px; }
+.section.collapsed h3::after { transform: rotate(-45deg); vertical-align: 2px; }
 .section.collapsed .grid { display: none; }
 .section.collapsed h3 { border-bottom: 0; color: var(--dim); }
 /* bird view folded to a strip */
@@ -361,10 +364,6 @@ body { background: #141312; }
   body.pb-open:not([data-viewsize="big"]) .work { grid-template-rows: 24% 1fr; }
   .knobs { align-content: flex-start; overflow-y: auto; }
   .section { padding: 6px 4px 4px; }
-  .main-knob-wrap { display: flex; }
-  .main-knob-wrap .kn { --knob: 44px; }
-  #mainKnob .dial { height: 56px; width: 60px; }
-  .main-knob-wrap label { font-size: 9px; }
   .match { display: block; min-width: 0; }
 }
 
@@ -565,4 +564,25 @@ body.kstrip .kn .dial { touch-action: pan-x; }   /* swipe sideways to scroll, dr
   .view-hud .hud-knobs { display: none; }
   .view-hud.open { -webkit-line-clamp: unset; display: block; max-height: 70%; overflow-y: auto; z-index: 6; }
   .view-hud:empty { display: none; }
+}
+
+/* monochrome line icons (js/icons.js): sized to the text, coloured like it */
+.ic { width: 1.15em; height: 1.15em; vertical-align: -0.2em; flex: none; }
+.rocker.gear .ic { width: 22px; height: 22px; vertical-align: middle; }
+#resetBtn .short .ic { width: 20px; height: 20px; vertical-align: middle; }
+.view-size button .ic { width: 18px; height: 18px; vertical-align: middle; }
+button.x .ic { width: 18px; height: 18px; vertical-align: middle; }
+.ps-fav .ic { width: 17px; height: 17px; vertical-align: middle; }
+.rec .ic { width: .9em; height: .9em; vertical-align: -0.08em; }
+/* previous / next bird (replaces the on-screen BIRD knob) */
+.bird-arrows { display: flex; gap: 4px; align-items: center; }
+.bird-arrows .rocker { padding: 4px 8px; line-height: 1; display: flex; align-items: center; justify-content: center; min-width: 40px; }
+.bird-arrows .ic { width: 22px; height: 22px; }
+/* phones: slimmer top-bar buttons so the bird's name keeps some room beside the arrows */
+@media (max-width: 600px) {
+  .topbar { gap: 4px; }
+  .top-buttons { gap: 3px; }
+  .bird-arrows .rocker, #resetBtn, .rocker.gear { min-width: 30px; padding: 4px 4px; }
+  .bird-arrows .ic, #resetBtn .short .ic, .rocker.gear .ic { width: 19px; height: 19px; }
+  .rocker.learn { padding: 5px 6px; letter-spacing: .5px; }
 }

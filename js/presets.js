@@ -1,8 +1,9 @@
 // Presets screen, tied to the BIRD knob. A catalogue: one tab per collection, its birds below,
 // the selected bird's plate on the left. New collections just add a tab.
+import { icon } from './icons.js';
 const BODY_NAME = { kingfisher: 'non-songbird' };
 const bodyName = (b) => BODY_NAME[b] || b;
-const FAV = '★ Favourites';
+const FAV = 'Favourites';
 const lsGet = (k, d) => { try { const v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch { return d; } };
 const lsSet = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} };
 
@@ -26,7 +27,7 @@ export class Presets {
     const out = known.filter((c) => names.includes(c.name));
     for (const n of names) if (!out.some((c) => c.name === n)) out.push({ name: n });
     const favs = this.app.index.filter((b) => this.favs.has(b.id)).length;
-    if (favs) out.unshift({ name: FAV, region: 'your favourites', about: 'Tap ☆ next to any bird to add it here.' });
+    if (favs) out.unshift({ name: FAV, region: 'your favourites', about: 'Tap the star next to any bird to add it here.' });
     return out;
   }
   birdsIn(c) { return c === FAV ? this.app.index.filter((b) => this.favs.has(b.id)) : this.app.index.filter((b) => (b.collection || '') === c); }
@@ -74,7 +75,7 @@ export class Presets {
       const li = document.createElement('li');
       li.className = (i === this.hi ? 'hi' : '') + (this.app.bird && b.id === this.app.bird.id ? ' cur' : '');
       li.innerHTML = '<b></b><span class="m"></span><i></i><button class="ps-fav" title="Favourite"></button>';
-      const fv = li.querySelector('.ps-fav'); fv.textContent = this.favs.has(b.id) ? '★' : '☆'; fv.classList.toggle('on', this.favs.has(b.id));
+      const fv = li.querySelector('.ps-fav'); fv.innerHTML = icon(this.favs.has(b.id) ? 'star' : 'starOff'); fv.classList.toggle('on', this.favs.has(b.id));
       fv.onclick = (e) => { e.stopPropagation(); this.toggleFav(b.id); this.render(); };
       li.querySelector('b').textContent = b.name;
       li.querySelector('.m').textContent = b.match != null ? Math.round(b.match) + '%' : '';
@@ -82,7 +83,7 @@ export class Presets {
       li.onclick = () => { this.hi = i; this.app.loadBird(b.id); this.close(); };
       if (b.mine) {
         li.classList.add('has-del');
-        const del = document.createElement('button'); del.className = 'x ps-del'; del.textContent = '✕'; del.title = 'Delete this preset';
+        const del = document.createElement('button'); del.className = 'x ps-del'; del.innerHTML = icon('close'); del.title = 'Delete this preset';
         del.onclick = (e) => { e.stopPropagation(); if (confirm(`Delete "${b.name}"?`)) this.app.deleteMyPreset(b.id).then(() => this.render()); };
         li.appendChild(del);
       }

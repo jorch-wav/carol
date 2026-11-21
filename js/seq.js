@@ -1,6 +1,7 @@
 // Sequencer (SEQ tab): 16 steps, up to 6 rows. Each row is one call from any bird, so rows from
 // different birds make a dawn chorus. Steps are scheduled ahead on the audio thread (sample-timed);
 // tempo can follow AudioView (the Pi's shared tempo) or incoming MIDI clock.
+import { icon } from './icons.js';
 const ls = { get(k, d) { try { const v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch { return d; } }, set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} } };
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -183,7 +184,7 @@ export class Sequencer {
   }
   renderTransport() {
     const p = this.el.querySelector('.sq-play'); if (!p) return;
-    p.textContent = this.playing ? '■ STOP' : '▶ PLAY'; p.classList.toggle('on', this.playing);
+    p.innerHTML = this.playing ? icon('stop') + ' STOP' : icon('play') + ' PLAY'; p.classList.toggle('on', this.playing);
     this.app.audio.fx && this.app.audio.fx.tempo(this.st.bpm);
     this.el.querySelector('.sq-bpm').textContent = this.st.bpm.toFixed(this.st.bpm % 1 ? 1 : 0);
     const follow = this.sync() !== 'off';
@@ -194,11 +195,11 @@ export class Sequencer {
     if (!app.bird) return;
     el.innerHTML = `
       <div class="sq-top">
-        <button class="sq-play">▶ PLAY</button>
+        <button class="sq-play">${icon('play')} PLAY</button>
         <span class="sq-tempo"><button data-a="bpm-">−</button><b class="sq-bpm"></b><button data-a="bpm+">+</button><button data-a="tap">TAP</button></span>
         <label class="sq-swing">SWING <select data-a="swing">${[0, 0.1, 0.2, 0.3, 0.4, 0.5].map((v) => `<option value="${v}" ${Math.abs(v - this.st.swing) < 0.01 ? 'selected' : ''}>${v * 100}%</option>`).join('')}</select></label>
         <span class="sq-pats">${['A', 'B', 'C', 'D'].map((k) => `<button data-p="${k}" class="${k === this.st.cur ? 'on' : ''}">${k}</button>`).join('')}</span>
-        <button data-a="midi" title="Save this pattern as a MIDI file">⤓ MIDI</button>
+        <button data-a="midi" title="Save this pattern as a MIDI file">${icon('download')} MIDI</button>
         <select data-a="demo"><option value="">PATTERNS…</option>${Object.keys(DEMOS).map((k) => `<option>${k}</option>`).join('')}<option value="__clear">Clear</option></select>
         <small class="sq-sync"></small>
       </div>
@@ -258,11 +259,11 @@ export class Sequencer {
     const b = await this.birdData(r.bird);
     box.innerHTML = `
       <div class="se-sheet">
-        <div class="ll-head"><h2>ROW ${ri + 1}</h2><button class="x" data-close>✕</button></div>
+        <div class="ll-head"><h2>ROW ${ri + 1}</h2><button class="x" data-close aria-label="Close">${icon('close')}</button></div>
         <label class="field">Bird <select id="seBird"><option value="">The bird on screen</option>${birds.map((x) => `<option value="${esc(x.id)}" ${x.id === r.bird ? 'selected' : ''}>${esc(x.name)}</option>`).join('')}</select></label>
         <label class="field">Call <select id="seCall">${(b ? b.calls : []).map((c, i) => `<option value="${i}" ${i === r.call ? 'selected' : ''}>${esc(c.name)}</option>`).join('')}</select></label>
         <div class="field">Transpose <span class="se-tr"><button data-d="-12">−12</button><button data-d="-1">−1</button><b>${r.tr > 0 ? '+' : ''}${r.tr || 0}</b><button data-d="1">+1</button><button data-d="12">+12</button></span></div>
-        <div class="im-actions"><button class="rocker" id="seHear">▶ HEAR</button><button class="rocker" id="seDel">REMOVE ROW</button><button class="rocker" id="seOk">DONE</button></div>
+        <div class="im-actions"><button class="rocker" id="seHear">${icon('play')} HEAR</button><button class="rocker" id="seDel">REMOVE ROW</button><button class="rocker" id="seOk">DONE</button></div>
       </div>`;
     box.hidden = false;
     const close = () => { box.hidden = true; this.save(); this.slots().then(() => this.render()); };
