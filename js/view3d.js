@@ -20,8 +20,9 @@ void main(){ vec3 n = normalize(vn); vec3 l = normalize(vec3(.5,.8,.6)); vec3 v 
    // scan: cross-section rings on the skin (brighter where the surface turns away), a faint rim glow,
    // translucent organs with their own rings; everything fades with depth
    vec3 cream = vec3(.95,.92,.86), amber = vec3(.95,.66,.23);
-   if (line > .5) { if (skin > .5) { c = mix(cream*.75, amber, r); al = .16 + r*.8; } else { c = col*1.25 + .08; al = .45 + r*.45; } }
-   else if (skin > .5) { c = mix(cream, amber, .4)*(r*1.3); al = r*r*.38; }
+   vec3 hemi = mix(vec3(.4,.37,.33), vec3(1.,.97,.92), n.y*.5+.5);
+   if (line > .5) { if (skin > .5) { c = mix(col*1.35 + .12, amber, .25 + r*.5); al = .14 + r*.5; } else { c = col*1.25 + .08; al = .45 + r*.45; } }
+   else if (skin > .5) { c = col*(hemi*.5 + nd*.55) + sp*.45 + r*amber*.3; al = a; }
    else { c = col*(.5 + nd*.35) + r*.55*col; al = a*.5 + r*.35; }
    float f = clamp((length(eye - vw) - fogN)/(fogF - fogN), 0., 1.); al *= 1. - f*.8;
  }
@@ -276,6 +277,7 @@ export class View3D {
     gl.uniform3fv(this.loc.col, i.col); gl.uniform1f(this.loc.a, i.a); gl.uniform1f(this.loc.glow, i.glow);
     gl.uniform1f(this.loc.skin, i.skin && !i.outline ? 1 : 0);
     if (i.outline) { gl.enable(gl.CULL_FACE); gl.cullFace(this.outlineCull === 'back' ? gl.BACK : gl.FRONT); }
+    else if (i.nocull) gl.disable(gl.CULL_FACE);
     else { gl.cullFace(gl.BACK); if (i.mesh === 'sph' && i.a < 0.99) gl.enable(gl.CULL_FACE); else gl.disable(gl.CULL_FACE); }
     gl.uniform1f(this.loc.line, m.lines ? 1 : 0);
     gl.drawElements(m.lines ? gl.LINES : gl.TRIANGLES, m.n, gl.UNSIGNED_SHORT, 0);
@@ -310,10 +312,7 @@ export class View3D {
     const skinParts = model.parts.filter((p) => outside(p) && p.part !== 'eye');
     const inner = model.parts.filter((p) => !outside(p) && p.part !== 'eye');
     const lineOf = { sph: 'lsph', cyl: 'lcyl', cone: 'lcone' };
-    // floor grid under the feet
-    const fy = (this.frame.y0 ?? 0) - 0.15, gs = this.frame.r * 0.85, gax = [gs, 0, 0], gay = [0, 1, 0], gaz = [0, 0, gs];
     gl.depthMask(false);
-    this.drawItem({ mesh: 'grid', M: m4.basis(gax, gay, gaz, [tgt[0], fy, 0]), N: normalMat([1, 0, 0], [0, 1, 0], [0, 0, 1]), col: [0.45, 0.4, 0.34], a: 0.13, glow: 0, c: [0, 0, 0] });
     // organs: translucent fills, then their rings
     const org = []; for (const p of inner) for (const it of this.instances(p)) org.push(it);
     const depth = (i) => -dot(sub(i.c, eye), sub(tgt, eye));
@@ -334,18 +333,27 @@ export class View3D {
     // (pushed back a little, so rings lying on the surface always pass)
     gl.colorMask(false, false, false, false); gl.depthMask(true); gl.enable(gl.POLYGON_OFFSET_FILL); gl.polygonOffset(2, 4);
     for (const i of skin) this.drawItem({ ...i, a: 1 });
-    gl.disable(gl.POLYGON_OFFSET_FILL); gl.colorMask(true, true, true, true); gl.depthMask(false);
+    gl.colorMask(true, true, true, true); gl.depthMask(false);
+    // the plumage: each skin shape's front surface in its own colour, mostly opaque (organs show faintly through;
+    // a tapped part shows clearly)
+    const see = this.sel && !['body', 'head', 'neck', 'wing', 'tail', 'legs'].includes(this.sel);
+    for (const i of skin) this.drawItem({ ...i, a: see ? 0.35 : (i.part === 'markings' ? 0.8 : 0.72), skin: true, nocull: true });
+    gl.disable(gl.POLYGON_OFFSET_FILL);
     for (const i of skin) {
       const mk = i.part === 'markings', col = mk ? i.col.map((v, k) => v * 0.7 + [0.95, 0.92, 0.86][k] * 0.3) : i.col;
       this.drawItem({ ...i, mesh: lineOf[i.mesh], skin: !mk, col });
     }
-    gl.enable(gl.CULL_FACE); gl.cullFace(gl.BACK);
-    for (const i of skin) if (i.mesh === 'sph') this.drawItem({ ...i, a: 0.5, skin: true });
-    // the eyes: small solid dots on top
-    for (const p of model.parts.filter((q) => q.part === 'eye' && q.kind === 'ell' && !q.far)) {
-      const r = p.r[0] * 0.75, ax = [r, 0, 0], ay = [0, r, 0], az = [0, 0, r * 0.6];
-      this.drawItem({ mesh: 'sph', M: m4.basis(ax, ay, az, p.c), N: normalMat(ax, ay, az), col: [0.05, 0.045, 0.04], a: 1, glow: 0, c: p.c });
-      this.drawItem({ mesh: 'lsph', M: m4.basis(ax, ay, az, p.c), N: normalMat(ax, ay, az), col: [0.95, 0.66, 0.23], a: 1, glow: 0, c: p.c, skin: true });
+    // the eyes: solid, in the bird's eye colour, with a highlight (the far one hides behind the head)
+    // the eye facing the camera, drawn over the skin (it sits partly inside the head shape)
+    const eyes = model.parts.filter((q) => q.part === 'eye' && q.kind === 'ell');
+    const dist = (q) => Math.hypot(q.c[0] - eye[0], q.c[1] - eye[1], q.c[2] - eye[2]);
+    const nearEye = eyes.sort((x, y) => dist(x) - dist(y)).slice(0, Math.abs(Math.sin(this.yaw)) > 0.92 ? 2 : 1);
+    gl.disable(gl.DEPTH_TEST);
+    for (const p of nearEye) {
+      const ax = [p.r[0], 0, 0], ay = [0, p.r[1], 0], az = [0, 0, p.r[2]];
+      this.drawItem({ mesh: 'sph', M: m4.basis(ax, ay, az, p.c), N: normalMat(ax, ay, az), col: hexRGB(p.color), a: 1, glow: 0, c: p.c });
+      const r = p.r[0] * 0.3, c = [p.c[0] + p.r[0] * 0.35, p.c[1] + p.r[1] * 0.4, p.c[2] + Math.sign(p.c[2] || 1) * p.r[2] * 0.75];
+      this.drawItem({ mesh: 'sph', M: m4.basis([r, 0, 0], [0, r, 0], [0, 0, r], c), N: normalMat([r, 0, 0], [0, r, 0], [0, 0, r]), col: [1, 1, 1], a: 1, glow: 0, c });
     }
     // air
     gl.disable(gl.DEPTH_TEST);
@@ -391,7 +399,7 @@ export class View3D {
     }
     const pts = rows.map(([name, at, v1, v2]) => { const [px, py] = proj(at); return { name, v1, v2, px, py }; }).filter((r) => r.px > 0 && r.px < W && r.py > 0 && r.py < H);
     // two columns at the sides (organs on the left half label to the left), ordered top to bottom, evenly spaced
-    const colW = 118 * d, gap = 44 * d, top = 58 * d, bot = H - 60 * d;
+    const colW = 118 * d, gap = 52 * d, top = 58 * d, bot = H - 60 * d;
     const bx = pts.length ? [Math.min(...pts.map((r) => r.px)), Math.max(...pts.map((r) => r.px))] : [0, W];
     const mid = (bx[0] + bx[1]) / 2;
     for (const side of [0, 1]) {
