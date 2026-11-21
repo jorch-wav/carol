@@ -604,6 +604,7 @@ class App {
     $('learnDone').onclick = () => this.setLearning(false);
     $('saveMineBtn').onclick = () => this.saveMyPreset().then(() => this.presets.el.hidden || this.presets.render());
     zoomable($('plate'), $('plateImg'), { onSwipe: (d) => this.swipePlate(d) });
+    $('viewHud').addEventListener('pointerdown', (e) => { e.stopPropagation(); const h = $('viewHud'); clearTimeout(this._hud); if (h.classList.contains('open')) { h.innerHTML = ''; h.classList.remove('open'); } else h.classList.add('open'); });
     document.querySelectorAll('#viewSize button').forEach((b) => b.onclick = () => this.setViewSize(this.viewSize === b.dataset.size ? '' : b.dataset.size));
     this.setViewSize(ls.get('carol-viewsize', ''));
     document.querySelectorAll('#viewSeg button').forEach((b) => b.onclick = () => this.setView(b.dataset.view));
@@ -644,7 +645,8 @@ class App {
     if (!part) { hud.innerHTML = ''; return; }
     const info = PART_INFO[part];
     const names = info.knobs.filter((k) => this.knobs[k]).map((k) => this.knobs[k].p.label);
-    hud.innerHTML = `<b>${info.label}</b> — ${info.text}<br>${names.length ? 'Knobs: ' + names.join(', ') : ''}`;
+    hud.innerHTML = `<b>${info.label}</b> — ${info.text}<span class="hud-knobs"><br>${names.length ? 'Knobs: ' + names.join(', ') : ''}</span>`;
+    hud.classList.remove('open');
     for (const k of info.knobs) this.knobs[k] && this.knobs[k].flash();
     clearTimeout(this._hud); this._hud = setTimeout(() => { hud.innerHTML = ''; this.v2.sel = null; }, 6000);
   }
