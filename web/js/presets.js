@@ -45,7 +45,7 @@ export class Presets {
       t.setAttribute('role', 'tab');
       t.innerHTML = '<b></b><small></small>';
       t.querySelector('b').textContent = c.name;
-      t.querySelector('small').textContent = `${this.birdsIn(c.name).length} birds` + (c.region ? ' · ' + c.region : '');
+      t.querySelector('small').textContent = `${this.birdsIn(c.name).length} bird${this.birdsIn(c.name).length === 1 ? '' : 's'}` + (c.region ? ' · ' + c.region : '');
       t.onclick = () => { this.coll = c.name; this.hi = 0; this.render(); };
       this.cats.appendChild(t);
     }
@@ -61,7 +61,15 @@ export class Presets {
     this.visible = items;
     this.hi = Math.min(this.hi, Math.max(0, items.length - 1));
     this.list.innerHTML = '';
+    let fam = null;
     items.forEach((b, i) => {
+      // family headings, in taxonomic order (the index is already sorted that way)
+      if (b.family && b.family !== fam && !this.q) {
+        fam = b.family;
+        const h = document.createElement('li'); h.className = 'fam';
+        h.innerHTML = '<span></span><i></i>'; h.querySelector('span').textContent = b.family_name || b.family; h.querySelector('i').textContent = b.family;
+        this.list.appendChild(h);
+      }
       const li = document.createElement('li');
       li.className = (i === this.hi ? 'hi' : '') + (this.app.bird && b.id === this.app.bird.id ? ' cur' : '');
       li.innerHTML = '<b></b><span class="m"></span><i></i><button class="ps-fav" title="Favourite"></button>';

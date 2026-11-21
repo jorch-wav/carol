@@ -513,3 +513,7 @@ body.kstrip .kn .dial { touch-action: pan-x; }   /* swipe sideways to scroll, dr
   .section { border-bottom: 0; width: auto; }
   .section .grid { grid-auto-flow: column; grid-template-columns: none; }
 }
+/* bird menu: family headings */
+.ps-list li.fam { display: flex; gap: 8px; align-items: baseline; padding: 10px 12px 2px; cursor: default; border: 0; background: none; }
+.ps-list li.fam span { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--amber); }
+.ps-list li.fam i { font-size: 12px; color: var(--faint); }

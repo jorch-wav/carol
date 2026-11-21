@@ -1,48 +1,96 @@
 {
  "collections": [
   {
-   "name": "Australian Birds",
+   "name": "Australasia",
    "count": 12,
    "cover": "magpie",
-   "region": "Australia",
-   "about": "Songbirds, a kingfisher and a parrot from Australian gardens and bush. Plates by John Gould."
+   "region": "Australia, New Guinea, New Zealand",
+   "about": "Birds of Australia and its neighbours, from the garden to the bush. Plates by John Gould, The Birds of Australia."
   },
   {
-   "name": "Birds of the World",
-   "count": 4,
+   "name": "Palearctic",
+   "count": 2,
+   "cover": "robin",
+   "region": "Europe, North Africa, North Asia",
+   "about": "Native to Europe, North Africa and northern Asia (the rock dove now lives wild in cities worldwide). Plates by John Gould, The Birds of Great Britain."
+  },
+  {
+   "name": "Nearctic",
+   "count": 1,
    "cover": "cardinal",
-   "region": "Americas, Europe, worldwide",
-   "about": "Well-loved birds from around the world, including a dove that coos with its beak shut. Plates by Gould and Audubon."
+   "region": "North America",
+   "about": "Native to North America. Plate by John James Audubon, The Birds of America."
+  },
+  {
+   "name": "Neotropics",
+   "count": 1,
+   "cover": "quetzal",
+   "region": "Central and South America",
+   "about": "Native to Central and South America. Plate by John Gould, A Monograph of the Trogonidae."
   }
  ],
  "birds": [
   {
-   "id": "magpie",
-   "name": "Australian Magpie",
-   "sci": "Gymnorhina tibicen",
+   "id": "curlew",
+   "name": "Bush Stone-curlew",
+   "sci": "Burhinus grallarius",
    "authority": "(Latham, 1801)",
-   "order": "Passeriformes",
-   "family": "Artamidae",
-   "body": "songbird",
+   "order": "Charadriiformes",
+   "family": "Burhinidae",
+   "body": "kingfisher",
    "tags": {
     "features": [
-     "whistler",
-     "warbler",
-     "group singer (carolling)",
-     "mimic"
+     "wailer",
+     "night caller",
+     "duetter",
+     "chorus singer"
     ],
     "region": [
-     "Australia-wide",
+     "Northern Australia",
      "Eastern Australia",
-     "Western Australia",
-     "Tasmania",
+     "Australia-wide (rare in south)",
      "Southern New Guinea"
     ]
    },
-   "collection": "Australian Birds",
-   "image": "img/magpie.jpg",
-   "image_caption": "John Gould, The Birds of Australia, vol. II, pl. 46: Gymnorhina tibicen (Piping Crow-Shrike)",
-   "match": 78.5
+   "collection": "Australasia",
+   "family_name": "Stone-curlews",
+   "tax": [
+    10,
+    2
+   ],
+   "image": "img/curlew.jpg",
+   "image_caption": "John Gould, The Birds of Australia, vol. VI, pl. 5: Oedicnemus grallarius (Southern Stone Plover)",
+   "match": 86.1
+  },
+  {
+   "id": "boobook",
+   "name": "Australian Boobook",
+   "sci": "Ninox boobook",
+   "authority": "(Latham, 1801)",
+   "order": "Strigiformes",
+   "family": "Strigidae",
+   "body": "kingfisher",
+   "tags": {
+    "features": [
+     "hooter",
+     "night caller",
+     "duetter"
+    ],
+    "region": [
+     "Australia-wide",
+     "Southern New Guinea",
+     "Timor and Lesser Sundas"
+    ]
+   },
+   "collection": "Australasia",
+   "family_name": "Owls",
+   "tax": [
+    12,
+    3
+   ],
+   "image": "img/boobook.jpg",
+   "image_caption": "John Gould, The Birds of Australia, vol. I, pl. 32: Athene boobook (Boobook Owl)",
+   "match": 92.5
   },
   {
    "id": "kookaburra",
@@ -65,36 +113,46 @@
      "Tasmania (introduced)"
     ]
    },
-   "collection": "Australian Birds",
+   "collection": "Australasia",
+   "family_name": "Kingfishers",
+   "tax": [
+    15,
+    5
+   ],
    "image": "img/kookaburra.jpg",
    "image_caption": "John Gould, The Birds of Australia, vol. II, pl. 18: Dacelo gigantea (Great Brown Kingfisher)",
    "match": 74.1
   },
   {
-   "id": "wattlebird",
-   "name": "Red Wattlebird",
-   "sci": "Anthochaera carunculata",
-   "authority": "(Shaw, 1790)",
-   "order": "Passeriformes",
-   "family": "Meliphagidae",
-   "body": "songbird",
+   "id": "cockatoo",
+   "name": "Sulphur-crested Cockatoo",
+   "sci": "Cacatua galerita",
+   "authority": "(Latham, 1790)",
+   "order": "Psittaciformes",
+   "family": "Cacatuidae",
+   "body": "parrot",
    "tags": {
     "features": [
-     "harsh caller",
-     "cackler",
-     "whistler",
-     "duetter"
+     "screecher",
+     "flock caller",
+     "chaotic voice"
     ],
     "region": [
-     "Southern Australia",
-     "South-eastern Australia",
-     "South-west Western Australia"
+     "Eastern Australia",
+     "Northern Australia",
+     "Tasmania",
+     "New Guinea"
     ]
    },
-   "collection": "Australian Birds",
-   "image": "img/wattlebird.jpg",
-   "image_caption": "John Gould, The Birds of Australia, vol. IV, pl. 55: Anthochaera carunculata (Wattled Honey-eater)",
-   "match": 68.4
+   "collection": "Australasia",
+   "family_name": "Cockatoos",
+   "tax": [
+    18,
+    6
+   ],
+   "image": "img/cockatoo.jpg",
+   "image_caption": "John Gould, The Birds of Australia, vol. V, pl. 1: Cacatua galerita: Vieill (Crested Cockatoo)",
+   "match": 69.3
   },
   {
    "id": "rosella",
@@ -115,10 +173,46 @@
      "North Queensland"
     ]
    },
-   "collection": "Australian Birds",
+   "collection": "Australasia",
+   "family_name": "Old World parrots",
+   "tax": [
+    18,
+    7
+   ],
    "image": "img/rosella.jpg",
    "image_caption": "John Gould, The Birds of Australia, vol. V, pl. 23: Platycercus pennantii (Pennant's Parrakeet)",
    "match": 86.3
+  },
+  {
+   "id": "lorikeet",
+   "name": "Rainbow Lorikeet",
+   "sci": "Trichoglossus moluccanus",
+   "authority": "(Gmelin, 1788)",
+   "order": "Psittaciformes",
+   "family": "Psittaculidae",
+   "body": "parrot",
+   "tags": {
+    "features": [
+     "screecher",
+     "chatterer",
+     "flock caller"
+    ],
+    "region": [
+     "Eastern Australia",
+     "South-eastern Australia",
+     "North Queensland",
+     "South-west Western Australia (introduced)"
+    ]
+   },
+   "collection": "Australasia",
+   "family_name": "Old World parrots",
+   "tax": [
+    18,
+    7
+   ],
+   "image": "img/lorikeet.jpg",
+   "image_caption": "John Gould, The Birds of Australia, vol. V, pl. 48: Trichoglossus Swainsonii: Jard. & Selb (Swainson's Lorikeet)",
+   "match": 77.4
   },
   {
    "id": "lyrebird",
@@ -142,10 +236,108 @@
      "Tasmania (introduced)"
     ]
    },
-   "collection": "Australian Birds",
+   "collection": "Australasia",
+   "family_name": "Lyrebirds",
+   "tax": [
+    19,
+    8
+   ],
    "image": "img/lyrebird.jpg",
    "image_caption": "John Gould, The Birds of Australia, vol. III, pl. 14: Menura superba (Lyre-Bird)",
    "match": 74.5
+  },
+  {
+   "id": "wattlebird",
+   "name": "Red Wattlebird",
+   "sci": "Anthochaera carunculata",
+   "authority": "(Shaw, 1790)",
+   "order": "Passeriformes",
+   "family": "Meliphagidae",
+   "body": "songbird",
+   "tags": {
+    "features": [
+     "harsh caller",
+     "cackler",
+     "whistler",
+     "duetter"
+    ],
+    "region": [
+     "Southern Australia",
+     "South-eastern Australia",
+     "South-west Western Australia"
+    ]
+   },
+   "collection": "Australasia",
+   "family_name": "Honeyeaters",
+   "tax": [
+    19,
+    10
+   ],
+   "image": "img/wattlebird.jpg",
+   "image_caption": "John Gould, The Birds of Australia, vol. IV, pl. 55: Anthochaera carunculata (Wattled Honey-eater)",
+   "match": 68.4
+  },
+  {
+   "id": "bellminer",
+   "name": "Bell Miner",
+   "sci": "Manorina melanophrys",
+   "authority": "(Latham, 1801)",
+   "order": "Passeriformes",
+   "family": "Meliphagidae",
+   "body": "songbird",
+   "tags": {
+    "features": [
+     "bell-like tink",
+     "colony caller",
+     "pure tone",
+     "chorus"
+    ],
+    "region": [
+     "South-eastern Australia",
+     "Eastern Australia"
+    ]
+   },
+   "collection": "Australasia",
+   "family_name": "Honeyeaters",
+   "tax": [
+    19,
+    10
+   ],
+   "image": "img/bellminer.jpg",
+   "image_caption": "John Gould, The Birds of Australia, vol. IV, pl. 80: Myzantha viridis (Australian Bell-bird)",
+   "match": 88.1
+  },
+  {
+   "id": "whipbird",
+   "name": "Eastern Whipbird",
+   "sci": "Psophodes olivaceus",
+   "authority": "(Latham, 1801)",
+   "order": "Passeriformes",
+   "family": "Psophodidae",
+   "body": "songbird",
+   "tags": {
+    "features": [
+     "whistler",
+     "whip-crack",
+     "duetter",
+     "frequency sweep",
+     "skulker"
+    ],
+    "region": [
+     "Eastern Australia",
+     "South-eastern Australia",
+     "North Queensland"
+    ]
+   },
+   "collection": "Australasia",
+   "family_name": "Whipbirds",
+   "tax": [
+    19,
+    11
+   ],
+   "image": "img/whipbird.jpg",
+   "image_caption": "John Gould, The Birds of Australia, vol. III, pl. 15: Psophodes crepitans (Coach-whip Bird)",
+   "match": 61.7
   },
   {
    "id": "butcherbird",
@@ -171,195 +363,79 @@
      "Western Australia"
     ]
    },
-   "collection": "Australian Birds",
+   "collection": "Australasia",
+   "family_name": "Butcherbirds, magpies and woodswallows",
+   "tax": [
+    19,
+    14
+   ],
    "image": "img/butcherbird.jpg",
    "image_caption": "John Gould, The Birds of Australia, vol. II, pl. 49: Cracticus nigrogularis (Black-throated Crow-Shrike)",
    "match": 79.3
   },
   {
-   "id": "whipbird",
-   "name": "Eastern Whipbird",
-   "sci": "Psophodes olivaceus",
+   "id": "magpie",
+   "name": "Australian Magpie",
+   "sci": "Gymnorhina tibicen",
    "authority": "(Latham, 1801)",
    "order": "Passeriformes",
-   "family": "Psophodidae",
+   "family": "Artamidae",
    "body": "songbird",
    "tags": {
     "features": [
      "whistler",
-     "whip-crack",
-     "duetter",
-     "frequency sweep",
-     "skulker"
-    ],
-    "region": [
-     "Eastern Australia",
-     "South-eastern Australia",
-     "North Queensland"
-    ]
-   },
-   "collection": "Australian Birds",
-   "image": "img/whipbird.jpg",
-   "image_caption": "John Gould, The Birds of Australia, vol. III, pl. 15: Psophodes crepitans (Coach-whip Bird)",
-   "match": 61.7
-  },
-  {
-   "id": "bellminer",
-   "name": "Bell Miner",
-   "sci": "Manorina melanophrys",
-   "authority": "(Latham, 1801)",
-   "order": "Passeriformes",
-   "family": "Meliphagidae",
-   "body": "songbird",
-   "tags": {
-    "features": [
-     "bell-like tink",
-     "colony caller",
-     "pure tone",
-     "chorus"
-    ],
-    "region": [
-     "South-eastern Australia",
-     "Eastern Australia"
-    ]
-   },
-   "collection": "Australian Birds",
-   "image": "img/bellminer.jpg",
-   "image_caption": "John Gould, The Birds of Australia, vol. IV, pl. 80: Myzantha viridis (Australian Bell-bird)",
-   "match": 88.1
-  },
-  {
-   "id": "cockatoo",
-   "name": "Sulphur-crested Cockatoo",
-   "sci": "Cacatua galerita",
-   "authority": "(Latham, 1790)",
-   "order": "Psittaciformes",
-   "family": "Cacatuidae",
-   "body": "parrot",
-   "tags": {
-    "features": [
-     "screecher",
-     "flock caller",
-     "chaotic voice"
-    ],
-    "region": [
-     "Eastern Australia",
-     "Northern Australia",
-     "Tasmania",
-     "New Guinea"
-    ]
-   },
-   "collection": "Australian Birds",
-   "image": "img/cockatoo.jpg",
-   "image_caption": "John Gould, The Birds of Australia, vol. V, pl. 1: Cacatua galerita: Vieill (Crested Cockatoo)",
-   "match": 69.3
-  },
-  {
-   "id": "lorikeet",
-   "name": "Rainbow Lorikeet",
-   "sci": "Trichoglossus moluccanus",
-   "authority": "(Gmelin, 1788)",
-   "order": "Psittaciformes",
-   "family": "Psittaculidae",
-   "body": "parrot",
-   "tags": {
-    "features": [
-     "screecher",
-     "chatterer",
-     "flock caller"
-    ],
-    "region": [
-     "Eastern Australia",
-     "South-eastern Australia",
-     "North Queensland",
-     "South-west Western Australia (introduced)"
-    ]
-   },
-   "collection": "Australian Birds",
-   "image": "img/lorikeet.jpg",
-   "image_caption": "John Gould, The Birds of Australia, vol. V, pl. 48: Trichoglossus Swainsonii: Jard. & Selb (Swainson's Lorikeet)",
-   "match": 77.4
-  },
-  {
-   "id": "curlew",
-   "name": "Bush Stone-curlew",
-   "sci": "Burhinus grallarius",
-   "authority": "(Latham, 1801)",
-   "order": "Charadriiformes",
-   "family": "Burhinidae",
-   "body": "kingfisher",
-   "tags": {
-    "features": [
-     "wailer",
-     "night caller",
-     "duetter",
-     "chorus singer"
-    ],
-    "region": [
-     "Northern Australia",
-     "Eastern Australia",
-     "Australia-wide (rare in south)",
-     "Southern New Guinea"
-    ]
-   },
-   "collection": "Australian Birds",
-   "image": "img/curlew.jpg",
-   "image_caption": "John Gould, The Birds of Australia, vol. VI, pl. 5: Oedicnemus grallarius (Southern Stone Plover)",
-   "match": 86.1
-  },
-  {
-   "id": "boobook",
-   "name": "Australian Boobook",
-   "sci": "Ninox boobook",
-   "authority": "(Latham, 1801)",
-   "order": "Strigiformes",
-   "family": "Strigidae",
-   "body": "kingfisher",
-   "tags": {
-    "features": [
-     "hooter",
-     "night caller",
-     "duetter"
+     "warbler",
+     "group singer (carolling)",
+     "mimic"
     ],
     "region": [
      "Australia-wide",
-     "Southern New Guinea",
-     "Timor and Lesser Sundas"
+     "Eastern Australia",
+     "Western Australia",
+     "Tasmania",
+     "Southern New Guinea"
     ]
    },
-   "collection": "Australian Birds",
-   "image": "img/boobook.jpg",
-   "image_caption": "John Gould, The Birds of Australia, vol. I, pl. 32: Athene boobook (Boobook Owl)",
-   "match": 92.5
+   "collection": "Australasia",
+   "family_name": "Butcherbirds, magpies and woodswallows",
+   "tax": [
+    19,
+    14
+   ],
+   "image": "img/magpie.jpg",
+   "image_caption": "John Gould, The Birds of Australia, vol. II, pl. 46: Gymnorhina tibicen (Piping Crow-Shrike)",
+   "match": 78.5
   },
   {
-   "id": "cardinal",
-   "name": "Northern Cardinal",
-   "sci": "Cardinalis cardinalis",
-   "authority": "(Linnaeus, 1758)",
-   "order": "Passeriformes",
-   "family": "Cardinalidae",
-   "body": "songbird",
+   "id": "pigeon",
+   "name": "Rock Dove (feral pigeon)",
+   "sci": "Columba livia",
+   "authority": "Gmelin, 1789",
+   "order": "Columbiformes",
+   "family": "Columbidae",
+   "body": "dove",
    "tags": {
     "features": [
-     "whistler",
-     "frequency sweeps",
-     "two-voice (left/right syrinx switch)",
-     "female singer",
-     "chipper"
+     "cooer",
+     "closed-beak singer (inflated neck)",
+     "wing clapper"
     ],
     "region": [
-     "North America",
-     "Eastern & Central USA",
-     "South-eastern Canada",
-     "Mexico",
-     "Hawaii & Bermuda (introduced)"
+     "Worldwide",
+     "Europe",
+     "North Africa",
+     "South-west Asia to India"
     ]
    },
-   "collection": "Birds of the World",
-   "image": "img/cardinal.jpg",
-   "image_caption": "John James Audubon, The Birds of America, vol. II, pl. 159: Fringilla cardinalis, Bonap (Cardinal Grosbeak)",
-   "match": 72.3
+   "collection": "Palearctic",
+   "family_name": "Pigeons and doves",
+   "tax": [
+    8,
+    1
+   ],
+   "image": "img/pigeon.jpg",
+   "image_caption": "John Gould, The Birds of Great Britain, vol. IV, pl. 3: Columba livia, Temm (Rock-Pigeon)",
+   "match": 84.1
   },
   {
    "id": "robin",
@@ -385,36 +461,49 @@
      "Macaronesia (Azores, Madeira, Canaries)"
     ]
    },
-   "collection": "Birds of the World",
+   "collection": "Palearctic",
+   "family_name": "Old World flycatchers and chats",
+   "tax": [
+    19,
+    17
+   ],
    "image": "img/robin.jpg",
    "image_caption": "John Gould, The Birds of Great Britain, vol. II, pl. 48: Erythacus rubecula (Robin, or Redbreast)",
    "match": 86.7
   },
   {
-   "id": "pigeon",
-   "name": "Rock Dove (feral pigeon)",
-   "sci": "Columba livia",
-   "authority": "Gmelin, 1789",
-   "order": "Columbiformes",
-   "family": "Columbidae",
-   "body": "dove",
+   "id": "cardinal",
+   "name": "Northern Cardinal",
+   "sci": "Cardinalis cardinalis",
+   "authority": "(Linnaeus, 1758)",
+   "order": "Passeriformes",
+   "family": "Cardinalidae",
+   "body": "songbird",
    "tags": {
     "features": [
-     "cooer",
-     "closed-beak singer (inflated neck)",
-     "wing clapper"
+     "whistler",
+     "frequency sweeps",
+     "two-voice (left/right syrinx switch)",
+     "female singer",
+     "chipper"
     ],
     "region": [
-     "Worldwide",
-     "Europe",
-     "North Africa",
-     "South-west Asia to India"
+     "North America",
+     "Eastern & Central USA",
+     "South-eastern Canada",
+     "Mexico",
+     "Hawaii & Bermuda (introduced)"
     ]
    },
-   "collection": "Birds of the World",
-   "image": "img/pigeon.jpg",
-   "image_caption": "John Gould, The Birds of Great Britain, vol. IV, pl. 3: Columba livia, Temm (Rock-Pigeon)",
-   "match": 84.1
+   "collection": "Nearctic",
+   "family_name": "Cardinals",
+   "tax": [
+    19,
+    18
+   ],
+   "image": "img/cardinal.jpg",
+   "image_caption": "John James Audubon, The Birds of America, vol. II, pl. 159: Fringilla cardinalis, Bonap (Cardinal Grosbeak)",
+   "match": 72.3
   },
   {
    "id": "quetzal",
@@ -435,7 +524,12 @@
      "Southern Mexico"
     ]
    },
-   "collection": "Birds of the World",
+   "collection": "Neotropics",
+   "family_name": "Trogons and quetzals",
+   "tax": [
+    13,
+    4
+   ],
    "image": "img/quetzal.jpg",
    "image_caption": "John Gould, A Monograph of the Trogonidae, or Family of Trogons, 2nd ed., part III: Pharomacrus mocinno (Quezal)",
    "match": 80.5

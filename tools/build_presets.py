@@ -6,15 +6,41 @@ import json, os, shutil, sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 WEB = os.path.join(ROOT, 'web')
 # Collections, in menu order. A bird's collection is where its recordings and plate come from.
+# Collections = zoogeographic realms (where each species is native), as field guides and the IOC list
+# group birds; inside each, birds are ordered by the IOC taxonomic sequence (order, then family).
 COLLECTIONS = {
-    'Australian Birds': ['magpie', 'kookaburra', 'wattlebird', 'rosella', 'lyrebird', 'butcherbird', 'whipbird', 'bellminer',
-                         'cockatoo', 'lorikeet', 'curlew', 'boobook'],
-    'Birds of the World': ['cardinal', 'robin', 'pigeon', 'quetzal'],
+    'Australasia': ['magpie', 'kookaburra', 'wattlebird', 'rosella', 'lyrebird', 'butcherbird', 'whipbird', 'bellminer',
+                    'cockatoo', 'lorikeet', 'curlew', 'boobook',
+                    'helmeted', 'fairywren', 'shrikethrush', 'whistler', 'raven', 'wagtail', 'frogmouth', 'galah', 'gangang', 'blackcockatoo'],
+    'Palearctic': ['robin', 'pigeon'],
+    'Nearctic': ['cardinal'],
+    'Neotropics': ['quetzal'],
 }
 COLLECTION_INFO = {
-    'Australian Birds': {'region': 'Australia', 'about': 'Songbirds, a kingfisher and a parrot from Australian gardens and bush. Plates by John Gould.'},
-    'Birds of the World': {'region': 'Americas, Europe, worldwide', 'about': 'Well-loved birds from around the world, including a dove that coos with its beak shut. Plates by Gould and Audubon.'},
+    'Australasia': {'region': 'Australia, New Guinea, New Zealand', 'about': 'Birds of Australia and its neighbours, from the garden to the bush. Plates by John Gould, The Birds of Australia.'},
+    'Palearctic': {'region': 'Europe, North Africa, North Asia', 'about': 'Native to Europe, North Africa and northern Asia (the rock dove now lives wild in cities worldwide). Plates by John Gould, The Birds of Great Britain.'},
+    'Nearctic': {'region': 'North America', 'about': 'Native to North America. Plate by John James Audubon, The Birds of America.'},
+    'Neotropics': {'region': 'Central and South America', 'about': 'Native to Central and South America. Plate by John Gould, A Monograph of the Trogonidae.'},
 }
+# IOC sequence (approximate, for the orders and families Carol has; unknown ones sort last, by name)
+ORDER_SEQ = ['Struthioniformes', 'Casuariiformes', 'Galliformes', 'Anseriformes', 'Caprimulgiformes', 'Podargiformes', 'Apodiformes',
+             'Cuculiformes', 'Columbiformes', 'Gruiformes', 'Charadriiformes', 'Accipitriformes', 'Strigiformes', 'Trogoniformes',
+             'Bucerotiformes', 'Coraciiformes', 'Piciformes', 'Falconiformes', 'Psittaciformes', 'Passeriformes']
+FAMILY_SEQ = ['Podargidae', 'Columbidae', 'Burhinidae', 'Strigidae', 'Trogonidae', 'Alcedinidae', 'Cacatuidae', 'Psittaculidae',
+              'Menuridae', 'Maluridae', 'Meliphagidae', 'Psophodidae', 'Pachycephalidae', 'Colluricinclidae', 'Artamidae',
+              'Rhipiduridae', 'Corvidae', 'Muscicapidae', 'Cardinalidae']
+FAMILY_NAMES = {'Podargidae': 'Frogmouths', 'Columbidae': 'Pigeons and doves', 'Burhinidae': 'Stone-curlews', 'Strigidae': 'Owls',
+                'Trogonidae': 'Trogons and quetzals', 'Alcedinidae': 'Kingfishers', 'Cacatuidae': 'Cockatoos', 'Psittaculidae': 'Old World parrots',
+                'Menuridae': 'Lyrebirds', 'Maluridae': 'Fairywrens', 'Meliphagidae': 'Honeyeaters', 'Psophodidae': 'Whipbirds',
+                'Pachycephalidae': 'Whistlers', 'Colluricinclidae': 'Shrike-thrushes', 'Artamidae': 'Butcherbirds, magpies and woodswallows',
+                'Rhipiduridae': 'Fantails', 'Corvidae': 'Crows and ravens', 'Muscicapidae': 'Old World flycatchers and chats', 'Cardinalidae': 'Cardinals'}
+
+
+def tax_key(t):
+    o, f = t.get('order', ''), t.get('family', '')
+    return (ORDER_SEQ.index(o) if o in ORDER_SEQ else 99, FAMILY_SEQ.index(f) if f in FAMILY_SEQ else 99, f, t.get('genus', ''), t.get('species', ''))
+
+
 BIRDS = [b for bs in COLLECTIONS.values() for b in bs]
 COLL_OF = {b: c for c, bs in COLLECTIONS.items() for b in bs}
 
@@ -292,7 +318,7 @@ def build(bid):
     caption = f"{work}, {vol}{pl}{str(img.get('name_on_plate')).rstrip('.')} ({img.get('gould_common_name')})"
     facts = [{'title': f['title'], 'url': f['url'], 'licence': f.get('licence', ''), 'used_for': f.get('used_for', '')} for f in src.get('facts_sources', [])]
     preset = {
-        'id': bid, 'name': info['common_name'], 'sci': info['scientific_name'], 'body': fit['body'], 'collection': COLL_OF.get(bid, 'Birds of the World'),
+        'id': bid, 'name': info['common_name'], 'sci': info['scientific_name'], 'body': fit['body'], 'collection': COLL_OF.get(bid, 'Australasia'),
         'tags': info.get('tags', {}), 'params': fit['params'], 'scale': fit['scale'], 'match': fit['match'],
         'look': LOOKS.get(bid), 'model_note': MODEL_NOTES.get(bid), 'image': f'img/{bid}.jpg', 'image_caption': caption,
         'taxonomy': dict(TAXONOMY.get(bid, {}), list=TAXONOMY_LIST, plate_name=img.get('name_on_plate'), plate_common=img.get('gould_common_name'), plate_artist=img.get('artist') or work.split(',')[0]),
@@ -309,6 +335,7 @@ def build(bid):
     t = TAXONOMY.get(bid, {})
     return {'id': bid, 'name': preset['name'], 'sci': preset['sci'], 'authority': t.get('authority'), 'order': t.get('order'), 'family': t.get('family'),
             'body': preset['body'], 'tags': preset['tags'], 'collection': preset['collection'],
+            'family_name': FAMILY_NAMES.get(t.get('family'), t.get('family')), 'tax': list(tax_key(t))[:2],
             'image': preset['image'], 'image_caption': caption, 'match': fit['match']['total']}
 
 
@@ -319,8 +346,13 @@ def main():
     for bid in (sys.argv[1:] or BIRDS):
         if os.path.exists(os.path.join(ROOT, 'fits', bid + '.json')):
             old[bid] = build(bid); print('built', bid, old[bid]['match'])
-    birds = [old[b] for b in BIRDS if b in old] + [v for k, v in old.items() if k not in BIRDS]
-    colls = [dict(name=c, count=sum(1 for b in birds if b['collection'] == c), cover=bs[0], **COLLECTION_INFO.get(c, {})) for c, bs in COLLECTIONS.items()]
+    for b in old.values():   # older index entries: move them to their realm
+        b['collection'] = COLL_OF.get(b['id'], b.get('collection'))
+    coll_rank = {c: i for i, c in enumerate(COLLECTIONS)}
+    birds = sorted((v for v in old.values() if v['id'] in COLL_OF),
+                   key=lambda b: (coll_rank[b['collection']], tax_key(TAXONOMY.get(b['id'], {}))))
+    colls = [dict(name=c, count=sum(1 for b in birds if b['collection'] == c), cover=bs[0], **COLLECTION_INFO.get(c, {}))
+             for c, bs in COLLECTIONS.items() if any(b['collection'] == c for b in birds)]
     json.dump({'collections': colls, 'birds': birds}, open(idx_path, 'w'), indent=1)
 
 
