@@ -1,5 +1,7 @@
 // Audio: AudioContext + the Carol worklet. Same code on the Pi (Chromium) and the web.
 import { FX, wavBlob } from './fx.js';
+// player controls: not part of the fitted bird - a preset's stored value is ignored, the default is used
+export const PLAYER_KEYS = ['mode', 'volume', 'speed', 'sweep', 'attack', 'release', 'glide', 'vmode', 'lfo_rate', 'vibrato', 'tremolo'];
 export const BODY_INDEX = { songbird: 0, kingfisher: 1, parrot: 2, dove: 3 };
 
 export class CarolAudio {
@@ -34,7 +36,10 @@ export class CarolAudio {
     // for the oscilloscope
     this.analyser = this.ctx.createAnalyser(); this.analyser.fftSize = 2048; this.analyser.smoothingTimeConstant = 0;
     this.node.connect(this.analyser);
-    this.node.port.onmessage = (e) => { this.tele = e.data; this.onTele && this.onTele(e.data); };
+    this.node.port.onmessage = (e) => {
+      if (e.data && e.data.scope) { this.scope = e.data; return; }
+      this.tele = e.data; this.onTele && this.onTele(e.data);
+    };
     for (const m of this.pending) this.node.port.postMessage(m);
     this.pending = [];
     if (this.ctx.state !== 'running') await this.ctx.resume().catch(() => {});
@@ -48,9 +53,10 @@ export class CarolAudio {
     m.push({ t: 'alloff', s });
     m.push({ t: 'body', v: BODY_INDEX[bird.body] ?? 0, s });
     const vals = [];
-    for (const p of this.defs.params) vals.push([p.index, bird.params[p.key] ?? p.default]);
+    for (const p of this.defs.params) if (p.index !== undefined) vals.push([p.index, PLAYER_KEYS.includes(p.key) ? p.default : (bird.params[p.key] ?? p.default)]);
     m.push({ t: 'params', v: vals, s });
     m.push({ t: 'fit', tension: bird.params.tension ?? 0.3, pressure: bird.params.pressure ?? 1, s });
+    m.push({ t: 'fitsnap', s });   // these are the bird's own settings: knob moves away from them are emphasised
     m.push({ t: 'calls', s, v: bird.calls.map((c) => ({
       f: Float32Array.from(c.f), p: Float32Array.from(c.p, (v) => v / 1000), n: Float32Array.from(c.n, (v) => v / 100), g: Float32Array.from(c.g || [], (v) => v / 1000), m: Float32Array.from(c.m || [], (v) => v / 1000), c: Float32Array.from(c.c || [], (v) => v / 1000), hop: c.hop, ref_hz: c.ref_hz,
     })) });
@@ -65,6 +71,8 @@ export class CarolAudio {
   /** Drop scheduled (not yet played) events with this tag. */
   unqueue(tag) { this.send({ t: 'unqueue', tag }); }
   allOff(s) { if (s === undefined) for (let k = 0; k < 8; k++) this.send({ t: 'alloff', s: k }); else this.send({ t: 'alloff', s }); }
+  /** Ask the audio thread for the scope (the WAVE view) or stop. */
+  scopeOn(on) { this.send({ t: 'scope', on }); }
   setFx(key, v) { if (this.fx) this.fx.set(key, v); else (this.fxPending ||= {})[key] = v; }
   startRec() { if (!this.rec) return false; this.recBufs = []; this.rec.port.postMessage({ on: true }); return true; }
   /** Stop recording; resolves to a WAV blob (or null if nothing was recorded). */

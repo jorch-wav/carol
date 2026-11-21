@@ -31,6 +31,7 @@ class CarolProcessor extends AudioWorkletProcessor {
     new Float32Array(w.memory.buffer, p, arr.length).set(arr);
   }
   msg(m) {
+    if (m.t === 'scope') { this.scopeOn = m.on; return; }
     if (m.t === 'unqueue') { this.queue = this.queue.filter((q) => q.tag !== m.tag); return; }
     if (m.t === 'free') { if (m.s > 0 && this.slots[m.s]) this.slots[m.s] = null; return; }
     // only loading a bird ('body') creates a slot; anything else for a missing slot is dropped
@@ -42,6 +43,7 @@ class CarolProcessor extends AudioWorkletProcessor {
       case 'param': w.carol_set_param(m.i, m.v); break;
       case 'params': for (const [i, v] of m.v) w.carol_set_param(i, v); break;
       case 'fit': w.carol_set_fit(m.tension, m.pressure); break;
+      case 'fitsnap': w.carol_snapshot_fit(); break;
       case 'calls':
         w.carol_clear_calls();
         for (const c of m.v) {
@@ -71,8 +73,13 @@ class CarolProcessor extends AudioWorkletProcessor {
     }
     for (let c = 1; c < out.length; c++) out[c].set(mix);
     if (++this.n % 6 === 0) {
-      const t = this.slots[0].w.carol_telemetry();
-      this.port.postMessage(new Float32Array(this.slots[0].w.memory.buffer, t, 16).slice());
+      const w0 = this.slots[0].w, t = w0.carol_telemetry();
+      this.port.postMessage(new Float32Array(w0.memory.buffer, t, 16).slice());
+      // the WAVE view's scope: the loudest voice at each stage (only while that view is open)
+      if (this.scopeOn && this.n % 12 === 0) {
+        const n = w0.carol_scope_n(), p = w0.carol_scope();
+        this.port.postMessage({ scope: new Float32Array(w0.memory.buffer, p, 5 * n).slice(), n });
+      }
     }
     return true;
   }

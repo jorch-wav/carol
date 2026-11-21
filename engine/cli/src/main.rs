@@ -46,7 +46,7 @@ fn main() {
                 let v = arg(&args, &format!("--{}", d.key), "");
                 if !v.is_empty() { e.set_param(i, v.parse().unwrap()); }
             }
-            e.fit_tension = e.params[P_TENSION]; e.fit_pressure = e.params[P_PRESSURE];
+            e.fit_tension = e.params[P_TENSION]; e.fit_pressure = e.params[P_PRESSURE]; e.snapshot_fit();
             let f: f64 = arg(&args, "--f", "2000").parse().unwrap();
             e.add_call(test_call(f, 1.0, arg(&args, "--glide", "0").parse().unwrap()));
             let a = e.render_call(0, None);

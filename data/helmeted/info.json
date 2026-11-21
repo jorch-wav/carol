@@ -1,0 +1,77 @@
+{
+ "id": "helmeted",
+ "common_name": "Yellow-tufted Honeyeater",
+ "scientific_name": "Lichenostomus melanops",
+ "family": "Meliphagidae (honeyeaters)",
+ "overview": "This preset is the yellow-tufted honeyeater, fitted to recordings of the species in Victoria and NSW. Its most famous form, the helmeted honeyeater (L. m. cassidix, shown on Gould's plate), is Victoria's bird emblem, but no public recordings of it exist, so Carol can't model it directly. The helmeted honeyeater is Victoria's bird emblem and one of Australia's rarest birds. It is a larger, brighter form of the yellow-tufted honeyeater, olive-brown and yellow with a black face mask, yellow ear tufts and a plush golden 'helmet' of feathers on the forehead. Only a few dozen pairs live in the wild, in streamside swamp forest at Yellingbo east of Melbourne, kept going by captive breeding at Healesville Sanctuary and careful habitat work. Note: no helmeted honeyeater recordings with a usable licence were available, so Carol's sound for this bird is fitted to yellow-tufted honeyeaters of other subspecies, mostly from Victoria.",
+ "deep_dive": {
+  "habitat": "Dense, flood-prone forest along creeks and in swamps, dominated by mountain swamp gum with scented paperbark, woolly tea-tree, sedges and tussocks underneath. In the past it also used manna gum forest along streams. The wider yellow-tufted honeyeater lives in drier open eucalypt forest and woodland, often near water.",
+  "range": "Found only in Victoria. It once lived patchily in the middle Yarra and Western Port catchments; the wild population now lives along about 5 km of two streams in Yellingbo Nature Conservation Reserve, about 50 km east of Melbourne, with a released colony near Tonimbuk (Bunyip State Park) and captive colonies at Healesville Sanctuary and Taronga Zoo. Numbers fell to about 50 birds in 1989; there are now roughly 20 wild breeding pairs. Listed as critically endangered under the national EPBC Act.",
+  "behaviour": "Stays in one place all year. Pairs hold small territories (around half a hectare) packed together into colonies, and neighbours help each other drive off intruders; it is bold and aggressive towards other birds, but suffers where bell miner colonies border its territories. It eats insects, nectar, lerps, honeydew and sap from eucalypts and paperbarks, and feeds its chicks mostly on insects. Breeding runs from July to March, with up to several nesting attempts a season; the female builds and incubates, the male defends the nest and both feed the young.",
+  "voice": "No study of the helmeted honeyeater's voice itself was found, so this describes the species as a whole. Yellow-tufted honeyeaters are noisy and use a range of short single-note contact and alarm calls, written as 'tsup', 'shup', 'jik', 'chow' or 'scow', a harsh 'yip' or 'chop-chop', a sharp 'querk', soft social notes, a whistled 'wheit-wheit' or soft territorial 'weet-weet-weet', and a warbled 'tui-t-tui-t-tui'. In our recordings (yellow-tufted, mostly from Victoria) clear whistled notes sit at about 2.5-3.7 kHz, slurred whistles reach about 5-7 kHz, and harsh 'chop' calls are noisy bursts spread over roughly 1.5-8 kHz.",
+  "anatomy": "A songbird (order Passeriformes). Like all songbirds it has a tracheobronchial syrinx: the voice box sits where the windpipe splits into the two bronchi, so there is a sound source on each side that can be controlled separately. It is 17-23 cm long and weighs about 30-40 g, males larger than females. Like other honeyeaters it has a slender, slightly down-curved black bill and a long brush-tipped tongue for nectar. (No honeyeater-specific syrinx study was consulted; these points are general songbird anatomy.)"
+ },
+ "tags": {
+  "features": [
+   "contact caller",
+   "harsh calls",
+   "whistler",
+   "colony caller",
+   "critically endangered"
+  ],
+  "region": [
+   "Victoria (Yellingbo)",
+   "South-eastern Australia"
+  ]
+ },
+ "facts_sources": [
+  {
+   "title": "Helmeted honeyeater - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Helmeted_honeyeater",
+   "licence": "CC BY-SA 4.0 (text paraphrased, not copied)",
+   "used_for": "overview, size, plumage, habitat, range, numbers, behaviour, diet, breeding, conservation status"
+  },
+  {
+   "title": "Yellow-tufted honeyeater - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Yellow-tufted_honeyeater",
+   "licence": "CC BY-SA 4.0 (text paraphrased, not copied)",
+   "used_for": "subspecies, plumage (bill, eye, legs), call descriptions"
+  },
+  {
+   "title": "Yellow-tufted Honeyeater - Birds in Backyards (BirdLife Australia / Australian Museum)",
+   "url": "https://www.birdsinbackyards.net/species/Lichenostomus-melanops",
+   "licence": "(c) Birds in Backyards - facts only, paraphrased",
+   "used_for": "call descriptions, habitat, colonial breeding, helmeted subspecies larger and brighter"
+  },
+  {
+   "title": "IOC World Bird List (Gill, Donsker & Rasmussen, eds.), via World Bird Names species page",
+   "url": "https://www.worldbirdnames.com/bird/yellow-tufted-honeyeater/17258.html",
+   "licence": "CC BY 4.0 - facts only",
+   "used_for": "taxonomy: Passeriformes, Meliphagidae, Lichenostomus melanops (Latham, 1801), protonym Turdus melanops; subspecies cassidix"
+  },
+  {
+   "title": "GBIF Backbone Taxonomy: Lichenostomus melanops cassidix (Gould, 1867)",
+   "url": "https://www.gbif.org/species/6173982",
+   "licence": "CC BY 4.0 - facts only",
+   "used_for": "subspecies authority and year"
+  },
+  {
+   "title": "John Gould, The Birds of Australia, Supplement (1851-1869): Ptilotis cassidix, Helmeted Honey-eater (text page)",
+   "url": "https://archive.org/details/birdsAustraliasSuppGoul/page/n166/mode/1up",
+   "licence": "Public domain",
+   "used_for": "original name and Gould's account of the first specimens (1866)"
+  },
+  {
+   "title": "Syrinx (bird anatomy) - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Syrinx_(bird_anatomy)",
+   "licence": "CC BY-SA 4.0 (paraphrased)",
+   "used_for": "songbirds have a tracheobronchial syrinx; left/right sides modulated independently"
+  },
+  {
+   "title": "iNaturalist and xeno-canto recordings listed in sources.json (own measurements)",
+   "url": "https://www.inaturalist.org/taxa/12204-Lichenostomus-melanops",
+   "licence": "recordings CC BY-NC (iNaturalist) / CC BY-NC-SA (xeno-canto); measurements are our own",
+   "used_for": "whistle and call frequency ranges (yellow-tufted honeyeater, not cassidix)"
+  }
+ ]
+}

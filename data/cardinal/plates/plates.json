@@ -1,0 +1,45 @@
+[
+  {
+    "file": "plates/wilson-1810.jpg",
+    "raw_file": "plates/raw/Americanornitho2Wils_0045.jp2",
+    "artist": "Alexander Wilson (drawn); engraved by Alexander Lawson",
+    "work": "Alexander Wilson, American Ornithology; or, The Natural History of the Birds of the United States (Philadelphia: Bradford & Inskeep, 1808-1814), 9 vols, folio",
+    "year": "1810",
+    "volume": "II",
+    "plate": "XI (lettered '11'; figs. 1-2 cardinal)",
+    "name_on_plate": "1. Cardinal Grosbeak. 2. Female & egg. 3. Red Tanager. 4. Female & egg. (text: Loxia cardinalis, Linn.)",
+    "gould_common_name": "Cardinal Grosbeak",
+    "artist_credit_on_plate": "From Nature by A. Wilson / Engraved by A. Lawson",
+    "artist_died": 1813,
+    "other_artists_died": {
+      "Alexander Lawson (engraver)": 1846
+    },
+    "other_species_on_plate": "figs. 3-4 are the scarlet tanager (Piranga olivacea), lettered 'Red Tanager'",
+    "copy": "Smithsonian Libraries copy 1, digitised for the Biodiversity Heritage Library (Internet Archive Americanornitho2Wils)",
+    "source_page_url": "https://archive.org/details/Americanornitho2Wils/page/n44/mode/1up",
+    "source_file_url": "https://archive.org/download/Americanornitho2Wils/Americanornitho2Wils_jp2.zip/Americanornitho2Wils_jp2%2FAmericanornitho2Wils_0045.jp2",
+    "bhl_url": "https://www.biodiversitylibrary.org/page/46337213",
+    "licence": "Public domain (published 1810; artist died 1813; BHL/IA: 'no longer under copyright protection')",
+    "processing": "JP2 -> RGB, resized to 900 px tall (Lanczos), JPEG quality 85, no crop (tools/make_plate.py)"
+  },
+  {
+    "file": "plates/catesby-1729-32.jpg",
+    "raw_file": "plates/raw/naturalhistoryCIc2Cate_0129.jp2",
+    "artist": "Mark Catesby (drawn and etched)",
+    "work": "Mark Catesby, The Natural History of Carolina, Florida and the Bahama Islands (London, 1729-1747), 2 vols + appendix, folio",
+    "year": "1729-1732 (vol. I; issued in parts)",
+    "volume": "I",
+    "plate": "T. 38 (lettered 'T. 38')",
+    "name_on_plate": "Coccothraustes rubra",
+    "gould_common_name": "The red Bird",
+    "other_lettering": "'Nux Juglans Virginiana alba &c. / The Hiccory Tree', 'The Pig-nut'",
+    "artist_credit_on_plate": "none lettered (Catesby drew and etched his own plates)",
+    "artist_died": 1749,
+    "copy": "Smithsonian Libraries copy 2, digitised for the Biodiversity Heritage Library (Internet Archive naturalhistoryCIc2Cate)",
+    "source_page_url": "https://archive.org/details/naturalhistoryCIc2Cate/page/n128/mode/1up",
+    "source_file_url": "https://archive.org/download/naturalhistoryCIc2Cate/naturalhistoryCIc2Cate_jp2.zip/naturalhistoryCIc2Cate_jp2%2FnaturalhistoryCIc2Cate_0129.jp2",
+    "bhl_url": "https://www.biodiversitylibrary.org/page/42117066",
+    "licence": "Public domain (published 1729-1732; artist died 1749; BHL/IA: 'no longer under copyright protection')",
+    "processing": "JP2 -> RGB, resized to 900 px tall (Lanczos), JPEG quality 85, no crop (tools/make_plate.py)"
+  }
+]

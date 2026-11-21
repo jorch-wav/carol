@@ -83,6 +83,7 @@ pub fn from_norm(i: usize, u: f64) -> f64 {
 pub fn render_item(table: &Arc<Table>, body: u8, params: &[f64; NPARAM], call: &Call, an: &Analyzer) -> (Vec<f32>, Features) {
     let mut e = Engine::new(44100.0, table.clone());
     e.body = body; e.params = *params; e.params[P_SPEED] = 1.0; e.params[P_SWEEP] = 1.0; e.params[P_MASS] = 0.0;
+    e.snapshot_fit();   // fitting: no knob emphasis
     e.params[P_VOLUME] = 1.0;
     e.fit_tension = params[P_TENSION]; e.fit_pressure = params[P_PRESSURE];
     e.add_call(call.clone());
@@ -187,10 +188,16 @@ pub struct FitResult { pub params: [f64; NPARAM], pub scores: Vec<Score>, pub to
 fn par_map<T: Sync, R: Send>(xs: &[T], f: impl Fn(&T) -> R + Sync) -> Vec<R> {
     #[cfg(not(target_arch = "wasm32"))]
     {
-        std::thread::scope(|s| {
-            let hs: Vec<_> = xs.iter().map(|x| s.spawn(|| f(x))).collect();
-            hs.into_iter().map(|h| h.join().unwrap()).collect()
-        })
+        // CAROL_THREADS caps the worker threads (a Pi on a weak power supply browns out at full load)
+        let n = std::env::var("CAROL_THREADS").ok().and_then(|v| v.parse::<usize>().ok()).filter(|&n| n > 0).unwrap_or(usize::MAX);
+        let mut out = Vec::with_capacity(xs.len());
+        for chunk in xs.chunks(n.min(xs.len().max(1))) {
+            std::thread::scope(|s| {
+                let hs: Vec<_> = chunk.iter().map(|x| s.spawn(|| f(x))).collect();
+                for h in hs { out.push(h.join().unwrap()); }
+            });
+        }
+        out
     }
     #[cfg(target_arch = "wasm32")]
     { xs.iter().map(f).collect() }

@@ -499,6 +499,88 @@ PLATES.update({
 })
 
 
+# Helmeted honeyeater, superb fairywren, grey shrikethrush, golden whistler (added 2026-11-21).
+# Helmeted honeyeater (L. melanops cassidix): xeno-canto shows no cassidix recordings and iNaturalist has none with
+# sound, so the clips are YELLOW-TUFTED honeyeaters of other subspecies (8 iNaturalist from Victoria + 2 XC from NSW).
+# Call types from the recordists' labels plus our spectrograms (not checked by ear).
+CATEGORY.update({
+    "helmeted": {
+        "382239": "piping single-note calls + sharp rasps while feeding (yellow-tufted, NSW; clean)",
+        "399104": "song (yellow-tufted, ssp. melanops, NSW; quiet, few phrases)",
+    },
+    "fairywren": {
+        "935812": "reel song (Type I trill; adult male)",
+        "935405": "reel song (Type I trill; female)",
+        "935399": "reel song (Type I trill; female)",
+        "1173642": "reel song (short, close)",
+        "1069584": "reel song (adult male, ssp. cyanochlamys area)",
+        "1173655": "reel songs (XC type: call)",
+        "1173656": "reel songs, long bout (XC type: call; grey fantail in background)",
+        "1169745": "family group calls + song (female, male, juvenile)",
+        "1069722": "female calls + song",
+        "370623": "alarm 'chit' calls (Tasmania; hum band in background, golden whistler in background)",
+    },
+    "shrikethrush": {
+        "1062933": "song (whistled phrases, very clean)",
+        "1169110": "song (loud whistle + chattering notes)",
+        "1173699": "song (sparse phrases, long bout)",
+        "858841": "song (adult male; ringing whistles with steep slurs)",
+        "935836": "song (dense, varied phrases)",
+        "953166": "song (long bout of phrases)",
+        "1173877": "calls (single ringing notes)",
+        "1173902": "calls (single notes; insect/pulse train in background)",
+        "1173904": "calls (single ringing notes, very clean)",
+        "841626": "contact calls (after playback)",
+    },
+    "whistler": {
+        "1166258": "song (whistled notes + whip-crack ending; adult male, very clean)",
+        "1166261": "song (single phrase with whip-crack, clean)",
+        "1072326": "song (two phrases with whip-crack)",
+        "1072036": "song (long bout of repeated phrases)",
+        "268284": "song (ssp. youngi; loud, in eucalypt midstorey)",
+        "1172737": "calls + song (upslurred calls)",
+        "755564": "calls + song (adult male)",
+        "496498": "female song + calls (Tasmania, ssp. glaucura)",
+        "495653": "female calls (upslurred 'seep' type; Tasmania)",
+        "572086": "calls (Tasmania; thornbill-like chatter in background)",
+    },
+})
+
+INAT.update({
+    "helmeted": {
+        "1799241": "harsh 'chop' calls (yellow-tufted, Yackandandah VIC, song meter; steady ~6.4 kHz insect tone)",
+        "1799242": "whistled notes ~2.9 kHz + harsh calls (Yackandandah VIC, song meter; ~6.5 kHz insect tone)",
+        "1802747": "calls: harsh notes + slurred whistles (Yackandandah VIC, song meter; noisy)",
+        "1806719": "calls + chatter, slurred notes (Yackandandah VIC, song meter)",
+        "1806730": "calls: harsh bursts + whistles (Yackandandah VIC, song meter; noisy)",
+        "610827": "slurred upward whistles, song-like (Wingan River VIC; 22 kHz source, noisy)",
+        "822785": "whistles + harsh rasps (Olinda VIC, Dandenong Ranges)",
+        "874404": "short calls, probably a juvenile (Crooked River VIC)",
+    },
+})
+
+# Helmeted honeyeater plate is from Gould's Supplement (1851-69), not the 7 main volumes; supplement plates carry no
+# printed number ("plate" is the BHL sequence; Crossref title of 10.5962/p.323738 says [Pl. 39]).
+PLATES.update({
+    "helmeted": dict(gould_name="Ptilotis cassidix, Jard.", gould_common_name="Helmeted Honey-eater",
+                     volume="Supplement (1869)", plate="39 (BHL sequence; not printed on the plate)",
+                     ia_id="birdsAustraliasSuppGoul", leaf=166,
+                     bhl_part="https://www.biodiversitylibrary.org/part/323738", printer="Walter,",
+                     work="John Gould, The Birds of Australia, Supplement (London, 1851-1869), 1 vol., folio",
+                     artist_credit="J. Gould and H. C. Richter, del et lith.",
+                     licence="Public domain (published 1851-1869; BHL/IA: 'no longer under copyright protection')"),
+    "fairywren": dict(gould_name="Malurus cyaneus: Vieill.", gould_common_name="Blue Wren", volume="III", plate="18",
+                      ia_id="birdsAustraliav3Goul", leaf=80, bhl_part="https://www.biodiversitylibrary.org/part/313049",
+                      printer="C. Hullmandel", artist_credit="J. & E. Gould delt."),
+    "shrikethrush": dict(gould_name="Colluricincla harmonica.", gould_common_name="Harmonious Colluricincla",
+                         volume="II", plate="74", ia_id="birdsAustraliav2Goul", leaf=304,
+                         bhl_part="https://www.biodiversitylibrary.org/part/313001", printer="Hullmandel & Walton"),
+    "whistler": dict(gould_name="Pachycephala gutturalis.", gould_common_name="Guttural Pachycephala", volume="II",
+                     plate="64", ia_id="birdsAustraliav2Goul", leaf=264,
+                     bhl_part="https://www.biodiversitylibrary.org/part/312991", printer="Hullmandel & Walton"),
+})
+
+
 def probe(path):
     out = subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration:stream=sample_rate,channels,bits_per_sample",
                           "-of", "json", path], capture_output=True, text=True).stdout

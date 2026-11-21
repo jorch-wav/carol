@@ -1,0 +1,40 @@
+[
+  {
+    "file": "plates/dresser-1871-81.jpg",
+    "raw_file": "plates/raw/historyofbirdsof12dres_0446.jp2",
+    "artist": "John Gerrard Keulemans",
+    "work": "Henry Eeles Dresser, A History of the Birds of Europe, including all the species inhabiting the Western Palaearctic Region (London, 1871-1881), 8 vols, quarto",
+    "year": "1871-1881 (vol. II; issued in parts)",
+    "volume": "II",
+    "plate": "51 (printed top left; BHL 'Plate 51'); a small '182' is also printed under the name",
+    "name_on_plate": "Erithacus rubecula",
+    "gould_common_name": "Redbreast",
+    "artist_credit_on_plate": "monogram 'JGK' (J. G. Keulemans) in the image; no lettered credit line on this copy",
+    "artist_died": 1912,
+    "copy": "Smithsonian Libraries copy, digitised for the Biodiversity Heritage Library (Internet Archive historyofbirdsof12dres)",
+    "source_page_url": "https://archive.org/details/historyofbirdsof12dres/page/n445/mode/1up",
+    "source_file_url": "https://archive.org/download/historyofbirdsof12dres/historyofbirdsof12dres_jp2.zip/historyofbirdsof12dres_jp2%2Fhistoryofbirdsof12dres_0446.jp2",
+    "bhl_url": "https://www.biodiversitylibrary.org/page/39606563",
+    "licence": "Public domain (published 1871-1881; artist died 1912; BHL/IA: 'no longer under copyright protection')",
+    "processing": "JP2 -> RGB, resized to 900 px tall (Lanczos), JPEG quality 85, no crop (tools/make_plate.py)"
+  },
+  {
+    "file": "plates/lilford-thorburn.jpg",
+    "raw_file": "plates/raw/colouredfigureso03lilf_0027.jp2",
+    "artist": "Archibald Thorburn",
+    "work": "Thomas Powys, 4th Baron Lilford, Coloured Figures of the Birds of the British Islands (London: R. H. Porter, 1885-1897), 7 vols, royal octavo",
+    "year": "1885-1897 (vol. III; issued in parts, exact part not checked)",
+    "volume": "III",
+    "plate": "3 in the vol. III List of Plates (unnumbered on the plate; faces p. 6)",
+    "name_on_plate": "Erithacus rubecula (Linn.)",
+    "gould_common_name": "Robin",
+    "artist_credit_on_plate": "signed 'A. Thorburn' in the image; 'Litho. W. Greve, Berlin.'; scale '5/6'",
+    "artist_died": 1935,
+    "copy": "American Museum of Natural History Library copy, digitised for the Biodiversity Heritage Library (Internet Archive colouredfigureso03lilf)",
+    "source_page_url": "https://archive.org/details/colouredfigureso03lilf/page/n26/mode/1up",
+    "source_file_url": "https://archive.org/download/colouredfigureso03lilf/colouredfigureso03lilf_jp2.zip/colouredfigureso03lilf_jp2%2Fcolouredfigureso03lilf_0027.jp2",
+    "bhl_url": "https://www.biodiversitylibrary.org/page/34576811",
+    "licence": "Public domain (published 1885-1897; artist died 1935; BHL/IA: 'no longer under copyright protection')",
+    "processing": "JP2 -> RGB, resized to 900 px tall (Lanczos), JPEG quality 85, no crop (tools/make_plate.py)"
+  }
+]

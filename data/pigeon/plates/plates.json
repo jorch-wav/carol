@@ -1,0 +1,40 @@
+[
+  {
+    "file": "plates/dresser-1871-81.jpg",
+    "raw_file": "plates/raw/historyofbirdsof17dres_0030.jp2",
+    "artist": "John Gerrard Keulemans",
+    "work": "Henry Eeles Dresser, A History of the Birds of Europe, including all the species inhabiting the Western Palaearctic Region (London, 1871-1881), 8 vols, quarto",
+    "year": "1871-1881 (vol. VII; issued in parts)",
+    "volume": "VII",
+    "plate": "457 (printed top left)",
+    "name_on_plate": "Columba livia",
+    "gould_common_name": "Rock Dove",
+    "artist_credit_on_plate": "J. G. Keulemans lith. / Hanhart imp.",
+    "artist_died": 1912,
+    "copy": "Smithsonian Libraries copy, digitised for the Biodiversity Heritage Library (Internet Archive historyofbirdsof17dres)",
+    "source_page_url": "https://archive.org/details/historyofbirdsof17dres/page/n29/mode/1up",
+    "source_file_url": "https://archive.org/download/historyofbirdsof17dres/historyofbirdsof17dres_jp2.zip/historyofbirdsof17dres_jp2%2Fhistoryofbirdsof17dres_0030.jp2",
+    "bhl_url": "https://www.biodiversitylibrary.org/page/38629836",
+    "licence": "Public domain (published 1871-1881; artist died 1912; BHL/IA: 'no longer under copyright protection')",
+    "processing": "JP2 -> RGB, resized to 900 px tall (Lanczos), JPEG quality 85, no crop (tools/make_plate.py)"
+  },
+  {
+    "file": "plates/lilford-thorburn.jpg",
+    "raw_file": "plates/raw/colouredfigureso04lilf_0186.jp2",
+    "artist": "Archibald Thorburn",
+    "work": "Thomas Powys, 4th Baron Lilford, Coloured Figures of the Birds of the British Islands (London: R. H. Porter, 1885-1897), 7 vols, royal octavo",
+    "year": "1885-1897 (vol. IV; issued in parts, exact part not checked)",
+    "volume": "IV",
+    "plate": "41 (BHL 'Pl. [41]'; unnumbered on the plate)",
+    "name_on_plate": "Columba livia, J. F. Gmelin.",
+    "gould_common_name": "Rock-Dove",
+    "artist_credit_on_plate": "signed 'A. Thorburn' in the image; 'Litho. W. Greve, Berlin.'; scale '3/7'",
+    "artist_died": 1935,
+    "copy": "American Museum of Natural History Library copy, digitised for the Biodiversity Heritage Library (Internet Archive colouredfigureso04lilf)",
+    "source_page_url": "https://archive.org/details/colouredfigureso04lilf/page/n185/mode/1up",
+    "source_file_url": "https://archive.org/download/colouredfigureso04lilf/colouredfigureso04lilf_jp2.zip/colouredfigureso04lilf_jp2%2Fcolouredfigureso04lilf_0186.jp2",
+    "bhl_url": "https://www.biodiversitylibrary.org/page/34517555",
+    "licence": "Public domain (published 1885-1897; artist died 1935; BHL/IA: 'no longer under copyright protection')",
+    "processing": "JP2 -> RGB, printed sideways so rotated 90 deg clockwise (--rotate=-90), resized to 900 px tall (Lanczos), JPEG quality 85, no crop (tools/make_plate.py); landscape result"
+  }
+]

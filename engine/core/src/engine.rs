@@ -83,7 +83,7 @@ pub static PARAMS: [ParamDef; NPARAM] = [
     p!("pulse", "BREATH PULSE", "LUNGS", 0.0, 1.0, 0.0, "", false, KF | PR, "Sharpens each breath pulse, like the chopped 'ha-ha' of a laugh."),
     p!("speed", "CALL SPEED", "PLAY", 0.25, 2.0, 1.0, "x", true, ALL, "Plays the call faster or slower without changing its pitch."),
     p!("sweep", "PITCH SWEEP", "PLAY", 0.0, 2.0, 1.0, "x", false, ALL, "Depth of the call's pitch movement. 1 = as the bird sings it."),
-    p!("mode", "KEY MODE", "PLAY", 0.0, 2.0, 0.0, "", false, ALL, "0 one-shot: the whole call plays. 1 gate: stops on key release. 2 loop: repeats while held."),
+    p!("mode", "KEY MODE", "PLAY", 0.0, 3.0, 3.0, "", false, ALL, "ONE: the whole call plays once. GATE: it stops when you let go. LOOP: the whole call repeats while held. SUSTAIN: like a synth - the call starts, then rocks back and forth through its loudest stretch for as long as you hold the key, and plays its ending when you let go."),
     p!("volume", "VOLUME", "PLAY", 0.0, 1.0, 0.8, "", false, ALL, "Output level."),
     p!("oec_depth", "THROAT FILTER", "THROAT", 0.0, 1.0, 0.7, "", false, SB | KF | DV, "How strongly the throat cavity filters the sound. Low lets the raw buzz of the syrinx through."),
     p!("closure", "LABIAL CLOSURE", "SYRINX", 0.0, 1.0, 0.15, "", false, ALL, "How fully the labia shut the airway on each cycle. Closing chops the airflow into pulses: a bright, buzzy, harmonic-rich voice."),
@@ -109,6 +109,7 @@ pub fn body_has(body: u8, i: usize) -> bool { PARAMS[i].bodies & (1 << body) != 
 pub struct Call { pub f: Vec<f32>, pub p: Vec<f32>, pub n: Vec<f32>, pub g: Vec<f32>, pub m: Vec<f32>, pub c: Vec<f32>, pub hop: f64, pub ref_hz: f64 }
 
 const NVOICE: usize = 6;
+pub const SCOPE_N: usize = 2048;
 const OS: usize = 2;
 const A_SPAN: f64 = 0.55;
 const P_ON: f64 = 0.05;
@@ -121,7 +122,7 @@ struct Side { osc: Osc, dc: OnePole, last: f64, gate: f64, prev_r: f64 }
 #[derive(Clone)]
 struct Voice {
     on: bool, id: i32, call: usize, pos: f64, ratio: f64, vel: f64, age: u64,
-    held: bool, rel: f64, env: f64, target: f64, lfo: f64,
+    held: bool, rel: f64, env: f64, target: f64, lfo: f64, dir: f64,
     side: [Side; 2],
     tr: Delay, tr_lp: OnePole,
     oec: Biquad, sac: Biquad, f1: Biquad, f2: Biquad, beak: Biquad, rad: OnePole,
@@ -134,7 +135,7 @@ impl Voice {
     fn new(fsi: f64) -> Voice {
         let side = Side { osc: Osc { x: 1.4, y: 0.0 }, dc: OnePole::default(), last: 0.0, gate: 0.0, prev_r: 0.0 };
         let mut v = Voice {
-            on: false, id: -1, call: 0, pos: 0.0, ratio: 1.0, vel: 1.0, age: 0, held: false, rel: 0.0, env: 0.0, target: 1.0, lfo: 0.0,
+            on: false, id: -1, call: 0, pos: 0.0, ratio: 1.0, vel: 1.0, age: 0, held: false, rel: 0.0, env: 0.0, target: 1.0, lfo: 0.0, dir: 1.0,
             side: [side.clone(), side],
             tr: Delay::new((0.5 * fsi / 343.0 * 2.0 + 16.0) as usize), tr_lp: OnePole::default(),
             oec: Biquad::default(), sac: Biquad::default(), f1: Biquad::default(), f2: Biquad::default(), beak: Biquad::default(), rad: OnePole::default(),
@@ -154,6 +155,12 @@ pub struct Engine {
     pub body: u8,
     pub params: [f64; NPARAM],
     pub fit_tension: f64, pub fit_pressure: f64,
+    /// the bird's own knob settings (snapshot at load): knob moves away from these are emphasised
+    pub fit_params: [f64; NPARAM],
+    /// per call: the stretch SUSTAIN rocks through (frame indices)
+    loops: Vec<(f64, f64)>,
+    /// oscilloscope of the loudest voice, at the output rate: [labia x, labia y, syrinx, windpipe, heard] x SCOPE_N
+    scope: Vec<f32>, scope_pos: usize, scope_v: usize, scope_tick: u32,
     pub calls: Vec<Call>,
     table: Arc<Table>,
     voices: Vec<Voice>,
@@ -165,6 +172,27 @@ pub struct Engine {
 }
 
 #[inline] fn lerp(a: f64, b: f64, t: f64) -> f64 { a + (b - a) * t }
+
+/// SUSTAIN's loop: the longest loud stretch of the call (pressure above 40% of its peak), trimmed
+/// to its middle so the call's attack and ending stay outside it.
+fn sustain_loop(c: &Call) -> (f64, f64) {
+    let n = c.p.len();
+    if n < 4 { return (0.0, (n.max(1) - 1) as f64); }
+    let peak = c.p.iter().cloned().fold(0.0f32, f32::max).max(1e-6);
+    let (mut best, mut cur) = ((0usize, 0usize), None::<usize>);
+    for i in 0..=n {
+        let loud = i < n && c.p[i] >= 0.4 * peak;
+        match (loud, cur) {
+            (true, None) => cur = Some(i),
+            (false, Some(a)) => { if i - a > best.1 - best.0 { best = (a, i); } cur = None; }
+            _ => {}
+        }
+    }
+    let (a, b) = best;
+    let len = (b - a) as f64;
+    if len < 3.0 { return (a as f64, (b.max(a + 1) - 1) as f64); }
+    (a as f64 + len * 0.2, a as f64 + len * 0.8)
+}
 #[inline] fn smooth(t: f64) -> f64 { let t = t.clamp(0.0, 1.0); t * t * (3.0 - 2.0 * t) }
 
 impl Engine {
@@ -173,7 +201,7 @@ impl Engine {
         let mut params = [0.0; NPARAM];
         for (i, d) in PARAMS.iter().enumerate() { params[i] = d.default; }
         Engine {
-            fs, fsi, body: SONGBIRD, params, fit_tension: 0.3, fit_pressure: 1.0, calls: Vec::new(), table,
+            fs, fsi, body: SONGBIRD, params, fit_tension: 0.3, fit_pressure: 1.0, fit_params: params, loops: Vec::new(), scope: vec![0.0; 5 * SCOPE_N], scope_pos: 0, scope_v: 0, scope_tick: 0, calls: Vec::new(), table,
             voices: (0..NVOICE).map(|_| Voice::new(fsi)).collect(),
             noise: Noise(0x1234567), dec: Decim2::new(), age: 0, os_buf: Vec::new(), last_note: -1.0,
         }
@@ -181,8 +209,10 @@ impl Engine {
     pub fn set_param(&mut self, i: usize, v: f64) {
         if i < NPARAM { self.params[i] = v.clamp(PARAMS[i].min.min(PARAMS[i].max), PARAMS[i].max.max(PARAMS[i].min)); }
     }
-    pub fn add_call(&mut self, c: Call) { self.calls.push(c); }
-    pub fn clear_calls(&mut self) { self.all_off(); self.calls.clear(); }
+    pub fn add_call(&mut self, c: Call) { self.loops.push(sustain_loop(&c)); self.calls.push(c); }
+    pub fn clear_calls(&mut self) { self.all_off(); self.calls.clear(); self.loops.clear(); }
+    /// Remember the current knobs as the bird's own (call after loading a bird).
+    pub fn snapshot_fit(&mut self) { self.fit_params = self.params; }
     pub fn all_off(&mut self) { for v in self.voices.iter_mut() { v.on = false; v.id = -1; } }
 
     /// Start `call` transposed so its reference pitch lands on `note` (MIDI, fractional ok).
@@ -257,6 +287,9 @@ impl Engine {
         if self.os_buf.len() < n * OS { self.os_buf.resize(n * OS, 0.0); }
         for s in self.os_buf[..n * OS].iter_mut() { *s = 0.0; }
         let mut buf = std::mem::take(&mut self.os_buf);
+        // the scope watches the loudest voice
+        let mut best = -1.0;
+        for (i, v) in self.voices.iter().enumerate() { if v.on && v.t_lvl > best { best = v.t_lvl; self.scope_v = i; } }
         for vi in 0..NVOICE {
             if self.voices[vi].on { self.run_voice(vi, &mut buf[..n * OS]); }
         }
@@ -279,12 +312,20 @@ impl Engine {
         let nfr = call.f.len();
         let ref_hz = call.ref_hz;
         let mode = p[P_MODE].round() as i32;
+        let (la, lb) = self.loops.get(self.voices[vi].call).copied().unwrap_or((0.0, 0.0));
+        // knob moves away from the bird's own settings count extra for these gentle controls
+        let fp = self.fit_params;
+        let emph = |i: usize, k: f64| fp[i] + (p[i] - fp[i]) * k;
+        let beak_extra = (p[P_BEAK] - fp[P_BEAK]) * 2.2;
+        let breath = emph(P_BREATH, 4.0).clamp(0.0, 2.5);
+        let turb_k = emph(P_TURB, 1.8).clamp(0.0, 1.6);
+        let press_gain = if fp[P_PRESSURE] > 0.0 { (p[P_PRESSURE] / fp[P_PRESSURE]).powf(1.5) } else { 1.0 };
         let step = p[P_SPEED] / (call.hop * fsi);
         let mass = 2f64.powf(-p[P_MASS] / 12.0); // heavier (positive) = lower
         let pulse_pow = 1.0 + 2.5 * p[P_PULSE];
         let two_ratio = 2f64.powf(p[P_TWO_INT] / 12.0);
         let tr_len = p[P_TRACHEA] / 100.0 / 343.0 * fsi; // one-way delay, samples
-        let echo = p[P_ECHO];
+        let echo = emph(P_ECHO, 1.6).clamp(-0.95, 0.95);
         let tongue_q = lerp(1.5, 14.0, p[P_MOUTH_Q]);
         let att = 1.0 / (p[P_ATTACK].max(0.002) * fsi);
         let relr = 1.0 / (p[P_RELEASE].max(0.02) * fsi);
@@ -292,6 +333,9 @@ impl Engine {
         let lfo_step = p[P_LFO_RATE] / fsi;
         let vib = p[P_VIBRATO] / 1200.0;
         let trem = p[P_TREMOLO];
+        let watch = vi == self.scope_v;
+        let mut sc = std::mem::take(&mut self.scope);
+        let (mut sp, mut stick) = (self.scope_pos, self.scope_tick);
         let noise = &mut self.noise;
         let v = &mut self.voices[vi];
         let mut lvl = v.t_lvl;
@@ -302,6 +346,13 @@ impl Engine {
                 if mode == 2 && v.held { v.pos = 0.0; } else { v.rel = v.rel.max(1e-9); }
             }
             if mode == 1 && !v.held { v.rel = v.rel.max(1e-9); }
+            // SUSTAIN: while held, rock back and forth through the loop (forward, then backward: no jumps)
+            if mode == 3 {
+                if v.held && v.rel == 0.0 {
+                    if v.dir > 0.0 && fpos >= lb { v.dir = -1.0; }
+                    else if v.dir < 0.0 && fpos <= la { v.dir = 1.0; }
+                } else { v.dir = 1.0; }
+            } else { v.dir = 1.0; }
             let i0 = (fpos as usize).min(nfr - 1);
             let i1 = (i0 + 1).min(nfr - 1);
             let fr = (fpos - i0 as f64).clamp(0.0, 1.0);
@@ -311,7 +362,7 @@ impl Engine {
             let goff = if call.g.len() == nfr { lerp(call.g[i0] as f64, call.g[i1] as f64, fr) } else { 0.0 };
             let moff = if call.m.len() == nfr { lerp(call.m[i0] as f64, call.m[i1] as f64, fr) } else { 0.0 };
             let coff = if call.c.len() == nfr { lerp(call.c[i0] as f64, call.c[i1] as f64, fr) } else { 0.0 };
-            v.pos += step;
+            v.pos = (v.pos + step * v.dir).max(0.0);
 
             // ---- envelope (declick / release) ----
             if v.rel > 0.0 { v.env -= relr; if v.env <= 0.0 { v.on = false; v.env = 0.0; break; } }
@@ -324,7 +375,7 @@ impl Engine {
             let pp = pr.powf(pulse_pow) * (0.85 + 0.15 * v.vel) * (1.0 - trem * 0.5 * (1.0 - lfo));
             // turbulence: noisy airflow modulating pressure & tension
             let tn = v.turb_lp.lp(noise.next()) * 3.0;
-            let turb = p[P_TURB] * (0.35 + rough) * pp.sqrt();
+            let turb = turb_k * (0.35 + rough) * pp.sqrt();
             let b = p[P_TENSION] + turb * tn * 0.4;
 
             // ---- which sides sing ----
@@ -375,11 +426,11 @@ impl Engine {
                 let y = sd.dc.hp(r + cl * 0.9 * dr) * pk;
                 // turbulent jet noise, strongest while the labia are open
                 let open = (sd.osc.x - 0.2).max(0.0).min(2.0);
-                src += y + noise.next() * p[P_BREATH] * pk * (0.15 + 0.85 * open) * 5.0;
+                src += y + noise.next() * breath * pk * (0.15 + 0.85 * open) * 5.0;
                 v.t_x[k] = sd.osc.x;
             }
             // breath noise enters at the syrinx
-            src += noise.next() * p[P_BREATH] * 0.08 * pp;
+            src += noise.next() * breath * 0.08 * pp;
 
             // ---- windpipe (Amador et al.: p_i(t) = s(t) - r p_i(t - T)) ----
             let back = v.tr_lp.lp(v.tr.read(2.0 * tr_len - 1.0));
@@ -390,7 +441,8 @@ impl Engine {
             // ---- control-rate filter updates ----
             if v.ctl == 0 {
                 let oct = (f0 / 1000.0).log2();
-                let gape = (p[P_BEAK] + p[P_BEAK_TRACK] * oct * 0.35 + goff).clamp(0.0, 1.0);
+                // the fitted gape, then the extra from moving BEAK OPENING away from the bird's value
+                let gape = ((p[P_BEAK] + p[P_BEAK_TRACK] * oct * 0.35 + goff).clamp(0.0, 1.0) + beak_extra).clamp(-1.0, 1.25);
                 let fb = 1500.0 * 2f64.powf(gape * 3.4);
                 v.beak.lowpass(fb, 0.55, fsi);
                 v.t_beak = gape;
@@ -431,11 +483,30 @@ impl Engine {
                 let s_mix = p[P_SAC];
                 radiated = (1.0 - s_mix) * radiated + s_mix * 1.4 * v.sac.run(tr_out);
             }
-            let y = radiated * MASTER * v.env * (0.35 + 0.65 * v.vel);
+            let y = radiated * MASTER * v.env * (0.35 + 0.65 * v.vel) * press_gain;
             lvl += (y.abs() - lvl) * 0.0005;
             *s += y;
+            if watch {
+                stick += 1;
+                if stick % OS as u32 == 0 {   // one scope sample per output sample
+                    let k = if v.t_w[1] > v.t_w[0] { 1 } else { 0 };
+                    sc[sp] = v.side[k].osc.x as f32; sc[SCOPE_N + sp] = v.side[k].osc.y as f32;
+                    sc[2 * SCOPE_N + sp] = src as f32; sc[3 * SCOPE_N + sp] = tr_out as f32; sc[4 * SCOPE_N + sp] = y as f32;
+                    sp = (sp + 1) % SCOPE_N;
+                }
+            }
         }
         v.t_lvl = lvl;
+        self.scope = sc; self.scope_pos = sp; self.scope_tick = stick;
+    }
+
+    /// The scope in time order: 5 channels of SCOPE_N samples (labia x, labia y, syrinx, windpipe, heard).
+    pub fn scope(&self, out: &mut [f32]) {
+        for ch in 0..5 {
+            for i in 0..SCOPE_N {
+                out[ch * SCOPE_N + i] = self.scope[ch * SCOPE_N + (self.scope_pos + i) % SCOPE_N];
+            }
+        }
     }
 
     /// Offline render of one call at its reference pitch (used by the fitter).

@@ -1,0 +1,61 @@
+{
+ "id": "whistler",
+ "common_name": "Australian Golden Whistler",
+ "scientific_name": "Pachycephala pectoralis",
+ "family": "Pachycephalidae (whistlers, shrikethrushes and allies)",
+ "overview": "The male golden whistler is one of the brightest birds of the eastern forests: golden-yellow below with a black head, a white throat framed by a black band and a yellow collar. Females are soft grey-brown. Both have a strong, musical song, best known as a run of whistled notes that ends in a loud, whip-like crack.",
+ "deep_dive": {
+  "habitat": "Almost any wooded habitat from rainforest and tall wet forest to dry woodland and mallee, mostly in the denser parts; sometimes parks and orchards.",
+  "range": "Eastern and southern Australia, from Queensland down the east coast through Victoria and Tasmania and across the south to Western Australia (the western birds are sometimes split off as a separate species). Most birds stay put, though some in the south-east move north or to lower ground in winter. South-eastern mainland birds belong to subspecies youngi, Tasmanian ones to glaucura.",
+  "behaviour": "Usually forages alone in the lower and middle levels of trees, gleaning insects, spiders and other small invertebrates from leaves and bark, plus some berries, and sometimes joins mixed-species flocks. Breeds September to January; both sexes build a shallow bowl nest bound with spider web, share the incubation of 2-3 eggs for about 15 days and feed the young.",
+  "voice": "A strong, musical and varied voice. The best-known song is a series of repeated whistled notes that builds to a loud whip-like ending ('wi-wi-wi-wi-whit'), and there is also a rising 'seep' call. Females sing too. In our recordings the whistled notes sit at about 2-3.6 kHz (median about 3-3.4 kHz), the final whip-crack is a very fast upward or downward sweep covering roughly 2-7 kHz, and upslurred calls reach about 7-8 kHz.",
+  "anatomy": "A songbird (order Passeriformes). Like all songbirds it has a tracheobronchial syrinx: the voice box sits where the windpipe splits into the two bronchi, so there is a sound source on each side that can be controlled separately. About 16-18 cm long and 25 g, with a rather big, rounded head (the genus name Pachycephala means 'thick head'). The bill is short, stout and black in males (dark brown in females) and the eyes are red-brown. (No whistler-specific syrinx study was consulted; these points are general songbird anatomy.)"
+ },
+ "tags": {
+  "features": [
+   "whistler",
+   "whip-crack",
+   "frequency sweep",
+   "female song"
+  ],
+  "region": [
+   "Eastern Australia",
+   "South-eastern Australia",
+   "Victoria",
+   "Tasmania",
+   "Southern Western Australia"
+  ]
+ },
+ "facts_sources": [
+  {
+   "title": "Australian golden whistler - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Australian_golden_whistler",
+   "licence": "CC BY-SA 4.0 (text paraphrased, not copied)",
+   "used_for": "taxonomy, subspecies (youngi, glaucura), plumage, habitat, range, behaviour, breeding"
+  },
+  {
+   "title": "Golden Whistler - Birds in Backyards (BirdLife Australia / Australian Museum)",
+   "url": "https://www.birdsinbackyards.net/species/Pachycephala-pectoralis",
+   "licence": "(c) Birds in Backyards - facts only, paraphrased",
+   "used_for": "size, weight, plumage (bill, eye, legs), feeding, breeding, song and 'seep' call"
+  },
+  {
+   "title": "IOC World Bird List (Gill, Donsker & Rasmussen, eds.), via World Bird Names species page",
+   "url": "https://www.worldbirdnames.com/bird/golden-whistler/18614.html",
+   "licence": "CC BY 4.0 - facts only",
+   "used_for": "taxonomy: Passeriformes, Pachycephalidae, Pachycephala pectoralis (Latham, 1801), protonym Muscicapa pectoralis"
+  },
+  {
+   "title": "Syrinx (bird anatomy) - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Syrinx_(bird_anatomy)",
+   "licence": "CC BY-SA 4.0 (paraphrased)",
+   "used_for": "songbirds have a tracheobronchial syrinx; left/right sides modulated independently"
+  },
+  {
+   "title": "Xeno-canto recordings listed in sources.json (own measurements)",
+   "url": "https://xeno-canto.org/species/Pachycephala-pectoralis",
+   "licence": "recordings CC BY-NC-SA; measurements are our own",
+   "used_for": "song, whip-crack and call frequency ranges"
+  }
+ ]
+}

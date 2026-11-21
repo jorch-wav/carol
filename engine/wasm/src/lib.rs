@@ -33,6 +33,8 @@ fn eng() -> &'static mut Engine { unsafe { ENGINE.as_mut().expect("init first") 
 #[no_mangle] pub extern "C" fn carol_set_param(i: u32, v: f64) { eng().set_param(i as usize, v); }
 #[no_mangle] pub extern "C" fn carol_set_fit(tension: f64, pressure: f64) { let e = eng(); e.fit_tension = tension; e.fit_pressure = pressure; }
 #[no_mangle] pub extern "C" fn carol_clear_calls() { eng().clear_calls(); }
+/// The knobs as they are now are the bird's own (call right after loading a bird).
+#[no_mangle] pub extern "C" fn carol_snapshot_fit() { eng().snapshot_fit(); }
 /// Adds a call from scratch buffers 0 (f Hz), 1 (pressure 0..1), 2 (roughness 0..1), 3 (beak gape offset).
 #[no_mangle] pub extern "C" fn carol_add_call(n: usize, hop: f64, ref_hz: f64) {
     unsafe {
@@ -53,6 +55,10 @@ fn eng() -> &'static mut Engine { unsafe { ENGINE.as_mut().expect("init first") 
 }
 #[no_mangle] pub extern "C" fn carol_telemetry() -> *const f32 { unsafe { eng().telemetry(&mut TELE); TELE.as_ptr() } }
 #[no_mangle] pub extern "C" fn carol_nparam() -> u32 { NPARAM as u32 }
+static mut SCOPE: [f32; 5 * SCOPE_N] = [0.0; 5 * SCOPE_N];
+/// The scope of the loudest voice: 5 x SCOPE_N floats (labia x, labia y, syrinx, windpipe, heard).
+#[no_mangle] pub extern "C" fn carol_scope() -> *const f32 { unsafe { eng().scope(&mut SCOPE); SCOPE.as_ptr() } }
+#[no_mangle] pub extern "C" fn carol_scope_n() -> u32 { SCOPE_N as u32 }
 
 // ---------------------------------------------------------------- fitting
 #[no_mangle] pub extern "C" fn carol_fit_reset() { unsafe { RECS.clear(); } }

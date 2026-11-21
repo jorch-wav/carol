@@ -1,0 +1,61 @@
+{
+ "id": "shrikethrush",
+ "common_name": "Grey Shrikethrush",
+ "scientific_name": "Colluricincla harmonica",
+ "family": "Pachycephalidae (whistlers, shrikethrushes and allies)",
+ "overview": "The grey shrikethrush is a plain grey bird with one of the loveliest voices in the Australian bush: rich, ringing whistled phrases that inspired its scientific name 'harmonica'. Pairs stay together for life on the same patch of forest, searching logs, bark and branches for insects and other small animals.",
+ "deep_dive": {
+  "habitat": "Forest and woodland of almost every kind, including tall wet forest, dry woodland and mallee; also large gardens and parks with trees.",
+  "range": "Most of Australia and Tasmania, except the driest deserts; also southern New Guinea. Birds in the east are mainly grey, in the north brown, and in the west grey with buff underparts; five subspecies are recognised.",
+  "behaviour": "Pairs usually mate for life and keep a territory of up to about 10 hectares all year. It forages on the ground near fallen logs and along limbs and trunks, eating insects and spiders and sometimes small lizards, frogs, mammals and birds' eggs or chicks, plus a little fruit or seed. Both parents build the cup nest, incubate 3-4 eggs and feed the young.",
+  "voice": "A varied, rich and melodious song that differs from place to place and between individuals. Phrases are built from clear whistled notes, such as 'pip-pip-pip-pip-hoee' or 'pur-pur-pur-kwee-yew', often ending in a loud upward or downward slurred note; a common call is a sharp, ringing 'yorrick'. In our recordings the song's whistled notes sit mostly at about 0.9-3.5 kHz (median about 1.5-2.3 kHz), with steep slurs and harmonics reaching about 5-6 kHz; single-note calls have a fundamental around 2.1-2.7 kHz.",
+  "anatomy": "A songbird (order Passeriformes). Like all songbirds it has a tracheobronchial syrinx: the voice box sits where the windpipe splits into the two bronchi, so there is a sound source on each side that can be controlled separately. A medium-sized songbird, about 22-25 cm long and about 63 g. The bill is fairly stout and black with a small hook at the tip (the 'shrike' part of the name). (No shrikethrush-specific syrinx study was consulted; these points are general songbird anatomy.)"
+ },
+ "tags": {
+  "features": [
+   "whistler",
+   "melodious song",
+   "pure tones",
+   "pair bond"
+  ],
+  "region": [
+   "Australia-wide",
+   "South-eastern Australia",
+   "Victoria",
+   "Tasmania",
+   "Southern New Guinea"
+  ]
+ },
+ "facts_sources": [
+  {
+   "title": "Grey shrikethrush - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Grey_shrikethrush",
+   "licence": "CC BY-SA 4.0 (text paraphrased, not copied)",
+   "used_for": "taxonomy, subspecies, size, range"
+  },
+  {
+   "title": "Grey Shrike-thrush - Birds in Backyards (BirdLife Australia / Australian Museum)",
+   "url": "https://www.birdsinbackyards.net/species/Colluricincla-harmonica",
+   "licence": "(c) Birds in Backyards - facts only, paraphrased",
+   "used_for": "size, weight, plumage, habitat, feeding, breeding, call descriptions"
+  },
+  {
+   "title": "IOC World Bird List (Gill, Donsker & Rasmussen, eds.), via World Bird Names species page",
+   "url": "https://www.worldbirdnames.com/bird/gray-shrikethrush/18512.html",
+   "licence": "CC BY 4.0 - facts only",
+   "used_for": "taxonomy: Passeriformes, Pachycephalidae, Colluricincla harmonica (Latham, 1801), protonym Turdus harmonicus"
+  },
+  {
+   "title": "Syrinx (bird anatomy) - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Syrinx_(bird_anatomy)",
+   "licence": "CC BY-SA 4.0 (paraphrased)",
+   "used_for": "songbirds have a tracheobronchial syrinx; left/right sides modulated independently"
+  },
+  {
+   "title": "Xeno-canto recordings listed in sources.json (own measurements)",
+   "url": "https://xeno-canto.org/species/Colluricincla-harmonica",
+   "licence": "recordings CC BY-NC-SA; measurements are our own",
+   "used_for": "song and call frequency ranges"
+  }
+ ]
+}

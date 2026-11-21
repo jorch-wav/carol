@@ -521,7 +521,6 @@ body.kstrip .kn .dial { touch-action: pan-x; }   /* swipe sideways to scroll, dr
 .pl-nav { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 2px 8px 6px; font-family: var(--font); color: #6b604f; font-size: 12px; letter-spacing: 1px; flex-wrap: wrap; }
 .pl-nav button { background: #efe6d2; border: 1px solid #b7aa8f; color: var(--ink); border-radius: 4px; min-width: 34px; min-height: 30px; font-size: 18px; line-height: 1; font-family: inherit; }
 .pl-nav button[hidden] { display: none; }
-.pl-nav .pl-mine { font-size: 11px; letter-spacing: 1px; padding: 0 10px; margin-left: 6px; }
 .pl-dots { display: inline-flex; gap: 6px; }
 .pl-dots button { width: 10px; height: 10px; min-width: 0; min-height: 0; padding: 0; border-radius: 50%; background: #d6ccb6; border: 1px solid #b7aa8f; }
 .pl-dots button.on { background: #7a3d12; border-color: #7a3d12; }
@@ -529,3 +528,10 @@ body.kstrip .kn .dial { touch-action: pan-x; }   /* swipe sideways to scroll, dr
 .ps-plnav { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 0 8px 4px; font-family: var(--font); color: #6b604f; font-size: 12px; letter-spacing: 1px; }
 .ps-plnav[hidden] { display: none; }
 .ps-plnav button { background: #efe6d2; border: 1px solid #b7aa8f; color: var(--ink); border-radius: 4px; min-width: 34px; min-height: 28px; font-size: 18px; line-height: 1; }
+/* five views in the top bar: keep it on one line on 1280-wide screens (the Pi) */
+@media (min-width: 901px) and (max-width: 1500px) {
+  .seg button { padding: 9px 9px; font-size: 13px; letter-spacing: 1px; }
+  .top-buttons { gap: 8px; }
+  #resetBtn .long { white-space: nowrap; }
+  .logo small { white-space: nowrap; font-size: 10px; letter-spacing: 2px; }
+}

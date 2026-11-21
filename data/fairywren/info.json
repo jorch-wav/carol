@@ -1,0 +1,65 @@
+{
+ "id": "fairywren",
+ "common_name": "Superb Fairywren",
+ "scientific_name": "Malurus cyaneus",
+ "family": "Maluridae (fairywrens, emu-wrens and grasswrens)",
+ "overview": "The superb fairywren is a tiny, busy bird of south-eastern Australian gardens and bush, always bouncing about with its long tail cocked upright. Breeding males are dazzling, with bright sky-blue crown, ear patches and back set off by black; females and young are soft brown. Fairywrens live in small family groups where older offspring help raise the chicks, and they sing a fast, high, silvery trill called a reel.",
+ "deep_dive": {
+  "habitat": "Places with thick, low cover: shrubby grassland, forest edges, woodland, heath, wetland margins and suburban gardens. It avoids dense forest, alpine country and plantations.",
+  "range": "South-eastern Australia from south-east Queensland through New South Wales and Victoria to south-east South Australia, plus Tasmania and Kangaroo Island. Common in the suburbs of Sydney, Canberra and Melbourne.",
+  "behaviour": "Lives in groups of about 3-5 that hold the same territory all year; young birds, mostly males, stay on as helpers. Pairs are socially faithful but both sexes often mate outside the pair, and males court other females by carrying yellow or pink flower petals. It hops and bounces on the ground eating mostly insects, with some seeds.",
+  "voice": "The main song (Type I) is a high reel 1-4 seconds long, a rapid trill of about 10-20 short notes a second; both sexes sing it to keep in touch, advertise the territory and mob predators. Males also give a separate song-like call (Type II), often when a predatory bird such as a butcherbird calls. Alarm calls are short, sharp 'chit' notes, and a female on the nest gives a soft purr. Mothers call to their eggs, and chicks learn a 'password' note from that call, which helps parents spot cuckoo chicks. Fairywrens also learn to recognise other species' alarm calls. In our recordings the song's notes sit at about 4.5-8.5 kHz (median about 6.5 kHz), with some notes down to about 2.5 kHz and alarm 'chits' up to about 9.5 kHz.",
+  "anatomy": "A songbird (order Passeriformes). Like all songbirds it has a tracheobronchial syrinx: the voice box sits where the windpipe splits into the two bronchi, so there is a sound source on each side that can be controlled separately. A very small bird, about 14 cm long including the 6 cm tail, and 8-13 g. The bill is short and fine (black in breeding males, brown in females and young). (No fairywren-specific syrinx study was consulted; these points are general songbird anatomy.)"
+ },
+ "tags": {
+  "features": [
+   "trill (reel song)",
+   "high pitched",
+   "family group",
+   "cocked tail"
+  ],
+  "region": [
+   "South-eastern Australia",
+   "Victoria",
+   "Tasmania"
+  ]
+ },
+ "facts_sources": [
+  {
+   "title": "Superb fairywren - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Superb_fairywren",
+   "licence": "CC BY-SA 4.0 (text paraphrased, not copied)",
+   "used_for": "overview, size, plumage, habitat, range, behaviour, voice (Type I and II songs, alarm calls)"
+  },
+  {
+   "title": "Colombelli-Negrel, D., Hauber, M. E., Robertson, J., Sulloway, F. J., Hoi, H., Griggio, M. & Kleindorfer, S. (2012) Embryonic learning of vocal passwords in superb fairy-wrens reveals intruder cuckoo nestlings. Current Biology 22: 2155-2160 (via Wikipedia)",
+   "url": "https://doi.org/10.1016/j.cub.2012.09.025",
+   "licence": "facts only",
+   "used_for": "embryos learn a password note from the mother's incubation call"
+  },
+  {
+   "title": "Magrath, R. D. & Bennett, T. H. - learning to recognise neighbouring species' alarm calls (Proceedings of the Royal Society B; via Wikipedia)",
+   "url": "https://en.wikipedia.org/wiki/Superb_fairywren#Communication",
+   "licence": "facts only",
+   "used_for": "fairywrens learn which noisy miner calls are alarms"
+  },
+  {
+   "title": "IOC World Bird List (Gill, Donsker & Rasmussen, eds.), via World Bird Names species page",
+   "url": "https://www.worldbirdnames.com/bird/superb-fairywren/17161.html",
+   "licence": "CC BY 4.0 - facts only",
+   "used_for": "taxonomy: Passeriformes, Maluridae, Malurus cyaneus (Ellis, 1782), protonym Motacilla cyanea"
+  },
+  {
+   "title": "Syrinx (bird anatomy) - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Syrinx_(bird_anatomy)",
+   "licence": "CC BY-SA 4.0 (paraphrased)",
+   "used_for": "songbirds have a tracheobronchial syrinx; left/right sides modulated independently"
+  },
+  {
+   "title": "Xeno-canto recordings listed in sources.json (own measurements)",
+   "url": "https://xeno-canto.org/species/Malurus-cyaneus",
+   "licence": "recordings CC BY-NC-SA; measurements are our own",
+   "used_for": "reel and call frequency ranges"
+  }
+ ]
+}

@@ -35,6 +35,11 @@ iPad or desktop (add it to your home screen for full screen).
   value; double-tap a knob or press RESET TO BIRD to go back. Sections fold away.
 - **Keys and pads**: keys move the selected call to any pitch while keeping its shape; pads play
   each call as the bird sang it. Optional **bird scale** snaps notes to the bird's most-sung pitches.
+- **WAVE view**: the voice being made, stage by stage: the labia's motion as a loop (a smooth oval for a
+  whistle, a pinched loop for a buzz), then the wave at the syrinx, after the windpipe, and after the throat,
+  mouth and beak (what you hear). Same equation for every bird; the shape is the bird.
+- **Morphing**: the BIRD knob steps straight through the birds; the bird reshapes into the next one and the
+  knobs glide to their new settings. **SUSTAIN** key mode (the default) holds a call like a synth note.
 - **Views**: 2D anatomical cutaway (tap any part to learn what it does), 3D model, **SONO**
   (live sonogram with the bird's call contour and a scope strip), and the bird's **plate** from
   John Gould's *The Birds of Australia*. The bird moves as it sings.
