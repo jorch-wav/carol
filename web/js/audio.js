@@ -1,6 +1,12 @@
 // Audio: AudioContext + the Carol worklet. Same code on the Pi (Chromium) and the web.
 import { FX, wavBlob } from './fx.js';
 // player controls: not part of the fitted bird - a preset's stored value is ignored, the default is used
+import { generate } from './gen.js';
+const GEN_POOL = 8;   // spare engine slots per bird for generated phrases (so held notes keep their phrase)
+/** A call in the preset's integer units -> the engine's float tracks. */
+export function decodeCall(c) {
+  return { f: Float32Array.from(c.f), p: Float32Array.from(c.p, (v) => v / 1000), n: Float32Array.from(c.n, (v) => v / 100), g: Float32Array.from(c.g || [], (v) => v / 1000), m: Float32Array.from(c.m || [], (v) => v / 1000), c: Float32Array.from(c.c || [], (v) => v / 1000), hop: c.hop, ref_hz: c.ref_hz };
+}
 export const PLAYER_KEYS = ['mode', 'volume', 'speed', 'sweep', 'attack', 'release', 'glide', 'vmode', 'lfo_rate', 'vibrato', 'tremolo'];
 export const BODY_INDEX = { songbird: 0, kingfisher: 1, parrot: 2, dove: 3 };
 
@@ -69,16 +75,25 @@ export class CarolAudio {
     m.push({ t: 'params', v: vals, s });
     m.push({ t: 'fit', tension: bird.params.tension ?? 0.3, pressure: bird.params.pressure ?? 1, s });
     m.push({ t: 'fitsnap', s });   // these are the bird's own settings: knob moves away from them are emphasised
-    m.push({ t: 'calls', s, v: bird.calls.map((c) => ({
-      f: Float32Array.from(c.f), p: Float32Array.from(c.p, (v) => v / 1000), n: Float32Array.from(c.n, (v) => v / 100), g: Float32Array.from(c.g || [], (v) => v / 1000), m: Float32Array.from(c.m || [], (v) => v / 1000), c: Float32Array.from(c.c || [], (v) => v / 1000), hop: c.hop, ref_hz: c.ref_hz,
-    })) });
+    m.push({ t: 'calls', s, v: bird.calls.map(decodeCall) });
+    // GENERATED calls: each note gets a fresh phrase, written into a spare engine slot after the call types
+    this.gen ||= {};
+    this.gen[s] = bird.gen && bird.style ? { style: bird.style, types: bird.gen.types, k: 0 } : null;
     for (const x of m) this.send(x);
   }
   /** Apply knob values (key -> value) to a slot. */
   setParams(vals, s = 0) { const v = []; for (const [k, x] of Object.entries(vals)) if (this.index[k] !== undefined) v.push([this.index[k], x]); this.send({ t: 'params', v, s }); }
   freeSlot(s) { if (s > 0) this.send({ t: 'free', s }); }
   setParam(key, v) { const i = this.index[key]; if (i !== undefined) this.send({ t: 'param', i, v }); }
-  noteOn(id, call, note, vel = 0.9, at, s = 0, tag) { this.send({ t: 'on', id, call, note, vel, at, s, tag }); }
+  noteOn(id, call, note, vel = 0.9, at, s = 0, tag) {
+    const g = this.gen && this.gen[s];
+    if (g && call < g.types.length) {
+      const slot = g.types.length + (g.k++ % GEN_POOL);
+      this.send({ t: 'setcall', i: slot, v: decodeCall(generate(g.style, g.types[call], undefined, { variety: this.variety ?? 0.5 })), at, s, tag });
+      call = slot;
+    }
+    this.send({ t: 'on', id, call, note, vel, at, s, tag });
+  }
   noteOff(id, at, s = 0, tag) { this.send({ t: 'off', id, at, s, tag }); }
   /** Drop scheduled (not yet played) events with this tag. */
   unqueue(tag) { this.send({ t: 'unqueue', tag }); }

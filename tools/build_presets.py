@@ -2,6 +2,8 @@
 """Assemble web/presets/<id>.json (one file per bird) from the fit, info, sources and plate.
 Run after tools/fit_all.sh. Usage: build_presets.py [ids...]"""
 import json, os, shutil, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import style as carol_style  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 WEB = os.path.join(ROOT, 'web')
@@ -430,6 +432,16 @@ def licence_note(recs, img):
             f'{who} plates are public domain.')
 
 
+def load_gestures(bid):
+    g = os.path.join(ROOT, 'fits', 'gestures', bid + '.json')
+    return json.load(open(g)) if os.path.exists(g) else None
+
+
+def load_pgain(bid):
+    c = os.path.join(ROOT, 'fits', 'gestures', bid + '.cal.json')
+    return json.load(open(c))['pgain'] if os.path.exists(c) else 1.0
+
+
 def build(bid):
     d = os.path.join(ROOT, 'data', bid)
     fit = json.load(open(os.path.join(ROOT, 'fits', bid + '.json')))
@@ -481,6 +493,7 @@ def build(bid):
             'facts': facts, 'science': SCIENCE + SCIENCE_BODY.get(fit['body'], []) + SCIENCE_BIRD.get(bid, []), 'licence_note': licence_note(recs, img),
         },
         'calls': calls,
+        'style': carol_style.learn(calls, load_gestures(bid), CALL_TYPES.get(bid), load_pgain(bid)),
     }
     json.dump(preset, open(os.path.join(WEB, 'presets', bid + '.json'), 'w'), separators=(',', ':'))
     t = TAXONOMY.get(bid, {})

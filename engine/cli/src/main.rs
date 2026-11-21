@@ -73,7 +73,9 @@ fn main() {
             eprintln!("{} voice(s) @ {} Hz: {:.1}% of one core", voices, f, el / 5.0 * 100.0);
         }
         Some("fit") => cmd_fit(&args, &table),
-        _ => eprintln!("usage: carol gen-table <out> | bodies | tone <out.wav> [--f --body --<param>] | bench | fit <dir> --body N --out preset.json"),
+        Some("analyse") => cmd_analyse(&args),
+        Some("render") => cmd_render(&args, &table),
+        _ => eprintln!("usage: carol gen-table <out> | bodies | tone <out.wav> [--f --body --<param>] | bench | fit <dir> --body N --out preset.json | analyse <dir> --fmin --fmax --out g.json | render <preset.json> <calls.json> <out.wav>"),
     }
 }
 
@@ -167,4 +169,63 @@ fn cmd_fit(args: &[String], table: &Arc<Table>) {
     });
     std::fs::write(&out, serde_json::to_string(&v).unwrap()).unwrap();
     eprintln!("wrote {}", out);
+}
+
+/// Phrases from every recording of a bird, as gesture tracks (pitch, loudness, roughness) for the style learner
+/// (tools/style.py). Only clean, loud stretches are kept. Output: JSON list of {src, start, hop, ref_hz, f, p, n}.
+fn cmd_analyse(args: &[String]) {
+    let dir = std::path::PathBuf::from(&args[2]);
+    let fmin: f64 = arg(args, "--fmin", "300").parse().unwrap();
+    let fmax: f64 = arg(args, "--fmax", "9000").parse().unwrap();
+    let out = arg(args, "--out", "gestures.json");
+    let fs = 44100.0;
+    let an = Analyzer::new(fs, fmin, fmax);
+    let mut paths: Vec<_> = std::fs::read_dir(dir.join("rec")).unwrap().filter_map(|e| e.ok()).map(|e| e.path())
+        .filter(|p| p.extension().map_or(false, |x| x == "wav")).collect();
+    paths.sort();
+    let mut all = Vec::new();
+    for p in paths {
+        let name = p.file_stem().unwrap().to_string_lossy().to_string();
+        let b = std::fs::read(&p).unwrap();
+        let Some((a, rfs)) = read_wav(&b) else { continue };
+        let x = resample(&a, rfs, fs);
+        let f = an.analyze(&x);
+        let mut n = 0;
+        for s in segment(&f, 0.45, 0.05, 6.0) {
+            if s.snr < 15.0 || s.conf < 0.3 { continue; }
+            let (fv, pv, nv, rhz) = gesture(&f, &s, 4);
+            let q = |v: &Vec<f32>, k: f32| v.iter().map(|x| (x * k).round() as i32).collect::<Vec<_>>();
+            all.push(json!({"src": name, "start": (s.start as f64 * f.hop * 1000.0).round() / 1000.0, "hop": f.hop, "ref_hz": rhz.round(),
+                "snr": (s.snr * 10.0).round() / 10.0, "conf": (s.conf * 100.0).round() / 100.0,
+                "f": q(&fv, 1.0), "p": q(&pv, 1000.0), "n": q(&nv, 100.0)}));
+            n += 1;
+        }
+        eprintln!("{}: {} phrases", name, n);
+    }
+    std::fs::write(&out, serde_json::to_string(&all).unwrap()).unwrap();
+    eprintln!("wrote {} ({} phrases)", out, all.len());
+}
+
+/// Render calls (JSON list of {f,p,n,g,m,c,hop,ref_hz} in the preset's integer units) with a preset's body and
+/// settings, one after another with a short gap, to a WAV: for listening to generated phrases offline.
+fn cmd_render(args: &[String], table: &Arc<Table>) {
+    let preset: Value = serde_json::from_str(&std::fs::read_to_string(&args[2]).unwrap()).unwrap();
+    let calls: Vec<Value> = serde_json::from_str(&std::fs::read_to_string(&args[3]).unwrap()).unwrap();
+    let mut e = Engine::new(44100.0, table.clone());
+    let body = preset["body"].as_str().map(|b| BODY_NAMES.iter().position(|x| *x == b).unwrap_or(0)).or(preset["body"].as_u64().map(|x| x as usize)).unwrap_or(0);
+    e.body = body as u8;
+    for (i, d) in PARAMS.iter().enumerate() { if let Some(v) = preset["params"][d.key].as_f64() { e.set_param(i, v); } }
+    e.fit_tension = e.params[P_TENSION]; e.fit_pressure = e.params[P_PRESSURE]; e.snapshot_fit();
+    let tr = |c: &Value, k: &str, s: f32| -> Vec<f32> { c[k].as_array().map(|a| a.iter().map(|x| x.as_f64().unwrap_or(0.0) as f32 / s).collect()).unwrap_or_default() };
+    let mut audio: Vec<f32> = Vec::new();
+    for (i, c) in calls.iter().enumerate() {
+        let f = tr(c, "f", 1.0); let n = f.len();
+        let pad = |v: Vec<f32>| if v.len() == n { v } else { vec![0.0; n] };
+        e.add_call(Call { f, p: pad(tr(c, "p", 1000.0)), n: pad(tr(c, "n", 100.0)), g: pad(tr(c, "g", 1000.0)), m: pad(tr(c, "m", 1000.0)), c: pad(tr(c, "c", 1000.0)),
+            hop: c["hop"].as_f64().unwrap_or(HOP_S), ref_hz: c["ref_hz"].as_f64().unwrap_or(1000.0) });
+        let a = e.render_call(i, None);
+        audio.extend_from_slice(&a); audio.extend(std::iter::repeat(0.0).take(44100 / 3));
+    }
+    std::fs::write(&args[4], write_wav(&audio, 44100)).unwrap();
+    eprintln!("rendered {} calls, {:.1} s", calls.len(), audio.len() as f64 / 44100.0);
 }

@@ -18,6 +18,7 @@ import { SettingsUI, loadSettings, saveSettings } from './settings.js';
 import { Tour } from './tour.js';
 import { FX_PARAMS, saveFile } from './fx.js';
 import { icon, applyIcons } from './icons.js';
+import { withCallMode } from './gen.js';
 
 const SECTIONS = ['LUNGS', 'SYRINX', 'WINDPIPE', 'THROAT', 'TONGUE', 'BEAK', 'PLAY', 'SHAPE', 'LFO', 'FX'];
 // player controls: not part of the bird, so no amber "real bird" dot
@@ -35,6 +36,7 @@ class App {
     this.audio = new CarolAudio(this.defs);
     this.values = {}; this.knobs = {}; this.held = new Map(); this.latched = new Map(); this.nextId = 1;
     this.settings = loadSettings();
+    this.audio.variety = this.settings.variety;
     // the player sections start folded (tap a title to open), so the bird's own knobs stay big
     if (!ls.get('carol-folded-v2', false)) { ls.set('carol-folded', [...new Set([...ls.get('carol-folded', []), 'SHAPE', 'LFO', 'FX'])]); ls.set('carol-folded-v2', true); }
     this.hold = false; this.sustainOn = false; this.rpt = false; this.learning = false; this.learnTarget = null;
@@ -109,7 +111,7 @@ class App {
     const prevLook = this.bird && this.bird.look, prevVals = { ...this.values };
     const mine = (this.myPresets || []).find((m) => m.id === id);
     if (mine) { await this.loadBird(mine.base); this.applyTweaks(mine.t, true); ls.set('carol-bird', id); this.toast(mine.name); return; }
-    const b = this.userBirds[id] || await (await fetch(`presets/${id}.json`)).json();
+    const b = withCallMode(this.userBirds[id] || await (await fetch(`presets/${id}.json`)).json(), this.settings.callMode);
     this.bird = b;
     ls.set('carol-bird', id);
     this.audio.loadBird(b);
@@ -476,6 +478,8 @@ class App {
     if (k === 'sync' && this.seq.playing) this.seq.stop();
     if (k === 'sync') this.seq.renderTransport();
     if (k === 'prefArtist') this.showPlate();
+    if (k === 'callMode' || k === 'variety') { this.audio.variety = this.settings.variety; }
+    if (k === 'callMode') { this.seq.cache = {}; for (const id of Object.keys(this.seq.slotOf)) this.audio.freeSlot(this.seq.slotOf[id]); this.seq.slotOf = {}; if (this.bird) this.loadBird(ls.get('carol-bird', this.bird.id)); }
   }
   setLearning(on) {
     this.learning = on; this.learnTarget = null;

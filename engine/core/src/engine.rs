@@ -210,6 +210,14 @@ impl Engine {
         if i < NPARAM { self.params[i] = v.clamp(PARAMS[i].min.min(PARAMS[i].max), PARAMS[i].max.max(PARAMS[i].min)); }
     }
     pub fn add_call(&mut self, c: Call) { self.loops.push(sustain_loop(&c)); self.calls.push(c); }
+    /// Put a call in slot i (replacing what was there, or growing the list), without stopping other voices.
+    /// Used by GENERATED calls: each key press writes a fresh phrase into a spare slot and plays it.
+    pub fn set_call(&mut self, i: usize, c: Call) {
+        let l = sustain_loop(&c);
+        if i < self.calls.len() { self.calls[i] = c; self.loops[i] = l; return; }
+        while self.calls.len() < i { self.calls.push(c.clone()); self.loops.push(l); }
+        self.calls.push(c); self.loops.push(l);
+    }
     pub fn clear_calls(&mut self) { self.all_off(); self.calls.clear(); self.loops.clear(); }
     /// Remember the current knobs as the bird's own (call after loading a bird).
     pub fn snapshot_fit(&mut self) { self.fit_params = self.params; }

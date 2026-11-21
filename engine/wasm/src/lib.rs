@@ -42,6 +42,13 @@ fn eng() -> &'static mut Engine { unsafe { ENGINE.as_mut().expect("init first") 
         eng().add_call(c);
     }
 }
+/// Like carol_add_call, but into slot i (replaces it, or grows the list); other voices keep playing.
+#[no_mangle] pub extern "C" fn carol_set_call(i: usize, n: usize, hop: f64, ref_hz: f64) {
+    unsafe {
+        let c = Call { f: SCRATCH[0][..n].to_vec(), p: SCRATCH[1][..n].to_vec(), n: SCRATCH[2][..n].to_vec(), g: if SCRATCH[3].len() >= n { SCRATCH[3][..n].to_vec() } else { vec![0.0; n] }, m: if SCRATCH[4].len() >= n { SCRATCH[4][..n].to_vec() } else { vec![0.0; n] }, c: if SCRATCH[5].len() >= n { SCRATCH[5][..n].to_vec() } else { vec![0.0; n] }, hop, ref_hz };
+        eng().set_call(i, c);
+    }
+}
 #[no_mangle] pub extern "C" fn carol_note_on(id: i32, call: u32, note: f64, vel: f64) { eng().note_on(id, call as usize, note, vel); }
 #[no_mangle] pub extern "C" fn carol_note_off(id: i32) { eng().note_off(id); }
 #[no_mangle] pub extern "C" fn carol_all_off() { eng().all_off(); }
