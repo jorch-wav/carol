@@ -41,7 +41,7 @@ const CHECK = () => {
   }
   return [...new Set(out)];
 };
-const b = await chromium.launch({ executablePath: '/usr/bin/chromium', args: ['--use-gl=swiftshader', '--enable-unsafe-swiftshader'] });
+const b = await chromium.launch({ executablePath: '/usr/bin/chromium', args: ['--password-store=basic', '--use-gl=swiftshader', '--enable-unsafe-swiftshader'] });
 for (const [name, w, h, mob, mode] of devices) {
   const p = await b.newPage({ viewport: { width: w, height: h }, deviceScaleFactor: mob ? 2 : 1, isMobile: mob, hasTouch: mob, userAgent: mob ? IOS : undefined });
   p.on('pageerror', (e) => console.log(name, '[pageerror]', e.message));

@@ -3,7 +3,7 @@ import { createRequire } from 'module';
 const require = createRequire('/home/audioview/src/chimera-vocal-synth/package.json');
 const { chromium } = require('playwright-core');
 const [out, h = '659', js = ''] = process.argv.slice(2);
-const b = await chromium.launch({ executablePath: '/usr/bin/chromium', args: ['--use-gl=swiftshader', '--enable-unsafe-swiftshader'] });
+const b = await chromium.launch({ executablePath: '/usr/bin/chromium', args: ['--password-store=basic', '--use-gl=swiftshader', '--enable-unsafe-swiftshader'] });
 const p = await b.newPage({ viewport: { width: 393, height: +h }, deviceScaleFactor: 2, isMobile: true, hasTouch: true,
   userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1' });
 p.on('pageerror', (e) => console.log('[pageerror]', e.message));
