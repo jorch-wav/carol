@@ -2,7 +2,7 @@
  "collections": [
   {
    "name": "Australasia",
-   "count": 14,
+   "count": 16,
    "cover": "magpie",
    "region": "Australia, New Guinea, New Zealand",
    "about": "Birds of Australia and its neighbours, from the garden to the bush. Plates by John Gould, The Birds of Australia."
@@ -30,6 +30,51 @@
   }
  ],
  "birds": [
+  {
+   "id": "frogmouth",
+   "name": "Tawny Frogmouth",
+   "sci": "Podargus strigoides",
+   "authority": "(Latham, 1801)",
+   "order": "Caprimulgiformes",
+   "family": "Podargidae",
+   "body": "kingfisher",
+   "tags": {
+    "features": [
+     "hooter",
+     "night caller",
+     "duetter",
+     "pure tone",
+     "bill-clacker"
+    ],
+    "region": [
+     "Australia-wide",
+     "Tasmania"
+    ]
+   },
+   "collection": "Australasia",
+   "family_name": "Frogmouths",
+   "tax": [
+    4,
+    0
+   ],
+   "image": "img/frogmouth.jpg",
+   "image_caption": "John Gould, The Birds of Australia, vol. II, pl. 4: Podargus Cuvieri: Vig. and Horsf (Cuvier's Podargus)",
+   "match": 86.7,
+   "plates": [
+    {
+     "image": "img/frogmouth.jpg",
+     "caption": "John Gould, The Birds of Australia, vol. II, pl. 4: Podargus Cuvieri: Vig. and Horsf (Cuvier's Podargus)",
+     "artist": "John Gould",
+     "year": "1840"
+    },
+    {
+     "image": "img/frogmouth/mathews-1918-19.jpg",
+     "caption": "Henrik Gr\u00f6nvold, Gregory M. Mathews, The Birds of Australia, vol. VII, pl. 325: Podargus strigoides. (Tawny Frogmouth.) (Tawny Frogmouth)",
+     "artist": "Henrik Gr\u00f6nvold",
+     "year": "1918"
+    }
+   ]
+  },
   {
    "id": "curlew",
    "name": "Bush Stone-curlew",
@@ -338,6 +383,51 @@
      "caption": "John Gould, The Birds of Australia, vol. IV, pl. 55: Anthochaera carunculata (Wattled Honey-eater)",
      "artist": "John Gould",
      "year": "1840"
+    }
+   ]
+  },
+  {
+   "id": "helmeted",
+   "name": "Yellow-tufted Honeyeater",
+   "sci": "Lichenostomus melanops",
+   "authority": "(Latham, 1801)",
+   "order": "Passeriformes",
+   "family": "Meliphagidae",
+   "body": "songbird",
+   "tags": {
+    "features": [
+     "contact caller",
+     "harsh calls",
+     "whistler",
+     "colony caller",
+     "critically endangered"
+    ],
+    "region": [
+     "Victoria (Yellingbo)",
+     "South-eastern Australia"
+    ]
+   },
+   "collection": "Australasia",
+   "family_name": "Honeyeaters",
+   "tax": [
+    19,
+    10
+   ],
+   "image": "img/helmeted.jpg",
+   "image_caption": "John Gould, The Birds of Australia, Supplement, vol. Supplement (1869), pl. 39: Ptilotis cassidix, Jard (Helmeted Honey-eater)",
+   "match": 87.6,
+   "plates": [
+    {
+     "image": "img/helmeted.jpg",
+     "caption": "John Gould, The Birds of Australia, Supplement, vol. Supplement (1869), pl. 39: Ptilotis cassidix, Jard (Helmeted Honey-eater)",
+     "artist": "John Gould",
+     "year": "1851"
+    },
+    {
+     "image": "img/helmeted/mathews-1923-24.jpg",
+     "caption": "Henrik Gr\u00f6nvold, Gregory M. Mathews, The Birds of Australia, vol. XI, pl. 536: Lophoptilotis cassidix (Helmeted Honey-eater) [lower figure]; upper figure lettered Lophoptilotis melanops (Yellow-tufted Honey-eater) (Helmeted Honey-eater)",
+     "artist": "Henrik Gr\u00f6nvold",
+     "year": "1923"
     }
    ]
   },
