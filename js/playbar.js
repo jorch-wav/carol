@@ -1,6 +1,8 @@
 // Play bar: on-screen keys, call pads, scale picker, octave.
+import { icon } from './icons.js';
 import { SCALES, NOTE_NAMES, noteName, scalePCs, inScale } from './scales.js';
 
+const esc = (t) => String(t ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 export class PlayBar {
   constructor(app) {
     this.app = app;
@@ -41,7 +43,10 @@ export class PlayBar {
   }
   renderCall() {
     const c = this.app.currentCall();
-    document.getElementById('pbCall').innerHTML = c ? `KEYS PLAY <b>${c.name.toUpperCase()}</b>` : '';
+    const el = document.getElementById('pbCall'), rnd = this.app.randomCalls;
+    el.innerHTML = c ? `<span>KEYS PLAY <b>${rnd ? 'RANDOM' : esc(c.name.toUpperCase())}</b></span><button class="pb-rand${rnd ? ' on' : ''}" title="Random: each key plays a random call" aria-label="Random">${icon('shuffle')}<span class="long"> RANDOM</span></button>` : '';
+    const btn = el.querySelector('.pb-rand');
+    if (btn) btn.onclick = () => this.app.setRandomCalls(!this.app.randomCalls);
   }
   renderKeys() {
     const el = this.keysEl, app = this.app;

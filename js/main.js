@@ -42,6 +42,7 @@ class App {
     this.hold = false; this.sustainOn = false; this.rpt = false; this.learning = false; this.learnTarget = null;
     this.scale = ls.get('carol-scale', { type: 'bird', root: 0 });
     this.octave = 0; this.callIdx = 0; this.page = 0; this.bendV = 0;
+    this.randomCalls = ls.get('carol-keys-random', false); this.lastRandom = -1;
     this.view = ls.get('carol-view', '2d');
     if (this.view === 'scope') this.view = 'sono';
     this.v2 = new View2D($('view2d'));
@@ -351,6 +352,14 @@ class App {
 
   // ---------------------------------------------------------------- playing
   currentCall() { return this.bird && this.bird.calls[this.callIdx]; }
+  /** The call a key press plays: the chosen one, or (RANDOM) any of the bird's calls, never twice in a row. */
+  keyCall() {
+    const n = this.bird.calls.length;
+    if (!this.randomCalls || n < 2) return this.callIdx;
+    let i = Math.floor(Math.random() * (n - 1)); if (i >= this.lastRandom && this.lastRandom >= 0) i++;
+    return (this.lastRandom = Math.min(n - 1, i));
+  }
+  setRandomCalls(on) { this.randomCalls = on; ls.set('carol-keys-random', on); this.playbar.renderCall(); this.toast(on ? 'Keys play a random call' : 'Keys play ' + (this.currentCall()?.name || '')); }
   selectCall(i) {
     this.callIdx = i; ls.set('carol-call-' + this.bird.id, i);
     this.playbar.renderCall();
@@ -386,9 +395,10 @@ class App {
     this.makeRoom();
     const n = snap(note, this.pcs());
     const id = this.nextId++;
-    const h = { id, n, call: this.callIdx, note: this.tune(n), vel, out: n };
+    const call = this.keyCall();
+    const h = { id, n, call, note: this.tune(n), vel, out: n };
     this.held.set(src, h);
-    this.audio.noteOn(id, this.callIdx, h.note, vel);
+    this.audio.noteOn(id, call, h.note, vel);
     this.midi.noteOut(n, vel, true);
     if (this.rpt) h.next = this.audio.now + this.rptPeriod();
     if (!isTouch) this.playbar.light(n, true);
