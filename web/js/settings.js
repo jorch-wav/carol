@@ -7,12 +7,13 @@ export const DEFAULTS = {
   midiIn: 'all', midiCh: 0, velCurve: 'linear', bendRange: 2,
   midiOut: '', outCh: 1, outNotes: true, outClock: false,
   learn: {}, a4: 440, voices: 6, latency: '', sync: 'off', rptRate: '1/8', prefArtist: '',
-  callMode: 'generated', variety: 0.5,
+  callMode: 'traced', variety: 0.5,
 };
 export function loadSettings() {
   let s = {};
   try { s = JSON.parse(localStorage.getItem('carol-settings') || '{}'); } catch {}
-  return Object.assign({}, DEFAULTS, s, { learn: Object.assign({}, s.learn || {}) });
+  // calls are always the traced ones (generated calls are switched off; the code stays in gen.js for later)
+  return Object.assign({}, DEFAULTS, s, { learn: Object.assign({}, s.learn || {}), callMode: 'traced' });
 }
 export function saveSettings(s) { try { localStorage.setItem('carol-settings', JSON.stringify(s)); } catch {} }
 
@@ -41,11 +42,6 @@ export class SettingsUI {
       ${noMidi ? (/iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.maxTouchPoints > 1 && /Macintosh/.test(navigator.userAgent))
         ? `<p class="st-note"><b>MIDI on iPhone and iPad:</b> Safari can't receive MIDI. Install the free app <b>Web MIDI Browser</b> from the App Store, open <b>${esc(location.href.split('?')[0].split('#')[0])}</b> in it, and plug your keyboard in (USB-C, or Apple's camera adapter). Carol then works with it like on the Pi: keys, pitch bend, sustain pedal and the Korg knobs.</p>`
         : `<p class="st-note">This browser has no Web MIDI. MIDI works on the Pi, in Chrome or Edge on a computer, and on iPhone/iPad in the free Web MIDI Browser app.</p>`) : ''}
-      <h2>Calls</h2>
-      <label class="field">Calls ${sel('stCallMode', [['generated', 'Generated: a new phrase each time, from the bird’s style'], ['traced', 'Traced: replay calls traced from single recordings']], s.callMode)}</label>
-      <label class="field">Variety (generated) ${sel('stVariety', [[0.2, 'Low: close to the bird’s usual phrases'], [0.5, 'Medium'], [0.8, 'High: more surprising']], s.variety)}</label>
-      <p class="st-note">Generated calls come from what Carol learned across all of a bird’s recordings: its note shapes, how it chains them, and its gaps. Traced calls replay the shape of one stretch of one recording.</p>
-
       <h2>MIDI in</h2>
       <label class="field">Keyboard / controller ${sel('stIn', [['all', 'All devices'], ...ins], s.midiIn)}</label>
       <label class="field">Channel ${sel('stCh', chans, s.midiCh)}</label>
@@ -92,7 +88,7 @@ export class SettingsUI {
     const on = (id, k, num) => { const e = $(id); if (e) e.onchange = () => this.set(k, num ? Number(e.value) : e.value); };
     on('stIn', 'midiIn'); on('stCh', 'midiCh', 1); on('stVel', 'velCurve'); on('stBend', 'bendRange', 1);
     on('stOut', 'midiOut'); on('stOutCh', 'outCh', 1); on('stSync', 'sync'); on('stA4', 'a4', 1); on('stVoices', 'voices', 1);
-    on('stRpt', 'rptRate'); on('stCallMode', 'callMode'); on('stVariety', 'variety', 1); on('stLat', 'latency'); on('stArtist', 'prefArtist');
+    on('stRpt', 'rptRate'); on('stLat', 'latency'); on('stArtist', 'prefArtist');
     $('stOutNotes').onchange = (e) => this.set('outNotes', e.target.checked);
     $('stOutClock').onchange = (e) => this.set('outClock', e.target.checked);
     $('stLearn').onclick = () => { app.setLearning(!app.learning); if (app.learning) this.close(); else this.render(); };

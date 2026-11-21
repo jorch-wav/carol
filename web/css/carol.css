@@ -128,7 +128,10 @@ button { cursor: pointer; }
 select { background: #24211e; border: 1px solid #3f3a34; border-radius: 3px; padding: 5px 8px; font-size: 14px; min-height: 34px; }
 .pb-oct { display: flex; align-items: center; gap: 6px; font-size: 13px; letter-spacing: 1px; }
 .pb-oct button { padding: 4px 12px; font-size: 16px; }
-.pb-call { margin-left: auto; font-size: 13px; letter-spacing: 1px; color: var(--dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pb-call { margin-left: auto; font-size: 13px; letter-spacing: 1px; color: var(--dim); white-space: nowrap; display: flex; align-items: center; gap: 8px; min-width: 0; }
+.pb-call > span { overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.pb-rand { background: #24211e; border: 1px solid #3f3a34; color: var(--dim); font-weight: 700; letter-spacing: 1.5px; padding: 6px 10px; border-radius: 3px; min-height: 34px; font-size: 12px; flex: none; }
+.pb-rand.on { color: var(--amber-2); border-color: var(--amber); background: #3d2b10; }
 .pb-call b { color: var(--amber-2); }
 .pb-body { height: 214px; padding: 4px 10px 10px; }
 .keys, .pads, .seq { height: 100%; display: none; }
@@ -256,7 +259,10 @@ select { background: #24211e; border: 1px solid #3f3a34; border-radius: 3px; pad
   .pb-head { flex-wrap: wrap; height: auto; padding: 4px 6px; gap: 6px 8px; }
   .pb-handle { width: 40px; height: 36px; }
   .pb-tabs { flex: 1; }
-  .pb-scale label, .pb-call { display: none; }
+  .pb-scale label, .pb-call > span { display: none; }
+  .pb-call { margin-left: auto; order: 10; }
+  .pb-rand .long { display: none; }
+  .pb-rand { padding: 6px 8px; }
   .pb-scale select#scaleType { max-width: 160px; }
   .pb-body { height: calc(52vh - 96px); padding: 4px 6px 8px; }
   .pads { grid-template-columns: repeat(2, 1fr); overflow-y: auto; grid-auto-rows: 92px; }
