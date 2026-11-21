@@ -76,8 +76,6 @@ export class View2D {
       g.addColorStop(0, 'rgba(242,214,160,.16)'); g.addColorStop(1, 'rgba(242,214,160,0)');
       ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
     }
-    // a branch under the feet
-    if (this.enhance) this.branch(parts, X, Y, s);
     // skin silhouette: soft fill (enhanced: lit from above-left, so the bird looks rounded)
     for (const p of parts.filter((q) => q.layer === 0)) {
       if (this.enhance && p.kind === 'ell' && !p.wing) {
