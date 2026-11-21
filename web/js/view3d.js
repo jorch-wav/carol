@@ -149,15 +149,7 @@ export class View3D {
       for (const it of this.instances(p)) items.push(it);
     }
     if (this.enhance && st === 0) {
-      // a branch under the feet and its soft shadow; a highlight in each eye
-      const legs = model.parts.filter((p) => p.part === 'legs' && p.kind === 'tube');
-      if (legs.length) {
-        const feet = legs.map((l) => l.pts[l.pts.length - 1]), fy = Math.min(...feet.map((f) => f[1])) - 0.15;
-        const fx = feet.reduce((a, f) => a + f[0], 0) / feet.length, body = model.parts.find((p) => p.id === 'body'), span = body ? body.r[0] * 2.4 : 8;
-        for (const it of this.instances({ kind: 'tube', pts: [[fx - span * 0.6, fy - 0.2, -0.3], [fx, fy, 0.2], [fx + span * 0.55, fy - 0.1, 0.6]], r: 0.22, color: '#6b4e34', layer: 1, alpha: 1 })) items.push(it);
-        const sr = [span * 0.45, 0.04, 1.6], sax = [sr[0], 0, 0], say = [0, sr[1], 0], saz = [0, 0, sr[2]], sc = [fx, fy - 0.3, 0.2];
-        items.push({ mesh: 'sph', M: m4.basis(sax, say, saz, sc), N: normalMat(sax, say, saz), col: [0.05, 0.04, 0.03], a: 0.22, glow: 0, c: sc });
-      }
+      // a highlight in each eye (no branch in 3D: the bird stands free)
       for (const e of model.parts.filter((p) => p.part === 'eye' && p.kind === 'ell')) {
         const r = e.r[0] * 0.32, ax = [r, 0, 0], ay = [0, r, 0], az = [0, 0, r];
         const c = [e.c[0] + e.r[0] * 0.35, e.c[1] + e.r[1] * 0.4, e.c[2] + Math.sign(e.c[2] || 1) * e.r[2] * 0.75];
