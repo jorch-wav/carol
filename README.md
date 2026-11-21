@@ -125,9 +125,12 @@ web/bodies.json`, and refit.
 - **Presets** (`web/presets/`): call shapes and fitted settings derived from xeno-canto recordings
   licensed **CC BY-NC-SA** (3.0/4.0; one robin clip CC BY-NC 4.0), so the presets are **CC BY-NC-SA 4.0**, with credit to each recordist
   (listed in every preset and in the app's Sources tab). The recordings themselves are not included.
-- **Plates:** John Gould, *The Birds of Australia*, *The Birds of Great Britain* and *A Monograph of the
-  Trogonidae* (BHL / Internet Archive scans), and J. J. Audubon, *The Birds of America* (University of
-  Pittsburgh scan via Wikimedia Commons), all public domain.
+- **Plates:** every bird has two or three public-domain plates (published before 1930, artists long dead):
+  John Gould (*The Birds of Australia*, *The Birds of Great Britain*, *A Monograph of the Trogonidae*), J. J. Audubon,
+  Alexander Wilson, Mark Catesby, Gregory Mathews' *Birds of Australia* (Grønvold, Keulemans, Goodchild), Dresser and
+  Lilford (Keulemans, Thorburn), Lear, Levaillant/Barraband, Broinowski, Diggles, Greene/Lydon, Prévost, Martinet,
+  Vieillot/Oudart, Temminck (Huet/Prêtre), Jardine & Selby and Shaw & Nodder; scans from BHL, the Internet Archive
+  and Wikimedia Commons. Each plate's full credit is in the app (Learn > Sources) and in `data/<bird>/plates/plates.json`.
 - **Anatomy figures** (`web/img/learn/`): L. Shyamal (public domain); C. Abraczinskas after Sereno
   et al. 2008 (CC BY 2.5); Uwe Gille (CC BY-SA 3.0); V. Häcker, *Der Gesang der Vögel* (1900, public domain).
   Details in `web/img/learn/illustrations.json`.
