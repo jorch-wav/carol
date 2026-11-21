@@ -45,7 +45,8 @@ export class Presets {
       t.setAttribute('role', 'tab');
       t.innerHTML = '<b></b><small></small>';
       t.querySelector('b').textContent = c.name;
-      t.querySelector('small').textContent = `${this.birdsIn(c.name).length} bird${this.birdsIn(c.name).length === 1 ? '' : 's'}` + (c.region ? ' · ' + c.region : '');
+      const nb = this.birdsIn(c.name).length;
+      t.querySelector('small').innerHTML = `${nb} bird${nb === 1 ? '' : 's'}<span class="rg">${c.region ? ' · ' + c.region.replace(/[&<>]/g, '') : ''}</span>`;
       t.onclick = () => { this.coll = c.name; this.hi = 0; this.render(); };
       this.cats.appendChild(t);
     }

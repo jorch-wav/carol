@@ -259,8 +259,9 @@ select { background: #24211e; border: 1px solid #3f3a34; border-radius: 3px; pad
   .pads { grid-template-columns: repeat(2, 1fr); overflow-y: auto; grid-auto-rows: 92px; }
   #presets { flex-direction: column; padding: max(10px, env(safe-area-inset-top)) 10px 10px; }
   .ps-plate { flex: 0 0 26%; }
-  .ps-cat { flex: 1 1 0; min-width: 0; max-width: none; padding: 7px 10px; }
-  .ps-cat b { font-size: 12px; letter-spacing: 1px; white-space: normal; }
+  .ps-cat { flex: 0 0 auto; min-width: 0; max-width: none; padding: 7px 12px; }
+  .ps-cat b { font-size: 12px; letter-spacing: 1px; white-space: nowrap; }
+  .ps-cat small .rg { display: none; }
   .ps-about, .ps-foot .hint { display: none; }
   .ps-list b { font-size: 17px; }
   .ps-list i { font-size: 14px; }
@@ -550,3 +551,7 @@ body.kstrip .kn .dial { touch-action: pan-x; }   /* swipe sideways to scroll, dr
   .pl-nav { padding: 0 6px 2px; gap: 6px; }
   .pl-nav button { min-height: 32px; }
 }
+
+/* family headings: English name, then the Latin family on its own (never split mid-word) */
+.ps-list li.fam { flex-wrap: wrap; row-gap: 0; }
+.ps-list li.fam i { white-space: nowrap; }
