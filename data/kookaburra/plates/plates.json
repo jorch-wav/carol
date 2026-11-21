@@ -1,0 +1,17 @@
+[
+  {
+    "file": "plates/martinet-planches-enluminees.jpg",
+    "raw_file": "plates/raw/Planches_enluminees_663.jpg",
+    "source_page_url": "https://commons.wikimedia.org/wiki/File:Laughing_kookaburra_plate_663_Planches_enlumin%C3%A9es_d%27histoire_naturelle.jpg",
+    "source_file_url": "https://upload.wikimedia.org/wikipedia/commons/e/e9/Laughing_kookaburra_plate_663_Planches_enlumin%C3%A9es_d%27histoire_naturelle.jpg",
+    "processing": "Commons original JPEG -> RGB, resized to 900 px tall (Lanczos), JPEG quality 85, no crop (tools/make_plate.py)",
+    "artist": "François-Nicolas Martinet (engraver/painter), under Edme-Louis Daubenton",
+    "work": "Buffon & Daubenton, Planches enluminées d'histoire naturelle (Paris, 1765-1783)",
+    "year": "1765-1783 (probably before 1780)",
+    "volume": "-",
+    "plate": "663",
+    "artist_died": "c. 1800",
+    "copy": "scan on Wikimedia Commons",
+    "licence": "Public domain (18th-century engraving)"
+  }
+]

@@ -1,0 +1,23 @@
+[
+  {
+    "file": "plates/mathews-1921-22.jpg",
+    "raw_file": "plates/raw/birdsaustralia9math_0062.jp2",
+    "artist": "Henrik Grönvold",
+    "work": "Gregory M. Mathews, The Birds of Australia (London: Witherby & Co., 1910-1927), 12 vols + supplements, royal quarto",
+    "year": "1921-1922 (vol. IX; issued in parts)",
+    "volume": "IX",
+    "plate": "404 (BHL 'Plate [404]')",
+    "name_on_plate": "Leucocirca tricolor. (Black-and-White Fantail.)",
+    "gould_common_name": "Black-and-White Fantail",
+    "text_name": "No. 478, Leucocirca leucophrys, Black and White Fantail (= willie wagtail, Rhipidura leucophrys)",
+    "artist_credit_on_plate": "H. Grönvold del. / Witherby & Co.",
+    "artist_died": 1940,
+    "note": "The plate is lettered with Mathews' earlier name tricolor; his text uses leucophrys.",
+    "copy": "Smithsonian Libraries copy, digitised for the Biodiversity Heritage Library (Internet Archive birdsaustralia9math)",
+    "source_page_url": "https://archive.org/details/birdsaustralia9math/page/n61/mode/1up",
+    "source_file_url": "https://archive.org/download/birdsaustralia9math/birdsaustralia9math_jp2.zip/birdsaustralia9math_jp2%2Fbirdsaustralia9math_0062.jp2",
+    "bhl_url": "https://www.biodiversitylibrary.org/page/53495218",
+    "licence": "Public domain (published 1921-1922; artist died 1940; BHL/IA: 'no longer under copyright protection')",
+    "processing": "JP2 -> RGB, resized to 900 px tall (Lanczos), JPEG quality 85, no crop (tools/make_plate.py)"
+  }
+]

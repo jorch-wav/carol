@@ -1,0 +1,17 @@
+[
+  {
+    "file": "plates/barraband-levaillant.jpg",
+    "raw_file": "plates/raw/Levaillant_Parrot_78.jpg",
+    "source_page_url": "https://commons.wikimedia.org/wiki/File:Levaillant_Parrot_78.jpg",
+    "source_file_url": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Levaillant_Parrot_78.jpg",
+    "processing": "Commons original JPEG -> RGB, resized to 900 px tall (Lanczos), JPEG quality 85, no crop (tools/make_plate.py)",
+    "artist": "Jacques Barraband",
+    "work": "François Levaillant, Histoire naturelle des perroquets (Paris, 1801-1805), 2 vols, folio",
+    "year": "1801",
+    "volume": "II",
+    "plate": "78",
+    "artist_died": 1809,
+    "copy": "scan on Wikimedia Commons (File:Levaillant Parrot 78.jpg)",
+    "licence": "Public domain (published 1801; artist died 1809)"
+  }
+]

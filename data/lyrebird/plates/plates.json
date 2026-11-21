@@ -1,0 +1,17 @@
+[
+  {
+    "file": "plates/vieillot-oudart-galerie.jpg",
+    "raw_file": "plates/raw/Galerie_des_oiseaux_14564683450.jpg",
+    "source_page_url": "https://commons.wikimedia.org/wiki/File:La_galerie_des_oiseaux_(1834)_(14564683450).jpg",
+    "source_file_url": "https://upload.wikimedia.org/wikipedia/commons/b/b6/La_galerie_des_oiseaux_%281834%29_%2814564683450%29.jpg",
+    "processing": "Commons original JPEG -> RGB, resized to 900 px tall (Lanczos), JPEG quality 85, no crop (tools/make_plate.py)",
+    "artist": "Paul Louis Oudart (drawing); lithographed by C. Motte",
+    "work": "L. P. Vieillot, La galerie des oiseaux (Paris, 1825-1834; this printing 1834)",
+    "year": "1834",
+    "volume": "1",
+    "plate": "197",
+    "artist_died": 1860,
+    "copy": "Internet Archive lagaleriedesoise01viei via Flickr (Internet Archive Book Images) on Wikimedia Commons",
+    "licence": "Public domain (published 1834; artist died 1860)"
+  }
+]

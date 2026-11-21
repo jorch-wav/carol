@@ -1,0 +1,18 @@
+[
+  {
+    "file": "plates/greene-parrots-in-captivity.jpg",
+    "raw_file": "plates/raw/Parrots_in_captivity_v1_pl8.jpg",
+    "source_page_url": "https://commons.wikimedia.org/wiki/File:Parrots_in_captivity_(Vol._1._PL._08)_Blue_Mountain_Lory_(BHL41557131).jpg",
+    "source_file_url": "https://upload.wikimedia.org/wikipedia/commons/1/16/Parrots_in_captivity_%28Vol._1._PL._08%29_Blue_Mountain_Lory_%28BHL41557131%29.jpg",
+    "processing": "Commons original JPEG -> RGB, resized to 900 px tall (Lanczos), JPEG quality 85, no crop (tools/make_plate.py)",
+    "artist": "Alexander Francis Lydon (attributed; plates printed by B. Fawcett)",
+    "work": "W. T. Greene, Parrots in Captivity (London: George Bell & Sons, 1884-1887), 3 vols",
+    "year": "1884 (vol. 1)",
+    "volume": "1",
+    "plate": "8",
+    "artist_died": 1917,
+    "copy": "BHL scan (page 41557131) on Wikimedia Commons",
+    "bhl_url": "https://www.biodiversitylibrary.org/page/41557131",
+    "licence": "Public domain (published 1884; artist died 1917)"
+  }
+]

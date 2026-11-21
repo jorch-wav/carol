@@ -1,0 +1,32 @@
+[
+  {
+    "file": "plates/lear-psittacidae.jpg",
+    "raw_file": "plates/raw/Lear_Psittacidae_pl3.jpg",
+    "source_page_url": "https://commons.wikimedia.org/wiki/File:Illustrations_of_the_family_of_Psittacid%C5%93,_or_parrots_(Plate_3)_(8116330865).jpg",
+    "source_file_url": "https://upload.wikimedia.org/wikipedia/commons/f/f7/Illustrations_of_the_family_of_Psittacid%C5%93%2C_or_parrots_%28Plate_3%29_%288116330865%29.jpg",
+    "processing": "Commons original JPEG -> RGB, resized to 900 px tall (Lanczos), JPEG quality 85, no crop (tools/make_plate.py)",
+    "artist": "Edward Lear",
+    "work": "Edward Lear, Illustrations of the Family of Psittacidae, or Parrots (London, 1830-1832), folio",
+    "year": "1832",
+    "volume": "-",
+    "plate": "3",
+    "artist_died": 1888,
+    "copy": "BHL scan via Flickr on Wikimedia Commons",
+    "licence": "Public domain (published 1832; artist died 1888)"
+  },
+  {
+    "file": "plates/broinowski.jpg",
+    "raw_file": "plates/raw/Broinowski_v3_19761588774.jpg",
+    "source_page_url": "https://commons.wikimedia.org/wiki/File:The_birds_of_Australia_(1890)_(19761588774).jpg",
+    "source_file_url": "https://upload.wikimedia.org/wikipedia/commons/7/7a/The_birds_of_Australia_%281890%29_%2819761588774%29.jpg",
+    "processing": "Commons original JPEG -> RGB, resized to 900 px tall (Lanczos), JPEG quality 85, no crop (tools/make_plate.py)",
+    "artist": "Gracius J. Broinowski",
+    "work": "Gracius J. Broinowski, The Birds of Australia (Melbourne: Charles Stuart & Co., 1887-1891), 6 vols",
+    "year": "1887-1891 (vol. III)",
+    "volume": "III",
+    "plate": "17",
+    "artist_died": 1913,
+    "copy": "Internet Archive birdsofaustralia03broi via Flickr (Internet Archive Book Images) on Wikimedia Commons",
+    "licence": "Public domain (published 1887-1891; artist died 1913)"
+  }
+]

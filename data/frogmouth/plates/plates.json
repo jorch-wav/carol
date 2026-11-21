@@ -1,0 +1,23 @@
+[
+  {
+    "file": "plates/mathews-1918-19.jpg",
+    "raw_file": "plates/raw/birdsaustralia7math_0024.jp2",
+    "artist": "Henrik Grönvold",
+    "work": "Gregory M. Mathews, The Birds of Australia (London: Witherby & Co., 1910-1927), 12 vols + supplements, royal quarto",
+    "year": "1918-1919 (vol. VII; issued in parts)",
+    "volume": "VII",
+    "plate": "325 (BHL 'Plate [325]'; text: 'Plates 325-326'; small '5' above the name)",
+    "name_on_plate": "Podargus strigoides. (Tawny Frogmouth.)",
+    "gould_common_name": "Tawny Frogmouth",
+    "text_name": "No. 378, Podargus strigoides, Tawny Frogmouth",
+    "artist_credit_on_plate": "H. Grönvold del. / Witherby & Co.",
+    "artist_died": 1940,
+    "note": "Plate 326 of the same work (also Podargus strigoides) is by Roland Green (d. 1972) and was NOT used.",
+    "copy": "Smithsonian Libraries copy, digitised for the Biodiversity Heritage Library (Internet Archive birdsaustralia7math)",
+    "source_page_url": "https://archive.org/details/birdsaustralia7math/page/n23/mode/1up",
+    "source_file_url": "https://archive.org/download/birdsaustralia7math/birdsaustralia7math_jp2.zip/birdsaustralia7math_jp2%2Fbirdsaustralia7math_0024.jp2",
+    "bhl_url": "https://www.biodiversitylibrary.org/page/53451225",
+    "licence": "Public domain (published 1918-1919; artist died 1940; BHL/IA: 'no longer under copyright protection')",
+    "processing": "JP2 -> RGB, resized to 900 px tall (Lanczos), JPEG quality 85, no crop (tools/make_plate.py)"
+  }
+]

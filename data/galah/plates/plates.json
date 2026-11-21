@@ -1,0 +1,27 @@
+[
+  {
+    "file": "plates/greene-lydon-1884.jpg",
+    "raw_file": "plates/raw/ParrotscaptivitIGree_0046.jp2",
+    "artist": "Alexander Francis Lydon (drawn); colour-printed by Benjamin Fawcett",
+    "work": "William Thomas Greene, Parrots in Captivity, with notes on several species by the Hon. and Rev. F. G. Dutton (London: George Bell and Sons, 1884-1887), 3 vols, royal octavo",
+    "year": "1884",
+    "volume": "I",
+    "plate": "5 (BHL 'PL. 5'; unnumbered on the plate)",
+    "name_on_plate": "Rose-Breasted Cockatoo.",
+    "gould_common_name": "Rose-breasted Cockatoo",
+    "text_name": "Psittacus roseicapillus, Russ.",
+    "artist_credit_on_plate": "none on the plate; the vol. III text credits 'Mr. Lydon' for the portraits, and the work is dedicated to Benjamin Fawcett, who colour-printed the plates",
+    "artist_died": 1917,
+    "other_artists_died": {
+      "Benjamin Fawcett (colour printer)": 1893
+    },
+    "attribution_note": "Lydon's authorship of the Parrots in Captivity plates is the standard attribution and is stated in the vol. III text; the plates themselves are unsigned.",
+    "colour_note": "The breast is printed a strong scarlet rather than the galah's rose-pink; crest, grey wings and tail are correct.",
+    "copy": "Smithsonian Libraries copy, digitised for the Biodiversity Heritage Library (Internet Archive ParrotscaptivitIGree)",
+    "source_page_url": "https://archive.org/details/ParrotscaptivitIGree/page/n45/mode/1up",
+    "source_file_url": "https://archive.org/download/ParrotscaptivitIGree/ParrotscaptivitIGree_jp2.zip/ParrotscaptivitIGree_jp2%2FParrotscaptivitIGree_0046.jp2",
+    "bhl_url": "https://www.biodiversitylibrary.org/page/41402299",
+    "licence": "Public domain (published 1884; artist died 1917, printer 1893; BHL/IA: 'no longer under copyright protection')",
+    "processing": "JP2 -> RGB, resized to 900 px tall (Lanczos), JPEG quality 85, no crop (tools/make_plate.py)"
+  }
+]

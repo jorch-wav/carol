@@ -1,0 +1,23 @@
+[
+  {
+    "file": "plates/mathews-1919-20.jpg",
+    "raw_file": "plates/raw/birdsaustralia8math_0391.jp2",
+    "artist": "Henrik Grönvold",
+    "work": "Gregory M. Mathews, The Birds of Australia (London: Witherby & Co., 1910-1927), 12 vols + supplements, royal quarto",
+    "year": "1919-1920 (vol. VIII; issued in parts)",
+    "volume": "VIII",
+    "plate": "391 (BHL 'Plate [391]')",
+    "name_on_plate": "Pachycephala pectoralis. (White-throated Thickhead.)",
+    "gould_common_name": "White-throated Thickhead",
+    "text_name": "No. 461, Pachycephala pectoralis, White-throated Thickhead (= golden whistler, nominate eastern form)",
+    "artist_credit_on_plate": "H. Grönvold del. / Witherby & Co.",
+    "artist_died": 1940,
+    "note": "Male, female and immature.",
+    "copy": "Smithsonian Libraries copy, digitised for the Biodiversity Heritage Library (Internet Archive birdsaustralia8math)",
+    "source_page_url": "https://archive.org/details/birdsaustralia8math/page/n390/mode/1up",
+    "source_file_url": "https://archive.org/download/birdsaustralia8math/birdsaustralia8math_jp2.zip/birdsaustralia8math_jp2%2Fbirdsaustralia8math_0391.jp2",
+    "bhl_url": "https://www.biodiversitylibrary.org/page/53480722",
+    "licence": "Public domain (published 1919-1920; artist died 1940; BHL/IA: 'no longer under copyright protection')",
+    "processing": "JP2 -> RGB, resized to 900 px tall (Lanczos), JPEG quality 85, no crop (tools/make_plate.py)"
+  }
+]

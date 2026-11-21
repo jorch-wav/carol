@@ -1,0 +1,23 @@
+[
+  {
+    "file": "plates/mathews-1922-23.jpg",
+    "raw_file": "plates/raw/birdsaustralia10math_0133.jp2",
+    "artist": "Henrik Grönvold",
+    "work": "Gregory M. Mathews, The Birds of Australia (London: Witherby & Co., 1910-1927), 12 vols + supplements, royal quarto",
+    "year": "1922-1923 (vol. X; issued in parts)",
+    "volume": "X",
+    "plate": "459 (BHL 'Plate [459]')",
+    "name_on_plate": "Malurus cyaneus (Blue Wren)",
+    "gould_common_name": "Blue Wren",
+    "text_name": "No. 552, Malurus cyaneus, Blue Wren",
+    "artist_credit_on_plate": "H. Grönvold del. / Witherby & Co.",
+    "artist_died": 1940,
+    "note": "Two males and two females/young.",
+    "copy": "Smithsonian Libraries copy, digitised for the Biodiversity Heritage Library (Internet Archive birdsaustralia10math)",
+    "source_page_url": "https://archive.org/details/birdsaustralia10math/page/n132/mode/1up",
+    "source_file_url": "https://archive.org/download/birdsaustralia10math/birdsaustralia10math_jp2.zip/birdsaustralia10math_jp2%2Fbirdsaustralia10math_0133.jp2",
+    "bhl_url": "https://www.biodiversitylibrary.org/page/53497419",
+    "licence": "Public domain (published 1922-1923; artist died 1940; BHL/IA: 'no longer under copyright protection')",
+    "processing": "JP2 -> RGB, resized to 900 px tall (Lanczos), JPEG quality 85, no crop (tools/make_plate.py)"
+  }
+]

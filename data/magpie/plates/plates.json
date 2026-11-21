@@ -1,0 +1,32 @@
+[
+  {
+    "file": "plates/keulemans-onze-vogels.jpg",
+    "raw_file": "plates/raw/Keulemans_Onze_vogels_3_12.jpg",
+    "source_page_url": "https://commons.wikimedia.org/wiki/File:Keulemans_Onze_vogels_3_12.jpg",
+    "source_file_url": "https://upload.wikimedia.org/wikipedia/commons/2/2b/Keulemans_Onze_vogels_3_12.jpg",
+    "processing": "Commons original JPEG -> RGB, resized to 900 px tall (Lanczos), JPEG quality 85, no crop (tools/make_plate.py)",
+    "artist": "John Gerrard Keulemans",
+    "work": "J. G. Keulemans, Onze vogels in huis en tuin (Leiden, 1869-1876), 3 vols",
+    "year": "1876 (vol. III)",
+    "volume": "III",
+    "plate": "12",
+    "artist_died": 1912,
+    "copy": "scan on Wikimedia Commons (File:Keulemans Onze vogels 3 12.jpg)",
+    "licence": "Public domain (published 1876; artist died 1912)"
+  },
+  {
+    "file": "plates/prevost-coquille.jpg",
+    "raw_file": "plates/raw/Voyage_autour_du_monde_Pl20.jpg",
+    "source_page_url": "https://commons.wikimedia.org/wiki/File:Voyage_autour_du_monde_(Pl._20)_(Gymnorhina_tibicen).jpg",
+    "source_file_url": "https://upload.wikimedia.org/wikipedia/commons/c/ca/Voyage_autour_du_monde_%28Pl._20%29_%28Gymnorhina_tibicen%29.jpg",
+    "processing": "Commons original JPEG -> RGB, resized to 900 px tall (Lanczos), JPEG quality 85, no crop (tools/make_plate.py)",
+    "artist": "Lucien Alphonse Prévost (painter)",
+    "work": "Louis Isidore Duperrey (ed.), Voyage autour du monde ... sur la corvette La Coquille, Zoologie, Atlas (Oiseaux) by R. P. Lesson & P. Garnot (Paris: Arthus Bertrand, 1826-1830)",
+    "year": "1826-1830",
+    "volume": "Atlas, Oiseaux",
+    "plate": "20",
+    "artist_died": 1846,
+    "copy": "scan on Wikimedia Commons (File:Voyage autour du monde (Pl. 20) (Gymnorhina tibicen).jpg)",
+    "licence": "Public domain (published 1826-1830; artist died 1846)"
+  }
+]

@@ -1,0 +1,23 @@
+[
+  {
+    "file": "plates/mathews-1925-27.jpg",
+    "raw_file": "plates/raw/birdsaustraliaxiimath_0511.jp2",
+    "artist": "Henrik Grönvold",
+    "work": "Gregory M. Mathews, The Birds of Australia (London: Witherby & Co., 1910-1927), 12 vols + supplements, royal quarto",
+    "year": "1925-1927 (vol. XII; issued in parts)",
+    "volume": "XII",
+    "plate": "594 (printed top right)",
+    "name_on_plate": "Corvus coronoides (Raven)",
+    "gould_common_name": "Raven",
+    "text_name": "No. 741, Corvus coronoides, Raven (text: 'Plates 594, 597')",
+    "artist_credit_on_plate": "H. Grönvold del. / Witherby & Co.",
+    "artist_died": 1940,
+    "note": "AUSTRALIAN RAVEN COMPLEX, not the little raven: this is Corvus coronoides (Australian raven), the same species as the existing Gould plate. No pre-1930 plate specifically of Corvus mellori was found.",
+    "copy": "Museums Victoria copy, digitised for the Biodiversity Heritage Library (Internet Archive birdsaustraliaxiimath)",
+    "source_page_url": "https://archive.org/details/birdsaustraliaxiimath/page/n510/mode/1up",
+    "source_file_url": "https://archive.org/download/birdsaustraliaxiimath/birdsaustraliaxiimath_jp2.zip/birdsaustraliaxiimath_jp2%2Fbirdsaustraliaxiimath_0511.jp2",
+    "bhl_url": "https://www.biodiversitylibrary.org/page/57350999",
+    "licence": "Public domain (published 1925-1927; artist died 1940; BHL/IA: 'no longer under copyright protection')",
+    "processing": "JP2 -> RGB, resized to 900 px tall (Lanczos), JPEG quality 85, no crop (tools/make_plate.py)"
+  }
+]
