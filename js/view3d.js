@@ -146,7 +146,7 @@ export class View3D {
     // the scan style's live readouts: a 2D layer over the 3D canvas
     this.ov = document.createElement('canvas'); this.ov.id = 'view3dLabels'; canvas.after(this.ov);
     this.yaw = 0.5; this.pitch = 0.15; this.dist = 1; this.auto = false; this.sel = null;
-    this.style = 4;   // 0 glass, 1 solid, 2 toon, 3 x-ray, 4 scan (cross-section rings, readouts)
+    this.style = 4;   // 4 = the 3D look (cross-section rings over the plumage, organs, readouts); 0-3 are older prototypes
     this.outlineCull = 'back';
     this.enhance = true;   // the improved current look: sky-and-ground light, rim glow, a branch and shadow, eye highlights
     let drag = null; const pts = new Map();
@@ -197,7 +197,7 @@ export class View3D {
     const fr = { c: [(x0 + x1) / 2, (y0 + y1) / 2, 0], r: Math.max(x1 - x0, (y1 - y0) * 1.2) / 2 };
     if (!this.frame || this.snap) { this.frame = fr; this.snap = false; }
     else { for (let i = 0; i < 2; i++) this.frame.c[i] += (fr.c[i] - this.frame.c[i]) * 0.2; this.frame.r += (fr.r - this.frame.r) * 0.2; }
-    const asp = W / H, tgt = this.frame.c, R = this.frame.r * (asp < 1.2 ? 2.9 / asp : 2.4) * this.dist;
+    const asp = W / H, tgt = this.frame.c, R = this.frame.r * (asp < 1.2 ? (this.style === 4 && asp < 0.87 ? 2.45 : 2.9) / asp : 2.4) * this.dist;
     const eye = [tgt[0] + R * Math.cos(this.pitch) * Math.sin(this.yaw), tgt[1] + R * Math.sin(this.pitch), tgt[2] + R * Math.cos(this.pitch) * Math.cos(this.yaw)];
     const VP = m4.mul(m4.persp(0.75, W / H, 1, 120), m4.look(eye, tgt, [0, 1, 0]));
     gl.uniformMatrix4fv(this.loc.VP, false, VP); gl.uniform3fv(this.loc.eye, eye); gl.uniform1f(this.loc.mode, this.style); gl.uniform1f(this.loc.enh, this.enhance ? 1 : 0);
@@ -296,7 +296,10 @@ export class View3D {
     else { for (let i = 0; i < 2; i++) this.frame.c[i] += (fr.c[i] - this.frame.c[i]) * 0.2; this.frame.r += (fr.r - this.frame.r) * 0.2; this.frame.y0 = fr.y0; }
     const asp = W / H, tgt = this.frame.c, R = this.frame.r * (asp < 1.2 ? 2.9 / asp : 2.4) * this.dist;
     const eye = [tgt[0] + R * Math.cos(this.pitch) * Math.sin(this.yaw), tgt[1] + R * Math.sin(this.pitch), tgt[2] + R * Math.cos(this.pitch) * Math.cos(this.yaw)];
-    const VP = m4.mul(m4.persp(0.75, W / H, 1, 120), m4.look(eye, tgt, [0, 1, 0]));
+    let VP = m4.mul(m4.persp(0.75, W / H, 1, 120), m4.look(eye, tgt, [0, 1, 0]));
+    if (this.style === 4 && H > W * 1.15) {   // tall panel: move the bird up (clip-space shift), readouts go below
+      const T = new Float32Array([1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0.24, 0, 1]); VP = m4.mul(T, VP);
+    }
     return { eye, tgt, VP, R };
   }
   /** Scan style: the skin as cross-section rings, organs inside, depth fade, floor grid, live readouts. */
@@ -304,7 +307,7 @@ export class View3D {
     const gl = this.gl, W = this.cv.width, H = this.cv.height;
     const { eye, tgt, VP, R } = this.camera(model, dt);
     gl.viewport(0, 0, W, H);
-    gl.clearColor(0.055, 0.05, 0.045, 1); gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+    gl.clearColor(0, 0, 0, 0); gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
     gl.enable(gl.BLEND); gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA); gl.enable(gl.DEPTH_TEST); gl.depthFunc(gl.LEQUAL);
     gl.uniformMatrix4fv(this.loc.VP, false, VP); gl.uniform3fv(this.loc.eye, eye); gl.uniform1f(this.loc.mode, 4); gl.uniform1f(this.loc.enh, 0);
     gl.uniform1f(this.loc.fogN, R * 0.75); gl.uniform1f(this.loc.fogF, R * 1.45);
@@ -330,6 +333,9 @@ export class View3D {
     // skin: depth only (so only the front surface's rings show), then rings, then a faint rim glow
     gl.clear(gl.DEPTH_BUFFER_BIT);
     const skin = []; for (const p of skinParts) for (const it of this.instances(p)) skin.push(it);
+    for (const i of skin) if (i.part === 'markings') { i.M = i.M.slice(); for (const j of [0, 1, 2, 4, 5, 6, 8, 9, 10]) i.M[j] *= 1.1; }
+    // draw markings last within each pass, so where they meet the body they win
+    skin.sort((a, b) => (a.part === 'markings') - (b.part === 'markings'));
     // (pushed back a little, so rings lying on the surface always pass)
     gl.colorMask(false, false, false, false); gl.depthMask(true); gl.enable(gl.POLYGON_OFFSET_FILL); gl.polygonOffset(2, 4);
     for (const i of skin) this.drawItem({ ...i, a: 1 });
@@ -364,7 +370,7 @@ export class View3D {
     gl.enable(gl.DEPTH_TEST); gl.depthMask(true);
     this.readouts(model, VP, tele);
   }
-  /** Live numbers beside the organs, each with a leader line (the scan style). */
+  /** Live numbers for the organs, colour-coded to match each organ (the scan style). */
   readouts(model, VP, tele) {
     const ov = this.ov, ctx = ov.getContext('2d'), W = ov.width, H = ov.height, d = this.dpr || 1;
     this._ovOn = true;
@@ -374,55 +380,76 @@ export class View3D {
     const find = (part) => model.parts.find((p) => p.part === part);
     const centre = (p) => p ? (p.kind === 'ell' ? p.c : p.kind === 'cone' ? p.tip : p.pts[Math.floor(p.pts.length / 2)]) : null;
     const sing = tele[0] > 0.5, f0 = tele[3], kHz = (v) => v >= 1000 ? (v / 1000).toFixed(2) + ' kHz' : Math.round(v) + ' Hz';
+    const sac = find('sac');
+    // the colour system: each readout wears its organ's colour
     const rows = [
-      ['SYRINX', model.syr, sing ? kHz(f0) : '—', 'tension ' + (tele[2] ?? 0).toFixed(2)],
-      ['AIR SACS', centre(find('airsacs')), sing ? 'pressure ' + (tele[1] ?? 0).toFixed(2) : 'at rest', null],
-      ['THROAT', centre(find('oec')) || centre(find('sac')), tele[9] > 0 ? kHz(tele[9]) : '—', null],
-      ['MOUTH', centre(find('tongue')), tele[10] > 0 ? 'F1 ' + kHz(tele[10]) : '—', tele[11] > 0 ? 'F2 ' + kHz(tele[11]) : null],
-      ['BEAK', centre(find('beak')), 'gape ' + Math.round((tele[8] ?? 0) * 100) + '%', null],
-    ].filter((r) => r[1]);
-    ctx.textBaseline = 'middle';
-    // small panels (the Pi's side panel, phones): a compact legend in the bottom-left corner, a dot on each organ
-    if (W / d < 560) {
-      const items = rows.map(([name, at, v1, v2]) => { const [px, py] = proj(at); return { name, v1: v2 && name === 'MOUTH' ? v1 : v1, px, py }; });
-      const lh = 15 * d, x0 = 12 * d; let y = H - 14 * d - (items.length - 1) * lh;
-      ctx.fillStyle = 'rgba(14,13,12,.72)'; ctx.fillRect(x0 - 6 * d, y - 10 * d, 150 * d, items.length * lh + 6 * d);
-      items.forEach((r, k) => {
-        if (r.px > 0 && r.px < W && r.py > 0 && r.py < H) {
-          ctx.fillStyle = 'rgba(242,169,59,.95)'; ctx.beginPath(); ctx.arc(r.px, r.py, 2.4 * d, 0, 6.283); ctx.fill();
-          ctx.font = `700 ${Math.round(8 * d)}px CarolLabel, sans-serif`; ctx.fillStyle = 'rgba(242,194,122,.9)'; ctx.fillText(String(k + 1), r.px + 5 * d, r.py - 6 * d);
-        }
-        ctx.font = `700 ${Math.round(9 * d)}px CarolLabel, sans-serif`; ctx.fillStyle = 'rgba(241,236,226,.55)'; ctx.fillText(`${k + 1} ${r.name}`, x0, y + k * lh);
-        ctx.font = `700 ${Math.round(11 * d)}px CarolLabel, sans-serif`; ctx.fillStyle = '#f2c27a'; ctx.fillText(r.v1, x0 + 62 * d, y + k * lh);
+      { name: 'SYRINX', short: 'PITCH', col: '#ffc36a', at: model.syr, v: sing ? kHz(f0) : 'resting', sub: 'tension ' + (tele[2] ?? 0).toFixed(2) },
+      { name: 'AIR SACS', short: 'PRESSURE', sv: sing ? (tele[1] ?? 0).toFixed(2) : 'rest', col: '#9fd3ff', at: centre(find('airsacs')), v: sing ? 'pressure ' + (tele[1] ?? 0).toFixed(2) : 'at rest' },
+      { name: sac ? 'NECK SAC' : 'THROAT', col: sac ? '#c9a3ec' : '#f4b9a2', at: centre(find('oec')) || centre(sac), v: tele[9] > 0 ? kHz(tele[9]) : '—', sub: 'resonance' },
+      { name: 'MOUTH', short: 'MOUTH F1', sv: tele[10] > 0 ? kHz(tele[10]) : '—', col: '#f09ab4', at: centre(find('tongue')), v: tele[10] > 0 ? 'F1 ' + kHz(tele[10]) : '—', sub: tele[11] > 0 ? 'F2 ' + kHz(tele[11]) : null },
+      { name: 'BEAK', short: 'GAPE', sv: Math.round((tele[8] ?? 0) * 100) + '%', col: '#efe4cc', at: centre(find('beak')), v: 'gape ' + Math.round((tele[8] ?? 0) * 100) + '%' },
+    ].filter((r) => r.at);
+    for (const r of rows) { const [px, py] = proj(r.at); r.px = px; r.py = py; r.vis = px > 0 && px < W && py > 0 && py < H; }
+    const font = (w, px) => `${w} ${Math.round(px * d)}px CarolLabel, sans-serif`;
+    const dot = (x, y, col, rad = 3.6) => { ctx.fillStyle = 'rgba(20,18,16,.85)'; ctx.beginPath(); ctx.arc(x, y, (rad + 1.6) * d, 0, 6.283); ctx.fill(); ctx.fillStyle = col; ctx.beginPath(); ctx.arc(x, y, rad * d, 0, 6.283); ctx.fill(); };
+    const lead = (x0, y0, x1, y1, col) => { ctx.strokeStyle = col; ctx.globalAlpha = 0.55; ctx.lineWidth = 1.2 * d; ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x1, y1); ctx.stroke(); ctx.globalAlpha = 1; };
+    // one readout block: name in its colour, the value large, a small second line
+    const block = (r, x, y, align, k = 1) => {
+      ctx.textAlign = align; ctx.textBaseline = 'alphabetic';
+      ctx.fillStyle = r.col; ctx.font = font(700, 11 * k); ctx.fillText(r.name, x, y);
+      ctx.fillStyle = '#f6efe2'; ctx.font = font(700, 16 * k); ctx.fillText(r.v, x, y + 18 * k * d);
+      if (r.sub) { ctx.fillStyle = 'rgba(241,236,226,.62)'; ctx.font = font(400, 11 * k); ctx.fillText(r.sub, x, y + 32 * k * d); }
+    };
+    const panel = (x, y, w, h) => { ctx.fillStyle = 'rgba(30,27,24,.72)'; ctx.beginPath(); ctx.roundRect ? ctx.roundRect(x, y, w, h, 6 * d) : ctx.rect(x, y, w, h); ctx.fill(); };
+    const cw = W / d, ch = H / d;
+    if (ch > cw * 1.15) {
+      // tall panel (iPad side panel, the Pi's side panel): a list under the bird, two columns, leader lines up to the organs
+      const cols = cw >= 250 ? 2 : 1, colW = (W - 24 * d) / cols, kk = ch > 700 ? 1.2 : 1, rowH = 54 * kk * d, n = Math.ceil(rows.length / cols);
+      // start just under the bird's feet
+      let feet = H * 0.4;
+      for (const p of model.parts) if (p.part === 'legs' && p.kind === 'tube') for (const q of p.pts) feet = Math.max(feet, proj(q)[1]);
+      const y0 = Math.min(feet + 50 * d, H - 40 * d - n * rowH);
+      panel(8 * d, y0 - 22 * d, W - 16 * d, n * rowH + 22 * d);
+      rows.forEach((r, k) => {
+        const cx = 12 * d + (k % cols) * colW, cy = y0 + Math.floor(k / cols) * rowH;
+        if (r.vis) lead(r.px, r.py, cx + 6 * d, cy - 14 * d, r.col);
+        dot(cx + 6 * d, cy - 14 * d, r.col, 3);
+        block(r, cx + 16 * d, cy - 9 * d, 'left', kk);
       });
-      return;
-    }
-    const pts = rows.map(([name, at, v1, v2]) => { const [px, py] = proj(at); return { name, v1, v2, px, py }; }).filter((r) => r.px > 0 && r.px < W && r.py > 0 && r.py < H);
-    // two columns at the sides (organs on the left half label to the left), ordered top to bottom, evenly spaced
-    const colW = 118 * d, gap = 52 * d, top = 58 * d, bot = H - 60 * d;
-    const bx = pts.length ? [Math.min(...pts.map((r) => r.px)), Math.max(...pts.map((r) => r.px))] : [0, W];
-    const mid = (bx[0] + bx[1]) / 2;
-    for (const side of [0, 1]) {
-      const col = pts.filter((r) => (r.px >= mid) === !!side).sort((a, b) => a.py - b.py);
-      let y = top;
-      for (const r of col) {
-        r.ly = Math.max(y, Math.min(bot, r.py - 10 * d)); y = r.ly + gap;
-        r.lx = side ? W - colW - 14 * d : 14 * d;
-        r.side = side;
+    } else if (cw >= 560) {
+      // wide: two columns at the sides, leader lines to each organ
+      const colW = 130 * d, gap = 56 * d, top = 60 * d, bot = H - 70 * d;
+      const mid = rows.length ? (Math.min(...rows.map((r) => r.px)) + Math.max(...rows.map((r) => r.px))) / 2 : W / 2;
+      for (const side of [0, 1]) {
+        let y = top;
+        for (const r of rows.filter((q) => (q.px >= mid) === !!side).sort((a, b) => a.py - b.py)) {
+          r.ly = Math.max(y, Math.min(bot, r.py - 10 * d)); y = r.ly + gap; r.side = side;
+          r.lx = side ? W - colW - 16 * d : 16 * d;
+        }
       }
+      for (const r of rows) {
+        const tx = r.side ? r.lx : r.lx + colW, ex = r.side ? r.lx - 10 * d : r.lx + colW + 10 * d;
+        if (r.vis) lead(r.px, r.py, ex, r.ly - 4 * d, r.col);
+        dot(ex, r.ly - 4 * d, r.col, 2.6);
+        block(r, tx, r.ly, r.side ? 'left' : 'right');
+      }
+    } else {
+      // short and narrow (phones): a slim strip along the bottom (left of the size buttons), short names,
+      // coloured dots on the organs
+      const cols = 3, x0 = 8 * d, colW = Math.max(64 * d, (W - 150 * d - x0) / cols), rowH = 30 * d, n = Math.ceil(rows.length / cols);
+      const y0 = H - 8 * d - n * rowH;
+      panel(x0 - 4 * d, y0 - 4 * d, cols * colW + 4 * d, n * rowH + 6 * d);
+      rows.forEach((r, k) => {
+        const cx = x0 + (k % cols) * colW, cy = y0 + Math.floor(k / cols) * rowH;
+        ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic';
+        dot(cx + 5 * d, cy + 8 * d, r.col, 2.6);
+        ctx.fillStyle = r.col; ctx.font = font(700, 9); ctx.fillText(r.short || r.name, cx + 12 * d, cy + 11 * d);
+        ctx.fillStyle = '#f6efe2'; ctx.font = font(700, 12); ctx.fillText(r.sv || r.v, cx + 12 * d, cy + 25 * d);
+      });
     }
-    for (const r of pts) {
-      const ex = r.side ? r.lx - 6 * d : r.lx + colW + 6 * d;
-      ctx.strokeStyle = 'rgba(242,169,59,.5)'; ctx.lineWidth = d;
-      ctx.beginPath(); ctx.moveTo(r.px, r.py); ctx.lineTo(ex, r.ly); ctx.lineTo(r.side ? ex + 4 * d : ex - 4 * d, r.ly); ctx.stroke();
-      ctx.fillStyle = 'rgba(242,169,59,.95)'; ctx.beginPath(); ctx.arc(r.px, r.py, 2.4 * d, 0, 6.283); ctx.fill();
-      ctx.textAlign = r.side ? 'left' : 'right';
-      const tx = r.side ? r.lx : r.lx + colW;
-      ctx.fillStyle = 'rgba(241,236,226,.5)'; ctx.font = `700 ${Math.round(9 * d)}px CarolLabel, sans-serif`; ctx.fillText(r.name, tx, r.ly - 9 * d);
-      ctx.fillStyle = '#f2c27a'; ctx.font = `700 ${Math.round(13 * d)}px CarolLabel, sans-serif`; ctx.fillText(r.v1, tx, r.ly + 5 * d);
-      if (r.v2) { ctx.fillStyle = 'rgba(241,236,226,.55)'; ctx.font = `400 ${Math.round(10 * d)}px CarolLabel, sans-serif`; ctx.fillText(r.v2, tx, r.ly + 19 * d); }
-    }
-    ctx.textAlign = 'left';
+    // a coloured dot on each organ
+    for (const r of rows) if (r.vis) dot(r.px, r.py, r.col);
+    ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic';
   }
 }
 function sub(a, b) { return [a[0] - b[0], a[1] - b[1], a[2] - b[2]]; }
