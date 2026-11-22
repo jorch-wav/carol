@@ -318,9 +318,25 @@ export class View3D {
     const asp = W / H, tgt = this.frame.c, R = this.frame.r * (asp < 1.2 ? 2.9 / asp : 2.4) * this.dist;
     const eye = [tgt[0] + R * Math.cos(this.pitch) * Math.sin(this.yaw), tgt[1] + R * Math.sin(this.pitch), tgt[2] + R * Math.cos(this.pitch) * Math.cos(this.yaw)];
     let VP = m4.mul(m4.persp(0.75, W / H, 1, 120), m4.look(eye, tgt, [0, 1, 0]));
-    const box = this.tallBox(W, H);
-    if (box) {   // tall panel with readouts: centre the bird in the space above the box (clip-space shift)
-      const T = new Float32Array([1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1 - box.y / H, 0, 1]); VP = m4.mul(T, VP);
+    if (this.style === 4) {
+      // centre what's actually on screen: the bird's projected extent, moved (smoothly) to the middle of the panel,
+      // or of the space above the readout box
+      const box = this.tallBox(W, H);
+      let nx0 = 1e9, nx1 = -1e9, ny0 = 1e9, ny1 = -1e9;
+      const P = (c) => { const x = VP[0] * c[0] + VP[4] * c[1] + VP[8] * c[2] + VP[12], y = VP[1] * c[0] + VP[5] * c[1] + VP[9] * c[2] + VP[13], w = VP[3] * c[0] + VP[7] * c[1] + VP[11] * c[2] + VP[15];
+        nx0 = Math.min(nx0, x / w); nx1 = Math.max(nx1, x / w); ny0 = Math.min(ny0, y / w); ny1 = Math.max(ny1, y / w); };
+      for (const p of model.parts) {
+        if (p.layer !== 0 && p.part !== 'beak') continue;
+        if (p.kind === 'ell') { for (const sx of [-1, 1]) { P([p.c[0] + sx * p.r[0], p.c[1], p.c[2]]); P([p.c[0], p.c[1] + sx * p.r[1], p.c[2]]); P([p.c[0], p.c[1], p.c[2] + sx * p.r[2]]); } }
+        else if (p.kind === 'cone') { P(p.base); P(p.tip); } else for (const q of p.pts) P(q);
+      }
+      if (nx1 > nx0) {
+        const ty = box ? 1 - box.y / H : 0;                       // where the centre should go (NDC y)
+        const want = [-(nx0 + nx1) / 2, ty - (ny0 + ny1) / 2];
+        if (!this.ndc || this.snap2) { this.ndc = want; this.snap2 = false; }
+        else { this.ndc[0] += (want[0] - this.ndc[0]) * 0.15; this.ndc[1] += (want[1] - this.ndc[1]) * 0.15; }
+        const T = new Float32Array([1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, this.ndc[0], this.ndc[1], 0, 1]); VP = m4.mul(T, VP);
+      }
     }
     return { eye, tgt, VP, R };
   }
