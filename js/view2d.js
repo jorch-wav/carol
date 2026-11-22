@@ -10,14 +10,13 @@ export class View2D {
     this.style = 0;
     this.enhance = true;   // the improved current look: one outer outline, soft light on the plumage, a branch   // 0 cutaway (translucent), 1 plate (ink & watercolour), 2 field guide (solid + cutaway lens), 3 x-ray
     this.box = null;
-    // pinch / wheel zoom and drag to pan, inside the bird panel only; double-tap resets
+    // pinch / wheel zoom and drag to pan, inside the bird panel only; two fingers zoom in and out
     this.zoom = 1; this.pan = [0, 0];
     const pts = new Map(); let pinch = null, lastTap = 0;
     canvas.addEventListener('pointerdown', (e) => {
       pts.set(e.pointerId, [e.clientX, e.clientY]);
       if (pts.size === 2) { const [a, b] = [...pts.values()]; pinch = { d: Math.hypot(a[0] - b[0], a[1] - b[1]), z: this.zoom }; }
       const now = performance.now();
-      if (pts.size === 1 && now - lastTap < 300) { this.zoom = 1; this.pan = [0, 0]; }
       lastTap = now;
     });
     canvas.addEventListener('pointermove', (e) => {
@@ -25,7 +24,7 @@ export class View2D {
       pts.set(e.pointerId, [e.clientX, e.clientY]);
       if (pts.size === 2 && pinch) {
         const [a, b] = [...pts.values()];
-        this.zoom = Math.min(5, Math.max(1, pinch.z * Math.hypot(a[0] - b[0], a[1] - b[1]) / pinch.d));
+        this.zoom = Math.min(5, Math.max(1, pinch.z * Math.hypot(a[0] - b[0], a[1] - b[1]) / pinch.d)); if (this.zoom <= 1.001) this.pan = [0, 0];
       } else if (pts.size === 1 && this.zoom > 1) {
         this.pan[0] += (e.clientX - prev[0]) * this.dpr; this.pan[1] += (e.clientY - prev[1]) * this.dpr;
       }
