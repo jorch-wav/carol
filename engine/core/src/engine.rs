@@ -59,10 +59,8 @@ pub const P_VMODE: usize = 31;
 pub const P_LFO_RATE: usize = 32;
 pub const P_VIBRATO: usize = 33;
 pub const P_TREMOLO: usize = 34;
-pub const P_EQ0: usize = 35;
-pub const EQ_HZ: [f64; 8] = [400.0, 624.0, 973.0, 1517.0, 2366.0, 3690.0, 5755.0, 8975.0];
-pub const P_HARSH: usize = 43;
-pub const NPARAM: usize = 44;
+pub const P_HARSH: usize = 35;
+pub const NPARAM: usize = 36;
 
 pub static PARAMS: [ParamDef; NPARAM] = [
     p!("pressure", "AIR PRESSURE", "LUNGS", 0.4, 1.6, 1.0, "x", false, ALL, "How hard the air sacs squeeze. More pressure: louder, and the labia swing wider."),
@@ -101,16 +99,6 @@ pub static PARAMS: [ParamDef; NPARAM] = [
     p!("lfo_rate", "LFO RATE", "LFO", 0.1, 12.0, 5.0, "Hz", true, ALL, "Speed of the wobble used by vibrato and tremolo."),
     p!("vibrato", "VIBRATO", "LFO", 0.0, 100.0, 0.0, "c", false, ALL, "Wobbles the pitch, in cents (100 = a semitone)."),
     p!("tremolo", "TREMOLO", "LFO", 0.0, 1.0, 0.0, "", false, ALL, "Wobbles the air pressure, so the loudness and tone pulse together, the way a bird's breathing would."),
-    // recording tone: a fixed correction fitted per bird for what the model's body doesn't make (the microphone,
-    // the distance, the habitat). Not knobs: part of the preset.
-    p!("eq0", "TONE 400", "TONE", -12.0, 12.0, 0.0, "dB", false, ALL, "Recording tone correction at 400 Hz."),
-    p!("eq1", "TONE 620", "TONE", -12.0, 12.0, 0.0, "dB", false, ALL, "Recording tone correction at 620 Hz."),
-    p!("eq2", "TONE 970", "TONE", -12.0, 12.0, 0.0, "dB", false, ALL, "Recording tone correction at 970 Hz."),
-    p!("eq3", "TONE 1.5k", "TONE", -12.0, 12.0, 0.0, "dB", false, ALL, "Recording tone correction at 1.5 kHz."),
-    p!("eq4", "TONE 2.4k", "TONE", -12.0, 12.0, 0.0, "dB", false, ALL, "Recording tone correction at 2.4 kHz."),
-    p!("eq5", "TONE 3.7k", "TONE", -12.0, 12.0, 0.0, "dB", false, ALL, "Recording tone correction at 3.7 kHz."),
-    p!("eq6", "TONE 5.8k", "TONE", -12.0, 12.0, 0.0, "dB", false, ALL, "Recording tone correction at 5.8 kHz."),
-    p!("eq7", "TONE 9k", "TONE", -12.0, 12.0, 0.0, "dB", false, ALL, "Recording tone correction at 9 kHz."),
     p!("harsh", "HARSHNESS", "LUNGS", 0.0, 1.0, 0.0, "", false, ALL, "Irregular, partly chaotic vibration of the labia: alternate cycles stronger and weaker (period doubling), wobbling cycle lengths and noisy bursts, as in screeches, caws and creaks. 0 = a clean oscillation."),
 ];
 
@@ -182,8 +170,6 @@ pub struct Engine {
     voices: Vec<Voice>,
     noise: Noise,
     dec: Decim2,
-    /// the recording-tone correction (eq0..eq7) as filters, and the gains they were built for
-    eq: [Biquad; 8], eq_db: [f64; 8], eq_on: bool,
     age: u64,
     os_buf: Vec<f64>,
     last_note: f64,
@@ -221,7 +207,7 @@ impl Engine {
         Engine {
             fs, fsi, body: SONGBIRD, params, fit_tension: 0.3, fit_pressure: 1.0, fit_params: params, loops: Vec::new(), scope: vec![0.0; 5 * SCOPE_N], scope_pos: 0, scope_v: 0, scope_tick: 0, calls: Vec::new(), table,
             voices: (0..NVOICE).map(|_| Voice::new(fsi)).collect(),
-            noise: Noise(0x1234567), dec: Decim2::new(), eq: [Biquad::default(); 8], eq_db: [0.0; 8], eq_on: false, age: 0, os_buf: Vec::new(), last_note: -1.0,
+            noise: Noise(0x1234567), dec: Decim2::new(), age: 0, os_buf: Vec::new(), last_note: -1.0,
         }
     }
     pub fn set_param(&mut self, i: usize, v: f64) {
@@ -309,19 +295,8 @@ impl Engine {
         }
     }
 
-    /// Rebuild the tone-correction filters when their gains changed.
-    fn update_eq(&mut self) {
-        let mut on = false;
-        for k in 0..8 {
-            let g = self.params[P_EQ0 + k];
-            if g != self.eq_db[k] { self.eq[k].peak(EQ_HZ[k], 1.1, g, self.fs); self.eq_db[k] = g; }
-            on |= g.abs() > 0.05;
-        }
-        self.eq_on = on;
-    }
     pub fn process(&mut self, out: &mut [f32]) {
         let n = out.len();
-        if (0..8).any(|k| self.params[P_EQ0 + k] != self.eq_db[k]) { self.update_eq(); }
         if self.os_buf.len() < n * OS { self.os_buf.resize(n * OS, 0.0); }
         for s in self.os_buf[..n * OS].iter_mut() { *s = 0.0; }
         let mut buf = std::mem::take(&mut self.os_buf);
@@ -333,8 +308,7 @@ impl Engine {
         }
         let vol = self.params[P_VOLUME];
         for i in 0..n {
-            let mut y = self.dec.run(buf[2 * i], buf[2 * i + 1]) * vol;
-            if self.eq_on { for b in self.eq.iter_mut() { y = b.run(y); } }
+            let y = self.dec.run(buf[2 * i], buf[2 * i + 1]) * vol;
             // gentle safety saturation
             out[i] = (y / (1.0 + y.abs() * 0.25)) as f32;
         }
@@ -574,7 +548,6 @@ impl Engine {
         self.params[P_MODE] = mode;
         self.all_off();
         self.dec.clear();
-        for b in self.eq.iter_mut() { b.reset(); }
         out
     }
 }

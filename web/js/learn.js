@@ -79,16 +79,21 @@ export class Learn {
     } else if (tab === 'voice') {
       h += `<h2>Body type: ${esc(BODY_LABEL[b.body] || b.body)}</h2><p>${BODY_TEXT[b.body] || ''}</p>`;
       if (b.model_note) h += `<h2>This bird</h2><p>${esc(b.model_note)}</p>`;
-      h += `<h2>How the preset was made</h2><p>Carol tracked the pitch and loudness of ${(b.traced || b.calls).length} clear calls from ${new Set((b.traced || b.calls).map((c) => c.source)).size} recordings. These became the call shapes you play. Then the fitter tried body settings again and again, keeping whatever brought the synth's spectrum closest to the recordings.</p>`;
-      if (b.gen) h += `<h2>Generated calls</h2><p>You're hearing <b>generated</b> calls: each key press makes a new phrase. Carol split ${Object.values(b.style.types).reduce((a, t) => a + (t.phrases || 0), 0)} phrases from all of this bird's recordings into ${Object.values(b.style.types).reduce((a, t) => a + (t.notes || 0), 0)} notes, grouped similar notes and averaged each group into a note shape, and learned which shapes tend to follow which and how long the gaps are. A new phrase is a walk through those shapes. Switch to <b>Traced</b> in Settings to hear the calls traced from single recordings (and to A/B them here).</p>`;
+      h += `<h2>How the preset was made</h2><p>Carol tracked the pitch and loudness of ${b.calls.length} clear calls from ${new Set(b.calls.map((c) => c.source)).size} recordings. These became the call shapes you play. Then the fitter tried body settings again and again, keeping whatever brought the synth's spectrum closest to the recordings.</p>`;
       if (b.match) {
         h += `<div class="score"><div><b>${Math.round(b.match.total)}%</b>overall</div><div><b>${b.match.pitch_cents}¢</b>pitch error</div><div><b>${b.match.loud_db} dB</b>loudness error</div><div><b>${b.match.spec_db} dB</b>spectrum error</div></div>`;
         h += `<p><small>Pitch error is in cents (100 = one semitone). Loudness and spectrum errors are average differences in decibels, compared frame by frame.</small></p>`;
-        const ab = this.local && !b.user && !b.gen;
+        const ab = this.local && !b.user;
         if (ab) h += `<p><b>A/B:</b> press <b>REAL</b> to hear the recording, then <b>CAROL</b> to hear the model sing the same call (with your knob changes). The recordings stay on the Pi.</p>`;
         else h += `<p><small>On the Pi you can A/B each call against its recording here.</small></p>`;
-        h += `<table><tr><th>Call</th><th>From</th><th>Match</th><th>Spectrum</th>${ab ? '<th>Listen</th>' : '<th></th>'}</tr>` + (b.traced || b.calls).map((c, i) => `<tr><td>${esc(c.name)}</td><td>${esc(c.source)} ${c.start.toFixed(1)}s</td><td>${c.match ? Math.round(c.match.total) + '%' : '–'}</td><td>${c.match ? c.match.spec_db + ' dB' : ''}</td><td><span class="ab">${ab ? `<button class="real" data-real="${i}">REAL</button>` : ''}${b.gen ? '' : `<button data-carol="${i}">CAROL</button>`}</span></td></tr>`).join('') + `</table>`;
+        h += `<table><tr><th>Call</th><th>From</th><th>Match</th><th>Spectrum</th>${ab ? '<th>Listen</th>' : '<th></th>'}</tr>` + b.calls.map((c, i) => `<tr><td>${esc(c.name)}</td><td>${esc(c.source)} ${c.start.toFixed(1)}s</td><td>${c.match ? Math.round(c.match.total) + '%' : '–'}</td><td>${c.match ? c.match.spec_db + ' dB' : ''}</td><td><span class="ab">${ab ? `<button class="real" data-real="${i}">REAL</button>` : ''}<button data-carol="${i}">CAROL</button></span></td></tr>`).join('') + `</table>`;
       }
+      h += `<h2>Reading the knobs and views</h2><ul>
+        <li><b>Amber arc on a knob:</b> while a call plays, it runs from where the knob is set to where the call is moving that value right now (breath, tension, closure, throat, tongue, beak). The knob is the bird's starting point; the call is the movement.</li>
+        <li><b>Small amber dot by a knob:</b> the real bird's setting, as fitted from its recordings. Double-tap a knob to go back to it.</li>
+        <li><b>HARSHNESS</b> (in LUNGS) adds irregular, partly chaotic vibration: alternate cycles stronger and weaker, wobbling cycle lengths and noisy bursts, the roughness of screeches and caws. Every bird starts at 0.</li>
+        <li><b>3D view:</b> double-tap to show the live readouts (pitch, air pressure, throat and mouth resonances, beak gape), each in its organ's colour; double-tap again for just the bird. Two fingers zoom.</li>
+      </ul>`;
       h += `<h2>The physics</h2><p>The labia are modelled as a nonlinear oscillator from Gabriel Mindlin's lab at the University of Buenos Aires. Air-sac pressure and labial tension decide whether the labia vibrate at all, and how: high tension gives a pure whistle, low tension a buzz of pulses. The sound then travels through a windpipe with echoes, the throat cavity and the beak.</p>`;
     } else if (tab === 'sources') {
       const s = b.sources || {};
@@ -106,7 +111,7 @@ export class Learn {
     const tb = this.body.querySelector('[data-tour]'); if (tb) tb.onclick = () => this.app.tour.start();
     this.body.querySelectorAll('[data-carol]').forEach((x) => x.onclick = () => { this.stopReal(); this.app.playCall('ab', Number(x.dataset.carol)); setTimeout(() => this.app.release('ab'), 60); });
     this.body.querySelectorAll('[data-real]').forEach((x) => x.onclick = () => {
-      const c = (b.traced || b.calls)[Number(x.dataset.real)];
+      const c = b.calls[Number(x.dataset.real)];
       this.stopReal();
       this.real = new Audio(`clip?bird=${encodeURIComponent(b.id)}&src=${encodeURIComponent(c.source)}&start=${c.start}&end=${c.end}`);
       this.real.play().catch(() => this.app.toast('Recording not available here'));

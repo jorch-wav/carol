@@ -94,7 +94,7 @@ export class PlayBar {
       const p = document.createElement('button');
       p.className = 'pad' + (i === app.callIdx ? ' sel' : '');
       const dur = (c.f.length * c.hop).toFixed(1);
-      p.innerHTML = `<b>${c.name}</b><canvas></canvas><small>${c.gen ? 'NEW EACH TIME' : c.kind.toUpperCase() + ' · ' + dur + 's'} · ${noteName(Math.round(69 + 12 * Math.log2(c.ref_hz / 440)))}${c.match ? ' · ' + Math.round(c.match.total) + '%' : ''}</small>`;
+      p.innerHTML = `<b>${c.name}</b><canvas></canvas><small>${c.kind.toUpperCase()} · ${dur}s · ${noteName(Math.round(69 + 12 * Math.log2(c.ref_hz / 440)))}${c.match ? ' · ' + Math.round(c.match.total) + '%' : ''}</small>`;
       p.addEventListener('pointerdown', (e) => {
         e.preventDefault(); p.setPointerCapture(e.pointerId);
         app.selectCall(i);

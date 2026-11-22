@@ -507,7 +507,7 @@ def build(bid):
             'facts': facts, 'science': SCIENCE + SCIENCE_BODY.get(fit['body'], []) + SCIENCE_BIRD.get(bid, []), 'licence_note': licence_note(recs, img),
         },
         'calls': calls,
-        'style': carol_style.learn(calls, load_gestures(bid), CALL_TYPES.get(bid), load_pgain(bid)),
+        # (a learned 'style' for generated calls used to go here: tools/style.py, switched off)
     }
     json.dump(preset, open(os.path.join(WEB, 'presets', bid + '.json'), 'w'), separators=(',', ':'))
     t = TAXONOMY.get(bid, {})

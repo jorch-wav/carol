@@ -329,45 +329,7 @@ fn cmd_polish(args: &[String], table: &Arc<Table>) {
         }
         (best, bs, before)
     });
-    // recording tone: fit the 8-band correction from the average spectral difference over all calls; keep it only
-    // if the overall match improves
-    let mut results = results;
-    let mut eq_note = String::from("no tone correction");
-    if arg(args, "--eq", "") == "1" {   // off by default: it didn't raise the match (tried on the wattlebird)
-        let its: Vec<Item> = results.iter().map(|r| r.0.clone()).collect();
-        let score_all = |pp: &[f64; NPARAM]| -> Vec<Score> { par_map(&its, |it| score_item(table, body, pp, it, &feats[it.rec], &an)) };
-        let mean = |sc: &Vec<Score>| sc.iter().map(|s| s.total).sum::<f64>() / sc.len().max(1) as f64;
-        let mel = |f: f64| 2595.0 * (1.0 + f / 700.0).log10();
-        let (m0, m1) = (mel(MEL_LO), mel(MEL_HI.min(44100.0 * 0.45)));
-        let band_hz: Vec<f64> = (0..NMEL).map(|b| { let m = m0 + (b as f64 + 0.5) * (m1 - m0) / NMEL as f64; 700.0 * (10f64.powf(m / 2595.0) - 1.0) }).collect();
-        let base = results.iter().map(|r| r.1.total).sum::<f64>() / results.len().max(1) as f64;
-        let (mut best_p, mut best_t, mut best_sc) = (p0, base, results.iter().map(|r| r.1).collect::<Vec<_>>());
-        let mut pp = p0;
-        for _ in 0..3 {
-            // the level-free spectral difference, averaged over calls
-            let res: Vec<Vec<f64>> = par_map(&its, |it| {
-                let (_, sf) = render_item(table, body, &pp, &it.call, &an);
-                let (ta, sa) = shape_profiles(&feats[it.rec], it.t0, it.len, &sf);
-                let d: Vec<f64> = ta.iter().zip(&sa).map(|(a, b)| a - b).collect();
-                let m = d.iter().sum::<f64>() / d.len() as f64; d.iter().map(|x| x - m).collect()
-            });
-            for k in 0..8 {
-                let (lo, hi) = (EQ_HZ[k] / 1.28, EQ_HZ[k] * 1.28);
-                let (mut s, mut c) = (0.0, 0.0);
-                for r in &res { for (b, &f) in band_hz.iter().enumerate() { if f >= lo && f <= hi { s += r[b]; c += 1.0; } } }
-                if c > 0.0 { pp[P_EQ0 + k] = (pp[P_EQ0 + k] + 0.75 * s / c).clamp(-12.0, 12.0); }
-            }
-            let sc = score_all(&pp); let t = mean(&sc);
-            eprintln!("  tone pass: {:.1}%  [{}]", t, (0..8).map(|k| format!("{:+.1}", pp[P_EQ0 + k])).collect::<Vec<_>>().join(" "));
-            if t > best_t + 0.1 { best_t = t; best_p = pp; best_sc = sc; }
-        }
-        if best_t > base + 0.3 {
-            eq_note = format!("tone correction {:+.1} points", best_t - base);
-            for (r, s) in results.iter_mut().zip(&best_sc) { r.1 = *s; }
-            for k in 0..8 { v["params"][PARAMS[P_EQ0 + k].key] = json!((best_p[P_EQ0 + k] * 10.0).round() / 10.0); }
-        }
-    }
-    eprintln!("  {}", eq_note);
+    let results = results;
     let mut tot_b = 0.0; let mut tot_a = 0.0;
     let arr = v["calls"].as_array_mut().unwrap();
     for (k, (it, s, b)) in results.iter().enumerate() {
