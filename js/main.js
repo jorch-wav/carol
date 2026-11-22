@@ -736,7 +736,8 @@ class App {
       acc += now - last; const dt = (now - last) / 1000; last = now;
       if (acc < 1000 / fps - 2) return;
       acc = 0;
-      if (this.bird && !document.hidden) this.liveKnobs(this.audio.tele);
+      // the knobs' live arcs: 15 times a second is plenty, and keeps the drawing smooth on the Pi
+      if (this.bird && !document.hidden && (this._lk = !this._lk)) this.liveKnobs(this.audio.tele);
       if (!this.bird || this.view === 'plate' || document.hidden) return;
       if (this.view === 'sono') { this.sono.draw(this.audio.analyser, this.audio.tele, dt); return; }
       if (this.view === 'wave') { this.wave.draw(this.audio.scope, this.audio.tele, { closure: this.values.closure }); return; }
