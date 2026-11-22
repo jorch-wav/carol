@@ -2,7 +2,6 @@
 // different birds make a dawn chorus. Steps are scheduled ahead on the audio thread (sample-timed);
 // tempo can follow AudioView (the Pi's shared tempo) or incoming MIDI clock.
 import { icon } from './icons.js';
-import { withCallMode } from './gen.js';
 const ls = { get(k, d) { try { const v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch { return d; } }, set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} } };
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -54,7 +53,7 @@ export class Sequencer {
   // ------------------------------------------------------------ birds and slots
   async birdData(id) {
     if (!id || (this.app.bird && id === this.app.bird.id)) return this.app.bird;
-    if (!this.cache[id]) this.cache[id] = withCallMode(this.app.userBirds[id] || await (await fetch(`presets/${id}.json`)).json(), this.app.settings.callMode);
+    if (!this.cache[id]) this.cache[id] = this.app.userBirds[id] || await (await fetch(`presets/${id}.json`)).json();
     return this.cache[id];
   }
   rowBird(r) { return !r.bird || r.bird === this.app.bird?.id ? this.app.bird : this.cache[r.bird]; }

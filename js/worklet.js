@@ -44,12 +44,6 @@ class CarolProcessor extends AudioWorkletProcessor {
       case 'params': for (const [i, v] of m.v) w.carol_set_param(i, v); break;
       case 'fit': w.carol_set_fit(m.tension, m.pressure); break;
       case 'fitsnap': w.carol_snapshot_fit(); break;
-      case 'setcall': {
-        const c = m.v;
-        this.f32(w, 0, c.f); this.f32(w, 1, c.p); this.f32(w, 2, c.n); this.f32(w, 3, c.g); this.f32(w, 4, c.m); this.f32(w, 5, c.c);
-        if (w.carol_set_call) w.carol_set_call(m.i, c.f.length, c.hop, c.ref_hz);
-        break;
-      }
       case 'calls':
         w.carol_clear_calls();
         for (const c of m.v) {

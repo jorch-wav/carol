@@ -7,13 +7,11 @@ export const DEFAULTS = {
   midiIn: 'all', midiCh: 0, velCurve: 'linear', bendRange: 2,
   midiOut: '', outCh: 1, outNotes: true, outClock: false,
   learn: {}, a4: 440, voices: 6, latency: '', sync: 'off', rptRate: '1/8', prefArtist: '',
-  callMode: 'traced', variety: 0.5,
 };
 export function loadSettings() {
   let s = {};
   try { s = JSON.parse(localStorage.getItem('carol-settings') || '{}'); } catch {}
-  // calls are always the traced ones (generated calls are switched off; the code stays in gen.js for later)
-  return Object.assign({}, DEFAULTS, s, { learn: Object.assign({}, s.learn || {}), callMode: 'traced' });
+  return Object.assign({}, DEFAULTS, s, { learn: Object.assign({}, s.learn || {}) });
 }
 export function saveSettings(s) { try { localStorage.setItem('carol-settings', JSON.stringify(s)); } catch {} }
 

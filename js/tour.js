@@ -23,6 +23,7 @@ function steps(app) {
   }[b.body];
   if (body && body.knobs.every(has)) out.push(body);
   if (b.model_note) out.push({ part: null, text: esc(b.model_note) });
+  out.push({ part: null, knobs: ['pressure', 'beak', 'oec'], text: `Watch the knobs while it sings: an <b>amber arc</b> on a knob's rim runs from where you set it to where the call is moving it right now, the breath, the beak, the throat. The knob sets the bird's starting point; the call does the rest, the way the real bird would.` });
   out.push({ part: null, end: true, text: `Now play: <b>KEYS</b> move the call to any note, <b>PADS</b> play each call as the bird sang it, and <b>SEQ</b> builds patterns, even a dawn chorus with several birds. Every knob on the panel is a real part of the bird.` });
   return out.map((s) => ({ ...s, knobs: (s.knobs || []).filter(has) }));
 }
@@ -44,7 +45,7 @@ export class Tour {
     const s = this.list[this.i], app = this.app;
     this.restore();
     app.v2.sel = app.v3.sel = s.part;
-    for (const k of s.knobs) app.knobs[k].flash();
+    for (const k of s.knobs) app.knobs[k] && app.knobs[k].flash();
     this.el.innerHTML = `<div class="tr-card"><div class="tr-n">${this.i + 1} / ${this.list.length}</div><p>${s.text}</p>
       <div class="tr-btns"><button class="rocker" data-t="back" ${this.i ? '' : 'disabled'}>${icon('prev')} BACK</button>${s.demo ? `<button class="rocker" data-t="orig">${icon('play')} ORIGINAL</button>` : ''}<button class="rocker" data-t="hear">${icon('play')} HEAR${s.demo ? ' THE CHANGE' : ''}</button><button class="rocker" data-t="next">${s.end ? 'FINISH' : 'NEXT ' + icon('next')}</button><button class="x" data-t="close" aria-label="Close">${icon('close')}</button></div></div>`;
     this.el.querySelectorAll('[data-t]').forEach((b) => b.onclick = () => this.act(b.dataset.t));
