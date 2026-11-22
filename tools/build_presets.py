@@ -432,6 +432,12 @@ def licence_note(recs, img):
             f'{who} plates are public domain.')
 
 
+# calls the model can't make (kept out of the preset; the match is then the average of the calls that remain)
+DROP_CALLS = {
+    'cardinal': ['XC1070756'],   # a 0.2 s broadband "chip" click: no syrinx oscillation to fit (17%)
+}
+
+
 def load_gestures(bid):
     g = os.path.join(ROOT, 'fits', 'gestures', bid + '.json')
     return json.load(open(g)) if os.path.exists(g) else None
@@ -453,6 +459,14 @@ def build(bid):
     count = {}
     calls = []
     # phrases first, then calls; within each, best match first
+    drop = set(DROP_CALLS.get(bid, []))
+    if drop:
+        fit = dict(fit, calls=[c for c in fit['calls'] if c['source'].replace('XC', '') not in {d.replace('XC', '') for d in drop}])
+        n = max(1, len(fit['calls']))
+        fit['match'] = dict(fit['match'], total=round(sum(c['match']['total'] for c in fit['calls']) / n, 1),
+                            pitch_cents=round(sum(c['match']['pitch_cents'] for c in fit['calls']) / n),
+                            spec_db=round(sum(c['match']['spec_db'] for c in fit['calls']) / n, 1),
+                            loud_db=round(sum(c['match']['loud_db'] for c in fit['calls']) / n, 1))
     for c in sorted(fit['calls'], key=lambda c: (c['kind'] != 'phrase', -c['match']['total'])):
         base = types.get(c['source'].replace('XC', ''), 'Call')
         if c['kind'] == 'phrase' and base == 'Call':

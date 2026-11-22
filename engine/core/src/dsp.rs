@@ -35,6 +35,12 @@ impl Biquad {
         let al = s / (2.0 * q);
         self.set((1.0 + c) / 2.0, -(1.0 + c), (1.0 + c) / 2.0, 1.0 + al, -2.0 * c, 1.0 - al);
     }
+    /// Peaking EQ: a bell of `gain_db` at f (RBJ cookbook).
+    pub fn peak(&mut self, f: f64, q: f64, gain_db: f64, fs: f64) {
+        let (c, s) = Self::wcs(f, fs);
+        let a = 10f64.powf(gain_db / 40.0); let al = s / (2.0 * q);
+        self.set(1.0 + al * a, -2.0 * c, 1.0 - al * a, 1.0 + al / a, -2.0 * c, 1.0 - al / a);
+    }
     /// Band-pass with 0 dB peak gain.
     pub fn bandpass(&mut self, f: f64, q: f64, fs: f64) {
         let (c, s) = Self::wcs(f, fs);

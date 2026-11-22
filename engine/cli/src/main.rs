@@ -75,6 +75,7 @@ fn main() {
         Some("fit") => cmd_fit(&args, &table),
         Some("analyse") => cmd_analyse(&args),
         Some("render") => cmd_render(&args, &table),
+        Some("polish") => cmd_polish(&args, &table),
         _ => eprintln!("usage: carol gen-table <out> | bodies | tone <out.wav> [--f --body --<param>] | bench | fit <dir> --body N --out preset.json | analyse <dir> --fmin --fmax --out g.json | render <preset.json> <calls.json> <out.wav>"),
     }
 }
@@ -228,4 +229,147 @@ fn cmd_render(args: &[String], table: &Arc<Table>) {
     }
     std::fs::write(&args[4], write_wav(&audio, 44100)).unwrap();
     eprintln!("rendered {} calls, {:.1} s", calls.len(), audio.len() as f64 / 44100.0);
+}
+
+/// Polish an existing fit: the body settings stay, each call's gesture tracks get a long extra refinement
+/// (pitch with octave correction, beak / mouth / closure / roughness, loudness), and a change is kept only if that
+/// call's match improves. carol polish <dir> --fit fits/<id>.json --fmin --fmax --rounds 4 --out polished.json
+fn cmd_polish(args: &[String], table: &Arc<Table>) {
+    let dir = std::path::PathBuf::from(&args[2]);
+    let fit_path = arg(args, "--fit", "");
+    let fmin: f64 = arg(args, "--fmin", "250").parse().unwrap();
+    let fmax: f64 = arg(args, "--fmax", "9000").parse().unwrap();
+    let rounds: usize = arg(args, "--rounds", "4").parse().unwrap();
+    let out = arg(args, "--out", "polished.json");
+    let mut v: Value = serde_json::from_str(&std::fs::read_to_string(&fit_path).unwrap()).unwrap();
+    let body = v["body"].as_str().and_then(|b| BODY_NAMES.iter().position(|x| *x == b)).unwrap_or(0) as u8;
+    let mut params = [0.0; NPARAM];
+    for (i, d) in PARAMS.iter().enumerate() { params[i] = v["params"][d.key].as_f64().unwrap_or(d.default); }
+    let an = Analyzer::new(44100.0, fmin, fmax);
+    // the recordings the calls come from
+    let calls = v["calls"].as_array().unwrap().clone();
+    let mut names: Vec<String> = calls.iter().map(|c| c["source"].as_str().unwrap().to_string()).collect();
+    names.sort(); names.dedup();
+    let feats: Vec<Arc<Features>> = names.iter().map(|n| {
+        let b = std::fs::read(dir.join("rec").join(format!("{}.wav", n))).unwrap();
+        let (a, rfs) = read_wav(&b).unwrap();
+        Arc::new(an.analyze(&resample(&a, rfs, 44100.0)))
+    }).collect();
+    let tr = |c: &Value, k: &str, s: f32| -> Vec<f32> { c[k].as_array().map(|a| a.iter().map(|x| x.as_f64().unwrap_or(0.0) as f32 / s).collect()).unwrap_or_default() };
+    let items: Vec<Item> = calls.iter().map(|c| {
+        let f = tr(c, "f", 1.0); let n = f.len(); let hop = c["hop"].as_f64().unwrap_or(HOP_S);
+        let pad = |x: Vec<f32>| if x.len() == n { x } else { vec![0.0; n] };
+        let start = c["start"].as_f64().unwrap();
+        Item { rec: names.iter().position(|x| x == c["source"].as_str().unwrap()).unwrap(), t0: (start / hop).round() as usize, len: n,
+               kind: if c["kind"] == "phrase" { "phrase" } else { "call" },
+               call: Call { f, p: pad(tr(c, "p", 1000.0)), n: pad(tr(c, "n", 100.0)), g: pad(tr(c, "g", 1000.0)), m: pad(tr(c, "m", 1000.0)), c: pad(tr(c, "c", 1000.0)), hop, ref_hz: c["ref_hz"].as_f64().unwrap_or(1000.0) },
+               start_s: start, end_s: c["end"].as_f64().unwrap_or(start), quality: 1.0 }
+    }).collect();
+    let t0 = std::time::Instant::now();
+    let p0 = params;
+    // --dump k: frame by frame, the target's pitch, what Carol was told, and what it made (for diagnosis)
+    if let Ok(k) = arg(args, "--dump", "x").parse::<usize>() {
+        let it = &items[k]; let tf = &feats[it.rec];
+        let (_, sf) = render_item(table, body, &p0, &it.call, &an);
+        for i in 0..it.len.min(sf.f0.len()) {
+            if tf.db[it.t0 + i] < tf.floor_db + 8.0 { continue; }
+            println!("{:4} tgt {:6.0} conf {:.2} | cmd {:6.0} | synth {:6.0} conf {:.2} | p {:.2} | {:+5.0}c", i, tf.f0[it.t0 + i], tf.conf[it.t0 + i], it.call.f[i], sf.f0[i], sf.conf[i], it.call.p[i],
+                if tf.f0[it.t0 + i] > 0.0 && sf.f0[i] > 0.0 { 1200.0 * (sf.f0[i] / tf.f0[it.t0 + i]).log2() } else { 0.0 });
+        }
+        return;
+    }
+    // --body N: first re-tune the bird's body settings (the fitter's free parameters) against these calls as they are,
+    // with up to N evaluations; kept only if the average match improves
+    let mut p0 = p0;
+    let body_evals: usize = arg(args, "--body", "0").parse().unwrap_or(0);
+    if body_evals > 0 {
+        let free = free_params(body);
+        let base: f64 = par_map(&items, |it| score_item(table, body, &p0, it, &feats[it.rec], &an).total).iter().sum::<f64>() / items.len() as f64;
+        let x0: Vec<f64> = free.iter().map(|&i| to_norm(i, p0[i])).collect();
+        let pbase = p0;
+        let mut obj = |u: &[f64]| -> f64 {
+            let mut pp = pbase; for (k, &i) in free.iter().enumerate() { pp[i] = from_norm(i, u[k].clamp(0.0, 1.0)); }
+            -(par_map(&items, |it| score_item(table, body, &pp, it, &feats[it.rec], &an).total).iter().sum::<f64>() / items.len() as f64)
+        };
+        let (x, v, e) = nelder_mead(&mut obj, &x0, 0.05, body_evals);
+        eprintln!("  body re-tune: {:.1}% -> {:.1}% ({} evals)", base, -v, e);
+        if -v > base + 0.2 { for (k, &i) in free.iter().enumerate() { p0[i] = from_norm(i, x[k].clamp(0.0, 1.0)); } }
+    }
+    let results: Vec<(Item, Score, Score)> = par_map(&items, |it| {
+        let tf = &feats[it.rec];
+        let before = score_item(table, body, &p0, it, tf, &an);
+        let (mut best, mut bs) = (it.clone(), before);
+        for round in 0..rounds {
+            // a few different polish moves; keep whatever improves the call's score
+            let moves: [fn(&Arc<Table>, u8, &[f64; NPARAM], &mut Item, &Features, &Analyzer, usize); 4] = [refine_pitch, refine_gesture, refine_tracks, refine_level];
+            for (m, mv) in moves.iter().enumerate() {
+                let mut c = best.clone();
+                mv(table, body, &p0, &mut c, tf, &an, match m { 0 => 4, 1 => 3, 2 => if round == 0 { 4 } else { 2 }, _ => 2 });
+                let s = score_item(table, body, &p0, &c, tf, &an);
+                if s.total > bs.total + 0.05 { best = c; bs = s; }
+            }
+        }
+        (best, bs, before)
+    });
+    // recording tone: fit the 8-band correction from the average spectral difference over all calls; keep it only
+    // if the overall match improves
+    let mut results = results;
+    let mut eq_note = String::from("no tone correction");
+    if arg(args, "--eq", "") == "1" {   // off by default: it didn't raise the match (tried on the wattlebird)
+        let its: Vec<Item> = results.iter().map(|r| r.0.clone()).collect();
+        let score_all = |pp: &[f64; NPARAM]| -> Vec<Score> { par_map(&its, |it| score_item(table, body, pp, it, &feats[it.rec], &an)) };
+        let mean = |sc: &Vec<Score>| sc.iter().map(|s| s.total).sum::<f64>() / sc.len().max(1) as f64;
+        let mel = |f: f64| 2595.0 * (1.0 + f / 700.0).log10();
+        let (m0, m1) = (mel(MEL_LO), mel(MEL_HI.min(44100.0 * 0.45)));
+        let band_hz: Vec<f64> = (0..NMEL).map(|b| { let m = m0 + (b as f64 + 0.5) * (m1 - m0) / NMEL as f64; 700.0 * (10f64.powf(m / 2595.0) - 1.0) }).collect();
+        let base = results.iter().map(|r| r.1.total).sum::<f64>() / results.len().max(1) as f64;
+        let (mut best_p, mut best_t, mut best_sc) = (p0, base, results.iter().map(|r| r.1).collect::<Vec<_>>());
+        let mut pp = p0;
+        for _ in 0..3 {
+            // the level-free spectral difference, averaged over calls
+            let res: Vec<Vec<f64>> = par_map(&its, |it| {
+                let (_, sf) = render_item(table, body, &pp, &it.call, &an);
+                let (ta, sa) = shape_profiles(&feats[it.rec], it.t0, it.len, &sf);
+                let d: Vec<f64> = ta.iter().zip(&sa).map(|(a, b)| a - b).collect();
+                let m = d.iter().sum::<f64>() / d.len() as f64; d.iter().map(|x| x - m).collect()
+            });
+            for k in 0..8 {
+                let (lo, hi) = (EQ_HZ[k] / 1.28, EQ_HZ[k] * 1.28);
+                let (mut s, mut c) = (0.0, 0.0);
+                for r in &res { for (b, &f) in band_hz.iter().enumerate() { if f >= lo && f <= hi { s += r[b]; c += 1.0; } } }
+                if c > 0.0 { pp[P_EQ0 + k] = (pp[P_EQ0 + k] + 0.75 * s / c).clamp(-12.0, 12.0); }
+            }
+            let sc = score_all(&pp); let t = mean(&sc);
+            eprintln!("  tone pass: {:.1}%  [{}]", t, (0..8).map(|k| format!("{:+.1}", pp[P_EQ0 + k])).collect::<Vec<_>>().join(" "));
+            if t > best_t + 0.1 { best_t = t; best_p = pp; best_sc = sc; }
+        }
+        if best_t > base + 0.3 {
+            eq_note = format!("tone correction {:+.1} points", best_t - base);
+            for (r, s) in results.iter_mut().zip(&best_sc) { r.1 = *s; }
+            for k in 0..8 { v["params"][PARAMS[P_EQ0 + k].key] = json!((best_p[P_EQ0 + k] * 10.0).round() / 10.0); }
+        }
+    }
+    eprintln!("  {}", eq_note);
+    let mut tot_b = 0.0; let mut tot_a = 0.0;
+    let arr = v["calls"].as_array_mut().unwrap();
+    for (k, (it, s, b)) in results.iter().enumerate() {
+        tot_b += b.total; tot_a += s.total;
+        eprintln!("  {} {:.2}s: {:.1}% -> {:.1}%  (pitch {:.0} c, spec {:.1} dB)", names[it.rec], it.start_s, b.total, s.total, s.pitch_cents, s.spec_db);
+        let c = &mut arr[k];
+        c["f"] = json!(it.call.f.iter().map(|v| v.round() as i32).collect::<Vec<_>>());
+        c["p"] = json!(it.call.p.iter().map(|v| (v * 1000.0).round() as i32).collect::<Vec<_>>());
+        c["n"] = json!(it.call.n.iter().map(|v| (v * 100.0).round() as i32).collect::<Vec<_>>());
+        c["g"] = json!(it.call.g.iter().map(|v| (v * 1000.0).round() as i32).collect::<Vec<_>>());
+        c["m"] = json!(it.call.m.iter().map(|v| (v * 1000.0).round() as i32).collect::<Vec<_>>());
+        c["c"] = json!(it.call.c.iter().map(|v| (v * 1000.0).round() as i32).collect::<Vec<_>>());
+        c["match"] = json!({"total": (s.total * 10.0).round() / 10.0, "pitch_cents": s.pitch_cents.round(), "loud_db": (s.loud_db * 10.0).round() / 10.0, "spec_db": (s.spec_db * 10.0).round() / 10.0});
+    }
+    if body_evals > 0 { for (i, d) in PARAMS.iter().enumerate() { if v["params"].get(d.key).is_some() { v["params"][d.key] = json!((p0[i] * 1000.0).round() / 1000.0); } } }
+    let n = results.len().max(1) as f64;
+    v["match"]["total"] = json!((tot_a / n * 10.0).round() / 10.0);
+    v["match"]["pitch_cents"] = json!((results.iter().map(|r| r.1.pitch_cents).sum::<f64>() / n).round());
+    v["match"]["loud_db"] = json!((results.iter().map(|r| r.1.loud_db).sum::<f64>() / n * 10.0).round() / 10.0);
+    v["match"]["spec_db"] = json!((results.iter().map(|r| r.1.spec_db).sum::<f64>() / n * 10.0).round() / 10.0);
+    std::fs::write(&out, serde_json::to_string(&v).unwrap()).unwrap();
+    eprintln!("polish: {:.1}% -> {:.1}% in {:?}, wrote {}", tot_b / n, tot_a / n, t0.elapsed(), out);
 }

@@ -183,9 +183,34 @@ pub fn refine_tracks(table: &Arc<Table>, body: u8, params: &[f64; NPARAM], it: &
     }
 }
 
+/// Pitch only, with a wider reach than refine(): corrects octave slips (the synth an octave or a fifth off the
+/// recording) and converges faster on fast sweeps. Used by the polish pass, which keeps it only if the call's
+/// score improves.
+pub fn refine_pitch(table: &Arc<Table>, body: u8, params: &[f64; NPARAM], it: &mut Item, tf: &Features, an: &Analyzer, iters: usize) {
+    for _ in 0..iters {
+        let (_, sf) = render_item(table, body, params, &it.call, an);
+        let n = it.len.min(sf.db.len());
+        let thr = tf.floor_db + 8.0;
+        for k in 0..n {
+            if tf.db[it.t0 + k] < thr || tf.conf[it.t0 + k] < 0.35 { continue; }
+            let tf0 = tf.f0[it.t0 + k]; let sf0 = sf.f0[k];
+            if tf0 <= 0.0 || sf0 <= 0.0 { continue; }
+            let oct = (tf0 / sf0).log2();
+            let r = if oct.abs() < 0.45 { 2f64.powf(oct * 0.95).clamp(0.8, 1.25) }
+                    else if (oct - oct.round()).abs() < 0.12 && tf.conf[it.t0 + k] > 0.5 { 2f64.powf(oct.round()) }
+                    else if ((oct * 2.0) - (oct * 2.0).round()).abs() < 0.1 { 2f64.powf(oct * 0.5).clamp(0.7, 1.4) }
+                    else { 1.0 };
+            it.call.f[k] = ((it.call.f[k] as f64) * r).clamp(40.0, 16000.0) as f32;
+        }
+        // keep the pitch track smooth over 2-3 frames (a real syrinx can't jump per 5 ms frame)
+        let f0 = it.call.f.clone();
+        for k in 1..f0.len().saturating_sub(1) { it.call.f[k] = ((f0[k - 1] as f64).ln() * 0.2 + (f0[k] as f64).ln() * 0.6 + (f0[k + 1] as f64).ln() * 0.2).exp() as f32; }
+    }
+}
+
 pub struct FitResult { pub params: [f64; NPARAM], pub scores: Vec<Score>, pub total: f64, pub evals: usize }
 
-fn par_map<T: Sync, R: Send>(xs: &[T], f: impl Fn(&T) -> R + Sync) -> Vec<R> {
+pub fn par_map<T: Sync, R: Send>(xs: &[T], f: impl Fn(&T) -> R + Sync) -> Vec<R> {
     #[cfg(not(target_arch = "wasm32"))]
     {
         // CAROL_THREADS caps the worker threads (a Pi on a weak power supply browns out at full load)
@@ -204,7 +229,7 @@ fn par_map<T: Sync, R: Send>(xs: &[T], f: impl Fn(&T) -> R + Sync) -> Vec<R> {
 }
 
 /// Nelder–Mead in the unit cube.
-fn nelder_mead(f: &mut dyn FnMut(&[f64]) -> f64, x0: &[f64], step: f64, max_evals: usize) -> (Vec<f64>, f64, usize) {
+pub fn nelder_mead(f: &mut dyn FnMut(&[f64]) -> f64, x0: &[f64], step: f64, max_evals: usize) -> (Vec<f64>, f64, usize) {
     let d = x0.len();
     let clamp = |v: &mut Vec<f64>| for x in v.iter_mut() { *x = x.clamp(0.0, 1.0); };
     let mut pts: Vec<Vec<f64>> = vec![x0.to_vec()];
