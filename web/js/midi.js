@@ -79,7 +79,8 @@ export class Midi {
     if (st === 0xe0) { app.bend(((d[2] << 7) | d[1]) / 8192 - 1); return; }
     if (st !== 0xb0) return;
     const cc = d[1], v = d[2];
-    if (cc === 123 || cc === 120) { app.panic(); return; }
+    if (cc === 120) { app.panic(); return; }            // all sound off: silence now
+    if (cc === 123) { app.allNotesOff(); return; }      // all notes off: release them, like letting go of the keys
     if (hw || (ch === 15 && ((cc >= 20 && cc <= 47) || cc === 7) && !this.s.learn['cc:15:' + cc])) {
       const rel = v - 64;
       if (cc >= 20 && cc <= 23) app.hwKnob(cc - 20, rel);
