@@ -163,7 +163,20 @@ export class View3D {
       this.yaw = drag.yaw + (e.clientX - drag.x) * 0.01;
       this.pitch = Math.max(-1.2, Math.min(1.2, drag.pitch + (e.clientY - drag.y) * 0.01));
     });
-    const up = (e) => { pts.delete(e.pointerId); this._pd = null; if (pts.size === 0) { this.lastDrag = drag; drag = null; } };
+    // double-tap: hide / show the readouts and their lines (just the bird)
+    try { this.showInfo = localStorage.getItem('carol-3d-info') !== 'off'; } catch { this.showInfo = true; }
+    let lastTap = 0;
+    const up = (e) => {
+      pts.delete(e.pointerId); this._pd = null;
+      if (pts.size === 0) {
+        if (drag && drag.moved < 10) {
+          const now = performance.now();
+          if (now - lastTap < 330) { this.showInfo = !this.showInfo; lastTap = 0; try { localStorage.setItem('carol-3d-info', this.showInfo ? 'on' : 'off'); } catch {} this.onInfo && this.onInfo(this.showInfo); }
+          else lastTap = now;
+        }
+        this.lastDrag = drag; drag = null;
+      }
+    };
     canvas.addEventListener('pointerup', up); canvas.addEventListener('pointercancel', up);
     canvas.addEventListener('wheel', (e) => { e.preventDefault(); this.dist = Math.min(2, Math.max(0.5, this.dist * (e.deltaY > 0 ? 1.08 : 0.93))); }, { passive: false });
   }
@@ -375,7 +388,7 @@ export class View3D {
     const ov = this.ov, ctx = ov.getContext('2d'), W = ov.width, H = ov.height, d = this.dpr || 1;
     this._ovOn = true;
     ctx.clearRect(0, 0, W, H);
-    if (!tele) return;
+    if (!tele || !this.showInfo) return;
     const proj = (c) => { const x = VP[0] * c[0] + VP[4] * c[1] + VP[8] * c[2] + VP[12], y = VP[1] * c[0] + VP[5] * c[1] + VP[9] * c[2] + VP[13], w = VP[3] * c[0] + VP[7] * c[1] + VP[11] * c[2] + VP[15]; return [(x / w * 0.5 + 0.5) * W, (0.5 - y / w * 0.5) * H]; };
     const find = (part) => model.parts.find((p) => p.part === part);
     const centre = (p) => p ? (p.kind === 'ell' ? p.c : p.kind === 'cone' ? p.tip : p.pts[Math.floor(p.pts.length / 2)]) : null;
@@ -405,10 +418,8 @@ export class View3D {
     if (ch > cw * 1.15) {
       // tall panel (iPad side panel, the Pi's side panel): a list under the bird, two columns, leader lines up to the organs
       const cols = cw >= 250 ? 2 : 1, colW = (W - 24 * d) / cols, kk = ch > 700 ? 1.2 : 1, rowH = 54 * kk * d, n = Math.ceil(rows.length / cols);
-      // start just under the bird's feet
-      let feet = H * 0.4;
-      for (const p of model.parts) if (p.part === 'legs' && p.kind === 'tube') for (const q of p.pts) feet = Math.max(feet, proj(q)[1]);
-      const y0 = Math.min(feet + 50 * d, H - 40 * d - n * rowH);
+      // a fixed place under the bird (it doesn't follow the bird around)
+      const y0 = Math.round(Math.min(H * 0.6, H - 40 * d - n * rowH));
       panel(8 * d, y0 - 22 * d, W - 16 * d, n * rowH + 22 * d);
       rows.forEach((r, k) => {
         const cx = 12 * d + (k % cols) * colW, cy = y0 + Math.floor(k / cols) * rowH;
@@ -417,21 +428,22 @@ export class View3D {
         block(r, cx + 16 * d, cy - 9 * d, 'left', kk);
       });
     } else if (cw >= 560) {
-      // wide: two columns at the sides, leader lines to each organ
-      const colW = 130 * d, gap = 56 * d, top = 60 * d, bot = H - 70 * d;
-      const mid = rows.length ? (Math.min(...rows.map((r) => r.px)) + Math.max(...rows.map((r) => r.px))) / 2 : W / 2;
-      for (const side of [0, 1]) {
-        let y = top;
-        for (const r of rows.filter((q) => (q.px >= mid) === !!side).sort((a, b) => a.py - b.py)) {
-          r.ly = Math.max(y, Math.min(bot, r.py - 10 * d)); y = r.ly + gap; r.side = side;
-          r.lx = side ? W - colW - 16 * d : 16 * d;
-        }
-      }
-      for (const r of rows) {
-        const tx = r.side ? r.lx : r.lx + colW, ex = r.side ? r.lx - 10 * d : r.lx + colW + 10 * d;
-        if (r.vis) lead(r.px, r.py, ex, r.ly - 4 * d, r.col);
-        dot(ex, r.ly - 4 * d, r.col, 2.6);
-        block(r, tx, r.ly, r.side ? 'left' : 'right');
+      // wide: two fixed panels at the sides (throat, syrinx, air sacs on the left; mouth, beak on the right),
+      // rows on a fixed grid; only the coloured lines move with the bird
+      const colW = 150 * d, rowH = 58 * d, padX = 14 * d;
+      const left = rows.filter((r) => ['THROAT', 'NECK SAC', 'SYRINX', 'AIR SACS'].includes(r.name)), right = rows.filter((r) => !left.includes(r));
+      const order = { 'THROAT': 0, 'NECK SAC': 0, 'SYRINX': 1, 'AIR SACS': 2, 'MOUTH': 0, 'BEAK': 1 };
+      for (const [side, list] of [[0, left], [1, right]]) {
+        list.sort((a, b) => order[a.name] - order[b.name]);
+        const top = Math.round(H * 0.42 - Math.max(left.length, right.length) * rowH / 2), x = side ? W - colW - 16 * d : 16 * d;
+        const h = list.reduce((a, r, k) => a + (k < list.length - 1 ? rowH : (r.sub ? 46 : 32) * d), 0);
+        if (list.length) panel(x, top, colW, h + 12 * d);
+        list.forEach((r, k) => {
+          const ry = top + k * rowH + 20 * d, ex = side ? x : x + colW;
+          if (r.vis) lead(r.px, r.py, ex, ry - 4 * d, r.col);
+          dot(ex, ry - 4 * d, r.col, 2.6);
+          block(r, side ? x + padX : x + colW - padX, ry, side ? 'left' : 'right');
+        });
       }
     } else {
       // short and narrow (phones): a slim strip along the bottom (left of the size buttons), short names,
