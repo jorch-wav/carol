@@ -478,6 +478,9 @@ class App {
     for (const h of this.held.values()) { h.next = on ? this.audio.now + this.rptPeriod() : undefined; if (!on) this.audio.unqueue('rpt' + h.id); }
   }
   sustain(on) { this.sustainOn = on; if (!on && !this.hold) this.releaseLatched(); }
+  /** MIDI "all notes off" (CC 123): release every MIDI note still down, the normal way (the call plays its ending;
+   *  HOLD and the sustain pedal still apply). The Pi's keys bridge sends it whenever the last key comes up. */
+  allNotesOff() { for (const src of [...this.held.keys()]) if (src.startsWith('midi')) this.release(src); }
   panic() { this.audio.allOff(); this.held.clear(); this.latched.clear(); this.seq && this.seq.stop(); }
   bend(b) { this.bendV = b; this.setValue('mass', this.values.mass ?? 0, false); }
   // ---------------------------------------------------------------- settings, MIDI learn
