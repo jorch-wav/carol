@@ -278,13 +278,29 @@ fn cmd_polish(args: &[String], table: &Arc<Table>) {
         }
         return;
     }
+    // --harsh-sweep "0,0.05,0.1": the average match at each harshness (body as it is), then stop
+    let sweep = arg(args, "--harsh-sweep", "");
+    if !sweep.is_empty() {
+        for hv in sweep.split(',').filter_map(|x| x.parse::<f64>().ok()) {
+            let mut pp = p0; pp[P_HARSH] = hv;
+            let sc = par_map(&items, |it| score_item(table, body, &pp, it, &feats[it.rec], &an));
+            let n = sc.len() as f64;
+            eprintln!("harsh {:.2}: {:.1}%  (pitch {:.0} c, loud {:.1} dB, spec {:.1} dB)", hv, sc.iter().map(|s| s.total).sum::<f64>() / n,
+                sc.iter().map(|s| s.pitch_cents).sum::<f64>() / n, sc.iter().map(|s| s.loud_db).sum::<f64>() / n, sc.iter().map(|s| s.spec_db).sum::<f64>() / n);
+        }
+        return;
+    }
     // --body N: first re-tune the bird's body settings (the fitter's free parameters) against these calls as they are,
     // with up to N evaluations; kept only if the average match improves
     let mut p0 = p0;
     let body_evals: usize = arg(args, "--body", "0").parse().unwrap_or(0);
+    // --harsh x: also tune HARSHNESS, starting from x (for the harsh callers)
+    let harsh0: f64 = arg(args, "--harsh", "-1").parse().unwrap_or(-1.0);
     if body_evals > 0 {
-        let free = free_params(body);
+        let mut free = free_params(body);
+        // the baseline is the bird as it is (no harshness); the search then starts from the given harshness
         let base: f64 = par_map(&items, |it| score_item(table, body, &p0, it, &feats[it.rec], &an).total).iter().sum::<f64>() / items.len() as f64;
+        if harsh0 >= 0.0 { free.push(P_HARSH); p0[P_HARSH] = harsh0; }
         let x0: Vec<f64> = free.iter().map(|&i| to_norm(i, p0[i])).collect();
         let pbase = p0;
         let mut obj = |u: &[f64]| -> f64 {
@@ -294,6 +310,8 @@ fn cmd_polish(args: &[String], table: &Arc<Table>) {
         let (x, v, e) = nelder_mead(&mut obj, &x0, 0.05, body_evals);
         eprintln!("  body re-tune: {:.1}% -> {:.1}% ({} evals)", base, -v, e);
         if -v > base + 0.2 { for (k, &i) in free.iter().enumerate() { p0[i] = from_norm(i, x[k].clamp(0.0, 1.0)); } }
+        else if harsh0 >= 0.0 { p0[P_HARSH] = 0.0; }
+        if p0[P_HARSH] > 0.0 { eprintln!("  harshness {:.2}", p0[P_HARSH]); }
     }
     let results: Vec<(Item, Score, Score)> = par_map(&items, |it| {
         let tf = &feats[it.rec];
@@ -364,7 +382,7 @@ fn cmd_polish(args: &[String], table: &Arc<Table>) {
         c["c"] = json!(it.call.c.iter().map(|v| (v * 1000.0).round() as i32).collect::<Vec<_>>());
         c["match"] = json!({"total": (s.total * 10.0).round() / 10.0, "pitch_cents": s.pitch_cents.round(), "loud_db": (s.loud_db * 10.0).round() / 10.0, "spec_db": (s.spec_db * 10.0).round() / 10.0});
     }
-    if body_evals > 0 { for (i, d) in PARAMS.iter().enumerate() { if v["params"].get(d.key).is_some() { v["params"][d.key] = json!((p0[i] * 1000.0).round() / 1000.0); } } }
+    if body_evals > 0 { for (i, d) in PARAMS.iter().enumerate() { if v["params"].get(d.key).is_some() || (i == P_HARSH && p0[i] > 0.0) { v["params"][d.key] = json!((p0[i] * 1000.0).round() / 1000.0); } } }
     let n = results.len().max(1) as f64;
     v["match"]["total"] = json!((tot_a / n * 10.0).round() / 10.0);
     v["match"]["pitch_cents"] = json!((results.iter().map(|r| r.1.pitch_cents).sum::<f64>() / n).round());

@@ -61,7 +61,8 @@ pub const P_VIBRATO: usize = 33;
 pub const P_TREMOLO: usize = 34;
 pub const P_EQ0: usize = 35;
 pub const EQ_HZ: [f64; 8] = [400.0, 624.0, 973.0, 1517.0, 2366.0, 3690.0, 5755.0, 8975.0];
-pub const NPARAM: usize = 43;
+pub const P_HARSH: usize = 43;
+pub const NPARAM: usize = 44;
 
 pub static PARAMS: [ParamDef; NPARAM] = [
     p!("pressure", "AIR PRESSURE", "LUNGS", 0.4, 1.6, 1.0, "x", false, ALL, "How hard the air sacs squeeze. More pressure: louder, and the labia swing wider."),
@@ -110,6 +111,7 @@ pub static PARAMS: [ParamDef; NPARAM] = [
     p!("eq5", "TONE 3.7k", "TONE", -12.0, 12.0, 0.0, "dB", false, ALL, "Recording tone correction at 3.7 kHz."),
     p!("eq6", "TONE 5.8k", "TONE", -12.0, 12.0, 0.0, "dB", false, ALL, "Recording tone correction at 5.8 kHz."),
     p!("eq7", "TONE 9k", "TONE", -12.0, 12.0, 0.0, "dB", false, ALL, "Recording tone correction at 9 kHz."),
+    p!("harsh", "HARSHNESS", "LUNGS", 0.0, 1.0, 0.0, "", false, ALL, "Irregular, partly chaotic vibration of the labia: alternate cycles stronger and weaker (period doubling), wobbling cycle lengths and noisy bursts, as in screeches, caws and creaks. 0 = a clean oscillation."),
 ];
 
 pub fn body_has(body: u8, i: usize) -> bool { PARAMS[i].bodies & (1 << body) != 0 }
@@ -129,7 +131,7 @@ const HMAX: f64 = 0.3;
 const MASTER: f64 = 0.35;
 
 #[derive(Clone)]
-struct Side { osc: Osc, dc: OnePole, last: f64, gate: f64, prev_r: f64 }
+struct Side { osc: Osc, dc: OnePole, last: f64, gate: f64, prev_r: f64, sub: f64 }
 
 #[derive(Clone)]
 struct Voice {
@@ -139,25 +141,27 @@ struct Voice {
     tr: Delay, tr_lp: OnePole,
     oec: Biquad, sac: Biquad, f1: Biquad, f2: Biquad, beak: Biquad, rad: OnePole,
     turb_lp: OnePole, ctl: u32,
+    jit_lp: OnePole,
     // telemetry
-    t_p: f64, t_f: f64, t_w: [f64; 2], t_x: [f64; 2], t_beak: f64, t_oec: f64, t_f1: f64, t_f2: f64, t_lvl: f64, t_b: f64,
+    t_p: f64, t_f: f64, t_w: [f64; 2], t_x: [f64; 2], t_beak: f64, t_oec: f64, t_f1: f64, t_f2: f64, t_lvl: f64, t_b: f64, t_tongue: f64, t_close: f64,
 }
 
 impl Voice {
     fn new(fsi: f64) -> Voice {
-        let side = Side { osc: Osc { x: 1.4, y: 0.0 }, dc: OnePole::default(), last: 0.0, gate: 0.0, prev_r: 0.0 };
+        let side = Side { osc: Osc { x: 1.4, y: 0.0 }, dc: OnePole::default(), last: 0.0, gate: 0.0, prev_r: 0.0, sub: 0.0 };
         let mut v = Voice {
             on: false, id: -1, call: 0, pos: 0.0, ratio: 1.0, vel: 1.0, age: 0, held: false, rel: 0.0, env: 0.0, target: 1.0, lfo: 0.0, dir: 1.0,
             side: [side.clone(), side],
             tr: Delay::new((0.5 * fsi / 343.0 * 2.0 + 16.0) as usize), tr_lp: OnePole::default(),
             oec: Biquad::default(), sac: Biquad::default(), f1: Biquad::default(), f2: Biquad::default(), beak: Biquad::default(), rad: OnePole::default(),
-            turb_lp: OnePole::default(), ctl: 0,
-            t_p: 0.0, t_f: 0.0, t_w: [0.0; 2], t_x: [0.0; 2], t_beak: 0.0, t_oec: 0.0, t_f1: 0.0, t_f2: 0.0, t_lvl: 0.0, t_b: 0.0,
+            turb_lp: OnePole::default(), ctl: 0, jit_lp: OnePole::default(),
+            t_p: 0.0, t_f: 0.0, t_w: [0.0; 2], t_x: [0.0; 2], t_beak: 0.0, t_oec: 0.0, t_f1: 0.0, t_f2: 0.0, t_lvl: 0.0, t_b: 0.0, t_tongue: 0.0, t_close: 0.0,
         };
         for s in v.side.iter_mut() { s.dc.set_lp(60.0, fsi); }
         v.tr_lp.set_lp(9000.0, fsi);
         v.rad.set_lp(350.0, fsi);
         v.turb_lp.set_lp(4000.0, fsi);
+        v.jit_lp.set_lp(250.0, fsi);
         v
     }
 }
@@ -286,12 +290,12 @@ impl Engine {
 
     /// Telemetry for the visuals, from the loudest voice.
     /// [active, pressure, tension b, f0, left w, right w, left x, right x, beak gape, oec Hz, F1, F2, level, call, call progress, voices]
-    pub fn telemetry(&self, out: &mut [f32; 16]) {
+    pub fn telemetry(&self, out: &mut [f32; 20]) {
         let mut best: Option<&Voice> = None;
         for v in self.voices.iter().filter(|v| v.on) {
             if best.map_or(true, |b| v.t_lvl > b.t_lvl) { best = Some(v); }
         }
-        *out = [0.0; 16];
+        *out = [0.0; 20];
         out[15] = self.active() as f32;
         out[2] = self.params[P_TENSION] as f32;
         out[8] = self.params[P_BEAK] as f32;
@@ -300,6 +304,7 @@ impl Engine {
             out[0] = 1.0; out[1] = v.t_p as f32; out[2] = v.t_b as f32; out[3] = v.t_f as f32;
             out[4] = v.t_w[0] as f32; out[5] = v.t_w[1] as f32; out[6] = v.t_x[0] as f32; out[7] = v.t_x[1] as f32;
             out[8] = v.t_beak as f32; out[9] = v.t_oec as f32; out[10] = v.t_f1 as f32; out[11] = v.t_f2 as f32;
+            out[16] = v.t_tongue as f32; out[17] = v.t_close as f32;
             out[12] = v.t_lvl as f32; out[13] = v.call as f32; out[14] = (v.pos / len) as f32;
         }
     }
@@ -396,6 +401,7 @@ impl Engine {
             let goff = if call.g.len() == nfr { lerp(call.g[i0] as f64, call.g[i1] as f64, fr) } else { 0.0 };
             let moff = if call.m.len() == nfr { lerp(call.m[i0] as f64, call.m[i1] as f64, fr) } else { 0.0 };
             let coff = if call.c.len() == nfr { lerp(call.c[i0] as f64, call.c[i1] as f64, fr) } else { 0.0 };
+            v.t_tongue = (p[P_TONGUE_H] + moff).clamp(0.0, 1.0);
             v.pos = (v.pos + step * v.dir).max(0.0);
 
             // ---- envelope (declick / release) ----
@@ -411,6 +417,9 @@ impl Engine {
             let tn = v.turb_lp.lp(noise.next()) * 3.0;
             let turb = turb_k * (0.35 + rough) * pp.sqrt();
             let b = p[P_TENSION] + turb * tn * 0.4;
+            // harshness: irregular vibration (period doubling, cycle jitter, pulsed noise), more where the call is rough
+            let harsh = if p[P_HARSH] > 0.0 { (p[P_HARSH] * (0.5 + rough)).min(1.5) } else { 0.0 };
+            let jit = if harsh > 0.0 { v.jit_lp.lp(noise.next()) * 4.0 } else { 0.0 };
 
             // ---- which sides sing ----
             // w = loudness weight per side, iv = side sings the second-voice interval
@@ -436,7 +445,12 @@ impl Engine {
                 if wk < 1e-3 && sd.gate < 1e-4 { sd.last = 0.0; continue; }
                 sd.gate += (wk - sd.gate) * 0.002;
                 let fk = if iv[k] { f0 * two_ratio } else { f0 };
-                let pk = pp * sd.gate;
+                let mut pk = pp * sd.gate;
+                if harsh > 0.0 {
+                    // period doubling: the drive swings at half the note, so alternate cycles differ
+                    sd.sub += 0.5 * fk / fsi; if sd.sub >= 1.0 { sd.sub -= 1.0; }
+                    pk *= 1.0 + harsh * 0.45 * (2.0 * core::f64::consts::PI * sd.sub).sin();
+                }
                 let u = (pk * p[P_PRESSURE] - P_ON) * A_SPAN;
                 let u_ref = (pk * fit_p - P_ON) * A_SPAN;
                 let mut a = table.threshold(b) + u + turb * tn * 0.15;
@@ -446,13 +460,15 @@ impl Engine {
                 }
                 let sd = &mut v.side[k];
                 let wref = table.omega(u_ref, fit_b, 0.12);
-                let gamma = 2.0 * core::f64::consts::PI * fk / wref;
+                let mut gamma = 2.0 * core::f64::consts::PI * fk / wref;
+                if harsh > 0.0 { gamma *= 1.0 + harsh * 0.06 * jit; }   // jitter: each cycle a little longer or shorter
                 sd.osc.advance(a, b, gamma / fsi, HMAX);
                 let x = sd.osc.x - table.mean_x(u, b);
                 sd.last = x;
                 // labial closure: the airflow is cut while the labia are shut, and the
                 // abrupt cut-off radiates strongly (flow derivative)
                 let cl = (p[P_CLOSURE] + coff).clamp(0.0, 1.0);
+                v.t_close = cl;
                 let a_est = table.amplitude(u, b).max(0.05);
                 let r = x.max(-a_est * (1.0 - cl));
                 let dr = (r - sd.prev_r) * fsi / (2.0 * core::f64::consts::PI * fk);
@@ -461,6 +477,7 @@ impl Engine {
                 // turbulent jet noise, strongest while the labia are open
                 let open = (sd.osc.x - 0.2).max(0.0).min(2.0);
                 src += y + noise.next() * breath * pk * (0.15 + 0.85 * open) * 5.0;
+                if harsh > 0.0 { src += noise.next() * harsh * pk * open * 1.6; }   // a noisy burst at each opening
                 v.t_x[k] = sd.osc.x;
             }
             // breath noise enters at the syrinx

@@ -609,6 +609,168 @@
       "min": 0.0,
       "section": "LFO",
       "unit": ""
+    },
+    {
+      "bodies": [
+        "songbird",
+        "kingfisher",
+        "parrot",
+        "dove"
+      ],
+      "default": 0.0,
+      "help": "Recording tone correction at 400 Hz.",
+      "index": 35,
+      "key": "eq0",
+      "label": "TONE 400",
+      "log": false,
+      "max": 12.0,
+      "min": -12.0,
+      "section": "TONE",
+      "unit": "dB"
+    },
+    {
+      "bodies": [
+        "songbird",
+        "kingfisher",
+        "parrot",
+        "dove"
+      ],
+      "default": 0.0,
+      "help": "Recording tone correction at 620 Hz.",
+      "index": 36,
+      "key": "eq1",
+      "label": "TONE 620",
+      "log": false,
+      "max": 12.0,
+      "min": -12.0,
+      "section": "TONE",
+      "unit": "dB"
+    },
+    {
+      "bodies": [
+        "songbird",
+        "kingfisher",
+        "parrot",
+        "dove"
+      ],
+      "default": 0.0,
+      "help": "Recording tone correction at 970 Hz.",
+      "index": 37,
+      "key": "eq2",
+      "label": "TONE 970",
+      "log": false,
+      "max": 12.0,
+      "min": -12.0,
+      "section": "TONE",
+      "unit": "dB"
+    },
+    {
+      "bodies": [
+        "songbird",
+        "kingfisher",
+        "parrot",
+        "dove"
+      ],
+      "default": 0.0,
+      "help": "Recording tone correction at 1.5 kHz.",
+      "index": 38,
+      "key": "eq3",
+      "label": "TONE 1.5k",
+      "log": false,
+      "max": 12.0,
+      "min": -12.0,
+      "section": "TONE",
+      "unit": "dB"
+    },
+    {
+      "bodies": [
+        "songbird",
+        "kingfisher",
+        "parrot",
+        "dove"
+      ],
+      "default": 0.0,
+      "help": "Recording tone correction at 2.4 kHz.",
+      "index": 39,
+      "key": "eq4",
+      "label": "TONE 2.4k",
+      "log": false,
+      "max": 12.0,
+      "min": -12.0,
+      "section": "TONE",
+      "unit": "dB"
+    },
+    {
+      "bodies": [
+        "songbird",
+        "kingfisher",
+        "parrot",
+        "dove"
+      ],
+      "default": 0.0,
+      "help": "Recording tone correction at 3.7 kHz.",
+      "index": 40,
+      "key": "eq5",
+      "label": "TONE 3.7k",
+      "log": false,
+      "max": 12.0,
+      "min": -12.0,
+      "section": "TONE",
+      "unit": "dB"
+    },
+    {
+      "bodies": [
+        "songbird",
+        "kingfisher",
+        "parrot",
+        "dove"
+      ],
+      "default": 0.0,
+      "help": "Recording tone correction at 5.8 kHz.",
+      "index": 41,
+      "key": "eq6",
+      "label": "TONE 5.8k",
+      "log": false,
+      "max": 12.0,
+      "min": -12.0,
+      "section": "TONE",
+      "unit": "dB"
+    },
+    {
+      "bodies": [
+        "songbird",
+        "kingfisher",
+        "parrot",
+        "dove"
+      ],
+      "default": 0.0,
+      "help": "Recording tone correction at 9 kHz.",
+      "index": 42,
+      "key": "eq7",
+      "label": "TONE 9k",
+      "log": false,
+      "max": 12.0,
+      "min": -12.0,
+      "section": "TONE",
+      "unit": "dB"
+    },
+    {
+      "bodies": [
+        "songbird",
+        "kingfisher",
+        "parrot",
+        "dove"
+      ],
+      "default": 0.0,
+      "help": "Irregular, partly chaotic vibration of the labia: alternate cycles stronger and weaker (period doubling), wobbling cycle lengths and noisy bursts, as in screeches, caws and creaks. 0 = a clean oscillation.",
+      "index": 43,
+      "key": "harsh",
+      "label": "HARSHNESS",
+      "log": false,
+      "max": 1.0,
+      "min": 0.0,
+      "section": "LUNGS",
+      "unit": ""
     }
   ]
 }

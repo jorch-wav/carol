@@ -15,7 +15,7 @@ export class CarolAudio {
     this.defs = defs;              // bodies.json
     this.index = Object.fromEntries(defs.params.map((p) => [p.key, p.index]));
     this.node = null; this.ctx = null;
-    this.tele = new Float32Array(16);
+    this.tele = new Float32Array(20);
     this.onTele = null;
     this.pending = [];
   }

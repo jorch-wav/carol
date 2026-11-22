@@ -80,7 +80,7 @@ class CarolProcessor extends AudioWorkletProcessor {
     for (let c = 1; c < out.length; c++) out[c].set(mix);
     if (++this.n % 6 === 0) {
       const w0 = this.slots[0].w, t = w0.carol_telemetry();
-      this.port.postMessage(new Float32Array(w0.memory.buffer, t, 16).slice());
+      this.port.postMessage(new Float32Array(w0.memory.buffer, t, 20).slice());
       // the WAVE view's scope: the loudest voice at each stage (only while that view is open)
       if (this.scopeOn && this.n % 12 === 0) {
         const n = w0.carol_scope_n(), p = w0.carol_scope();

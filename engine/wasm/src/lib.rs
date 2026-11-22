@@ -16,7 +16,7 @@ extern "C" {
 static mut TABLE: Option<Arc<Table>> = None;
 static mut ENGINE: Option<Engine> = None;
 static mut OUT: Vec<f32> = Vec::new();
-static mut TELE: [f32; 16] = [0.0; 16];
+static mut TELE: [f32; 20] = [0.0; 20];
 static mut SCRATCH: [Vec<f32>; 6] = [Vec::new(), Vec::new(), Vec::new(), Vec::new(), Vec::new(), Vec::new()];
 static mut RECS: Vec<Recording> = Vec::new();
 static mut RESULT: Vec<u8> = Vec::new();
