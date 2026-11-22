@@ -109,7 +109,10 @@ export class Knob {
   setLive(u) {
     if (u === null || u === undefined || !Number.isFinite(u)) { if (this._live !== null) { this._live = null; this.el.classList.remove('moving'); } return; }
     u = Math.min(1, Math.max(0, u));
-    this._live = this._live == null ? u : this._live + (u - this._live) * 0.4;   // a touch of smoothing
+    this._live = this._live == null ? u : this._live + (u - this._live) * 0.5;   // a touch of smoothing
+    // redraw only when it visibly moved (each redraw costs the page a repaint)
+    if (this._drawn !== undefined && Math.abs(this._live - this._drawn) < 0.004 && Math.abs(this.u - this._drawnU) < 0.004 && this.el.classList.contains('moving')) return;
+    this._drawn = this._live; this._drawnU = this.u;
     const R = 36.5, ang = (x) => (-150 + 300 * x) * Math.PI / 180, pt = (x) => [50 + R * Math.sin(ang(x)), 50 - R * Math.cos(ang(x))];
     const [x0, y0] = pt(this.u), [x1, y1] = pt(this._live), span = Math.abs(this._live - this.u) * 300;
     this.liveArc.setAttribute('d', `M${x0.toFixed(2)} ${y0.toFixed(2)} A${R} ${R} 0 ${span > 180 ? 1 : 0} ${this._live > this.u ? 1 : 0} ${x1.toFixed(2)} ${y1.toFixed(2)}`);
