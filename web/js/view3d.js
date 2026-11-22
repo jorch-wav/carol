@@ -4,8 +4,11 @@ import { hexRGB } from './birdmodel.js';
 const VS = `attribute vec3 p; attribute vec3 n; uniform mat4 M, VP; uniform mat3 N; varying vec3 vn; varying vec3 vw;
 void main(){ vec4 w = M * vec4(p,1.); vw = w.xyz; vn = normalize(N * n); gl_Position = VP * w; }`;
 // mode: 0 glass (anatomy through translucent skin), 1 solid with soft light, 2 toon (bands + ink outline), 3 x-ray
-const FS = `precision mediump float; varying vec3 vn; varying vec3 vw; uniform vec3 col, eye; uniform float a, glow, mode, skin, enh, line, fogN, fogF;
-void main(){ vec3 n = normalize(vn); vec3 l = normalize(vec3(.5,.8,.6)); vec3 v = normalize(eye - vw);
+const FS = `precision mediump float; varying vec3 vn; varying vec3 vw; uniform vec3 col, eye; uniform float a, glow, mode, skin, enh, line, fogN, fogF; uniform vec4 wm; uniform float wrot, wside;
+void main(){
+ if (wside != 0.) { vec2 q = vw.xy - wm.xy; float cr = cos(wrot), sr = sin(wrot); q = vec2(q.x*cr + q.y*sr, -q.x*sr + q.y*cr);
+   if ((q.x*q.x)/(wm.z*wm.z) + (q.y*q.y)/(wm.w*wm.w) > 1. || vw.z*wside < 0.) discard; }
+ vec3 n = normalize(vn); vec3 l = normalize(vec3(.5,.8,.6)); vec3 v = normalize(eye - vw);
  float nd = max(dot(n,l),0.); float r = pow(1.-max(dot(n,v),0.),2.5);
  float sp = pow(max(dot(reflect(-l,n),v),0.),24.)*.25;
  vec3 c; float al = a + r*a*.6;
@@ -139,7 +142,7 @@ export class View3D {
     const pr = this.pr = gl.createProgram();
     gl.attachShader(pr, sh(gl.VERTEX_SHADER, VS)); gl.attachShader(pr, sh(gl.FRAGMENT_SHADER, FS)); gl.linkProgram(pr);
     gl.useProgram(pr);
-    this.loc = {}; for (const k of ['M', 'VP', 'N', 'col', 'eye', 'a', 'glow', 'mode', 'skin', 'enh', 'line', 'fogN', 'fogF']) this.loc[k] = gl.getUniformLocation(pr, k);
+    this.loc = {}; for (const k of ['M', 'VP', 'N', 'col', 'eye', 'a', 'glow', 'mode', 'skin', 'enh', 'line', 'fogN', 'fogF', 'wm', 'wrot', 'wside']) this.loc[k] = gl.getUniformLocation(pr, k);
     this.ap = gl.getAttribLocation(pr, 'p'); this.an = gl.getAttribLocation(pr, 'n');
     this.mesh = { sph: this.upload(sphere()), cyl: this.upload(cylinder()), cone: this.upload(cone()),
       lsph: this.upload(ringsSphere()), lcyl: this.upload(ringsCyl()), lcone: this.upload(ringsCone()), grid: this.upload(gridMesh()) };
@@ -256,14 +259,28 @@ export class View3D {
     gl.enable(gl.DEPTH_TEST);
     gl.depthMask(true);
   }
+  /** 3D wing: the body's own surface, raised a little and cut to the wing's outline (the 2D model's wing is a flat
+   *  plate, which pokes out of the body where it curves away). Lifts a touch while the bird sings. */
+  wingInstance(p, body) {
+    const lift = 1.035 + Math.max(0, Math.abs(p.c[2]) / body.r[2] - 0.72) * 0.25;
+    const c = Math.cos(body.rot || 0), s = Math.sin(body.rot || 0);
+    const ax = [c * body.r[0] * lift, s * body.r[0] * lift, 0], ay = [-s * body.r[1] * lift, c * body.r[1] * lift, 0], az = [0, 0, body.r[2] * lift];
+    return { mesh: 'sph', M: m4.basis(ax, ay, az, body.c), N: normalMat(ax, ay, az), col: hexRGB(p.color), a: 1, glow: this.sel === 'wing' ? 1 : 0, c: p.c, skin: true, part: 'wing',
+      wmask: { c: [p.c[0], p.c[1]], r: [p.r[0], p.r[1]], rot: p.rot || 0, side: Math.sign(p.c[2]) || 1 } };
+  }
   instances(p) {
+    if (p.wing && this.style === 4 && this._body) return [this.wingInstance(p, this._body)];
     const skin = p.layer === 0, st = this.style;
     const a = skin ? (st === 1 || st === 2 ? 1 : p.wing ? 0.55 : 0.45) : (p.alpha ?? 1);
     const glow = this.sel && p.part === this.sel ? 1 : 0;
     const col = hexRGB(p.color);
     if (p.kind === 'ell') {
       const c = Math.cos(p.rot || 0), s = Math.sin(p.rot || 0);
-      const ax = [c * p.r[0], s * p.r[0], 0], ay = [-s * p.r[1], c * p.r[1], 0], az = [0, 0, p.r[2]];
+      let ax = [c * p.r[0], s * p.r[0], 0], ay = [-s * p.r[1], c * p.r[1], 0], az = [0, 0, p.r[2]];
+      if (p.yaw) {   // turn about the vertical: the wing's front edge tucks towards the body
+        const cy = Math.cos(p.yaw), sy = Math.sin(p.yaw), ry = (a) => [a[0] * cy + a[2] * sy, a[1], -a[0] * sy + a[2] * cy];
+        ax = ry(ax); ay = ry(ay); az = ry(az);
+      }
       return [{ mesh: 'sph', M: m4.basis(ax, ay, az, p.c), N: normalMat(ax, ay, az), col, a, glow, c: p.c, skin, part: p.part }];
     }
     if (p.kind === 'cone') {
@@ -294,6 +311,8 @@ export class View3D {
     else if (i.nocull) gl.disable(gl.CULL_FACE);
     else { gl.cullFace(gl.BACK); if (i.mesh === 'sph' && i.a < 0.99) gl.enable(gl.CULL_FACE); else gl.disable(gl.CULL_FACE); }
     gl.uniform1f(this.loc.line, m.lines ? 1 : 0);
+    if (i.wmask) { gl.uniform4f(this.loc.wm, i.wmask.c[0], i.wmask.c[1], i.wmask.r[0], i.wmask.r[1]); gl.uniform1f(this.loc.wrot, i.wmask.rot); gl.uniform1f(this.loc.wside, i.wmask.side); }
+    else gl.uniform1f(this.loc.wside, 0);
     gl.drawElements(m.lines ? gl.LINES : gl.TRIANGLES, m.n, gl.UNSIGNED_SHORT, 0);
   }
   /** Tall panels: the readout box at the bottom (snug), and the space left above it for the bird. */
@@ -351,6 +370,7 @@ export class View3D {
     gl.uniformMatrix4fv(this.loc.VP, false, VP); gl.uniform3fv(this.loc.eye, eye); gl.uniform1f(this.loc.mode, 4); gl.uniform1f(this.loc.enh, 0);
     gl.uniform1f(this.loc.fogN, R * 0.75); gl.uniform1f(this.loc.fogF, R * 1.45);
     const outside = (p) => p.layer === 0 || ['beak', 'markings', 'crest', 'streamers'].includes(p.part);
+    this._body = model.parts.find((p) => p.id === 'body');
     const skinParts = model.parts.filter((p) => outside(p) && p.part !== 'eye');
     const inner = model.parts.filter((p) => !outside(p) && p.part !== 'eye');
     const lineOf = { sph: 'lsph', cyl: 'lcyl', cone: 'lcone' };
