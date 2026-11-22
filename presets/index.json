@@ -206,7 +206,7 @@
    ],
    "image": "img/kookaburra.jpg",
    "image_caption": "John Gould, The Birds of Australia, vol. II, pl. 18: Dacelo gigantea (Great Brown Kingfisher)",
-   "match": 74.8,
+   "match": 75.0,
    "plates": [
     {
      "image": "img/kookaburra.jpg",
@@ -353,7 +353,7 @@
    ],
    "image": "img/galah.jpg",
    "image_caption": "John Gould, The Birds of Australia, vol. V, pl. 4: Cacatua Eos (Rose-breasted Cockatoo)",
-   "match": 70.7,
+   "match": 71.1,
    "plates": [
     {
      "image": "img/galah.jpg",
@@ -550,7 +550,7 @@
    ],
    "image": "img/lyrebird.jpg",
    "image_caption": "John Gould, The Birds of Australia, vol. III, pl. 14: Menura superba (Lyre-Bird)",
-   "match": 74.8,
+   "match": 74.9,
    "plates": [
     {
      "image": "img/lyrebird.jpg",
@@ -601,7 +601,7 @@
    ],
    "image": "img/fairywren.jpg",
    "image_caption": "John Gould, The Birds of Australia, vol. III, pl. 18: Malurus cyaneus: Vieill (Blue Wren)",
-   "match": 78.3,
+   "match": 78.4,
    "plates": [
     {
      "image": "img/fairywren.jpg",
@@ -646,7 +646,7 @@
    ],
    "image": "img/wattlebird.jpg",
    "image_caption": "John Gould, The Birds of Australia, vol. IV, pl. 55: Anthochaera carunculata (Wattled Honey-eater)",
-   "match": 70.7,
+   "match": 71.1,
    "plates": [
     {
      "image": "img/wattlebird.jpg",
@@ -837,7 +837,7 @@
    ],
    "image": "img/whipbird.jpg",
    "image_caption": "John Gould, The Birds of Australia, vol. III, pl. 15: Psophodes crepitans (Coach-whip Bird)",
-   "match": 63.0,
+   "match": 63.1,
    "plates": [
     {
      "image": "img/whipbird.jpg",
@@ -890,7 +890,7 @@
    ],
    "image": "img/shrikethrush.jpg",
    "image_caption": "John Gould, The Birds of Australia, vol. II, pl. 74: Colluricincla harmonica (Harmonious Colluricincla)",
-   "match": 75.9,
+   "match": 76.0,
    "plates": [
     {
      "image": "img/shrikethrush.jpg",
@@ -1038,7 +1038,7 @@
    ],
    "image": "img/magpie.jpg",
    "image_caption": "John Gould, The Birds of Australia, vol. II, pl. 46: Gymnorhina tibicen (Piping Crow-Shrike)",
-   "match": 79.1,
+   "match": 79.6,
    "plates": [
     {
      "image": "img/magpie.jpg",
@@ -1135,7 +1135,7 @@
    ],
    "image": "img/raven.jpg",
    "image_caption": "John Gould, The Birds of Australia, vol. IV, pl. 18: Corvus coronoides: Vig. et Horsf (White-eyed Crow)",
-   "match": 71.3,
+   "match": 71.5,
    "plates": [
     {
      "image": "img/raven.jpg",
@@ -1288,7 +1288,7 @@
    ],
    "image": "img/cardinal.jpg",
    "image_caption": "John James Audubon, The Birds of America, vol. II, pl. 159: Fringilla cardinalis, Bonap (Cardinal Grosbeak)",
-   "match": 79.5,
+   "match": 80.4,
    "plates": [
     {
      "image": "img/cardinal.jpg",
