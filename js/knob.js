@@ -24,7 +24,7 @@ export class Knob {
   constructor(p, opts = {}) {
     this.p = p; this.opts = opts;
     this.steps = opts.steps || 0;
-    this.u = 0; this.birdU = null;
+    this.u = 0; this.birdU = null; this._live = null;
     const el = this.el = document.createElement('div');
     el.className = 'kn' + (this.steps ? ' switch' : '');
     el.innerHTML = `<div class="val"></div><div class="dial"><svg class="scale" viewBox="0 0 100 100"></svg><div class="skirt"><div class="cap"></div></div></div><label></label>`;
@@ -35,6 +35,11 @@ export class Knob {
     this.svg = el.querySelector('svg');
     this.drawScale();
     const dial = el.querySelector('.dial');
+    // live movement while a call plays, drawn over the knob's rim: an arc from the setting to the live value, a dot there
+    const live = document.createElementNS(SVGNS, 'svg'); live.setAttribute('class', 'live'); live.setAttribute('viewBox', '0 0 100 100');
+    this.liveArc = document.createElementNS(SVGNS, 'path'); this.liveArc.setAttribute('class', 'live-arc');
+    this.liveDot = document.createElementNS(SVGNS, 'circle'); this.liveDot.setAttribute('r', 3.2); this.liveDot.setAttribute('class', 'live-dot');
+    live.appendChild(this.liveArc); live.appendChild(this.liveDot); dial.appendChild(live);
     let start = null, lastTap = 0;
     dial.addEventListener('pointerdown', (e) => {
       e.preventDefault();
@@ -98,6 +103,17 @@ export class Knob {
     const a = (-150 + 300 * this.birdU - 90) * Math.PI / 180;
     this.birdDot.setAttribute('cx', 50 + 35 * Math.cos(a)); this.birdDot.setAttribute('cy', 50 + 35 * Math.sin(a));
     this.birdDot.style.display = '';
+  }
+  /** Where the value really is right now (0..1 of the knob's range), moved by the call; null = not playing. */
+  setLive(u) {
+    if (u === null || u === undefined || !Number.isFinite(u)) { if (this._live !== null) { this._live = null; this.el.classList.remove('moving'); } return; }
+    u = Math.min(1, Math.max(0, u));
+    this._live = this._live == null ? u : this._live + (u - this._live) * 0.4;   // a touch of smoothing
+    const R = 36.5, ang = (x) => (-150 + 300 * x) * Math.PI / 180, pt = (x) => [50 + R * Math.sin(ang(x)), 50 - R * Math.cos(ang(x))];
+    const [x0, y0] = pt(this.u), [x1, y1] = pt(this._live), span = Math.abs(this._live - this.u) * 300;
+    this.liveArc.setAttribute('d', `M${x0.toFixed(2)} ${y0.toFixed(2)} A${R} ${R} 0 ${span > 180 ? 1 : 0} ${this._live > this.u ? 1 : 0} ${x1.toFixed(2)} ${y1.toFixed(2)}`);
+    this.liveDot.setAttribute('cx', x1.toFixed(2)); this.liveDot.setAttribute('cy', y1.toFixed(2));
+    this.el.classList.add('moving');
   }
   resetToBird() { if (this.birdU !== null) { this.setU(this.birdU, true); this.flash(); } }
   nudge(d) {

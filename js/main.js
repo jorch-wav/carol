@@ -667,6 +667,15 @@ class App {
     for (const k of info.knobs) this.knobs[k] && this.knobs[k].flash();
     clearTimeout(this._hud); this._hud = setTimeout(() => { hud.innerHTML = ''; this.v2.sel = null; }, 6000);
   }
+  /** While a call plays, show on each knob the call moves where its value really is right now. */
+  liveKnobs(t) {
+    const on = t && t[0] > 0.5;
+    const live = { pressure: t && t[1], tension: t && t[2], beak: t && t[8], oec: t && t[9], tongue_h: t && t[16], closure: t && t[17] };
+    for (const [k, v] of Object.entries(live)) {
+      const kn = this.knobs[k]; if (!kn) continue;
+      kn.setLive(on && v ? toNorm(kn.p, v) : null);
+    }
+  }
   /** Bird panel size: '' normal, 'big' (knobs hidden), 'full' (whole screen). */
   setViewSize(m) {
     if (m === 'hidden') $('view').classList.remove('bare');
@@ -731,6 +740,7 @@ class App {
       acc += now - last; const dt = (now - last) / 1000; last = now;
       if (acc < 1000 / fps - 2) return;
       acc = 0;
+      if (this.bird && !document.hidden) this.liveKnobs(this.audio.tele);
       if (!this.bird || this.view === 'plate' || document.hidden) return;
       if (this.view === 'sono') { this.sono.draw(this.audio.analyser, this.audio.tele, dt); return; }
       if (this.view === 'wave') { this.wave.draw(this.audio.scope, this.audio.tele, { closure: this.values.closure }); return; }
