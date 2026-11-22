@@ -775,7 +775,15 @@ for (const g of ['gesturestart', 'gesturechange', 'gestureend']) addEventListene
 addEventListener('touchmove', (e) => { if (e.touches.length > 1) e.preventDefault(); }, { passive: false });
 addEventListener('wheel', (e) => { if (e.ctrlKey && !inBird(e.target)) e.preventDefault(); }, { passive: false });
 let lastTouchEnd = 0;
-addEventListener('touchend', (e) => { const now = Date.now(); if (now - lastTouchEnd < 300 && !inBird(e.target)) e.preventDefault(); lastTouchEnd = now; }, { passive: false });
+// no double-tap page zoom anywhere, the bird panel included (its own double-taps use pointer timing, not this)
+addEventListener('touchend', (e) => { const now = Date.now(); if (now - lastTouchEnd < 300) e.preventDefault(); lastTouchEnd = now; }, { passive: false });
+// safety net: if the browser zoomed the page anyway, snap it back to 1 (re-applying the viewport resets it)
+if (window.visualViewport) visualViewport.addEventListener('resize', () => {
+  if (visualViewport.scale > 1.01) {
+    const m = document.querySelector('meta[name=viewport]'), c = m.content;
+    m.content = c.replace('maximum-scale=1', 'maximum-scale=1.01'); setTimeout(() => { m.content = c; }, 30);
+  }
+});
 
 const app = new App();
 window.carol = app;
