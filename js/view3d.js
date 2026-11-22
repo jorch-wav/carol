@@ -295,6 +295,14 @@ export class View3D {
     gl.uniform1f(this.loc.line, m.lines ? 1 : 0);
     gl.drawElements(m.lines ? gl.LINES : gl.TRIANGLES, m.n, gl.UNSIGNED_SHORT, 0);
   }
+  /** Tall panels: the readout box at the bottom (snug), and the space left above it for the bird. */
+  tallBox(W, H) {
+    const d = this.dpr || 1, cw = W / d, ch = H / d;
+    if (!(this.style === 4 && this.showInfo && ch > cw * 1.15)) return null;
+    const cols = cw >= 250 ? 2 : 1, kk = ch > 700 ? 1.2 : 1, rowH = 50 * kk * d, n = Math.ceil(5 / cols);
+    const h = n * rowH + 16 * d, m = 10 * d;
+    return { cols, kk, rowH, n, x: m, y: H - m - h, w: W - 2 * m, h };
+  }
   /** Camera for this frame (shared by both draw paths): frames the bird, returns {eye, tgt, VP}. */
   camera(model, dt) {
     const W = this.cv.width, H = this.cv.height;
@@ -310,8 +318,9 @@ export class View3D {
     const asp = W / H, tgt = this.frame.c, R = this.frame.r * (asp < 1.2 ? 2.9 / asp : 2.4) * this.dist;
     const eye = [tgt[0] + R * Math.cos(this.pitch) * Math.sin(this.yaw), tgt[1] + R * Math.sin(this.pitch), tgt[2] + R * Math.cos(this.pitch) * Math.cos(this.yaw)];
     let VP = m4.mul(m4.persp(0.75, W / H, 1, 120), m4.look(eye, tgt, [0, 1, 0]));
-    if (this.style === 4 && H > W * 1.15) {   // tall panel: move the bird up (clip-space shift), readouts go below
-      const T = new Float32Array([1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0.24, 0, 1]); VP = m4.mul(T, VP);
+    const box = this.tallBox(W, H);
+    if (box) {   // tall panel with readouts: centre the bird in the space above the box (clip-space shift)
+      const T = new Float32Array([1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1 - box.y / H, 0, 1]); VP = m4.mul(T, VP);
     }
     return { eye, tgt, VP, R };
   }
@@ -415,17 +424,16 @@ export class View3D {
     };
     const panel = (x, y, w, h) => { ctx.fillStyle = 'rgba(30,27,24,.72)'; ctx.beginPath(); ctx.roundRect ? ctx.roundRect(x, y, w, h, 6 * d) : ctx.rect(x, y, w, h); ctx.fill(); };
     const cw = W / d, ch = H / d;
-    if (ch > cw * 1.15) {
-      // tall panel (iPad side panel, the Pi's side panel): a list under the bird, two columns, leader lines up to the organs
-      const cols = cw >= 250 ? 2 : 1, colW = (W - 24 * d) / cols, kk = ch > 700 ? 1.2 : 1, rowH = 54 * kk * d, n = Math.ceil(rows.length / cols);
-      // a fixed place under the bird (it doesn't follow the bird around)
-      const y0 = Math.round(Math.min(H * 0.6, H - 40 * d - n * rowH));
-      panel(8 * d, y0 - 22 * d, W - 16 * d, n * rowH + 22 * d);
+    const tb = this.tallBox(W, H);
+    if (tb) {
+      // tall panel (iPad / Pi side panel): a snug box along the bottom, two columns, leader lines up to the organs
+      const colW = (tb.w - 12 * d) / tb.cols;
+      panel(tb.x, tb.y, tb.w, tb.h);
       rows.forEach((r, k) => {
-        const cx = 12 * d + (k % cols) * colW, cy = y0 + Math.floor(k / cols) * rowH;
-        if (r.vis) lead(r.px, r.py, cx + 6 * d, cy - 14 * d, r.col);
-        dot(cx + 6 * d, cy - 14 * d, r.col, 3);
-        block(r, cx + 16 * d, cy - 9 * d, 'left', kk);
+        const cx = tb.x + 12 * d + (k % tb.cols) * colW, cy = tb.y + 22 * tb.kk * d + Math.floor(k / tb.cols) * tb.rowH;
+        if (r.vis) lead(r.px, r.py, cx + 4 * d, cy - 4 * d, r.col);
+        dot(cx + 4 * d, cy - 4 * d, r.col, 3);
+        block(r, cx + 14 * d, cy, 'left', tb.kk);
       });
     } else if (cw >= 560) {
       // wide: two fixed panels at the sides (throat, syrinx, air sacs on the left; mouth, beak on the right),
