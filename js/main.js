@@ -623,8 +623,6 @@ class App {
     document.querySelectorAll('#viewSize button').forEach((b) => b.onclick = () => this.setViewSize(this.viewSize === b.dataset.size ? '' : b.dataset.size));
     this.setViewSize(ls.get('carol-viewsize', ''));
     document.querySelectorAll('#viewSeg button').forEach((b) => b.onclick = () => this.setView(b.dataset.view));
-    // 3D: a double tap leaves just the bird (no readouts, lines or buttons); again brings them back
-    this.v3.onInfo = (on) => $('view').classList.toggle('bare', !on);
     // a single tap on the bird panel (not on a part, not a drag or pinch) hides / shows its floating buttons
     {
       const view = $('view'); let t0 = null, n = 0;
@@ -687,6 +685,7 @@ class App {
     document.querySelectorAll('#viewSeg button').forEach((b) => b.classList.toggle('on', b.dataset.view === v));
     $('view2d').classList.toggle('on', v === '2d');
     $('view3d').classList.toggle('on', v === '3d');
+    if (v === '3d') this.v3.hintAt = performance.now();
     $('sono').classList.toggle('on', v === 'sono');
     $('wave').classList.toggle('on', v === 'wave');
     this.audio.scopeOn(v === 'wave');

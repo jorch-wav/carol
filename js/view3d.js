@@ -164,14 +164,15 @@ export class View3D {
       this.pitch = Math.max(-1.2, Math.min(1.2, drag.pitch + (e.clientY - drag.y) * 0.01));
     });
     // double-tap: hide / show the readouts and their lines (just the bird)
-    try { this.showInfo = localStorage.getItem('carol-3d-info') !== 'off'; } catch { this.showInfo = true; }
+    // 3D starts with just the bird; double-tap shows the readouts (the choice is remembered)
+    try { this.showInfo = localStorage.getItem('carol-3d-readouts') === 'on'; } catch { this.showInfo = false; }
     let lastTap = 0;
     const up = (e) => {
       pts.delete(e.pointerId); this._pd = null;
       if (pts.size === 0) {
         if (drag && drag.moved < 10) {
           const now = performance.now();
-          if (now - lastTap < 330) { this.showInfo = !this.showInfo; lastTap = 0; try { localStorage.setItem('carol-3d-info', this.showInfo ? 'on' : 'off'); } catch {} this.onInfo && this.onInfo(this.showInfo); }
+          if (now - lastTap < 330) { this.showInfo = !this.showInfo; lastTap = 0; this.hintAt = 0; try { localStorage.setItem('carol-3d-readouts', this.showInfo ? 'on' : 'off'); } catch {} this.onInfo && this.onInfo(this.showInfo); }
           else lastTap = now;
         }
         this.lastDrag = drag; drag = null;
@@ -413,6 +414,15 @@ export class View3D {
     const ov = this.ov, ctx = ov.getContext('2d'), W = ov.width, H = ov.height, d = this.dpr || 1;
     this._ovOn = true;
     ctx.clearRect(0, 0, W, H);
+    // a quiet hint for a few seconds after opening 3D with the readouts hidden
+    const hint = this.hintAt ? (performance.now() - this.hintAt) / 1000 : 9;
+    if (!this.showInfo && hint < 4) {
+      const a = Math.min(1, hint / 0.4, (4 - hint) / 0.8) * 0.55;
+      ctx.globalAlpha = a; ctx.fillStyle = '#f1ece2'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.font = `700 ${Math.round(10 * d)}px CarolLabel, sans-serif`;
+      ctx.fillText('DOUBLE-TAP FOR INFO', W / 2, 66 * d);
+      ctx.globalAlpha = 1; ctx.textAlign = 'left';
+    }
     if (!tele || !this.showInfo) return;
     const proj = (c) => { const x = VP[0] * c[0] + VP[4] * c[1] + VP[8] * c[2] + VP[12], y = VP[1] * c[0] + VP[5] * c[1] + VP[9] * c[2] + VP[13], w = VP[3] * c[0] + VP[7] * c[1] + VP[11] * c[2] + VP[15]; return [(x / w * 0.5 + 0.5) * W, (0.5 - y / w * 0.5) * H]; };
     const find = (part) => model.parts.find((p) => p.part === part);
@@ -430,7 +440,7 @@ export class View3D {
     for (const r of rows) { const [px, py] = proj(r.at); r.px = px; r.py = py; r.vis = px > 0 && px < W && py > 0 && py < H; }
     const font = (w, px) => `${w} ${Math.round(px * d)}px CarolLabel, sans-serif`;
     const dot = (x, y, col, rad = 3.6) => { ctx.fillStyle = 'rgba(20,18,16,.85)'; ctx.beginPath(); ctx.arc(x, y, (rad + 1.6) * d, 0, 6.283); ctx.fill(); ctx.fillStyle = col; ctx.beginPath(); ctx.arc(x, y, rad * d, 0, 6.283); ctx.fill(); };
-    const lead = (x0, y0, x1, y1, col) => { ctx.strokeStyle = col; ctx.globalAlpha = 0.55; ctx.lineWidth = 1.2 * d; ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x1, y1); ctx.stroke(); ctx.globalAlpha = 1; };
+    const lead = (x0, y0, x1, y1, col) => { ctx.strokeStyle = col; ctx.globalAlpha = 0.5; ctx.lineWidth = 1.2 * d; ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x1, y1); ctx.stroke(); ctx.globalAlpha = 1; };
     // one readout block: name in its colour, the value large, a small second line
     const block = (r, x, y, align, k = 1) => {
       ctx.textAlign = align; ctx.textBaseline = 'alphabetic';
