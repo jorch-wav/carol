@@ -31,6 +31,7 @@ export class Knob {
     el.querySelector('label').textContent = p.label;
     if (p.help) el.title = p.help;
     this.cap = el.querySelector('.cap');
+    this.cap.style.transform = 'rotate(-150deg)';   // u = 0 until set (setU skips a value it already has)
     this.valEl = el.querySelector('.val');
     this.svg = el.querySelector('svg');
     this.drawScale();
