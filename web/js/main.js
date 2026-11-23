@@ -97,6 +97,7 @@ class App {
     this.userBirds = Object.fromEntries(mine.map((b) => [b.id, b]));
     this.index = idx.birds.concat(mine.map((b) => ({ id: b.id, name: b.name, sci: b.sci, body: b.body, tags: b.tags, collection: 'My Birds', match: b.match && b.match.total })));
     this.collections = (idx.collections || []).map((c) => typeof c === 'string' ? { name: c } : c);
+    this.areaNames = idx.area_names || {};
     if (mine.length) this.collections.push({ name: 'My Birds', region: 'Your recordings', count: mine.length });
     // My Presets: a bird plus your knob changes, saved on this device
     this.myPresets = ls.get('carol-mypresets', []);

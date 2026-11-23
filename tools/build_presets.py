@@ -438,6 +438,85 @@ DROP_CALLS = {
 }
 
 
+# Where each bird lives, as a field guide lists it: native areas (Australian states and territories, New Zealand,
+# New Guinea; broad areas for the other realms), then introduced ones. These give the catalogue's area filters and
+# each entry's one-line range. (King Island and other Bass Strait islands are left out of "Tasmania".)
+AREAS = {
+    'bellminer': ['VIC', 'NSW', 'QLD'],
+    'blackcockatoo': ['TAS', 'VIC', 'NSW', 'SA', 'QLD'],
+    'boobook': ['VIC', 'NSW', 'QLD', 'SA', 'WA', 'NT', 'NG'],
+    'butcherbird': ['NSW', 'QLD', 'SA', 'WA', 'NT'],
+    'cockatoo': ['QLD', 'NSW', 'VIC', 'TAS', 'SA', 'NT', 'WA', 'NG'],
+    'curlew': ['QLD', 'NSW', 'VIC', 'SA', 'WA', 'NT', 'NG'],
+    'fairywren': ['VIC', 'TAS', 'NSW', 'SA', 'QLD'],
+    'frogmouth': ['VIC', 'TAS', 'NSW', 'QLD', 'SA', 'WA', 'NT'],
+    'galah': ['VIC', 'NSW', 'QLD', 'SA', 'WA', 'NT'],
+    'gangang': ['VIC', 'NSW'],
+    'helmeted': ['VIC', 'NSW', 'QLD', 'SA'],
+    'kookaburra': ['QLD', 'NSW', 'VIC', 'SA'],
+    'lorikeet': ['QLD', 'NSW', 'VIC', 'SA'],
+    'lyrebird': ['VIC', 'NSW', 'QLD'],
+    'magpie': ['VIC', 'TAS', 'NSW', 'QLD', 'SA', 'WA', 'NT', 'NG'],
+    'raven': ['VIC', 'NSW', 'SA'],
+    'rosella': ['QLD', 'NSW', 'VIC', 'SA'],
+    'shrikethrush': ['VIC', 'TAS', 'NSW', 'QLD', 'SA', 'WA', 'NT', 'NG'],
+    'tui': ['NZ'],
+    'wagtail': ['VIC', 'NSW', 'QLD', 'SA', 'WA', 'NT', 'NG'],
+    'wattlebird': ['VIC', 'NSW', 'QLD', 'SA', 'WA'],
+    'whipbird': ['QLD', 'NSW', 'VIC'],
+    'whistler': ['VIC', 'TAS', 'NSW', 'QLD', 'SA', 'WA'],
+    'currawong': ['TAS'], 'greenrosella': ['TAS'], 'duskyrobin': ['TAS'], 'yellowwattlebird': ['TAS'],
+    'robin': ['EU', 'NAF', 'WAS'], 'pigeon': ['EU', 'NAF', 'WAS'], 'cardinal': ['US', 'CA', 'MX'], 'quetzal': ['CAM', 'MX'],
+}
+INTRODUCED = {
+    'galah': ['TAS', 'NZ'], 'kookaburra': ['TAS', 'WA'], 'lorikeet': ['WA', 'NZ'], 'lyrebird': ['TAS'], 'magpie': ['NZ'],
+    'cockatoo': ['NZ'], 'pigeon': ['WORLD'], 'cardinal': ['HI'],
+}
+ENDEMIC = {'currawong', 'greenrosella', 'duskyrobin', 'yellowwattlebird', 'tui'}   # found only in their one area
+AREA_NAMES = {'TAS': 'Tasmania', 'VIC': 'Victoria', 'NSW': 'NSW & ACT', 'QLD': 'Queensland', 'SA': 'South Australia',
+              'WA': 'Western Australia', 'NT': 'Northern Territory', 'NZ': 'New Zealand', 'NG': 'New Guinea',
+              'EU': 'Europe', 'NAF': 'North Africa', 'WAS': 'Western Asia', 'US': 'USA', 'CA': 'Canada', 'MX': 'Mexico',
+              'CAM': 'Central America', 'HI': 'Hawaii', 'WORLD': 'cities worldwide'}
+AUS = ['QLD', 'NSW', 'VIC', 'TAS', 'SA', 'WA', 'NT']
+
+
+# hand-written range lines where a list of states would mislead (a bird in every state isn't everywhere)
+RANGE_TEXT = {
+    'cockatoo': 'Northern and eastern Australia, Tasmania, New Guinea; introduced to New Zealand',
+    'curlew': 'Northern and eastern Australia (now rare in the south-east), southern New Guinea',
+    'butcherbird': 'Mainland Australia except the far south-east',
+    'whistler': 'Eastern, southern and south-western Australia, Tasmania',
+    'boobook': 'Mainland Australia, New Guinea, Timor',
+    'magpie': 'All of Australia, southern New Guinea; introduced to New Zealand',
+    'shrikethrush': 'All of Australia, southern New Guinea',
+    'blackcockatoo': 'South-eastern Australia: central Queensland to south-east South Australia, Tasmania',
+    'helmeted': 'South-eastern Australia (the helmeted form only at Yellingbo, Victoria)',
+}
+
+
+def range_line(bid):
+    """A field guide's one-line range: 'Tasmania only (endemic)', 'All Australian states', ..."""
+    if bid in RANGE_TEXT: return RANGE_TEXT[bid]
+    try:   # a bird's own one-line range from its data, if it has one
+        r = json.load(open(os.path.join(ROOT, 'data', bid, 'info.json'))).get('range')
+        if r: return r
+    except (OSError, ValueError): pass
+    a = AREAS.get(bid, [])
+    if not a: return ''
+    if bid in ENDEMIC and len(a) == 1: s = f'{AREA_NAMES[a[0]]} only (endemic)'
+    else:
+        aus = [x for x in AUS if x in a]
+        rest = [AREA_NAMES[x] for x in a if x not in AUS]
+        if len(aus) == 7: parts = ['all of Australia']
+        elif len(aus) == 6 and 'TAS' not in aus: parts = ['mainland Australia']
+        else: parts = [AREA_NAMES[x] for x in aus]
+        s = ', '.join(parts + rest)
+        s = s[0].upper() + s[1:]
+    intro = INTRODUCED.get(bid)
+    if intro: s += '; introduced to ' + ', '.join(AREA_NAMES[x] for x in intro)
+    return s
+
+
 def load_gestures(bid):
     g = os.path.join(ROOT, 'fits', 'gestures', bid + '.json')
     return json.load(open(g)) if os.path.exists(g) else None
@@ -515,6 +594,7 @@ def build(bid):
             'body': preset['body'], 'tags': preset['tags'], 'collection': preset['collection'],
             'family_name': FAMILY_NAMES.get(t.get('family'), t.get('family')), 'tax': list(tax_key(t))[:2],
             'image': preset['image'], 'image_caption': caption, 'match': fit['match']['total'],
+            'areas': AREAS.get(bid, []), 'introduced': INTRODUCED.get(bid, []), 'endemic': bid in ENDEMIC, 'range': range_line(bid),
             'plates': [{'image': p['image'], 'caption': p['caption'], 'artist': p['artist'], 'year': p['year']} for p in plates]}
 
 
@@ -532,7 +612,7 @@ def main():
                    key=lambda b: (coll_rank[b['collection']], tax_key(TAXONOMY.get(b['id'], {}))))
     colls = [dict(name=c, count=sum(1 for b in birds if b['collection'] == c), cover=bs[0], **COLLECTION_INFO.get(c, {}))
              for c, bs in COLLECTIONS.items() if any(b['collection'] == c for b in birds)]
-    json.dump({'collections': colls, 'birds': birds}, open(idx_path, 'w'), indent=1)
+    json.dump({'collections': colls, 'birds': birds, 'area_names': AREA_NAMES}, open(idx_path, 'w'), indent=1)
 
 
 if __name__ == '__main__':
