@@ -17,6 +17,8 @@ import { Sequencer } from './seq.js';
 import { SettingsUI, loadSettings, saveSettings } from './settings.js';
 import { Tour } from './tour.js';
 import { FX_PARAMS, saveFile } from './fx.js';
+import { Scene } from './scene.js';
+import { XYPad } from './xy.js';
 import { icon, applyIcons } from './icons.js';
 
 const SECTIONS = ['LUNGS', 'SYRINX', 'WINDPIPE', 'THROAT', 'TONGUE', 'BEAK', 'PLAY', 'SHAPE', 'LFO', 'FX'];
@@ -53,6 +55,10 @@ class App {
     this.importer = new Importer(this);
     this.midi = new Midi(this);
     this.seq = new Sequencer(this);
+    this.scene = new Scene(this);
+    this.xy = new XYPad(this);
+    document.getElementById('xyBtn').onclick = () => this.xy.show(!document.body.classList.contains('xy-on'));
+    try { if (localStorage.getItem('carol-xy') === '1') this.xy.show(true); } catch {}
     this.settingsUI = new SettingsUI(this);
     this.tour = new Tour(this);
     applyIcons();

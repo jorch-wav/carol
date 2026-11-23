@@ -65,7 +65,7 @@
       <div class="pb-head">
         <button class="pb-handle" id="pbHandle" aria-label="Show play bar"><span></span></button>
         <div class="pb-tabs" id="pbTabs">
-          <button data-tab="keys" class="on">KEYS</button><button data-tab="pads">PADS</button><button data-tab="seq">SEQ</button>
+          <button data-tab="keys" class="on">KEYS</button><button data-tab="pads">PADS</button><button data-tab="seq">SEQ</button><button data-tab="scene" title="Dawn chorus: a habitat's birds singing by themselves">SCENE</button>
         </div>
         <div class="pb-scale">
           <label>SCALE</label>
@@ -76,14 +76,16 @@
           <button id="octDown">−</button><span id="octVal">OCT 0</span><button id="octUp">+</button>
         </div>
         <div class="pb-perf">
-          <button id="holdBtn" title="Hold: notes keep sounding after you let go">HOLD</button><button id="rptBtn" title="Repeat: held calls retrigger in time (speed in Settings)">RPT</button><button id="recBtn" class="rec" title="Record what you play (with effects) to a WAV file" data-icon="rec"><span class="long"> REC</span></button>
+          <button id="xyBtn" title="XY pad: play the voice with your finger (syrinx tension across, air pressure up)">XY</button><button id="holdBtn" title="Hold: notes keep sounding after you let go">HOLD</button><button id="rptBtn" title="Repeat: held calls retrigger in time (speed in Settings)">RPT</button><button id="recBtn" class="rec" title="Record what you play (with effects) to a WAV file" data-icon="rec"><span class="long"> REC</span></button>
         </div>
         <div class="pb-call" id="pbCall"></div>
       </div>
       <div class="pb-body">
+        <div class="xy" id="xy"><canvas></canvas><button class="xy-exp" title="Bigger / smaller"></button></div>
         <div class="keys" id="keys"></div>
         <div class="pads" id="pads"></div>
         <div class="seq" id="seq"></div>
+        <div class="scene" id="scene"></div>
       </div>
     </footer>
   </main>

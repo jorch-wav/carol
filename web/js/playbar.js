@@ -30,8 +30,10 @@ export class PlayBar {
     document.querySelectorAll('#pbTabs button').forEach((b) => b.classList.toggle('on', b.dataset.tab === t));
     this.keysEl.classList.toggle('on', t === 'keys'); this.padsEl.classList.toggle('on', t === 'pads');
     document.getElementById('seq').classList.toggle('on', t === 'seq');
+    document.getElementById('scene').classList.toggle('on', t === 'scene');
     document.body.classList.toggle('pb-seq', t === 'seq');
-    if (t === 'keys') this.renderKeys(); else if (t === 'pads') this.renderPads(); else this.app.seq && this.app.seq.render();
+    document.body.classList.toggle('pb-scene', t === 'scene');
+    if (t === 'keys') this.renderKeys(); else if (t === 'pads') this.renderPads(); else if (t === 'scene') this.app.scene && this.app.scene.render(); else this.app.seq && this.app.seq.render();
   }
   syncScale() {
     const s = this.app.scale;
