@@ -60,6 +60,18 @@
    "image": "img/frogmouth.jpg",
    "image_caption": "John Gould, The Birds of Australia, vol. II, pl. 4: Podargus Cuvieri: Vig. and Horsf (Cuvier's Podargus)",
    "match": 87.9,
+   "areas": [
+    "VIC",
+    "TAS",
+    "NSW",
+    "QLD",
+    "SA",
+    "WA",
+    "NT"
+   ],
+   "introduced": [],
+   "endemic": false,
+   "range": "All of Australia",
    "plates": [
     {
      "image": "img/frogmouth.jpg",
@@ -106,6 +118,18 @@
    "image": "img/curlew.jpg",
    "image_caption": "John Gould, The Birds of Australia, vol. VI, pl. 5: Oedicnemus grallarius (Southern Stone Plover)",
    "match": 86.2,
+   "areas": [
+    "QLD",
+    "NSW",
+    "VIC",
+    "SA",
+    "WA",
+    "NT",
+    "NG"
+   ],
+   "introduced": [],
+   "endemic": false,
+   "range": "Northern and eastern Australia (now rare in the south-east), southern New Guinea",
    "plates": [
     {
      "image": "img/curlew.jpg",
@@ -156,6 +180,18 @@
    "image": "img/boobook.jpg",
    "image_caption": "John Gould, The Birds of Australia, vol. I, pl. 32: Athene boobook (Boobook Owl)",
    "match": 92.5,
+   "areas": [
+    "VIC",
+    "NSW",
+    "QLD",
+    "SA",
+    "WA",
+    "NT",
+    "NG"
+   ],
+   "introduced": [],
+   "endemic": false,
+   "range": "Mainland Australia, New Guinea, Timor",
    "plates": [
     {
      "image": "img/boobook.jpg",
@@ -207,6 +243,18 @@
    "image": "img/kookaburra.jpg",
    "image_caption": "John Gould, The Birds of Australia, vol. II, pl. 18: Dacelo gigantea (Great Brown Kingfisher)",
    "match": 75.0,
+   "areas": [
+    "QLD",
+    "NSW",
+    "VIC",
+    "SA"
+   ],
+   "introduced": [
+    "TAS",
+    "WA"
+   ],
+   "endemic": false,
+   "range": "Queensland, NSW & ACT, Victoria, South Australia; introduced to Tasmania, Western Australia",
    "plates": [
     {
      "image": "img/kookaburra.jpg",
@@ -258,6 +306,21 @@
    "image": "img/cockatoo.jpg",
    "image_caption": "John Gould, The Birds of Australia, vol. V, pl. 1: Cacatua galerita: Vieill (Crested Cockatoo)",
    "match": 70.4,
+   "areas": [
+    "QLD",
+    "NSW",
+    "VIC",
+    "TAS",
+    "SA",
+    "NT",
+    "WA",
+    "NG"
+   ],
+   "introduced": [
+    "NZ"
+   ],
+   "endemic": false,
+   "range": "Northern and eastern Australia, Tasmania, New Guinea; introduced to New Zealand",
    "plates": [
     {
      "image": "img/cockatoo.jpg",
@@ -309,6 +372,13 @@
    "image": "img/gangang.jpg",
    "image_caption": "John Gould, The Birds of Australia, vol. V, pl. 14: Callocephalon galeatum (Gang-gang Cockatoo)",
    "match": 67.7,
+   "areas": [
+    "VIC",
+    "NSW"
+   ],
+   "introduced": [],
+   "endemic": false,
+   "range": "NSW & ACT, Victoria",
    "plates": [
     {
      "image": "img/gangang.jpg",
@@ -354,6 +424,20 @@
    "image": "img/galah.jpg",
    "image_caption": "John Gould, The Birds of Australia, vol. V, pl. 4: Cacatua Eos (Rose-breasted Cockatoo)",
    "match": 71.1,
+   "areas": [
+    "VIC",
+    "NSW",
+    "QLD",
+    "SA",
+    "WA",
+    "NT"
+   ],
+   "introduced": [
+    "TAS",
+    "NZ"
+   ],
+   "endemic": false,
+   "range": "Mainland Australia; introduced to Tasmania, New Zealand",
    "plates": [
     {
      "image": "img/galah.jpg",
@@ -399,6 +483,16 @@
    "image": "img/blackcockatoo.jpg",
    "image_caption": "John Gould, The Birds of Australia, vol. V, pl. 11: Calyptorhynchus funereus (Funereal Cockatoo)",
    "match": 82.0,
+   "areas": [
+    "TAS",
+    "VIC",
+    "NSW",
+    "SA",
+    "QLD"
+   ],
+   "introduced": [],
+   "endemic": false,
+   "range": "South-eastern Australia: central Queensland to south-east South Australia, Tasmania",
    "plates": [
     {
      "image": "img/blackcockatoo.jpg",
@@ -448,6 +542,15 @@
    "image": "img/rosella.jpg",
    "image_caption": "John Gould, The Birds of Australia, vol. V, pl. 23: Platycercus pennantii (Pennant's Parrakeet)",
    "match": 86.7,
+   "areas": [
+    "QLD",
+    "NSW",
+    "VIC",
+    "SA"
+   ],
+   "introduced": [],
+   "endemic": false,
+   "range": "Queensland, NSW & ACT, Victoria, South Australia",
    "plates": [
     {
      "image": "img/rosella.jpg",
@@ -499,6 +602,18 @@
    "image": "img/lorikeet.jpg",
    "image_caption": "John Gould, The Birds of Australia, vol. V, pl. 48: Trichoglossus Swainsonii: Jard. & Selb (Swainson's Lorikeet)",
    "match": 78.4,
+   "areas": [
+    "QLD",
+    "NSW",
+    "VIC",
+    "SA"
+   ],
+   "introduced": [
+    "WA",
+    "NZ"
+   ],
+   "endemic": false,
+   "range": "Queensland, NSW & ACT, Victoria, South Australia; introduced to Western Australia, New Zealand",
    "plates": [
     {
      "image": "img/lorikeet.jpg",
@@ -551,6 +666,16 @@
    "image": "img/lyrebird.jpg",
    "image_caption": "John Gould, The Birds of Australia, vol. III, pl. 14: Menura superba (Lyre-Bird)",
    "match": 74.9,
+   "areas": [
+    "VIC",
+    "NSW",
+    "QLD"
+   ],
+   "introduced": [
+    "TAS"
+   ],
+   "endemic": false,
+   "range": "Queensland, NSW & ACT, Victoria; introduced to Tasmania",
    "plates": [
     {
      "image": "img/lyrebird.jpg",
@@ -602,6 +727,16 @@
    "image": "img/fairywren.jpg",
    "image_caption": "John Gould, The Birds of Australia, vol. III, pl. 18: Malurus cyaneus: Vieill (Blue Wren)",
    "match": 78.4,
+   "areas": [
+    "VIC",
+    "TAS",
+    "NSW",
+    "SA",
+    "QLD"
+   ],
+   "introduced": [],
+   "endemic": false,
+   "range": "Queensland, NSW & ACT, Victoria, Tasmania, South Australia",
    "plates": [
     {
      "image": "img/fairywren.jpg",
@@ -647,6 +782,16 @@
    "image": "img/wattlebird.jpg",
    "image_caption": "John Gould, The Birds of Australia, vol. IV, pl. 55: Anthochaera carunculata (Wattled Honey-eater)",
    "match": 71.1,
+   "areas": [
+    "VIC",
+    "NSW",
+    "QLD",
+    "SA",
+    "WA"
+   ],
+   "introduced": [],
+   "endemic": false,
+   "range": "Queensland, NSW & ACT, Victoria, South Australia, Western Australia",
    "plates": [
     {
      "image": "img/wattlebird.jpg",
@@ -698,6 +843,15 @@
    "image": "img/helmeted.jpg",
    "image_caption": "John Gould, The Birds of Australia, Supplement, vol. Supplement (1869), pl. 39: Ptilotis cassidix, Jard (Helmeted Honey-eater)",
    "match": 87.6,
+   "areas": [
+    "VIC",
+    "NSW",
+    "QLD",
+    "SA"
+   ],
+   "introduced": [],
+   "endemic": false,
+   "range": "South-eastern Australia (the helmeted form only at Yellingbo, Victoria)",
    "plates": [
     {
      "image": "img/helmeted.jpg",
@@ -742,6 +896,14 @@
    "image": "img/bellminer.jpg",
    "image_caption": "John Gould, The Birds of Australia, vol. IV, pl. 80: Myzantha viridis (Australian Bell-bird)",
    "match": 88.1,
+   "areas": [
+    "VIC",
+    "NSW",
+    "QLD"
+   ],
+   "introduced": [],
+   "endemic": false,
+   "range": "Queensland, NSW & ACT, Victoria",
    "plates": [
     {
      "image": "img/bellminer.jpg",
@@ -792,6 +954,12 @@
    "image": "img/tui.jpg",
    "image_caption": "John Gerrard Keulemans, Walter L. Buller, A History of the Birds of New Zealand, 2nd ed., vol. I: Prosthemadera nov\u00e6 zealandi\u00e6 (Tui or Parson Bird)",
    "match": 81.6,
+   "areas": [
+    "NZ"
+   ],
+   "introduced": [],
+   "endemic": true,
+   "range": "New Zealand only (endemic)",
    "plates": [
     {
      "image": "img/tui.jpg",
@@ -838,6 +1006,14 @@
    "image": "img/whipbird.jpg",
    "image_caption": "John Gould, The Birds of Australia, vol. III, pl. 15: Psophodes crepitans (Coach-whip Bird)",
    "match": 63.1,
+   "areas": [
+    "QLD",
+    "NSW",
+    "VIC"
+   ],
+   "introduced": [],
+   "endemic": false,
+   "range": "Queensland, NSW & ACT, Victoria",
    "plates": [
     {
      "image": "img/whipbird.jpg",
@@ -891,6 +1067,19 @@
    "image": "img/shrikethrush.jpg",
    "image_caption": "John Gould, The Birds of Australia, vol. II, pl. 74: Colluricincla harmonica (Harmonious Colluricincla)",
    "match": 76.0,
+   "areas": [
+    "VIC",
+    "TAS",
+    "NSW",
+    "QLD",
+    "SA",
+    "WA",
+    "NT",
+    "NG"
+   ],
+   "introduced": [],
+   "endemic": false,
+   "range": "All of Australia, southern New Guinea",
    "plates": [
     {
      "image": "img/shrikethrush.jpg",
@@ -938,6 +1127,17 @@
    "image": "img/whistler.jpg",
    "image_caption": "John Gould, The Birds of Australia, vol. II, pl. 64: Pachycephala gutturalis (Guttural Pachycephala)",
    "match": 81.7,
+   "areas": [
+    "VIC",
+    "TAS",
+    "NSW",
+    "QLD",
+    "SA",
+    "WA"
+   ],
+   "introduced": [],
+   "endemic": false,
+   "range": "Eastern, southern and south-western Australia, Tasmania",
    "plates": [
     {
      "image": "img/whistler.jpg",
@@ -986,6 +1186,16 @@
    "image": "img/butcherbird.jpg",
    "image_caption": "John Gould, The Birds of Australia, vol. II, pl. 49: Cracticus nigrogularis (Black-throated Crow-Shrike)",
    "match": 81.5,
+   "areas": [
+    "NSW",
+    "QLD",
+    "SA",
+    "WA",
+    "NT"
+   ],
+   "introduced": [],
+   "endemic": false,
+   "range": "Mainland Australia except the far south-east",
    "plates": [
     {
      "image": "img/butcherbird.jpg",
@@ -1039,6 +1249,21 @@
    "image": "img/magpie.jpg",
    "image_caption": "John Gould, The Birds of Australia, vol. II, pl. 46: Gymnorhina tibicen (Piping Crow-Shrike)",
    "match": 79.6,
+   "areas": [
+    "VIC",
+    "TAS",
+    "NSW",
+    "QLD",
+    "SA",
+    "WA",
+    "NT",
+    "NG"
+   ],
+   "introduced": [
+    "NZ"
+   ],
+   "endemic": false,
+   "range": "All of Australia, southern New Guinea; introduced to New Zealand",
    "plates": [
     {
      "image": "img/magpie.jpg",
@@ -1091,6 +1316,18 @@
    "image": "img/wagtail.jpg",
    "image_caption": "John Gould, The Birds of Australia, vol. II, pl. 86: Rhipidura motacilloides: Vig. & Horsf (Black Fantailed Flycatcher)",
    "match": 82.5,
+   "areas": [
+    "VIC",
+    "NSW",
+    "QLD",
+    "SA",
+    "WA",
+    "NT",
+    "NG"
+   ],
+   "introduced": [],
+   "endemic": false,
+   "range": "Mainland Australia, New Guinea",
    "plates": [
     {
      "image": "img/wagtail.jpg",
@@ -1136,6 +1373,14 @@
    "image": "img/raven.jpg",
    "image_caption": "John Gould, The Birds of Australia, vol. IV, pl. 18: Corvus coronoides: Vig. et Horsf (White-eyed Crow)",
    "match": 71.5,
+   "areas": [
+    "VIC",
+    "NSW",
+    "SA"
+   ],
+   "introduced": [],
+   "endemic": false,
+   "range": "NSW & ACT, Victoria, South Australia",
    "plates": [
     {
      "image": "img/raven.jpg",
@@ -1181,6 +1426,16 @@
    "image": "img/pigeon.jpg",
    "image_caption": "John Gould, The Birds of Great Britain, vol. IV, pl. 3: Columba livia, Temm (Rock-Pigeon)",
    "match": 84.6,
+   "areas": [
+    "EU",
+    "NAF",
+    "WAS"
+   ],
+   "introduced": [
+    "WORLD"
+   ],
+   "endemic": false,
+   "range": "Europe, North Africa, Western Asia; introduced to cities worldwide",
    "plates": [
     {
      "image": "img/pigeon.jpg",
@@ -1235,6 +1490,14 @@
    "image": "img/robin.jpg",
    "image_caption": "John Gould, The Birds of Great Britain, vol. II, pl. 48: Erythacus rubecula (Robin, or Redbreast)",
    "match": 86.7,
+   "areas": [
+    "EU",
+    "NAF",
+    "WAS"
+   ],
+   "introduced": [],
+   "endemic": false,
+   "range": "Europe, North Africa, Western Asia",
    "plates": [
     {
      "image": "img/robin.jpg",
@@ -1289,6 +1552,16 @@
    "image": "img/cardinal.jpg",
    "image_caption": "John James Audubon, The Birds of America, vol. II, pl. 159: Fringilla cardinalis, Bonap (Cardinal Grosbeak)",
    "match": 80.4,
+   "areas": [
+    "US",
+    "CA",
+    "MX"
+   ],
+   "introduced": [
+    "HI"
+   ],
+   "endemic": false,
+   "range": "USA, Canada, Mexico; introduced to Hawaii",
    "plates": [
     {
      "image": "img/cardinal.jpg",
@@ -1338,6 +1611,13 @@
    "image": "img/quetzal.jpg",
    "image_caption": "John Gould, A Monograph of the Trogonidae, or Family of Trogons, 2nd ed., part III: Pharomacrus mocinno (Quezal)",
    "match": 80.8,
+   "areas": [
+    "CAM",
+    "MX"
+   ],
+   "introduced": [],
+   "endemic": false,
+   "range": "Central America, Mexico",
    "plates": [
     {
      "image": "img/quetzal.jpg",
@@ -1353,5 +1633,25 @@
     }
    ]
   }
- ]
+ ],
+ "area_names": {
+  "TAS": "Tasmania",
+  "VIC": "Victoria",
+  "NSW": "NSW & ACT",
+  "QLD": "Queensland",
+  "SA": "South Australia",
+  "WA": "Western Australia",
+  "NT": "Northern Territory",
+  "NZ": "New Zealand",
+  "NG": "New Guinea",
+  "EU": "Europe",
+  "NAF": "North Africa",
+  "WAS": "Western Asia",
+  "US": "USA",
+  "CA": "Canada",
+  "MX": "Mexico",
+  "CAM": "Central America",
+  "HI": "Hawaii",
+  "WORLD": "cities worldwide"
+ }
 }

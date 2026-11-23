@@ -14,7 +14,9 @@ export class Presets {
     this.list = document.getElementById('psList');
     this.cats = document.getElementById('psCats');
     this.about = document.getElementById('psAbout');
-    this.coll = null; this.hi = 0; this.visible = []; this.q = '';
+    this.coll = null; this.hi = 0; this.visible = []; this.q = ''; this.area = null;
+    // area filter chips under the region tabs (a field guide's distribution filter)
+    this.chips = document.createElement('div'); this.chips.className = 'ps-chips'; this.chips.id = 'psChips'; this.cats.after(this.chips);
     this.favs = new Set(lsGet('carol-favs', []));
     const search = document.getElementById('psSearch');
     search.oninput = () => { this.q = search.value.trim().toLowerCase(); this.hi = 0; this.render(); };
@@ -30,7 +32,27 @@ export class Presets {
     if (favs) out.unshift({ name: FAV, region: 'your favourites', about: 'Tap the star next to any bird to add it here.' });
     return out;
   }
-  birdsIn(c) { return c === FAV ? this.app.index.filter((b) => this.favs.has(b.id)) : this.app.index.filter((b) => (b.collection || '') === c); }
+  birdsIn(c, all = false) {
+    const list = c === FAV ? this.app.index.filter((b) => this.favs.has(b.id)) : this.app.index.filter((b) => (b.collection || '') === c);
+    if (all || !this.area || c !== this.coll) return list;
+    return list.filter((b) => (b.areas || []).includes(this.area) || (b.introduced || []).includes(this.area));
+  }
+  /** The area chips for the current tab: only areas its birds live in, in a fixed order; tap to filter, again to clear. */
+  renderChips() {
+    const order = Object.keys(this.app.areaNames || {});
+    const birds = this.birdsIn(this.coll, true), have = new Set(birds.flatMap((b) => (b.areas || []).concat(b.introduced || [])));
+    const areas = order.filter((a) => have.has(a) && a !== 'WORLD');
+    if (this.area && !areas.includes(this.area)) this.area = null;
+    this.chips.hidden = !!this.q || areas.length < 2;
+    this.chips.innerHTML = '';
+    for (const a of [null, ...areas]) {
+      const c = document.createElement('button');
+      c.className = 'ps-chip' + (a === this.area ? ' on' : '');
+      c.textContent = a ? this.app.areaNames[a] : 'All areas';
+      c.onclick = () => { this.area = a === this.area ? null : a; this.hi = 0; this.render(); };
+      this.chips.appendChild(c);
+    }
+  }
   found() {
     const q = this.q;
     return this.app.index.filter((b) => [b.name, b.sci, b.family, b.order, b.collection, bodyName(b.body), ...((b.tags && b.tags.region) || []), ...((b.tags && b.tags.features) || [])].join(' ').toLowerCase().includes(q));
@@ -46,9 +68,9 @@ export class Presets {
       t.setAttribute('role', 'tab');
       t.innerHTML = '<b></b><small></small>';
       t.querySelector('b').textContent = c.name;
-      const nb = this.birdsIn(c.name).length;
+      const nb = this.birdsIn(c.name, true).length;
       t.querySelector('small').innerHTML = `${nb} bird${nb === 1 ? '' : 's'}<span class="rg">${c.region ? ' · ' + c.region.replace(/[&<>]/g, '') : ''}</span>`;
-      t.onclick = () => { this.coll = c.name; this.hi = 0; this.render(); };
+      t.onclick = () => { if (this.coll !== c.name) this.area = null; this.coll = c.name; this.hi = 0; this.render(); };
       this.cats.appendChild(t);
     }
     const cur = cs.find((c) => c.name === this.coll);
@@ -56,7 +78,7 @@ export class Presets {
     const on = this.cats.querySelector('.on'); on && on.scrollIntoView({ block: 'nearest', inline: 'nearest' });
   }
   render() {
-    this.renderCats();
+    this.renderCats(); this.renderChips();
     this.cats.style.display = this.q ? 'none' : '';
     const items = this.q ? this.found() : this.birdsIn(this.coll);
     if (this.q) this.about.textContent = items.length ? `${items.length} found` : 'No birds match.';
@@ -74,7 +96,8 @@ export class Presets {
       }
       const li = document.createElement('li');
       li.className = (i === this.hi ? 'hi' : '') + (this.app.bird && b.id === this.app.bird.id ? ' cur' : '');
-      li.innerHTML = '<b></b><span class="m"></span><i></i><button class="ps-fav" title="Favourite"></button>';
+      li.innerHTML = '<b></b><span class="m"></span><i></i><button class="ps-fav" title="Favourite"></button><small class="rng"></small>';
+      const rg = li.querySelector('.rng'); if (b.range) { rg.textContent = b.range; if (b.endemic) rg.insertAdjacentHTML('afterbegin', '<em class="endemic">ENDEMIC</em> '); } else rg.remove();
       const fv = li.querySelector('.ps-fav'); fv.innerHTML = icon(this.favs.has(b.id) ? 'star' : 'starOff'); fv.classList.toggle('on', this.favs.has(b.id));
       fv.onclick = (e) => { e.stopPropagation(); this.toggleFav(b.id); this.render(); };
       li.querySelector('b').textContent = b.name;
@@ -120,6 +143,7 @@ export class Presets {
     const b = this.app.bird && this.app.index.find((x) => x.id === this.app.bird.id);
     this.coll = b ? (b.collection || '') : this.coll;
     const search = document.getElementById('psSearch'); search.value = ''; this.q = '';
+    if (b && this.area && !this.birdsIn(this.coll).some((x) => x.id === b.id)) this.area = null;   // keep the current bird in view
     this.hi = b ? Math.max(0, this.birdsIn(this.coll).findIndex((x) => x.id === b.id)) : 0;
     this.el.hidden = false; this.render();
   }

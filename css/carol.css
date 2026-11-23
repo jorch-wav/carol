@@ -607,3 +607,11 @@ body[data-viewsize="hidden"] .v3-style { display: none; }
 .kn svg.live .live-dot { fill: #ffd58a; stroke: rgba(20,18,16,.85); stroke-width: 1.2; opacity: 0; transition: opacity .25s; }
 .kn.moving svg.live .live-arc { opacity: .9; }
 .kn.moving svg.live .live-dot { opacity: 1; }
+/* bird guide: area chips under the region tabs, and each entry's range line */
+.ps-chips { display: flex; gap: 6px; margin: 2px 0 6px; overflow-x: auto; flex: 0 0 auto; scrollbar-width: none; touch-action: pan-x; }
+.ps-chips::-webkit-scrollbar { display: none; }
+.ps-chips[hidden] { display: none; }
+.ps-chip { flex: 0 0 auto; padding: 6px 12px; min-height: 32px; border-radius: 16px; border: 1px solid var(--line); background: #1a1816; color: var(--dim); font: 700 12px/1 var(--font); letter-spacing: 1px; cursor: pointer; white-space: nowrap; }
+.ps-chip.on { border-color: var(--amber); color: var(--amber); background: #2b2116; }
+.ps-list li .rng { grid-column: 1 / -1; font-size: 12px; color: var(--faint); letter-spacing: .3px; margin-top: 1px; }
+.ps-list li .rng .endemic { font-style: normal; font-weight: 700; font-size: 10px; letter-spacing: 1px; color: var(--amber-2); border: 1px solid rgba(242,169,59,.5); border-radius: 3px; padding: 1px 4px; margin-right: 4px; }
