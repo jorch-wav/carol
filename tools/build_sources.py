@@ -629,6 +629,76 @@ PLATES.update({
 })
 
 
+# Tasmanian endemics (added 2026-11-23). All xeno-canto, Tasmania, CC BY-NC-SA 4.0 or CC BY-NC 4.0 (no ND, no BY-SA).
+# Call types from the recordists' labels plus our spectrograms (not checked by ear).
+CATEGORY.update({
+    "currawong": {
+        "826854": "ringing 'kar-week' calls ('typical call'; harmonic stacks, f0 ~0.88 kHz, loudest partial ~1.8 kHz; Hobart)",
+        "362989": "ringing calls + high slurred notes (Moina; partials to ~5 kHz)",
+        "864547": "ringing calls, single bird (Cradle Mountain; low road/wind rumble below 0.5 kHz)",
+        "1088805": "group calling, overlapping ringing calls (Eaglehawk Neck; XC type: uncertain)",
+        "716075": "flock calling (XC type: song; Middlesex, near Cradle Mountain)",
+        "1188397": "song: bouts of ringing harmonic notes (ARU, Steppes, Central Highlands)",
+        "1188398": "song: sparse bouts, long recording (ARU, Steppes; faint, noisy background)",
+        "1188442": "dawn song (ARU, open woodland, Steppes)",
+        "1168489": "calls + song (ARU, snow-gum woodland near Lagoon of Islands)",
+        "972179": "soft crooning/peeping 'conversation' at a trail camera, with beak taps (arched notes ~0.55-2.3 kHz)",
+    },
+    "greenrosella": {
+        "1188363": "piping whistles: long pure tones ~1.87 kHz (XC type: song; King Island ssp. brownii, ARU)",
+        "1188307": "piping whistles ~2.4 + 3.4 kHz with faint calls (XC type: call, song; King Island, ARU)",
+        "1188310": "'bell call' piping whistles ~2.4 kHz, then flight calls from 0:12 (King Island, ARU)",
+        "572344": "perched calls: wavy W-shaped notes ~1.6-2 kHz (XC type: call, song; bird unseen, ID 'pretty certain')",
+        "893950": "contact calls: arched harmonic notes ~1.9 kHz (XC type: uncertain; Maria Island, possibly in flight)",
+        "496488": "'kussik' contact calls: harmonic stacks, f0 ~1.9-2 kHz",
+        "567415": "'kussik' contact calls, repeated (f0 ~2.2 kHz)",
+        "345665": "harsh calls, broadband ~1.8-8 kHz (Ansons Bay; grey shrikethrush in background)",
+        "495655": "flight calls (short clip, 3 bursts)",
+        "1188390": "flight calls: dense repeated broadband bursts ~2-8 kHz (Steppes, Central Highlands)",
+        "571183": "foraging chatter + soft whistles ~2.6 kHz (feeding birds, Bakers Beach)",
+    },
+    # Only 8 quality A/B recordings with an allowed licence exist (the Bruny Island A/B clips are all ND); C/D skipped.
+    "duskyrobin": {
+        "565016": "song: 3-note 'choo-wee-er' phrases (arches 3.0->1.9, 2.75->1.9, 2.0->2.45 kHz), long bout (Devonport)",
+        "565012": "song: same 3-note phrases, very long bout (4 min; Devonport)",
+        "565010": "song: 3-note phrases (Devonport)",
+        "495749": "song: varied higher notes ~3.6-4.6 kHz + low whistles (Quoiba, Devonport)",
+        "830799": "'choo-wee' calls at first light ('typical call'; ocean noise; South Bruny)",
+        "496703": "calls: two-note down-slurred whistles ~2-2.75 kHz, single bird in a garden (Adventure Bay, Bruny; from video, low-frequency noise)",
+        "496494": "calls + flight calls: down-slurred whistles ~2.2-2.9 kHz (Eugenana)",
+        "496495": "calls + flight calls (Eugenana; continuation of XC496494, quality B)",
+    },
+    "yellowwattlebird": {
+        "826887": "harsh two-part cough ('typical harsh squawk'), long recording with long gaps (West Hobart)",
+        "1088808": "harsh coughing calls, single and paired bursts (Eaglehawk Neck)",
+        "1088806": "harsh cough call, single two-part burst (Eaglehawk Neck)",
+        "1038591": "harsh call: one loud noisy burst with harmonic banding (lowest peak ~0.85 kHz; Neika)",
+        "1188464": "two-part cough (XC type: call, dawn song; ARU, Steppes)",
+        "1188453": "two-part cough + faint rattling notes (XC type: call, dawn song; ARU, Steppes)",
+        "571169": "short 'chock' click calls ~2.7-2.9 kHz + soft notes (Bakers Beach; mostly quiet)",
+        "362982": "harsh 'kuk' coughs + soft whistles in between (Miandetta, Devonport)",
+        "716177": "harsh two-part coughs alternating with soft harmonic notes (f0 ~0.83 kHz) (XC type: song; Freycinet)",
+        "748760": "canopy 'song': gurgling descending notes ~0.85-3.8 kHz + coughs (Risdon Brook; noise-reduced, HPF 400 Hz)",
+    },
+})
+
+PLATES.update({
+    "currawong": dict(gould_name="Strepera fuliginosa: Gould.", gould_common_name="Sooty Crow-Shrike", volume="II",
+                      plate="43", ia_id="birdsAustraliav2Goul", leaf=180,
+                      bhl_part="https://www.biodiversitylibrary.org/part/312970", printer="Hullmandel & Walton"),
+    "greenrosella": dict(gould_name="Platycercus flaviventris.", gould_common_name="Yellow-bellied Parrakeet", volume="V",
+                         plate="24", ia_id="birdsAustraliav5Goul", leaf=104,
+                         bhl_part="https://www.biodiversitylibrary.org/part/313256", printer="Hullmandel & Walton"),
+    "duskyrobin": dict(gould_name="Petroica fusca: Gould.", gould_common_name="Dusky Robin", volume="III", plate="8",
+                       ia_id="birdsAustraliav3Goul", leaf=40, bhl_part="https://www.biodiversitylibrary.org/part/313039",
+                       printer="C. Hullmandel", artist_credit="J. Gould and H. C. Richter delt."),
+    # Gould's text page heads it "Wattled Honey-eater"; his List of Plates and the BHL part title say "Great Wattled Honey-eater".
+    "yellowwattlebird": dict(gould_name="Anthochæra inauris.", gould_common_name="Great Wattled Honey-eater", volume="IV",
+                             plate="54", ia_id="birdsAustraliav4Goul", leaf=228,
+                             bhl_part="https://www.biodiversitylibrary.org/part/313182", printer="C. Hullmandel"),
+})
+
+
 def probe(path):
     out = subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration:stream=sample_rate,channels,bits_per_sample",
                           "-of", "json", path], capture_output=True, text=True).stdout

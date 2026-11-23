@@ -1,0 +1,22 @@
+[
+  {
+    "file": "plates/barraband-levaillant.jpg",
+    "raw_file": "plates/raw/Levaillant_Parrot_80.jpg",
+    "source_page_url": "https://commons.wikimedia.org/wiki/File:Levaillant_Parrot_80.jpg",
+    "source_file_url": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Levaillant_Parrot_80.jpg",
+    "original_source_url": "https://archive.org/stream/mobot31753003742969#page/n34/mode/1up",
+    "processing": "Commons original JPEG (1524x1842) -> RGB, resized to 900 px tall (Lanczos), JPEG quality 85, no crop (tools/make_plate.py)",
+    "artist": "Jacques Barraband",
+    "work": "François Levaillant, Histoire naturelle des perroquets (Paris, 1801-1805), 2 vols, folio",
+    "year": "1801",
+    "volume": "II",
+    "plate": "80",
+    "artist_died": 1809,
+    "copy": "scan on Wikimedia Commons (File:Levaillant Parrot 80.jpg), from the Missouri Botanical Garden copy on the Internet Archive (mobot31753003742969)",
+    "licence": "Public domain (published 1801; artist died 1809; Wikimedia Commons: Public domain)",
+    "name_on_plate": "1re Variété de la Perruche à large queue",
+    "gould_common_name": "Variété de la Perruche à large queue",
+    "common_name_note": "Gould (Birds of Australia vol. V, text to pl. 24) lists 'Perruche à large queue, Le Vaill. Hist. Nat. des Perr., pl. 80' as a synonym of his Platycercus flaviventris; the bird shown has the green rosella's yellow head and underparts, red forehead and blue cheeks",
+    "artist_credit_on_plate": "'Barraband pinx.' bottom left, 'De l'Imprimerie de Langlois' bottom centre (small)"
+  }
+]

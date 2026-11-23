@@ -1,0 +1,72 @@
+{
+ "id": "duskyrobin",
+ "common_name": "Dusky Robin",
+ "scientific_name": "Melanodryas vittata",
+ "family": "Petroicidae (Australasian robins)",
+ "range": "Tasmania and King Island (endemic)",
+ "overview": "The dusky robin is Tasmania's plain robin: a small, upright, olive-brown bird about 15 cm long with a pale throat, a dark stripe through the eye, a thin white bar along the wing and white edges to the tail. Unlike its scarlet and flame-coloured cousins it has no bright colours, and the sexes look the same. It sits quietly on stumps, posts and fence lines at the edges of clearings, which earned it the old name 'stump robin'. Its song is a soft, mournful, whistled 'choo-wee, choo-wee-er', often one of the first sounds at dawn, and it gave the bird the nicknames 'sad bird' and 'sad robin'. It is found only in Tasmania and on King Island.",
+ "deep_dive": {
+  "habitat": "Mostly dry eucalypt forest and open woodland, especially the edges between forest and clearings, paddocks or recently burnt ground; also coastal heath, sedgeland and buttongrass plains, from sea level to about 1,200 m. It favours places with stumps, logs, fences and other low perches. Gould found it on thinly timbered hills and scrubby, sterile plains, and common around Hobart, in the gullies below Mount Wellington.",
+  "range": "Endemic to Tasmania, where it is widespread. Two subspecies: vittata on mainland Tasmania and its inshore islands, and kingi (Mathews, 1914) on King Island in Bass Strait, which looks the same and has a small population of unknown trend. BirdLife International lists the species as Vulnerable because of a declining population. Our recordings come from around Devonport in the north and from Bruny Island in the south-east.",
+  "behaviour": "Usually alone, in pairs or in small family groups; in winter flocks of 6-12 (up to about 20, often with young birds) form. It perches low and drops to the ground to take insects, which it swallows whole, even large beetles. Breeds July to December, raising one or two broods, and is a cooperative breeder: two or three extra adults (presumably males) help feed the incubating female. The large, untidy cup nest of rootlets, bark, twigs, grass and fern bound with spider web sits in a fork of a tree or stump, often a fire-blackened one; 2-4 glossy olive to blue-green eggs, blotched brown and green, incubated by the female for about 15 days. Parents and helpers feed the young, which stay with the family for six to seven weeks after fledging.",
+  "voice": "Seldom sings, but sings all year, usually at dawn. The song is a low, monotonous whistle written 'choo-wee, choo-wee-er', built from a few low notes; Gould called its note low and monotonous. In our recordings a song phrase is usually three clean, whistled arches about 0.2 s long and 0.35-0.4 s apart: the first starts near 3.0 kHz and falls to about 1.9 kHz, the second peaks near 2.75 kHz and falls the same way, and the third rises from about 2.0 to 2.45 kHz before dropping; a faint second harmonic runs near 4-6 kHz. Long songs repeat this phrase every few seconds, with most energy between about 2.3 and 3.0 kHz (median about 2.75 kHz). Calls are shorter two-note versions ('choo-wee') between about 2.0 and 2.9 kHz, plus thin down-slurred notes; one song recording near Devonport holds higher, varied notes around 3.6-4.6 kHz.",
+  "anatomy": "A songbird (order Passeriformes), so it has the songbird tracheobronchial syrinx with a sound source on each side, under separate muscle control. No dusky-robin syrinx study was found; the pure, slurred whistles with weak harmonics look like a single clean tonal source. The Australasian robins are an early branch of the passerid songbirds. Body: 14-16.5 cm long, about 27 g, the biggest robin in Tasmania; short, slender black-brown bill, dark brown iris, blackish legs; moderately long tail. The white wing bar marks the base of the flight feathers, and the outer tail feathers are edged white. Juveniles are dark brown and heavily streaked with buff, with a yellow gape."
+ },
+ "tags": {
+  "features": [
+   "whistled song",
+   "slurred arches",
+   "dawn singer",
+   "cooperative breeder"
+  ],
+  "region": [
+   "Tasmania",
+   "King Island",
+   "Endemic to Tasmania"
+  ]
+ },
+ "facts_sources": [
+  {
+   "title": "Dusky robin - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Dusky_robin",
+   "licence": "CC BY-SA 4.0 (text paraphrased, not copied)",
+   "used_for": "overview, size and weight, plumage of adults and juveniles, nicknames (stump robin, sad bird), song rendering 'choo-wee, choo-we-er', dawn and year-round singing, habitat and altitude, winter flocks, breeding, helpers, nest and eggs, incubation, taxonomy (Muscicapa vittata, Petroica vittata, Petroicidae)"
+  },
+  {
+   "title": "Gould, J. (1840-48) The Birds of Australia, vol. III, pl. 8 and text: Petroica fusca, Dusky Robin",
+   "url": "https://archive.org/details/birdsAustraliav3Goul/page/n39/mode/1up",
+   "licence": "Public domain",
+   "used_for": "habitat (thinly timbered hills, sterile plains), perching on stumps and rails, insects swallowed whole, nest and eggs, low monotonous note, sexes alike, plumage incl. the white wing line and white-edged outer tail feathers"
+  },
+  {
+   "title": "Subspecies Melanodryas (Amaurodryas) vittata kingi (Mathews, 1914) - Australian Faunal Directory",
+   "url": "https://biodiversity.org.au/afd/taxa/Melanodryas_%28Amaurodryas%29_vittata_kingi",
+   "licence": "CC BY 4.0 - facts only",
+   "used_for": "King Island subspecies kingi and its authority"
+  },
+  {
+   "title": "Dusky Robin Melanodryas vittata - BirdLife International DataZone",
+   "url": "https://datazone.birdlife.org/species/factsheet/dusky-robin-melanodryas-vittata/text",
+   "licence": "(c) BirdLife International - facts only",
+   "used_for": "Red List category Vulnerable (population decline); kingi subpopulation small, trend unknown"
+  },
+  {
+   "title": "Syrinx (bird anatomy) - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Syrinx_(bird_anatomy)",
+   "licence": "CC BY-SA 4.0 (paraphrased)",
+   "used_for": "songbird tracheobronchial syrinx with two sound sources"
+  },
+  {
+   "title": "IOC World Bird List (Gill, Rasmussen & Donsker, eds.): Dusky Robin",
+   "url": "https://www.worldbirdnames.com/bird/dusky-robin/20564.html",
+   "licence": "CC BY 4.0 - facts only",
+   "used_for": "taxonomy: order Passeriformes, family Petroicidae, Melanodryas vittata (Quoy & Gaimard, 1830), protonym Muscicapa vittata, type locality 'port du Roi-Georges' in error for Tasmania; subspecies vittata and kingi"
+  },
+  {
+   "title": "Xeno-canto recordings listed in sources.json (own measurements)",
+   "url": "https://xeno-canto.org/species/Melanodryas-vittata",
+   "licence": "recordings CC BY-NC-SA; measurements are our own",
+   "used_for": "three-note song phrase (3.0 -> 1.9 kHz, 2.75 -> 1.9 kHz, 2.0 -> 2.45 kHz arches, ~0.2 s notes), song energy 2.3-3.0 kHz (median 2.75 kHz), harmonic 4-6 kHz, calls 2.0-2.9 kHz, higher notes 3.6-4.6 kHz in XC495749"
+  }
+ ]
+}

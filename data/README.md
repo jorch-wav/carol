@@ -115,3 +115,33 @@ Arne Thelin, Daniel Hinckley). Both plates are public domain (Keulemans died 191
 - **Māori names:** tūī and kōkō (NZ Birds Online, Te Aka Māori Dictionary); Buller (1888) adds 'Pi-tui'/'Pikari' for the
   young. Te Ara refused scripted access, so it isn't cited.
 - Facts paraphrased from Wikipedia (CC BY-SA), NZ Birds Online, DOC, Hill & Ji (2014, *Notornis*) and Buller (1888).
+
+## Tasmania (added 2026-11-23)
+
+Four Tasmanian endemics. All xeno-canto, Tasmania (incl. King Island), CC BY-NC-SA 4.0 or CC BY-NC 4.0 (Erin Harris's
+ARU clips); ND, CC BY-SA and CC0 were skipped. None of the four species is restricted on xeno-canto.
+
+| bird | count | ids | plate (Gould, *The Birds of Australia*) |
+|---|---|---|---|
+| currawong (black currawong) | 10 | 826854, 362989, 864547 (ringing calls); 1088805, 716075 (group calling); 1188397, 1188398, 1188442, 1168489 (song / dawn song, ARU); 972179 (crooning at a trail camera) | vol. II pl. 43, *Strepera fuliginosa*, Sooty Crow-Shrike |
+| greenrosella (green rosella) | 11 | 1188363, 1188307, 1188310 (piping whistles, King Island); 572344, 893950, 496488, 567415, 345665 (calls); 495655, 1188390 (flight calls); 571183 (foraging chatter) | vol. V pl. 24, *Platycercus flaviventris*, Yellow-bellied Parrakeet; extra plate: Barraband in Levaillant, *Histoire naturelle des perroquets* (1801) pl. 80 |
+| duskyrobin (dusky robin) | 8 | 565016, 565012, 565010, 495749 (song); 830799, 496703, 496494, 496495 (calls; 3 are quality B) | vol. III pl. 8, *Petroica fusca*, Dusky Robin |
+| yellowwattlebird (yellow wattlebird) | 10 | 826887, 1088808, 1088806, 1038591, 1188464, 1188453 (harsh coughs); 571169, 362982 ('chock'/'kuk' calls); 716177, 748760 (song) | vol. IV pl. 54, *Anthochaera inauris* (List of Plates: Great Wattled Honey-eater); extra plate: Broinowski vol. IV pl. XXVII (same as the red wattlebird's) |
+
+- **Call types weren't checked by listening.** Grouping is from the recordists' labels plus our spectrograms.
+  Many clips are labelled 'call, song' or 'dawn song' on XC; for the wattlebird all of them are coughs.
+- **Dusky robin: only 8 clips.** Every quality A/B clip from Bruny Island is ND-licensed; the rest are C/D. The song is
+  well covered (three long Devonport bouts), calls less so. XC495749 holds higher, varied notes (3.6-4.6 kHz) unlike
+  the other songs; no background species is listed, but it should be checked.
+- **Green rosella:** the three piping-whistle clips are all King Island birds (ssp. *brownii*, vulnerable) from one
+  ARU in the Pegarah forest; the mainland clips are calls only. XC572344: bird unseen ("pretty certain" of the ID).
+- **Currawong:** 4 of 10 clips come from one recordist's ARUs (Steppes/Lagoon of Islands); XC864547 has road rumble
+  below 0.5 kHz. XC972179 is an unusual soft crooning the recordist has rarely heard.
+- **Yellow wattlebird:** XC362983 was downloaded and dropped (busy background, half its energy above 8 kHz), replaced by
+  XC1188453. XC748760 was noise-reduced and high-passed at 400 Hz by the recordist.
+- **BHL links** are the Gould part pages, confirmed through Crossref titles of DOIs 10.5962/p.312970, p.313256,
+  p.313039 and p.313182. Internet Archive leaves verified by eye (plate lettering).
+- **Indigenous (palawa kani) names:** none cited; no citable source was found for any of the four.
+- **Anatomy** is group-level (songbird/parrot); no species-specific syrinx study exists for any of them.
+- Facts paraphrased from Wikipedia (CC BY-SA), the Australian Museum, the Australian Faunal Directory, BirdLife
+  International, the IOC list and Gould's text.

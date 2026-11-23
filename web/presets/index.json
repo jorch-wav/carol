@@ -2,7 +2,7 @@
  "collections": [
   {
    "name": "Australasia",
-   "count": 23,
+   "count": 27,
    "cover": "magpie",
    "region": "Australia, New Guinea, New Zealand",
    "about": "Birds of Australia and its neighbours, from the garden to the bush. Plates by John Gould, The Birds of Australia."
@@ -515,6 +515,57 @@
    ]
   },
   {
+   "id": "greenrosella",
+   "name": "Green Rosella",
+   "sci": "Platycercus caledonicus",
+   "authority": "(Gmelin, 1788)",
+   "order": "Psittaciformes",
+   "family": "Psittaculidae",
+   "body": "parrot",
+   "tags": {
+    "features": [
+     "piping whistles",
+     "pure tones",
+     "two-note flight call",
+     "chatterer"
+    ],
+    "region": [
+     "Tasmania",
+     "Bass Strait islands",
+     "Endemic to Tasmania"
+    ]
+   },
+   "collection": "Australasia",
+   "family_name": "Old World parrots",
+   "tax": [
+    18,
+    7
+   ],
+   "image": "img/greenrosella.jpg",
+   "image_caption": "John Gould, The Birds of Australia, vol. V, pl. 24: Platycercus flaviventris (Yellow-bellied Parrakeet)",
+   "match": 83.4,
+   "areas": [
+    "TAS"
+   ],
+   "introduced": [],
+   "endemic": true,
+   "range": "Tasmania and the Bass Strait islands (endemic)",
+   "plates": [
+    {
+     "image": "img/greenrosella.jpg",
+     "caption": "John Gould, The Birds of Australia, vol. V, pl. 24: Platycercus flaviventris (Yellow-bellied Parrakeet)",
+     "artist": "John Gould",
+     "year": "1840"
+    },
+    {
+     "image": "img/greenrosella/barraband-levaillant.jpg",
+     "caption": "Jacques Barraband, Fran\u00e7ois Levaillant, Histoire naturelle des perroquets, vol. II, pl. 80: 1re Vari\u00e9t\u00e9 de la Perruche \u00e0 large queue (Vari\u00e9t\u00e9 de la Perruche \u00e0 large queue)",
+     "artist": "Jacques Barraband",
+     "year": "1801"
+    }
+   ]
+  },
+  {
    "id": "rosella",
    "name": "Crimson Rosella",
    "sci": "Platycercus elegans",
@@ -808,6 +859,58 @@
     {
      "image": "img/wattlebird/broinowski.jpg",
      "caption": "Gracius J. Broinowski, The Birds of Australia, vol. IV: 2. Anthochaera carunculata [with 1. Anthochaera inauris] (Wattled Honey-eater)",
+     "artist": "Gracius J. Broinowski",
+     "year": "1887"
+    }
+   ]
+  },
+  {
+   "id": "yellowwattlebird",
+   "name": "Yellow Wattlebird",
+   "sci": "Anthochaera paradoxa",
+   "authority": "(Daudin, 1800)",
+   "order": "Passeriformes",
+   "family": "Meliphagidae",
+   "body": "songbird",
+   "tags": {
+    "features": [
+     "harsh coughs",
+     "broadband bursts",
+     "'chock' calls",
+     "largest honeyeater",
+     "pendulous wattles"
+    ],
+    "region": [
+     "Tasmania",
+     "King Island",
+     "Endemic to Tasmania"
+    ]
+   },
+   "collection": "Australasia",
+   "family_name": "Honeyeaters",
+   "tax": [
+    19,
+    10
+   ],
+   "image": "img/yellowwattlebird.jpg",
+   "image_caption": "John Gould, The Birds of Australia, vol. IV, pl. 54: Anthoch\u00e6ra inauris (Great Wattled Honey-eater)",
+   "match": 67.2,
+   "areas": [
+    "TAS"
+   ],
+   "introduced": [],
+   "endemic": true,
+   "range": "Tasmania and King Island (endemic)",
+   "plates": [
+    {
+     "image": "img/yellowwattlebird.jpg",
+     "caption": "John Gould, The Birds of Australia, vol. IV, pl. 54: Anthoch\u00e6ra inauris (Great Wattled Honey-eater)",
+     "artist": "John Gould",
+     "year": "1840"
+    },
+    {
+     "image": "img/yellowwattlebird/broinowski.jpg",
+     "caption": "Gracius J. Broinowski, The Birds of Australia, vol. IV: 1. Anthochaera inauris [with 2. Anthochaera carunculata] (Wattled Honey-eater)",
      "artist": "Gracius J. Broinowski",
      "year": "1887"
     }
@@ -1286,6 +1389,52 @@
    ]
   },
   {
+   "id": "currawong",
+   "name": "Black Currawong",
+   "sci": "Strepera fuliginosa",
+   "authority": "(Gould, 1837)",
+   "order": "Passeriformes",
+   "family": "Artamidae",
+   "body": "songbird",
+   "tags": {
+    "features": [
+     "ringing calls",
+     "harmonic stacks",
+     "group chorus",
+     "dawn caller",
+     "crooning"
+    ],
+    "region": [
+     "Tasmania",
+     "Bass Strait islands",
+     "Endemic to Tasmania"
+    ]
+   },
+   "collection": "Australasia",
+   "family_name": "Butcherbirds, magpies, currawongs and woodswallows",
+   "tax": [
+    19,
+    14
+   ],
+   "image": "img/currawong.jpg",
+   "image_caption": "John Gould, The Birds of Australia, vol. II, pl. 43: Strepera fuliginosa: Gould (Sooty Crow-Shrike)",
+   "match": 77.4,
+   "areas": [
+    "TAS"
+   ],
+   "introduced": [],
+   "endemic": true,
+   "range": "Tasmania and the Bass Strait islands (endemic)",
+   "plates": [
+    {
+     "image": "img/currawong.jpg",
+     "caption": "John Gould, The Birds of Australia, vol. II, pl. 43: Strepera fuliginosa: Gould (Sooty Crow-Shrike)",
+     "artist": "John Gould",
+     "year": "1840"
+    }
+   ]
+  },
+  {
    "id": "wagtail",
    "name": "Willie-wagtail",
    "sci": "Rhipidura leucophrys",
@@ -1393,6 +1542,51 @@
      "caption": "Henrik Gr\u00f6nvold, Gregory M. Mathews, The Birds of Australia, vol. XII, pl. 594: Corvus coronoides (Raven) (Raven)",
      "artist": "Henrik Gr\u00f6nvold",
      "year": "1925"
+    }
+   ]
+  },
+  {
+   "id": "duskyrobin",
+   "name": "Dusky Robin",
+   "sci": "Melanodryas vittata",
+   "authority": "(Quoy & Gaimard, 1830)",
+   "order": "Passeriformes",
+   "family": "Petroicidae",
+   "body": "songbird",
+   "tags": {
+    "features": [
+     "whistled song",
+     "slurred arches",
+     "dawn singer",
+     "cooperative breeder"
+    ],
+    "region": [
+     "Tasmania",
+     "King Island",
+     "Endemic to Tasmania"
+    ]
+   },
+   "collection": "Australasia",
+   "family_name": "Australasian robins",
+   "tax": [
+    19,
+    17
+   ],
+   "image": "img/duskyrobin.jpg",
+   "image_caption": "John Gould, The Birds of Australia, vol. III, pl. 8: Petroica fusca: Gould (Dusky Robin)",
+   "match": 89.2,
+   "areas": [
+    "TAS"
+   ],
+   "introduced": [],
+   "endemic": true,
+   "range": "Tasmania and King Island (endemic)",
+   "plates": [
+    {
+     "image": "img/duskyrobin.jpg",
+     "caption": "John Gould, The Birds of Australia, vol. III, pl. 8: Petroica fusca: Gould (Dusky Robin)",
+     "artist": "John Gould",
+     "year": "1840"
     }
    ]
   },

@@ -1,0 +1,79 @@
+{
+ "id": "yellowwattlebird",
+ "common_name": "Yellow Wattlebird",
+ "scientific_name": "Anthochaera paradoxa",
+ "family": "Meliphagidae (honeyeaters)",
+ "range": "Tasmania and King Island (endemic)",
+ "overview": "The yellow wattlebird is the world's biggest honeyeater: up to about 45 cm long, with a long, white-tipped tail, and found only in Tasmania and on King Island. It is grey-brown and heavily streaked, with a black-streaked crown, a white face and a bright yellow belly, and from each cheek hangs a long, fleshy yellow-orange wattle that grows larger and brighter in the breeding season. It is loud and bold, clambering acrobatically through flowering gums and banksias and chasing other birds away. Its voice is anything but sweet: harsh, coughing 'kuk' and 'chock' calls that people have compared to retching, belching or a pheasant's call.",
+ "deep_dive": {
+  "habitat": "From sea level to the subalpine zone (about 1,350 m): dry and wet eucalypt forest, woodland, alpine forest, coastal heath and banksia scrub. Common in town too, in parks, gardens, cemeteries, golf courses and orchards, especially in autumn and winter when flocks move to lower ground. It prefers older forest and may suffer from more frequent fires.",
+  "range": "Endemic to Tasmania: widespread in the east and centre, rarer in the wet west and south-west; also on King Island, Three Hummock Island and Hunter Island in Bass Strait. Two subspecies: paradoxa in Tasmania and kingi (Mathews, 1925) on King Island, where land clearing has reduced it. Two unconfirmed sightings come from Victoria's Mornington Peninsula. Our recordings come from Hobart, the Tasman, Kingborough and Clarence areas, Freycinet, the north coast and the Central Highlands.",
+  "behaviour": "Active, acrobatic and a strong flier, hanging and clinging in every position while feeding, often in noisy groups at flowering trees; fairly tame in gardens. Feeds on eucalypt and banksia nectar, manna, honeydew, fruit (often fallen or overripe), insects, spiders and even honeybees caught in flight, and carries eucalypt pollen on its bill and head. Nomadic outside the breeding season, following the irregular flowering of its food trees. Breeding pairs defend territories fiercely (August to January). The female builds an open, bowl-shaped nest of twigs, bark and grass lined with wool or fur, 3-20 m up, often in an exposed eucalypt fork; 2-3 salmon-red, blotched eggs; both parents incubate and feed the young. It was shot as game (Gould saw hundreds sold in Hobart's markets) until the early 1970s.",
+  "voice": "Loud, harsh and raucous: a guttural, coughing or belching 'kuk' or 'kukuk', a gurgling 'growk' and a repeated 'clok'. The call is 'spat' out with a strong jerk of the head back and then forward. Gould called it a harsh, disagreeable scream, loud like a pheasant's call, which some likened to a man retching. In our recordings the typical cough is a pair of noisy, broadband bursts, a short one (about 0.05-0.07 s) and then a longer one (about 0.15 s), spreading from about 0.8 kHz to 6-8 kHz with faint harmonic banding spaced roughly 0.85-0.95 kHz apart; the lowest strong peak sits near 0.85-0.93 kHz and median energy near 3.1-3.5 kHz. Short single 'chock' notes are narrower clicks centred near 2.7-2.9 kHz. Between coughs, one bird at Freycinet gave soft harmonic notes on a fundamental of about 0.83 kHz, and canopy 'song' near Hobart is a gurgling run of descending notes between about 0.85 and 3.8 kHz (median about 1.6 kHz) mixed with coughs.",
+  "anatomy": "A songbird (order Passeriformes), so it has the songbird tracheobronchial syrinx with a sound source on each side, under separate muscle control. No wattlebird syrinx study was found; the harsh calls are noisy, broadband bursts rather than clean tones, which suggests irregular (chaotic) vibration of the syrinx, but this has not been studied in wattlebirds. Like other honeyeaters it has a long, brush-tipped tongue for nectar (Gould described it in this species). Body: 37.5-45 cm long (males about 46 cm, females about 40 cm); males average 168 g and females 123 g, the biggest males reaching 260 g. Short, strong, slightly curved black bill with a yellow gape; the long pendulous wattles are white at the base and deepen to rich orange at the tip (Gould), smaller in females and young birds. The tail is long and graduated, its feathers tipped white; the primaries are tipped white too. Juveniles have a paler head and browner belly."
+ },
+ "tags": {
+  "features": [
+   "harsh coughs",
+   "broadband bursts",
+   "'chock' calls",
+   "largest honeyeater",
+   "pendulous wattles"
+  ],
+  "region": [
+   "Tasmania",
+   "King Island",
+   "Endemic to Tasmania"
+  ]
+ },
+ "facts_sources": [
+  {
+   "title": "Yellow wattlebird - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Yellow_wattlebird",
+   "licence": "CC BY-SA 4.0 (text paraphrased, not copied)",
+   "used_for": "overview, largest honeyeater, size and weights, plumage, wattles brighten when breeding, juveniles, range incl. King Island and unconfirmed Victorian records, habitat and altitude, behaviour, call descriptions (coughing/belching, 'growk', 'clok'), diet incl. honeybees and manna, pollination, breeding, taxonomy (Corvus paradoxus Daudin 1800)"
+  },
+  {
+   "title": "Yellow Wattlebird - Australian Museum",
+   "url": "https://australian.museum/learn/animals/birds/yellow-wattlebird/",
+   "licence": "(c) Australian Museum - facts only, paraphrased",
+   "used_for": "length by sex, altitude to 1,350 m, distribution in east and centre, Three Hummock and Hunter Islands, urban habitats, call rendering 'kuk'/'kukuk' and head-jerk delivery, nomadic winter flocks, nest site and height, broods, fire and clearing threats, hunting until the early 1970s"
+  },
+  {
+   "title": "Gould, J. (1840-48) The Birds of Australia, vol. IV, pl. 54 and text: Anthochaera inauris, Wattled Honey-eater",
+   "url": "https://archive.org/details/birdsAustraliav4Goul/page/n227/mode/1up",
+   "licence": "Public domain",
+   "used_for": "voice (harsh scream like a pheasant's call, compared to retching), brush-tipped tongue, acrobatic feeding, birds sold in Hobart markets, wattle colours (white base to orange tip), white-tipped tail and primaries, yellow gape, smaller wattles in females"
+  },
+  {
+   "title": "Subspecies Anthochaera (Anthochaera) paradoxa kingi (Mathews, 1925) - Australian Faunal Directory",
+   "url": "https://biodiversity.org.au/afd/taxa/0313a6a4-76d6-4eae-bd7f-ae9ef1cc274b",
+   "licence": "CC BY 4.0 - facts only",
+   "used_for": "King Island subspecies kingi and its authority"
+  },
+  {
+   "title": "Honeyeater - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Honeyeater",
+   "licence": "CC BY-SA 4.0 (paraphrased)",
+   "used_for": "brush-tipped honeyeater tongue"
+  },
+  {
+   "title": "Syrinx (bird anatomy) - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Syrinx_(bird_anatomy)",
+   "licence": "CC BY-SA 4.0 (paraphrased)",
+   "used_for": "songbird tracheobronchial syrinx with two sound sources"
+  },
+  {
+   "title": "IOC World Bird List (Gill, Rasmussen & Donsker, eds.): Yellow Wattlebird",
+   "url": "https://www.worldbirdnames.com/bird/yellow-wattlebird/17333.html",
+   "licence": "CC BY 4.0 - facts only",
+   "used_for": "taxonomy: order Passeriformes, family Meliphagidae, Anthochaera paradoxa (Daudin, 1800), protonym Corvus paradoxus, type locality 'Nouvelle Zélande' in error for southern Tasmania; subspecies paradoxa and kingi"
+  },
+  {
+   "title": "Xeno-canto recordings listed in sources.json (own measurements)",
+   "url": "https://xeno-canto.org/species/Anthochaera-paradoxa",
+   "licence": "recordings CC BY-NC-SA / CC BY-NC; measurements are our own",
+   "used_for": "two-part coughs (0.05-0.07 s + ~0.15 s bursts, ~0.8 to 6-8 kHz, banding ~0.85-0.95 kHz, median 3.1-3.5 kHz), 'chock' clicks ~2.7-2.9 kHz, soft notes on ~0.83 kHz, gurgling song 0.85-3.8 kHz (median ~1.6 kHz)"
+  }
+ ]
+}

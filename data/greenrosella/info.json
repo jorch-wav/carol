@@ -1,0 +1,72 @@
+{
+ "id": "greenrosella",
+ "common_name": "Green Rosella",
+ "scientific_name": "Platycercus caledonicus",
+ "family": "Psittaculidae (Old World parrots)",
+ "range": "Tasmania and the Bass Strait islands (endemic)",
+ "overview": "The green rosella, or Tasmanian rosella, is the biggest of the rosellas: up to about 36 cm long, much of it tail. Despite the name, an adult is mostly yellow underneath and on the head, with a red band across the forehead, violet-blue cheeks and a dark back scalloped with green; only the young birds are truly green. It lives only in Tasmania and the islands of Bass Strait, where it is one of the commonest birds of the bush, farms and gardens. Its name 'caledonicus' is a mistake: the first describer thought the bird came from New Caledonia. Pairs and small family groups keep in touch with a two-note 'kussik kussik' in flight, and perched birds pipe clear, ringing whistles.",
+ "deep_dive": {
+  "habitat": "Almost anywhere with trees, from sea level to about 1,500 m: rainforest canopy, wet and dry eucalypt forest, woodland, coastal heath, alpine conifer forest and buttongrass moorland edges, as well as farmland, orchards and town gardens. It feeds mostly up in the canopy and understorey but comes to the ground for fallen fruit and spilt grain.",
+  "range": "Endemic to Tasmania and the Bass Strait islands, including Maria, Bruny, De Witt and Maatsuyker Islands and the Furneaux Group. Sedentary, even in the highlands. Two subspecies: caledonicus on mainland Tasmania and the Furneaux islands, and brownii on King Island, where clearing has left fewer than about 500 birds, breeding only in the Pegarah forest (listed as vulnerable). Our clips come from northern and eastern Tasmania, Maria Island, the Central Highlands and the Pegarah forest on King Island.",
+  "behaviour": "Usually in pairs or small family groups; young birds gather in flocks of 20 or more outside the breeding season, and 50-70 can mass at blackberry or thistle patches. Flight is straight, with rapid shallow wingbeats and short glides. Mostly a seed-eater, especially eucalypt and grass seeds, plus berries, fruit, flowers, buds and the odd insect larva or psyllid picked from leaf galls; it usually holds food in its left foot and is quiet on the ground but noisy in trees. Breeds September to January in deep tree hollows up to 30 m high: 4-5 white eggs, incubated by the female alone for 19-23 days; the downy white chicks fledge at 4-5 weeks. Gould ate rosella pie in Van Diemen's Land and found it excellent.",
+  "voice": "In flight a repeated two-syllable contact call, written 'kussik kussik' or 'cossack cossack'; when perched a rising 'kwik-kweek kwik-kweek'; chattering in courtship and shrill screeches in alarm. Gould mentions flocks leaving the forest with a shrill whistling call. In our recordings the piping whistles (recorded on King Island and labelled 'bell call' or 'song') are long, almost pure tones held for up to about a second at steady pitches of about 1.85-1.9, 2.4 and 3.4 kHz, with hardly any overtones. Contact calls are short, sharply modulated notes forming harmonic stacks with a fundamental near 1.9-2.2 kHz and a strong second harmonic near 3.7-4.1 kHz; median energy is about 3.6-3.7 kHz and most of it stays below about 4.2 kHz in clean clips. Flight calls and harsher calls are dense broadband bursts from about 2 to 8 kHz. One perched bird gave wavy W-shaped notes between about 1.6 and 2 kHz.",
+  "anatomy": "A parrot (order Psittaciformes), not a songbird. The parrot syrinx sits at the base of the windpipe, with syringeal muscles and a pair of lateral tympaniform membranes that help set the pitch, and parrots are thought to have only one sound source. Parrots also shape their sound with the thick, movable tongue, which changes the resonances (formants) of the vocal tract (shown in monk parakeets). These are parrot-wide findings, not green-rosella studies; the very pure piping whistles suggest a tonal, membrane-driven source with little filtering. Body: 29-36 cm long, wingspan 44-54 cm; males average about 150 g and females about 120 g, and males have a larger bill. The bill is pale grey with a dark grey cere, the iris brown with a dark grey eye-ring, the legs grey. Females are duller with more red on the face; juveniles are dark green with an underwing stripe and take more than a year to gain the yellow."
+ },
+ "tags": {
+  "features": [
+   "piping whistles",
+   "pure tones",
+   "two-note flight call",
+   "chatterer"
+  ],
+  "region": [
+   "Tasmania",
+   "Bass Strait islands",
+   "Endemic to Tasmania"
+  ]
+ },
+ "facts_sources": [
+  {
+   "title": "Green rosella - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Green_rosella",
+   "licence": "CC BY-SA 4.0 (text paraphrased, not copied)",
+   "used_for": "overview, size, wingspan, weights, plumage of adults, females and juveniles, soft parts, taxonomy (Psittacus caledonicus Gmelin 1788, New Caledonia error, brownii and synonyms), subspecies and King Island status, range and islands, habitat and altitude, sedentary habits, behaviour, flight, call renderings ('kussik', 'cossack', 'kwik-kweek'), chatter and alarm screech, diet and left-foot feeding, breeding"
+  },
+  {
+   "title": "Gould, J. (1840-48) The Birds of Australia, vol. V, pl. 24 and text: Platycercus flaviventris, Yellow-bellied Parrakeet",
+   "url": "https://archive.org/details/birdsAustraliav5Goul/page/n103/mode/1up",
+   "licence": "Public domain",
+   "used_for": "shrill whistling call of flocks leaving the forest, undulating flight, 'Green Parrot' of the colonists, rosella pie, eggs and downy young, plumage"
+  },
+  {
+   "title": "Parrot - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Parrot",
+   "licence": "CC BY-SA 4.0 (paraphrased)",
+   "used_for": "parrot syrinx position, syringeal muscles, lateral tympaniform membranes"
+  },
+  {
+   "title": "Muhammad, J. (2022) Elucidating the evolution of the parrot vocal organ and links to bioacoustic traits (abstract, UT Austin)",
+   "url": "https://www.jsg.utexas.edu/events/files/Muhammad_abstract.pdf",
+   "licence": "facts only",
+   "used_for": "parrots: intrinsic syringeal muscles and a single sound source"
+  },
+  {
+   "title": "For imitative parrots, wagging tongues may be key to vocalization (EurekAlert!/Cell Press, 6 Sep 2004) on Beckers, Nelson & Suthers 2004, Current Biology 14:1592-1597",
+   "url": "https://www.eurekalert.org/news-releases/738938",
+   "licence": "facts only",
+   "used_for": "tongue movements change vocal-tract formants in monk parakeets"
+  },
+  {
+   "title": "IOC World Bird List v15.2 (Gill, Rasmussen & Donsker, eds.)",
+   "url": "https://www.worldbirdnames.org/new/ioc-lists/master-list-2/",
+   "licence": "CC BY 4.0 - facts only",
+   "used_for": "taxonomy: order Psittaciformes, family Psittaculidae, Platycercus caledonicus (Gmelin, 1788), English name Green Rosella"
+  },
+  {
+   "title": "Xeno-canto recordings listed in sources.json (own measurements)",
+   "url": "https://xeno-canto.org/species/Platycercus-caledonicus",
+   "licence": "recordings CC BY-NC-SA / CC BY-NC; measurements are our own",
+   "used_for": "piping whistles at about 1.85-1.9, 2.4 and 3.4 kHz; contact calls with fundamental 1.9-2.2 kHz and 2nd harmonic 3.7-4.1 kHz, median energy 3.6-3.7 kHz; flight calls broadband 2-8 kHz; wavy notes 1.6-2 kHz"
+  }
+ ]
+}

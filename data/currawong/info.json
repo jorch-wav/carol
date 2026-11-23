@@ -1,0 +1,67 @@
+{
+ "id": "currawong",
+ "common_name": "Black Currawong",
+ "scientific_name": "Strepera fuliginosa",
+ "family": "Artamidae (butcherbirds, currawongs and woodswallows)",
+ "range": "Tasmania and the Bass Strait islands (endemic)",
+ "overview": "The black currawong is a big, crow-like bird about half a metre long, found only in Tasmania and the islands of Bass Strait. It is sooty black all over except for white tips to the wings and tail, with a heavy black bill and a bright yellow eye. Tasmanians also call it the black jay. It is not a crow at all but a relative of the magpie and the butcherbirds. Loud and sociable, it roams the highland forests in noisy groups, and its ringing 'kar-week' calls carry a long way through the bush, especially at dawn, at dusk and before rain.",
+ "deep_dive": {
+  "habitat": "Mostly wet forest: tall eucalypt forest of alpine ash, messmate and mountain gum, cool temperate rainforest and damp lowland gullies, up into alpine scrub and heath. It is uncommon or absent below about 200 m in much of Tasmania and breeds mainly in the Central Highlands. In winter some highland birds drop to lower, milder country, and they also visit farmland, orchards, campgrounds and suburbs. In drier forest it gives way to the grey (clinking) currawong.",
+  "range": "Endemic to Tasmania and the nearby Bass Strait islands, including the Hunter Group, King Island and the Furneaux Group. Three subspecies: fuliginosa on mainland Tasmania, parvior on Flinders Island and colei on King Island; the island birds look the same but are a little smaller. The King Island form is listed as vulnerable (perhaps about 500 birds left after forest clearing). Largely sedentary. All recordings here are from mainland Tasmania.",
+  "behaviour": "Seen alone, in pairs or in groups of 20 to 80, and flocks of up to 100 raid orchards. Flight is undulating and the tail is often cocked on landing. It is omnivorous, foraging both on the ground and in the canopy: berries and other fruit, seeds, earthworms, beetles, moths, ants and wasps, plus mice, lizards, tadpoles and nestling birds. Bold around picnic grounds at Cradle Mountain and Freycinet, where people feed it. Playful: it has been seen wrestling, juggling food and bathing in wet clay. Breeds August to December, building a large stick cup lined with roots and grass in a tree fork 3-20 m up; 2-4 eggs; both parents feed the chicks. Birds have lived 15 years.",
+  "voice": "Loud and vocal, especially at dawn, at nightfall and before storms; noisy in flight but silent while hunting. The main call is a ringing, musical 'kar-week, week-kar' (also written 'killok killok'), and parents call their young with a long fluting whistle. Gould found its note much less shrill than that of the grey currawong. In our recordings the ringing calls are short, clean harmonic stacks built on a fundamental of about 0.85-0.9 kHz: the second harmonic near 1.8 kHz is usually the loudest, with the third near 2.6-2.75 kHz and weaker overtones to about 5-6 kHz in close recordings. Median energy sits near 1.8 kHz and almost nothing lies above 8 kHz. Single notes are flat or arched, with quick up-slurs; groups overlap into a dense chorus. One bird investigating a trail camera crooned soft, varied peeps and arched notes between about 0.55 and 2.3 kHz, a quiet sound the recordist has rarely heard elsewhere.",
+  "anatomy": "A songbird (order Passeriformes), so it has the songbird tracheobronchial syrinx with a sound source on each side where the windpipe splits into the bronchi, each side under separate muscular control. No currawong-specific syrinx study was found; the strongly harmonic calls fit a single clean source sounding at a time. Other features: a long, heavy, slightly hooked black bill (Gould noted it is more arched than in other currawongs), bright yellow iris, black legs. About 47-50 cm long with an 80 cm wingspan; nominate males weigh about 405 g and females about 340 g, with wings about 26-27 cm and tails about 18.5-19 cm. The sexes look alike; immatures are browner with a yellow gape for about two years."
+ },
+ "tags": {
+  "features": [
+   "ringing calls",
+   "harmonic stacks",
+   "group chorus",
+   "dawn caller",
+   "crooning"
+  ],
+  "region": [
+   "Tasmania",
+   "Bass Strait islands",
+   "Endemic to Tasmania"
+  ]
+ },
+ "facts_sources": [
+  {
+   "title": "Black currawong - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Black_currawong",
+   "licence": "CC BY-SA 4.0 (text paraphrased, not copied)",
+   "used_for": "overview, names (black jay), subspecies (parvior, colei) and King Island status, size and weights, wing/tail lengths, plumage and immatures, call renderings ('kar'/'wheek', 'killok'), calling at dawn/dusk/before rain, fluting whistle to young, habitat and altitude, range incl. Bass Strait islands, behaviour, play, diet, breeding, longevity, taxonomy history (Cracticus fuliginosus / Coronica fuliginosa Gould)"
+  },
+  {
+   "title": "Black Currawong - Australian Museum",
+   "url": "https://australian.museum/learn/animals/birds/black-currawong/",
+   "licence": "(c) Australian Museum - facts only, paraphrased",
+   "used_for": "length (47-49 cm), call rendering 'kar-week, week-kar', winter movement to lowlands, nest and breeding season, clutch size"
+  },
+  {
+   "title": "Gould, J. (1840-48) The Birds of Australia, vol. II, pl. 43 and text: Strepera fuliginosa, Sooty Crow-Shrike",
+   "url": "https://archive.org/details/birdsAustraliav2Goul/page/n179/mode/1up",
+   "licence": "Public domain",
+   "used_for": "arched bill, note less shrill than the grey currawong's, ground running, 'Black Magpie' of the colonists, plumage and yellow iris, sexes alike"
+  },
+  {
+   "title": "Syrinx (bird anatomy) - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Syrinx_(bird_anatomy)",
+   "licence": "CC BY-SA 4.0 (paraphrased)",
+   "used_for": "songbird tracheobronchial syrinx with two sound sources"
+  },
+  {
+   "title": "IOC World Bird List v15.2 (Gill, Rasmussen & Donsker, eds.)",
+   "url": "https://www.worldbirdnames.org/new/ioc-lists/master-list-2/",
+   "licence": "CC BY 4.0 - facts only",
+   "used_for": "taxonomy: order Passeriformes, family Artamidae, Strepera fuliginosa (Gould, 1837), English name Black Currawong"
+  },
+  {
+   "title": "Xeno-canto recordings listed in sources.json (own measurements)",
+   "url": "https://xeno-canto.org/species/Strepera-fuliginosa",
+   "licence": "recordings CC BY-NC-SA / CC BY-NC; measurements are our own",
+   "used_for": "fundamental about 0.85-0.9 kHz, loudest 2nd harmonic near 1.8 kHz, 3rd near 2.6-2.75 kHz, overtones to 5-6 kHz, median energy about 1.8 kHz, crooning peeps 0.55-2.3 kHz"
+  }
+ ]
+}
