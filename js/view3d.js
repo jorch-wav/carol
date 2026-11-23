@@ -7,7 +7,8 @@ void main(){ vec4 w = M * vec4(p,1.); vw = w.xyz; vn = normalize(N * n); gl_Posi
 const FS = `precision mediump float; varying vec3 vn; varying vec3 vw; uniform vec3 col, eye; uniform float a, glow, mode, skin, enh, line, fogN, fogF; uniform vec4 wm; uniform vec2 wz; uniform float wrot, wside;
 void main(){
  if (wside != 0.) { vec2 q = vw.xy - wm.xy; float cr = cos(wrot), sr = sin(wrot); q = vec2(q.x*cr + q.y*sr, -q.x*sr + q.y*cr);
-   if (wside > 1.5) { float dz = (vw.z - wz.x)/wz.y; if ((q.x*q.x)/(wm.z*wm.z) + (q.y*q.y)/(wm.w*wm.w) + dz*dz > 1.) discard; }
+   if (wside > 2.5) { if ((q.x*q.x)/(wm.z*wm.z) + (q.y*q.y)/(wm.w*wm.w) > 1.) discard; }
+   else if (wside > 1.5) { float dz = (vw.z - wz.x)/wz.y; if ((q.x*q.x)/(wm.z*wm.z) + (q.y*q.y)/(wm.w*wm.w) + dz*dz > 1.) discard; }
    else if ((q.x*q.x)/(wm.z*wm.z) + (q.y*q.y)/(wm.w*wm.w) > 1. || vw.z*wside < 0.) discard; }
  vec3 n = normalize(vn); vec3 l = normalize(vec3(.5,.8,.6)); vec3 v = normalize(eye - vw);
  float nd = max(dot(n,l),0.); float r = pow(1.-max(dot(n,v),0.),2.5);
@@ -395,13 +396,14 @@ export class View3D {
     gl.clear(gl.DEPTH_BUFFER_BIT);
     const skin = []; for (const p of skinParts) if (!(p.part === 'markings' && p.kind === 'ell')) for (const it of this.instances(p)) skin.push(it);
     // markings are painted onto the surface: each of the main skin shapes, raised a hair and cut to the marking
-    const shells = model.parts.filter((q) => ['body', 'belly', 'neck', 'head'].includes(q.id));
+    const shells = model.parts.filter((q) => ['body', 'belly', 'neck', 'head', 'tail'].includes(q.id));
     for (const mk of skinParts.filter((q) => q.part === 'markings' && q.kind === 'ell')) {
       for (const sh of shells) {
         const k = 1.025, c = Math.cos(sh.rot || 0), s2 = Math.sin(sh.rot || 0);
         const ax = [c * sh.r[0] * k, s2 * sh.r[0] * k, 0], ay = [-s2 * sh.r[1] * k, c * sh.r[1] * k, 0], az = [0, 0, sh.r[2] * k];
         skin.push({ mesh: 'sph', M: m4.basis(ax, ay, az, sh.c), N: normalMat(ax, ay, az), col: hexRGB(mk.color), a: 1, glow: 0, c: mk.c, skin: true, part: 'markings',
-          wmask: { c: mk.c, r: mk.r, rot: mk.rot || 0, side: 2 } });
+          // cut to the marking's outline seen from the side, on its own side (both, for a central marking)
+          wmask: { c: mk.c, r: mk.r, rot: mk.rot || 0, side: Math.abs(mk.c[2]) > 0.3 ? Math.sign(mk.c[2]) : 3 } });
       }
     }
     // draw markings last within each pass, so where they meet the body they win

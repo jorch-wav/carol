@@ -97,7 +97,7 @@ export class Presets {
       const li = document.createElement('li');
       li.className = (i === this.hi ? 'hi' : '') + (this.app.bird && b.id === this.app.bird.id ? ' cur' : '');
       li.innerHTML = '<b></b><span class="m"></span><i></i><button class="ps-fav" title="Favourite"></button><small class="rng"></small>';
-      const rg = li.querySelector('.rng'); if (b.range) { rg.textContent = b.range; if (b.endemic) rg.insertAdjacentHTML('afterbegin', '<em class="endemic">ENDEMIC</em> '); } else rg.remove();
+      const rg = li.querySelector('.rng'); if (b.range) { rg.textContent = b.endemic ? b.range.replace(/\s*\(endemic\)/, '') : b.range; if (b.endemic) rg.insertAdjacentHTML('afterbegin', '<em class="endemic">ENDEMIC</em> '); } else rg.remove();
       const fv = li.querySelector('.ps-fav'); fv.innerHTML = icon(this.favs.has(b.id) ? 'star' : 'starOff'); fv.classList.toggle('on', this.favs.has(b.id));
       fv.onclick = (e) => { e.stopPropagation(); this.toggleFav(b.id); this.render(); };
       li.querySelector('b').textContent = b.name;
